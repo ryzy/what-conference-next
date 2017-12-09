@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+#    working_directory: ~/foo-bar
+    docker:
+      - image: circleci/node:latest-browsers
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn
+      - run:
+          name: Build project
+          command: yarn build:prod

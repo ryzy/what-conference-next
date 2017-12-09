@@ -19,14 +19,15 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles/styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      }
+      },
+      "serviceWorker": true
     }
   ],
   "e2e": {
@@ -54,7 +55,17 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+      "viewEncapsulation": "Emulated",
+      "changeDetection": "OnPush"
+    },
+    "build": {
+      "namedChunks": true
+    },
+    "serve": {
+      "port": 4100,
+      "host": "0.0.0.0"
+    }
   }
 }
