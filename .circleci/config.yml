@@ -11,4 +11,8 @@ jobs:
           command: yarn
       - run:
           name: Build project
-          command: yarn build:prod
+          command: yarn build:prod --progress=false
+      - run:
+          name: Linting
+          command: yarn lint
+
