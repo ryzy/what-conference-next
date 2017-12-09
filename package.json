@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start:prod": "ng serve -prod --environment=prod",
+    "start:poc": "ng serve --app=poc",
     "build": "ng build -prod --stats-json --environment=dev",
     "build:prod": "ng build -prod --stats-json --environment=prod",
     "test": "ng test",
