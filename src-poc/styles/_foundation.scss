@@ -1,0 +1,69 @@
+$body-font-family: 'Cabin Sketch', sans-serif;
+$font-family-monospace: 'Operator Mono', Consolas, 'Liberation Mono', 'Menlo', Courier, monospace;
+
+$gutter-size: 1.5rem !default; // 24px
+$grid-container: 78.5rem !default; // rem-calc(1256);
+
+$grid-column-gutter: $gutter-size;
+$grid-margin-gutters: $grid-column-gutter;
+$grid-padding-gutters: $grid-margin-gutters;
+
+/// Breakpoints
+$breakpoints: (
+  mini: 0, // MINI, everything 320 and below
+  small: 321px, // 320 and above: SMALL screen (phones)
+  medium: 641px, // 640 and above: MEDIUM screen (tablets)
+  large: 1000px, // 1000 and above: LARGE screen (smaller laptops) - will catch 2024 and around
+  xlarge: 1201px, // 1200 and above: EXTRA LARGE screen (laptops, regular screens) - will catch 1280 and around
+  xxlarge: 1441px, // 1440 and above: XXL screens (Hi DPI screens, TVs, projectors etc)
+);
+
+/// All of the names in this list will be output as classes in your CSS,
+/// like .small-12, .medium-6, and so on. Each value in this list
+/// must also be in the $breakpoints map.
+/// @see $breakpoints
+$breakpoint-classes: (mini small medium large xlarge);
+
+//
+// Import Zurb Foundation files
+//
+//@import '~foundation-sites/scss/settings/settings';
+@import '~foundation-sites/scss/util/util';
+@import '~foundation-sites/scss/global';
+@import '~foundation-sites/scss/xy-grid/xy-grid';
+@import '~foundation-sites/scss/components/flex';
+@import '~foundation-sites/scss/components/float';
+@import '~foundation-sites/scss/components/visibility';
+
+
+/**
+   * Good old float utils: .float-left/right/center, .clearfix
+   */
+@include foundation-float-classes;
+
+/**
+ * Include Foundation visibility classes, i.e. `.hide`, `.invisible` etc
+ * @url http://foundation.zurb.com/sites/docs/visibility.html
+ */
+@include foundation-visibility-classes;
+
+/**
+ * Include XY Foundation Grid
+ * @url http://foundation.zurb.com/sites/docs/xy-grid.html
+ */
+@include foundation-xy-grid-classes(
+  $base-grid: true,
+  $margin-grid: true,
+  $padding-grid: false,
+  $block-grid: true,
+  $collapse: true,
+  $offset: true,
+  $vertical-grid: true,
+  $frame-grid: false
+);
+
+/**
+ * Flex utils, e.g. .align-center, .align-right, .align-bottom
+ * http://foundation.zurb.com/sites/docs/flexbox-utilities.html
+ */
+@include foundation-flex-classes;
