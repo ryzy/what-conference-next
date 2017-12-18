@@ -11,7 +11,7 @@ const express = require('express');
 const path = require('path');
 const fallback = require('express-history-api-fallback');
 
-const DIST_APP_ROOT_DIR = path.join(__dirname, '../', 'dist');
+const DIST_APP_ROOT_DIR = path.join(__dirname, '../', 'dist/app');
 // console.log(DIST_DEMO_APP_ROOT_DIR);
 
 const app = express();

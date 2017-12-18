@@ -7,7 +7,7 @@
     {
       "root": "src",
       "name": "app",
-      "outDir": "dist",
+      "outDir": "dist/app",
       "assets": [
         "assets",
         "favicon.ico"
@@ -33,7 +33,7 @@
     {
       "root": "src-poc",
       "name": "poc",
-      "outDir": "dist",
+      "outDir": "dist/poc",
       "assets": [
         "assets"
       ],

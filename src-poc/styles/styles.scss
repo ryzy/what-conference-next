@@ -2,7 +2,7 @@
 @import 'foundation';
 
 $typography: mat-typography-config(
-  $font-family: $body-font-family,
+  $font-family: 'Cabin Sketch',
   $headline: mat-typography-level(28px, 40px, 500),
   $body-1: mat-typography-level(14px, 24px, 500)
 );
@@ -90,7 +90,7 @@ a {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: .75rem;
-  font-family: 'Cabin Sketch', sans-serif;
+  font-family: $body-font-family;
 }
 .text-center {
   text-align: center;
