@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "poc": "frontend-events-proto",
+    "dev": "frontend-events-dev",
+    "live": "frontend-events"
+  }
+}
