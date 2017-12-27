@@ -46,6 +46,7 @@
     "@angular/language-service": "5.1.2",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.0.53",
+    "bundlesize": "0.15.3",
     "codelyzer": "4.0.1",
     "express-history-api-fallback": "2.2.1",
     "firebase-tools": "3.16.0",
@@ -64,5 +65,23 @@
     "typescript": "2.4.2",
     "webpack-bundle-analyzer": "2.9.1"
   },
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "bundlesize": [
+    {
+      "maxSize": "2 kB",
+      "path": "./dist/app/inline*.js"
+    },
+    {
+      "maxSize": "250 kB",
+      "path": "./dist/app/{main,common}*.js"
+    },
+    {
+      "maxSize": "50 kB",
+      "path": "./dist/app/polyfill*.js"
+    },
+    {
+      "maxSize": "20 kB",
+      "path": "./dist/app/styles*.css"
+    }
+  ]
 }
