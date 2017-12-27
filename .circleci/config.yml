@@ -20,13 +20,16 @@ jobs:
       - deploy:
           name: Deploy DEV
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "master" ] || [[ "${CIRCLE_BRANCH}" =~ ^deploy ]]; then
               yarn deploy
               yarn deploy:poc
+
+              # Send deploy message to #frontend-events-dev Slack channel
+              curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"Firebase CI\", \"text\": \"*https://frontend-events-dev.firebaseapp.com deployed with success* :green_heart:\", \"icon_emoji\": \":princess:\"}" https://hooks.slack.com/services/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
             fi
       - deploy:
-          name: Deploy LIVE
+          name: Deploy PROD
           command: |
-            if [ "${CIRCLE_BRANCH}" == "live" ]; then
+            if [ "${CIRCLE_BRANCH}" == "prod" ]; then
               yarn deploy:prod
             fi
