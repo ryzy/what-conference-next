@@ -16,6 +16,7 @@ jobs:
       - run: yarn build:prod --progress=false
       - run: yarn build:poc --progress=false
       - run: yarn lint
+      - run: yarn coverage
 
       - deploy:
           name: Deploy DEV
