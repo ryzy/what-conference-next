@@ -1,7 +1,3 @@
-# Frontend Events Site
+# FE Events
 [![CircleCI](https://circleci.com/gh/ryzy/frontend-events-site.svg?style=svg)](https://circleci.com/gh/ryzy/frontend-events-site)
-
-### URLs
-
-* DEV: **[frontend-events-dev.firebaseapp.com](https://frontend-events-dev.firebaseapp.com/)**
-* POC (prototype): [frontend-events-proto.firebaseapp.com](https://frontend-events-proto.firebaseapp.com/)
+[![codecov](https://codecov.io/gh/ryzy/frontend-events-site/branch/master/graph/badge.svg)](https://codecov.io/gh/ryzy/frontend-events-site)

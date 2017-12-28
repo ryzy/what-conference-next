@@ -1,14 +1,12 @@
 version: 2
 jobs:
   build:
-#    working_directory: ~/foo-bar
     docker:
       - image: circleci/node:8-browsers
     steps:
       - checkout
       - run: yarn versions && npm version
 
-      # Install dependencies
       # Note: frozen-lockfile to make sure yarn.lock is in sync (otherwise fail, developer must commit latest yarn.lock)
       - run: yarn install --frozen-lockfile
 
@@ -17,6 +15,7 @@ jobs:
       - run: yarn build:poc --progress=false
       - run: yarn lint
       - run: yarn coverage
+      - run: yarn codecov # Uploads report to codecov.io and updates GH status check
       - run: yarn bundlesize
 
       - deploy:
