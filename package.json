@@ -1,7 +1,8 @@
 {
   "name": "frontend-events-site",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "start": "ng serve",
     "build": "ng build -prod --stats-json --environment=dev",
@@ -9,16 +10,17 @@
     "start:prod": "ng serve -prod --environment=prod",
     "build:prod": "ng build -prod --stats-json --environment=prod",
     "deploy:prod": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project prod",
-    "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint --type-check",
+    "test": "ng test --sourcemaps=false",
     "test:ci": "ng test --code-coverage --single-run",
+    "coverage": "nyc report && nyc check-coverage",
+    "e2e": "ng e2e",
     "start:poc": "ng serve --app=poc",
     "build:poc": "ng build --app=poc -prod --stats-json --environment=dev",
     "deploy:poc": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --public dist/poc --project poc",
-    "e2e": "ng e2e",
+    "analyze": "webpack-bundle-analyzer ./dist/app/stats.json",
     "serve": "node scripts/server.js"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "5.1.2",
     "@angular/cdk": "5.0.2",
@@ -44,6 +46,7 @@
     "@angular/language-service": "5.1.2",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.0.53",
+    "bundlesize": "0.15.3",
     "codelyzer": "4.0.1",
     "express-history-api-fallback": "2.2.1",
     "firebase-tools": "3.16.0",
@@ -55,9 +58,30 @@
     "karma-coverage-istanbul-reporter": "1.3.0",
     "karma-jasmine": "1.1.0",
     "karma-jasmine-html-reporter": "0.2.2",
+    "nyc": "11.4.1",
     "protractor": "5.2.0",
     "ts-node": "3.3.0",
     "tslint": "5.8.0",
-    "typescript": "2.4.2"
-  }
+    "typescript": "2.4.2",
+    "webpack-bundle-analyzer": "2.9.1"
+  },
+  "peerDependencies": {},
+  "bundlesize": [
+    {
+      "maxSize": "2 kB",
+      "path": "./dist/app/inline*.js"
+    },
+    {
+      "maxSize": "250 kB",
+      "path": "./dist/app/{main,common}*.js"
+    },
+    {
+      "maxSize": "50 kB",
+      "path": "./dist/app/polyfill*.js"
+    },
+    {
+      "maxSize": "20 kB",
+      "path": "./dist/app/styles*.css"
+    }
+  ]
 }

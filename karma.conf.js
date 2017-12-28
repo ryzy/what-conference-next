@@ -16,7 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
+      reports: [ 'html', 'lcovonly', 'text-summary', 'json' ],
       fixWebpackSourcePaths: true
     },
     angularCli: {
@@ -28,6 +28,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    browserNoActivityTimeout: 30000, // increase from default 10s due to sporadic timeouts on CI
     singleRun: false
   });
 };
