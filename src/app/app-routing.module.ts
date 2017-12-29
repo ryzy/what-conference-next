@@ -7,6 +7,10 @@ const appRoutes: Routes = [
     path: '',
     loadChildren: './events-list/events-list.module#EventsListModule',
   },
+  {
+    path: 'user',
+    loadChildren: './user/user.module#UserModule',
+  },
 ];
 
 @NgModule({
