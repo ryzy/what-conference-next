@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-const routes: Routes = [];
+// Application root routes
+const appRoutes: Routes = [
+  {
+    path: '',
+    loadChildren: './events-list/events-list.module#EventsListModule',
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot( appRoutes, {
+      // preloadingStrategy: PreloadAllModules,
+    }),
+  ],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,89 @@
+$body-font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-monospace: 'Operator Mono', Consolas, 'Liberation Mono', 'Menlo', Courier, monospace;
+
+$gutter-size: 1.5rem !default; // 24px
+$grid-container: rem-calc(1256);
+
+$grid-column-gutter: $gutter-size;
+$grid-margin-gutters: $grid-column-gutter;
+$grid-padding-gutters: $grid-margin-gutters;
+
+/// Breakpoints
+$breakpoints: (
+  mini: 0, // MINI, everything 320 and below
+  small: 321px, // 320 and above: SMALL screen (phones)
+  medium: 641px, // 640 and above: MEDIUM screen (tablets)
+  large: 1000px, // 1000 and above: LARGE screen (smaller laptops) - will catch 2024 and around
+  xlarge: 1201px, // 1200 and above: EXTRA LARGE screen (laptops, regular screens) - will catch 1280 and around
+  xxlarge: 1681px, // 1680 and above: XXL screens (Hi DPI screens, TVs, projectors etc)
+);
+
+// All of the names in this list will be output as classes in your CSS,
+// like .small-12, .medium-6, and so on. Each value in this list
+// must also be in the $breakpoints map.
+// @see $breakpoints
+$breakpoint-classes: (mini small medium large xlarge);
+
+
+
+/// Default spacing unit (used for padding, margins etc)
+$app-spacing-unit: $gutter-size/2 !default; // 12px
+
+/// Medium spacing unit
+$app-spacing-unit-medium: .5rem !default; // 8px
+
+/// Small spacing unit, half of the default one
+$app-spacing-unit-small: $gutter-size/4 !default; // 6px
+
+/// Tiny spacing unit
+$app-spacing-unit-tiny: .25rem !default; // 4px
+
+
+
+/// Font weight: normal (default)
+$app-font-weight-normal: 300 !default;
+/// Font weight: semi-bold
+$app-font-weight-semi-bold: 400 !default;
+/// Font weight: bold
+$app-font-weight-bold: 700 !default;
+
+/// Default line height
+$app-line-height: 1.5 !default;
+
+/// Smaller line height, for e.g. large headlines
+$app-line-height-small: 1.25 !default;
+
+/// Default `letter-spacing` for all text
+$app-letter-spacing: .03rem;        // 0.5px
+/// Extra spacing for text (e.g. in headlines)
+$app-letter-spacing-extra: .125rem; // 2px
+
+// Font sizes map, gathering all font sizes
+$app-font-sizes: (
+  // The default font-size for BODY element
+  // Note: assuming the base HTML font-size is 16px, this will give us 14px
+  'base': .875rem,      // 14px
+  'h1': 2.25rem,        // 36px
+  'h2': 1.5rem,         // 24px
+  'h3': 1.25rem,        // 20px
+  'h4': .875rem,        // 14px - same as the base!
+  'h5': .75rem,         // 12px
+  'h6': .75rem,         // 12px (but less weight)
+  'xs': .625rem,        // 10px
+) !default;
+
+// Font size (`mini` breakpoint)
+// We modify :root element font size to different value than default (16px in all browsers)
+// to achieve basic responsiveness for text size and anything else for which unit
+// is provided in `rem`).
+$app-font-size-mq-mini: 13px;
+// Font size (`small` breakpoint)
+$app-font-size-mq-small: 14px;
+// Font size (`medium` breakpoint)
+$app-font-size-mq-medium: 15px;
+// Font size (`xxlarge` breakpoint)
+$app-font-size-mq-xxlarge: 18px;
+
+// Basic transition function
+$app-transition-fn: 280ms cubic-bezier(0.19, 1, 0.22, 1);
+

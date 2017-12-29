@@ -1,0 +1,210 @@
+////
+/// @group atoms
+////
+@import '../abstracts';
+
+// Debug: display current breakpoint size
+// Note: keep it here, together where we style `html` root tag,
+// so it's easier to spot when it gets out-of-sync.
+@mixin debug-breakpoint() {
+  &:after {
+    content: 'undefined screen size';
+    position: fixed;
+    bottom: 1px;
+    right: 1px;
+    padding: $app-spacing-unit-tiny $app-spacing-unit;
+    font-size: small;
+    font-weight: $app-font-weight-semi-bold;
+    background-color: #000000;
+    color: #ffffff;
+    opacity: 0.4;
+    z-index: 999999;
+
+    @include breakpoint(mini only) {
+      content: 'mini // ' + $app-font-size-mq-mini;
+    }
+    @include breakpoint(small only) {
+      content: 'small // ' + $app-font-size-mq-small;
+    }
+    @include breakpoint(medium only) {
+      content: 'medium // ' + $app-font-size-mq-medium;
+    }
+    @include breakpoint(large only) {
+      content: 'large // default';
+    }
+    @include breakpoint(xlarge only) {
+      content: 'xlarge // default';
+    }
+    @include breakpoint(xxlarge only) {
+      content: 'xxlarge // ' + $app-font-size-mq-xxlarge;
+    }
+  }
+}
+
+html {
+  @include breakpoint(mini only) {
+    font-size: $app-font-size-mq-mini;
+  }
+  @include breakpoint(small only) {
+    font-size: $app-font-size-mq-small;
+  }
+  @include breakpoint(medium only) {
+    // consider setting it for large as well...
+    font-size: $app-font-size-mq-medium;
+  }
+  @include breakpoint(xxlarge up) {
+    font-size: $app-font-size-mq-xxlarge;
+  }
+}
+
+body {
+  font-size: map-get($app-font-sizes, base);
+  font-family: $body-font-family;
+  font-weight: $app-font-weight-normal;
+  line-height: $app-line-height;
+  letter-spacing: $app-letter-spacing;
+  text-rendering: optimizeLegibility;
+  color: $app-color-text;
+
+  // Nice numerals - see https://alistapart.com/preview/web-typography-numerals
+  font-variant-numeric: oldstyle-nums;
+  @include debug-breakpoint();
+}
+
+// Typography resets
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+b,
+strong {
+}
+
+a {
+  color: $app-color-anchor;
+  text-decoration: none;
+  text-decoration-skip: objects; /// Remove gaps in links underline in iOS 8+ and Safari 8+.
+  cursor: pointer; // so also link w/o href attribute have the right mouse cursors
+
+  &:active,
+  &:hover {
+    color: $app-color-hover;
+    // Remove the outline on focused links when they are also active or hovered
+    // in all browsers (opinionated).
+    outline-width: 0;
+  }
+
+  // We have very lightly styled <A>, actually it doesn't have any styling and the text decoration is off.
+  // Make links inside paragraphs slightly more accessible here.
+  p & {
+    text-decoration: underline dotted currentColor;
+  }
+
+  img {
+    border: 0;
+  }
+}
+
+// Paragraphs
+p {
+  margin-top: 0;
+  margin-bottom: $app-spacing-unit;
+  // line-height: not needed to set it again?
+  // font-size: inherit; // not needed to set it again?
+}
+
+ul,
+ol,
+dl {
+  margin-bottom: $app-spacing-unit;
+  list-style-position: outside;
+}
+
+ul,
+ol {
+  margin-left: $app-spacing-unit * 2;
+}
+
+dt {
+  font-weight: $app-font-weight-bold;
+}
+
+/// Small font size
+small,
+.small {
+  font-size: 85%;
+}
+
+sub,
+sup {
+  font-size: 80%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+code,
+kbd,
+samp {
+  font-family: $font-family-monospace;
+  font-size: inherit;
+  font-weight: $app-font-weight-normal;
+}
+
+pre,
+.pre,
+code,
+.code {
+  font-family: $font-family-monospace;
+  //font-size: inherit; // NO NEED TO SET. Even inherit is bad, as for example it prevents using it with <small class="code">
+  color: $app-color-text;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  background-color: $app-color-bg-gray;
+}
+
+/// Formatted code
+pre,
+.pre {
+  margin-bottom: $app-spacing-unit;
+  padding: 0.5rem;
+  border: 0 none;
+}
+
+/// Formatted inline code
+code,
+.code {
+  // Background color is present, add some padding to make it look better
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+}
+
+/// Marked text with `<mark>` tag or `.color-accent` class
+mark {
+  color: $app-color-accent;
+  background-color: transparent;
+}
+
+.color-accent {
+  color: $app-color-accent;
+}

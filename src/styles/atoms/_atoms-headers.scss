@@ -1,0 +1,117 @@
+////
+/// @group atoms
+////
+@import '../abstracts';
+
+@mixin h1 {
+  font-size: map-get($app-font-sizes, h1);
+  font-weight: $app-font-weight-normal;
+  line-height: $app-line-height-small;
+}
+
+@mixin h2 {
+  font-size: map-get($app-font-sizes, h2);
+  font-weight: $app-font-weight-normal;
+  line-height: $app-line-height-small;
+}
+
+@mixin h3 {
+  font-size: map-get($app-font-sizes, h3);
+  font-weight: $app-font-weight-normal;
+}
+
+@mixin h4 {
+  font-size: map-get($app-font-sizes, h4);
+  font-weight: $app-font-weight-semi-bold;
+}
+
+@mixin h5 {
+  font-size: map-get($app-font-sizes, h5);
+  font-weight: $app-font-weight-semi-bold;
+}
+
+@mixin h6 {
+  font-size: map-get($app-font-sizes, h6);
+  font-weight: $app-font-weight-semi-bold;
+}
+
+@mixin h-strong {
+  letter-spacing: $app-letter-spacing-extra;
+  text-transform: uppercase;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 0;
+  margin-bottom: $app-spacing-unit;
+
+  // EXPERIMENTAL: when headline is after these elements, double the space between.
+  p + &,
+  pre + &,
+  ul + &,
+  ol + & {
+    margin-top: 2*$app-spacing-unit;
+  }
+}
+
+h1,
+.h1 {
+  @include h1;
+  & + & {
+    margin-top: -$app-spacing-unit-medium;
+  }
+}
+
+h2,
+.h2 {
+  @include h2;
+  & + & {
+    margin-top: -$app-spacing-unit-medium;
+  }
+}
+
+h3,
+.h3 {
+  @include h3;
+  & + & {
+    margin-top: -$app-spacing-unit-medium;
+  }
+}
+
+h4,
+.h4 {
+  @include h4();
+  & + & {
+    margin-top: -$app-spacing-unit-medium;
+  }
+
+  &.h-strong {
+    // uppercase header
+    @include h-strong();
+  }
+}
+
+h5,
+.h5 {
+  @include h5;
+  & + & {
+    margin-top: -$app-spacing-unit-medium;
+  }
+
+  &.h-strong {
+    // uppercase header
+    @include h-strong();
+  }
+}
+
+h6,
+.h6 {
+  @include h6;
+  & + & {
+    margin-top: -$app-spacing-unit-medium;
+  }
+}

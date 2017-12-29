@@ -1,0 +1,16 @@
+.app-header {
+  border-bottom: 1px solid $app-color-border;
+  background-color: $app-color-bg-gray;
+
+  a {
+    color: inherit; // remove default link color
+  }
+  &__name {
+    padding-top: $app-spacing-unit;
+  }
+}
+
+.app-main-container {
+  padding-top: $app-spacing-unit;
+  padding-bottom: $app-spacing-unit;
+}

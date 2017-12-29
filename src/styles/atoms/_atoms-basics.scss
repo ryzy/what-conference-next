@@ -1,0 +1,218 @@
+@import '../abstracts';
+
+/**
+ * Set up a decent box model on the root element
+ *
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/**
+ * Resetting styles
+ */
+html,
+body,
+form {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ * 3. Reset line-height. Note that the `inherit` value doesn't work for us here.
+ *    For instance, button might be in a header or other element, which
+ *    might have large line-height. But we still want button
+ *    to look like our button, with fixed line-height.
+ * 4. letter-spacing is not always inherited from the body, but overridden by browser default styles (to `normal` value).
+ *    Set here explicitly to avoid any discrepancies in how text is displayed inside e.g. <input> fields.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0; // 2.
+  font-family: inherit; // 1.
+  font-size: inherit; // 1.
+  font-weight: inherit; // 1.
+  line-height: $app-line-height; // 3.
+  letter-spacing: $app-letter-spacing; // 4.
+  color: inherit;
+}
+
+/**
+ * 1. Show the overflow in Edge.
+ * 2. Remove outline in all browsers
+ */
+button,
+input {
+  overflow: visible; /* 1 */
+  outline-width: 0; /* 2 */
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+  background-color: transparent;
+}
+
+/**
+ * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+ *    controls in Android 4.
+ * 2. Correct the inability to style clickable types in iOS and Safari.
+ * 3. By default we don't want to show any background on buttons (BS opinionated)
+ */
+button,
+html [type='button'],
+  /* 1 */
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; /* 2 */
+  background-color: transparent; /* 3 */
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Change the border, margin, and padding in all browsers (opinionated).
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 0 $app-spacing-unit;
+  padding: $app-spacing-unit;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * 1. Add the correct display in IE 9-.
+ * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+textarea {
+  // Remove the default vertical scrollbar in IE.
+  overflow: auto;
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+// remove nasty yellow color in blink/webkit
+// NOTE: We add !important tag to force the browser to use our styles
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+/*
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ */
+details,
+  /* 1 */
+menu {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+svg:not(:root) {
+  // Hide the overflow in IE.
+  overflow: hidden;
+}
+
+hr {
+  clear: both;
+  height: 0;
+  margin: 2*$app-spacing-unit 0;
+  padding: 0;
+  border: 0 none;
+  border-bottom: 1px solid #aaaaaa;
+  overflow: visible; // Show the overflow in Edge and IE.
+}

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+// Import abstracts 1st, since they might contain variables overriding the default one from d2-themes
+@import 'abstracts';
+
+// Including project styles
+@import
+'atoms/atoms-basics',
+'atoms/atoms-headers',
+'atoms/atoms-typography',
+'molecules/molecules',
+'molecules/molecules-foundation',
+'molecules/molecules-md',
+'organisms/organisms',
+'pages/pages';
