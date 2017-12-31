@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { MaterialModule } from './material.module';
+import { MatIconModule } from '@angular/material';
 
 @NgModule({
   imports: [],
@@ -11,7 +10,9 @@ import { MaterialModule } from './material.module';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    MaterialModule,
+
+    // Material Design modules (but only these which are *needed* everywhere)
+    MatIconModule,
   ],
 })
 export class SharedModule {
