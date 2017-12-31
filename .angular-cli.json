@@ -18,6 +18,11 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "./styles"
+        ]
+      },
       "styles": [
         "styles/app.scss"
       ],
