@@ -1,0 +1,13 @@
+.badge {
+  display: inline-block;
+  margin: .1rem $app-spacing-unit-tiny;
+  padding: $app-spacing-unit-tiny $app-spacing-unit-medium;
+  border: 1px solid $app-color-border;
+  border-radius: $app-spacing-unit-medium;
+  font-size: 85%;
+
+  &:last-child {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+}

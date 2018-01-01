@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+$mat-typography: mat-typography-config(
+  $font-family: inherit,
+  $display-4: mat-typography-level(112px, $app-line-height, $app-font-weight-normal),
+  $display-3: mat-typography-level(56px, $app-line-height, $app-font-weight-normal),
+  $display-2: mat-typography-level(45px, $app-line-height, $app-font-weight-normal),
+  $display-1: mat-typography-level(34px, $app-line-height, $app-font-weight-normal),
+  $headline: mat-typography-level(24px, $app-line-height, $app-font-weight-normal),
+  $title: mat-typography-level(20px, $app-line-height, $app-font-weight-semi-bold),
+  $subheading-2: mat-typography-level(16px, $app-line-height, $app-font-weight-normal),
+  $subheading-1: mat-typography-level(15px, $app-line-height, $app-font-weight-normal),
+  $body-1: mat-typography-level(14px, $app-line-height, $app-font-weight-normal),
+  $body-2: mat-typography-level(14px, $app-line-height, $app-font-weight-normal),
+  $caption: mat-typography-level(14px, $app-line-height, $app-font-weight-normal),
+  $button: mat-typography-level(14px, $app-line-height, $app-font-weight-normal),
+  $input: mat-typography-level(16px, $app-line-height-small, $app-font-weight-semi-bold)
+);
+
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$candy-app-warn: mat-palette($mat-red);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);

@@ -1,0 +1,31 @@
+/**
+   * Good old float utils: .float-left/right/center, .clearfix
+   */
+@include foundation-float-classes;
+
+/**
+ * Include Foundation visibility classes, i.e. `.hide`, `.invisible` etc
+ * @url http://foundation.zurb.com/sites/docs/visibility.html
+ */
+@include foundation-visibility-classes;
+
+/**
+ * Include XY Foundation Grid
+ * @url http://foundation.zurb.com/sites/docs/xy-grid.html
+ */
+@include foundation-xy-grid-classes(
+  $base-grid: true,
+  $margin-grid: true,
+  $padding-grid: false,
+  $block-grid: true,
+  $collapse: true,
+  $offset: true,
+  $vertical-grid: true,
+  $frame-grid: false
+);
+
+/**
+ * Flex utils, e.g. .align-center, .align-right, .align-bottom
+ * http://foundation.zurb.com/sites/docs/flexbox-utilities.html
+ */
+@include foundation-flex-classes;
