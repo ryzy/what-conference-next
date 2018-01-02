@@ -313,21 +313,25 @@
     string-format-obj "^1.0.0"
     through2 "^2.0.0"
 
-"@ngrx/effects@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-4.1.1.tgz#cb758b8527964b258ea41951f59aa144e3ef9fae"
+"@ngrx/effects@github:ngrx/effects-builds":
+  version "5.0.0-alpha.0"
+  resolved "https://codeload.github.com/ngrx/effects-builds/tar.gz/d1fa807c0cd547e9d9ab906462d91ed2fb0ae827"
 
-"@ngrx/router-store@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-4.1.1.tgz#17fac7c0f5ffddef8b75e9a74ed2cb09074f3bca"
+"@ngrx/entity@github:ngrx/entity-builds":
+  version "5.0.0-alpha.0"
+  resolved "https://codeload.github.com/ngrx/entity-builds/tar.gz/84e32fc097cb51b0fe1a845b78b168e460d4a84e"
 
-"@ngrx/store-devtools@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-4.1.1.tgz#20745c39c7560fdc05fa4f22638442a7ec7dd676"
+"@ngrx/router-store@github:ngrx/router-store-builds":
+  version "5.0.0-alpha.0"
+  resolved "https://codeload.github.com/ngrx/router-store-builds/tar.gz/56dc8cc26704e5d89750c2398bbd0d525ae801e3"
 
-"@ngrx/store@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-4.1.1.tgz#680e34df2775e8852754ed777ffac95bd81b7de0"
+"@ngrx/store-devtools@github:ngrx/store-devtools-builds":
+  version "5.0.0-alpha.0"
+  resolved "https://codeload.github.com/ngrx/store-devtools-builds/tar.gz/99a33bc475879d4111d35fba24d52d35c3a3d75c"
+
+"@ngrx/store@github:ngrx/store-builds":
+  version "5.0.0-alpha.0"
+  resolved "https://codeload.github.com/ngrx/store-builds/tar.gz/04872d1f7db229099bb44f09b68ffcb7f5bdc7ba"
 
 "@ngtools/json-schema@1.1.0", "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
