@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EventsListService } from './services/events-list.service';
 import { EventsTableComponent } from './components/events-table/events-table.component';
 import { EventsListRoutingModule } from './events-list-routing.module';
-import { EventsPageComponent } from './components/events-page/events-page.component';
+import { EventsPageComponent } from './containers/events-page/events-page.component';
 
 @NgModule({
   imports: [
