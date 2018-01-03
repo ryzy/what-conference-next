@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { conferencesMockData } from '../../../../testing/fixtures/events-db';
+
 import { ConferenceEvent } from '../../model/conference-event';
 import { EventsDataSource } from '../../services/events-data-source';
-import { EventsDatabase } from '../../services/events-database';
 import { EventsListService } from '../../services/events-list.service';
 
 @Component({

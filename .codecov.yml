@@ -1,0 +1,21 @@
+codecov:
+  notify:
+    require_ci_to_pass: no
+
+coverage:
+  round: nearest
+  status:
+    project:
+      default:
+        target: 95%
+        threshold: 1%
+    patch: # only code added in the PR/commit
+      default:
+        target: 98%
+        threshold: 1%
+    changes: no
+
+comment:
+  layout: "diff, flags, files"
+  behavior: default
+  require_changes: no
