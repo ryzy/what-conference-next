@@ -12,7 +12,7 @@ export class EventsTableComponent implements OnInit {
   /**
    * Data source for mat-table
    */
-  @Input() public dataSource: EventsDataSource<ConferenceEvent>;
+  @Input() public dataSource!: EventsDataSource<ConferenceEvent>;
 
   /**
    * Columns to display in the table
