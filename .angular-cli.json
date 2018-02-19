@@ -32,6 +32,13 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       },
+      "budgets": [
+        { "type": "bundle", "maximumError": "10%", "name": "inline", "baseline": "2kb" },
+        { "type": "bundle", "error": "10%", "name": "main", "baseline": "500kb" },
+        { "type": "bundle", "error": "10%", "name": "polyfills", "baseline": "60kb" },
+        { "type": "bundle", "error": "10%", "name": "styles", "baseline": "110kb" },
+        { "type": "allScript", "error": "10%", "baseline": "600kb" }
+      ],
       "serviceWorker": true
     },
     {
