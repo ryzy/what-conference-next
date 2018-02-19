@@ -25,16 +25,16 @@ import { AppRouterStateSerializer } from './store/router-state-serializer';
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
     /* istanbul ignore next */
-    !environment.production ? StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }) : [],
+    environment.production ? [] : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
     EffectsModule.forRoot([RouterEffects]),
 
     // Firebase setup
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireAuthModule,
+    // AngularFirestoreModule,
 
     // SW
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: AppRouterStateSerializer },

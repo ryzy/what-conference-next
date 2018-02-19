@@ -5,11 +5,42 @@
   },
   "apps": [
     {
-      "root": "src",
       "name": "app",
+      "root": "src",
       "outDir": "dist/app",
       "assets": [
         "assets"
+      ],
+      "budgets": [
+        {
+          "type": "bundle",
+          "name": "inline",
+          "baseline": "2kb",
+          "maximumError": "10%"
+        },
+        {
+          "type": "bundle",
+          "name": "main",
+          "baseline": "500kb",
+          "error": "10%"
+        },
+        {
+          "type": "bundle",
+          "name": "polyfills",
+          "baseline": "60kb",
+          "error": "10%"
+        },
+        {
+          "type": "bundle",
+          "name": "styles",
+          "baseline": "110kb",
+          "error": "10%"
+        },
+        {
+          "type": "allScript",
+          "baseline": "600kb",
+          "error": "10%"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -18,25 +49,25 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+      "serviceWorker": true,
+      "styles": [
+        "styles/app.scss"
+      ],
       "stylePreprocessorOptions": {
         "includePaths": [
           "./styles"
         ]
       },
-      "styles": [
-        "styles/app.scss"
-      ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
-      },
-      "serviceWorker": true
+      }
     },
     {
-      "root": "src-poc",
       "name": "poc",
+      "root": "src-poc",
       "outDir": "dist/poc",
       "assets": [
         "assets"
@@ -95,5 +126,8 @@
       "port": 4100,
       "host": "0.0.0.0"
     }
+  },
+  "warnings": {
+    "typescriptMismatch": false
   }
 }

@@ -11,7 +11,7 @@ import { EventsListService } from '../../services/events-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsPageComponent implements OnInit {
-  public eventsDataSource: EventsDataSource<ConferenceEvent>;
+  public eventsDataSource!: EventsDataSource<ConferenceEvent>;
 
   public constructor(private service: EventsListService) {
   }

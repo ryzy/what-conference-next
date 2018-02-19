@@ -10,7 +10,7 @@ export interface AppState {
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  router: fromRouter.routerReducer,
+  router: fromRouter.routerReducer as any,
 };
 
 /* istanbul ignore next */

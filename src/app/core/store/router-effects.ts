@@ -13,7 +13,7 @@ import { RouterActionType } from './router-actions';
 export class RouterEffects {
   @Effect({ dispatch: false })
   public navigate$: Observable<any> = this.actions$.pipe(
-    ofType(RouterActionType.GO),
+    ofType<fromRouter.GoAction>(RouterActionType.GO),
     tap((action: fromRouter.GoAction) => {
       this.router.navigate(action.path, action.extras);
     }),
