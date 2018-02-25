@@ -21,7 +21,7 @@
         {
           "type": "bundle",
           "name": "main",
-          "baseline": "500kb",
+          "baseline": "720kb",
           "error": "10%"
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "type": "allScript",
-          "baseline": "600kb",
+          "baseline": "800kb",
           "error": "10%"
         }
       ],
@@ -88,6 +88,11 @@
   "test": {
     "karma": {
       "config": "./karma.conf.js"
+    },
+    "codeCoverage": {
+      "exclude": [
+        "src/testing/**"
+      ]
     }
   },
   "defaults": {

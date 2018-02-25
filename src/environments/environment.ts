@@ -6,11 +6,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyDq4EtvqFmf0wCvqNYuZxq-5IdcA6OPYhc',
-    authDomain: 'frontend-events.firebaseapp.com',
-    databaseURL: 'https://frontend-events.firebaseio.com',
-    projectId: 'frontend-events',
-    storageBucket: 'frontend-events.appspot.com',
-    messagingSenderId: '964595802365'
+    apiKey: 'AIzaSyBEOVpgRastnqyGLxloAWcaxPoJljHWiVk',
+    authDomain: 'frontend-events-dev.firebaseapp.com',
+    databaseURL: 'https://frontend-events-dev.firebaseio.com',
+    projectId: 'frontend-events-dev',
+    storageBucket: 'frontend-events-dev.appspot.com',
+    messagingSenderId: '898642869507'
   }
 };

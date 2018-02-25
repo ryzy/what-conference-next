@@ -1,0 +1,19 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  margin-top: -2px; // fix IMG positioning inside mat-icon-button
+}
+
+.mat-icon {
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+}
