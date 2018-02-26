@@ -1,0 +1,79 @@
+<form [formGroup]="eventForm" novalidate cdkTrapFocus>
+
+  <fieldset>
+    <legend>Event Basic Information</legend>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-9">
+        <input matInput formControlName="name" placeholder="Event Name">
+      </mat-form-field>
+    </div>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="topicTags" placeholder="Topic category">
+      </mat-form-field>
+    </div>
+
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3">
+        <input matInput [matDatepicker]="datePicker" formControlName="date" placeholder="Event start date">
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="eventDuration" placeholder="Event duration (num of days)" type="number">
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="workshopDays" placeholder="Workshop days" type="number">
+      </mat-form-field>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Event Location</legend>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="country" placeholder="Country">
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="city" placeholder="City">
+      </mat-form-field>
+      <mat-form-field class="cell mini-6">
+        <input matInput formControlName="address" placeholder="Exact venue address">
+      </mat-form-field>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-6">
+        <input matInput formControlName="website" placeholder="Website" type="number">
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <span matPrefix>@</span>
+        <input matInput formControlName="twitterHandle" placeholder="Twitter handle">
+      </mat-form-field>
+    </div>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-6">
+        <textarea matInput formControlName="description" placeholder="Event short description" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="price" placeholder="Price (from)" type="number">
+        <span matSuffix>.00 USD</span>
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <mat-select formControlName="sizeBand" placeholder="Event size">
+          <mat-option *ngFor="let sizeBand of sizeBands" [value]="sizeBand">
+            {{ sizeBand }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </fieldset>
+
+</form>

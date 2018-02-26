@@ -32,7 +32,7 @@ import { AuthService } from './services/auth.service';
     // Firebase setup
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    // AngularFirestoreModule,
+    AngularFirestoreModule,
 
     // SW
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
