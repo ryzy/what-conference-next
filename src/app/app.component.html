@@ -5,8 +5,8 @@
         <h1 class="app-header__name cell"><a routerLink="/">What Converence Next</a></h1>
       </div>
       <div class="cell shrink">
-        <a mat-icon-button routerLink="/user">
-          <mat-icon>perm_identity</mat-icon>
+        <a mat-raised-button mat-icon-button routerLink="/user">
+          <app-user-avatar [user]="user$ | async"></app-user-avatar>
         </a>
       </div>
     </div>

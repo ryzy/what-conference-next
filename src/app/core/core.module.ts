@@ -15,6 +15,7 @@ import { throwIfAlreadyLoaded } from './core-utils';
 import { reducers, metaReducers } from './store/index';
 import { RouterEffects } from './store/router-effects';
 import { AppRouterStateSerializer } from './store/router-state-serializer';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -26,11 +27,11 @@ import { AppRouterStateSerializer } from './store/router-state-serializer';
     StoreRouterConnectingModule,
     /* istanbul ignore next */
     environment.production ? [] : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
-    EffectsModule.forRoot([RouterEffects]),
+    EffectsModule.forRoot([AuthService, RouterEffects]),
 
     // Firebase setup
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     // AngularFirestoreModule,
 
     // SW
@@ -38,6 +39,7 @@ import { AppRouterStateSerializer } from './store/router-state-serializer';
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: AppRouterStateSerializer },
+    AuthService,
   ]
 })
 export class CoreModule {

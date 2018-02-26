@@ -1,0 +1,12 @@
+<h2>Your account</h2>
+
+<div *ngIf="user$ | async as user; else showLogin">
+  <h3>Hi {{ user.displayName }}!</h3>
+  <button mat-raised-button (click)="logout()">Logout</button>
+</div>
+
+<ng-template #showLogin>
+  <button mat-raised-button (click)="login()">
+    <mat-icon>verified_user</mat-icon> Login with Twitter
+  </button>
+</ng-template>
