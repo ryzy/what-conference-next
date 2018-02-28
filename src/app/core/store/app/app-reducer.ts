@@ -1,4 +1,4 @@
-import { User } from '../model/user';
+import { User } from '../../model/user';
 import { AppActions, AppActionType } from './app-actions';
 
 /**

@@ -1,5 +1,5 @@
 // tslint:disable:max-line-length
-import { ConferenceEvent } from '../../app/events-list/model/conference-event';
+import { ConferenceEvent } from '../../app/event/model/conference-event';
 
 /**
  * Conference events (mock data)

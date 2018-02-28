@@ -11,7 +11,7 @@ import { mockUser } from '../../../testing/fixtures/user';
 import { TestActions } from '../../../testing/test-actions';
 import { CoreModule } from '../core.module';
 import { User } from '../model/user';
-import { SetUserAction } from '../store/app-actions';
+import { SetUserAction } from '../store/app/app-actions';
 import { AppRootState } from '../store/index';
 import { AuthService } from './auth.service';
 

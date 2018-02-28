@@ -49,6 +49,7 @@
     "@angular/cli": "1.7.1",
     "@angular/compiler-cli": "5.2.6",
     "@angular/language-service": "5.2.6",
+    "@firebase/app-types": "0.1.2",
     "@ngrx/store-devtools": "5.1.0",
     "@types/jasmine": "2.8.6",
     "@types/node": "9.4.6",

@@ -7,7 +7,7 @@ import { cold, hot } from 'jasmine-marbles';
 
 import { RouterEffects } from './router-effects';
 import { BackAction, ForwardAction, GoAction } from './router-actions';
-import { TestActions } from '../../../testing/test-actions';
+import { TestActions } from '../../../../testing/test-actions';
 
 describe('RouterEffects', () => {
   let actions$: TestActions;

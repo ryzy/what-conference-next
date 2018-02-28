@@ -1,4 +1,4 @@
-<form [formGroup]="eventForm" novalidate cdkTrapFocus>
+<form [formGroup]="eventForm" cdkTrapFocus>
 
   <fieldset>
     <legend>Event Basic Information</legend>
@@ -7,11 +7,24 @@
         <input matInput formControlName="name" placeholder="Event Name">
       </mat-form-field>
     </div>
-    <div class="grid-x grid-margin-x">
-      <mat-form-field class="cell mini-3">
-        <input matInput formControlName="topicTags" placeholder="Topic category">
-      </mat-form-field>
-    </div>
+
+    <fieldset>
+      <legend>Event primary topic(s)</legend>
+      <div class="grid-x grid-margin-x" formArrayName="topicTags">
+        <ng-container *ngIf="topics.length; else loadingTopics">
+          <ng-container *ngFor="let topic of topics; let i = index">
+            <div class="cell mini-3">
+              <mat-checkbox [formControlName]="i">{{ topic.name }}</mat-checkbox>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-template #loadingTopics>
+          <div class="cell auto">
+            <mat-icon>toys</mat-icon> Loading topics...
+          </div>
+        </ng-template>
+      </div>
+    </fieldset>
 
     <div class="grid-x grid-margin-x">
       <mat-form-field class="cell mini-3">
@@ -20,10 +33,10 @@
         <mat-datepicker #datePicker></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="cell mini-3">
-        <input matInput formControlName="eventDuration" placeholder="Event duration (num of days)" type="number">
+        <input matInput formControlName="eventDuration" min="1" max="30" placeholder="Event duration (num of days)" type="number">
       </mat-form-field>
       <mat-form-field class="cell mini-3">
-        <input matInput formControlName="workshopDays" placeholder="Workshop days" type="number">
+        <input matInput formControlName="workshopDays" min="0" max="30" placeholder="Workshop days" type="number">
       </mat-form-field>
     </div>
   </fieldset>

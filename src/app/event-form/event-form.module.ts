@@ -1,0 +1,36 @@
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+  MatDatepickerModule, MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSelectModule, MatCheckboxModule,
+} from '@angular/material';
+import { A11yModule } from '@angular/cdk/a11y';
+
+import { SharedModule } from '../shared/shared.module';
+import { EventBaseModule } from '../event/event-base.module';
+import { EventFormComponent } from './components/event-form/event-form.component';
+import { EventFormPageComponent } from './containers/event-form-page/event-form-page.component';
+import { EventFormRoutingModule } from './event-form-routing.module';
+
+@NgModule({
+  imports: [
+    ReactiveFormsModule,
+
+    A11yModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatSelectModule,
+
+    SharedModule,
+    EventBaseModule,
+    EventFormRoutingModule,
+  ],
+  providers: [
+  ],
+  declarations: [
+    EventFormComponent,
+    EventFormPageComponent,
+  ],
+})
+export class EventFormModule {}

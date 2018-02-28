@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'event',
-    loadChildren: './event/event.module#EventModule',
+    loadChildren: './event-form/event-form.module#EventFormModule',
   },
   {
     path: 'user',

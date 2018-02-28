@@ -4,8 +4,8 @@ import { Action, ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/stor
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '../../../environments/environment';
-import { appReducer, AppState } from './app-reducer';
-import { AppRouterState } from './router';
+import { appReducer, AppState } from './app/app-reducer';
+import { AppRouterState } from './router/router';
 
 export interface AppRootState {
   app: AppState;

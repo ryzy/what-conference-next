@@ -1,8 +1,8 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
-import { User } from '../model/user';
+import { User } from '../../model/user';
 import { AppState } from './app-reducer';
 
-import { AppRootState } from './index';
+import { AppRootState } from '../index';
 
 export const getAppState = (state: AppRootState) => state.app;
 

@@ -1,18 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AppTestingModule } from '../../../../testing/app-testing.module';
+import { CoreModule } from '../../../core/core.module';
 import { EventsListModule } from '../../events-list.module';
 import { EventsTableComponent } from './events-table.component';
 import { EventsListService } from '../../services/events-list.service';
 
 describe('EventsTableComponent', () => {
-  let service: EventsListService;
   let component: EventsTableComponent;
   let fixture: ComponentFixture<EventsTableComponent>;
+  let service: EventsListService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        CoreModule,
         EventsListModule,
+        AppTestingModule,
       ],
     })
     .compileComponents();

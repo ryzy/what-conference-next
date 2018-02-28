@@ -5,6 +5,11 @@ export interface BaseEvent {
   name: string;
 
   /**
+   * Main topics of the event
+   */
+  topicTags: string[];
+
+  /**
    * Event location
    */
   location: string[];
