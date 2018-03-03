@@ -35,7 +35,7 @@ import { AuthService } from './services/auth.service';
     // AngularFirestoreModule,
 
     // SW
-    // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: AppRouterStateSerializer },
