@@ -10,7 +10,7 @@ const appRoutes: Routes = [
     loadChildren: './events-list/events-list.module#EventsListModule',
   },
   {
-    path: 'event',
+    path: 'ev',
     loadChildren: './event-form/event-form.module#EventFormModule',
   },
   {

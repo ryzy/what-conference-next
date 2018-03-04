@@ -4,7 +4,7 @@ import { ConferenceEvent } from '../../app/event/model/conference-event';
 /**
  * Conference events (mock data)
  */
-export const conferencesMockData: ConferenceEvent[] = [
+export const conferencesMockData: any[] = [
   {
     name: 'NG Poland',
     location: [

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
-  MatDatepickerModule, MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSelectModule, MatCheckboxModule,
+  MatDatepickerModule, MatInputModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSelectModule, MatCheckboxModule, MatAutocompleteModule,
+  MatProgressSpinnerModule, MatTooltipModule,
 } from '@angular/material';
 import { A11yModule } from '@angular/cdk/a11y';
 
@@ -16,11 +17,14 @@ import { EventFormRoutingModule } from './event-form-routing.module';
     ReactiveFormsModule,
 
     A11yModule,
+    MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     MatSelectModule,
+    MatTooltipModule,
 
     SharedModule,
     EventBaseModule,
