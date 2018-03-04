@@ -107,15 +107,6 @@ button:-moz-focusring,
 }
 
 /**
- * Change the border, margin, and padding in all browsers (opinionated).
- */
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 0 $app-spacing-unit;
-  padding: $app-spacing-unit;
-}
-
-/**
  * 1. Correct the text wrapping in Edge and IE.
  * 2. Correct the color inheritance from `fieldset` elements in IE.
  * 3. Remove the padding so developers are not caught out when they zero out
@@ -129,6 +120,23 @@ legend {
   padding: 0; /* 3 */
   white-space: normal; /* 1 */
 }
+
+/**
+ * Change the border, margin, and padding in all browsers (opinionated).
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 0 $app-spacing-unit;
+  padding: $app-spacing-unit;
+
+  > legend {
+    padding-left: $app-spacing-unit-small;
+    padding-right: $app-spacing-unit-small;
+    font-weight: $app-font-weight-semi-bold;
+    font-size: map-get($app-font-sizes, h4);
+  }
+}
+
 
 /**
  * 1. Add the correct display in IE 9-.
