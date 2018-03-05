@@ -14,7 +14,8 @@
     "deploy:prod": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project prod",
     "test": "ng test --sourcemaps=false",
     "test:ci": "ng test --code-coverage --single-run",
-    "e2e": "ng e2e",
+    "e2e": "cypress open",
+    "e2e:ci": "cypress run --browser chrome",
     "analyze": "webpack-bundle-analyzer ./dist/app/stats.json",
     "serve": "node scripts/server.js"
   },
@@ -57,6 +58,7 @@
     "@types/node": "9.4.6",
     "codecov": "3.0.0",
     "codelyzer": "4.1.0",
+    "cypress": "2.1.0",
     "express-history-api-fallback": "2.2.1",
     "firebase-tools": "3.17.4",
     "jasmine-core": "2.99.1",
