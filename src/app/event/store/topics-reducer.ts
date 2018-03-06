@@ -8,9 +8,11 @@ export const adapter: EntityAdapter<EventTopic> = createEntityAdapter<EventTopic
 export interface TopicsState extends EntityState<EventTopic> {
   loaded: boolean;
 }
-export const topicsInitialState: TopicsState = adapter.getInitialState({
+export const topicsInitialState: TopicsState = {
+  ids: [],
+  entities: {},
   loaded: false,
-});
+};
 
 export function topicsReducer(state: TopicsState = topicsInitialState, action: TopicsActions): TopicsState {
   switch (action.type) {
