@@ -42,8 +42,8 @@ export class AuthService {
   /**
    * Log in the user
    */
-  public loginWithPopup(): Observable<firebase.auth.UserCredential> {
-    return fromPromise(this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()));
+  public loginWithDefaultMethod(): Observable<firebase.auth.UserCredential> {
+    return fromPromise(this.afAuth.auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider()));
   }
 
   /**

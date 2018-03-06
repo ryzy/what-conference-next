@@ -34,9 +34,9 @@ describe('UserPageComponent', () => {
   });
 
   it('should login', () => {
-    const signInWithPopupSpy = spyOn(afAuth.auth, 'signInWithPopup');
+    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect');
     component.login();
-    expect(signInWithPopupSpy).toHaveBeenCalled();
+    expect(signInSpy).toHaveBeenCalled();
   });
 
   it('should log out', () => {

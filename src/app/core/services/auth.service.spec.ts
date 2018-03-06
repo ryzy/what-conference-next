@@ -60,19 +60,19 @@ describe('AuthService', () => {
     expect(user).toBe(mockUser);
   });
 
-  it('#loginWithPopup', (done) => {
+  it('#loginWithDefaultMethod', (done) => {
     const mockFirebaseCredentials = { user: mockFirebaseUser };
-    const signInWithPopupSpy = spyOn(afAuth.auth, 'signInWithPopup').and.returnValue(Promise.resolve(mockFirebaseCredentials));
+    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect').and.returnValue(Promise.resolve(mockFirebaseCredentials));
 
-    authService.loginWithPopup().subscribe(v => {
+    authService.loginWithDefaultMethod().subscribe(v => {
       expect(v).toEqual(mockFirebaseCredentials as any);
       done();
     });
 
-    expect(signInWithPopupSpy).toHaveBeenCalled();
+    expect(signInSpy).toHaveBeenCalled();
   });
 
-  it('#loginWithPopup', (done) => {
+  it('#loginWithDefaultMethod', (done) => {
     const signOutSpy = spyOn(afAuth.auth, 'signOut').and.returnValue(Promise.resolve());
 
     authService.logout().subscribe(v => {
