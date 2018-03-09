@@ -10,13 +10,13 @@ jobs:
       # Note: frozen-lockfile to make sure yarn.lock is in sync (otherwise fail, developer must commit latest yarn.lock)
       - run: yarn install --frozen-lockfile
 
-      - run: yarn test:ci --progress=false
-      - run: yarn build:prod --progress=false
+      - run: yarn test:ci
+      - run: yarn build:prod
       - run: yarn lint
       - run: yarn coverage
       - run: yarn codecov # Uploads report to codecov.io and updates GH status check
 
-      # E2E: yarn serve starts the project on :4704, so override the Cypress baseUrl config val
+      # E2E: yarn serve starts the project on :4104, so override the Cypress baseUrl config val
       - run: yarn serve # serve the build for E2E
           background: true
       - run: export DEBUG=cypress:cli,cypress:ts,cypress:launcher
