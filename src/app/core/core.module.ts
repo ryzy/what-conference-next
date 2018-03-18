@@ -12,9 +12,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { environment } from '../../environments/environment';
 import { throwIfAlreadyLoaded } from './core-utils';
+import { FirestoreDbService } from './services/firestore-db.service';
 import { reducers, metaReducers } from './store/index';
-import { RouterEffects } from './store/router-effects';
-import { AppRouterStateSerializer } from './store/router-state-serializer';
+import { RouterEffects } from './store/router/router-effects';
+import { AppRouterStateSerializer } from './store/router/router-state-serializer';
 import { AuthService } from './services/auth.service';
 
 @NgModule({
@@ -30,9 +31,9 @@ import { AuthService } from './services/auth.service';
     EffectsModule.forRoot([AuthService, RouterEffects]),
 
     // Firebase setup
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireAuthModule,
-    // AngularFirestoreModule,
+    AngularFirestoreModule,
 
     // SW
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
@@ -40,6 +41,7 @@ import { AuthService } from './services/auth.service';
   providers: [
     { provide: RouterStateSerializer, useClass: AppRouterStateSerializer },
     AuthService,
+    FirestoreDbService,
   ]
 })
 export class CoreModule {

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { User } from '../model/user';
+
+import { User } from '../../model/user';
 
 export enum AppActionType {
   SET_USER = '[App] Set user', // login / logout

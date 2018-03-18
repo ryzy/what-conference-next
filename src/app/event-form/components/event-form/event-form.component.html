@@ -1,0 +1,109 @@
+<form [formGroup]="eventForm" novalidate cdkTrapFocus>
+
+  <fieldset>
+    <legend>Event Basic Information</legend>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell auto">
+        <input matInput formControlName="name" placeholder="Event Name" required>
+      </mat-form-field>
+    </div>
+
+    <fieldset formArrayName="topicTags">
+      <legend>Event primary topic(s)</legend>
+      <div class="grid-x grid-margin-x" style="min-height: 2rem">
+        <ng-container *ngIf="topics.length; else loadingTopics">
+          <ng-container *ngFor="let topic of topics; let i = index">
+            <div class="cell mini-3">
+              <mat-checkbox [formControlName]="i">{{ topic.name }}</mat-checkbox>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-template #loadingTopics>
+          <mat-progress-spinner mode="indeterminate" strokeWidth="2" diameter="20" class="cell shrink"></mat-progress-spinner>
+          <div class="cell auto">
+            Loading topics...
+          </div>
+        </ng-template>
+      </div>
+    </fieldset>
+
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3">
+        <input matInput [matDatepicker]="eventDatePicker" formControlName="date" placeholder="Event start date" required>
+        <mat-datepicker-toggle matSuffix [for]="eventDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #eventDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="eventDuration" min="1" max="30" placeholder="Event duration (num of days)" type="number" required>
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="workshopDays" min="0" max="30" placeholder="Workshop days" type="number">
+      </mat-form-field>
+    </div>
+
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3">
+        <mat-select formControlName="sizeBand" placeholder="Event size">
+          <mat-option *ngFor="let sizeBand of sizeBands" [value]="sizeBand.id">
+            {{ sizeBand.name }}
+            <span class="description">// {{ sizeBand.description }}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3" matTooltip="Approx. price in US dollars. Set to *0* for free events. Leave *empty* if price is unknown / to be announced." matTooltipPosition="after">
+        <mat-label>Price (from)</mat-label>
+        <input matInput formControlName="price" #price placeholder="to-be-announced" type="number" min="0" max="9999">
+        <span matSuffix>.00 USD</span>
+      </mat-form-field>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Event Location</legend>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="country" [matAutocomplete]="countriesAutocomplete" placeholder="Country" required>
+        <mat-autocomplete #countriesAutocomplete [displayWith]="displayCountryFn">
+          <mat-option *ngFor="let country of countries$ | async" [value]="country">{{ country.name }}</mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <input matInput formControlName="city" placeholder="City" required>
+      </mat-form-field>
+      <mat-form-field class="cell mini-6">
+        <input matInput formControlName="address" placeholder="Exact venue address">
+      </mat-form-field>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-6">
+        <mat-label>Event Website URL</mat-label>
+        <input matInput formControlName="website" placeholder="https://" required>
+      </mat-form-field>
+      <mat-form-field class="cell mini-3">
+        <span matPrefix>@</span>
+        <input matInput formControlName="twitterHandle" placeholder="Twitter handle">
+      </mat-form-field>
+    </div>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell mini-6">
+        <mat-label>Event short description</mat-label>
+        <textarea matInput matTextareaAutosize matAutosizeMinRows="3" formControlName="description"
+                  placeholder="Provide a short info about the event - just a few sentences."></textarea>
+      </mat-form-field>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="grid-x grid-margin-x align-right">
+      <div class="cell shrink">
+        <button mat-button>Cancel</button>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!this.eventForm.valid">Submit Event</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

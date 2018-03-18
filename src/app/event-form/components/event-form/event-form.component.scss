@@ -1,0 +1,11 @@
+@import 'abstracts';
+
+::ng-deep {
+  .mat-form-field-suffix .mat-icon {
+    vertical-align: sub; // better icon positioning in form field suffix
+  }
+  .mat-option-text .description {
+    opacity: .85;
+    font-size: map-get($app-font-sizes, h5);
+  }
+}

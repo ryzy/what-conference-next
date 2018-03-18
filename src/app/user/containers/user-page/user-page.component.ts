@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+
 import { User } from '../../../core/model/user';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -23,7 +22,7 @@ export class UserPageComponent implements OnInit {
   }
 
   public login(): void {
-    this.authService.loginWithPopup();
+    this.authService.loginWithDefaultMethod();
   }
 
   public logout(): void {

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatTableModule } from '@angular/material';
+import { EventBaseModule } from '../event/event-base.module';
 
 import { SharedModule } from '../shared/shared.module';
 import { EventsListService } from './services/events-list.service';
@@ -9,8 +10,10 @@ import { EventsPageComponent } from './containers/events-page/events-page.compon
 
 @NgModule({
   imports: [
-    SharedModule,
     MatTableModule,
+
+    EventBaseModule,
+    SharedModule,
     EventsListRoutingModule,
   ],
   providers: [

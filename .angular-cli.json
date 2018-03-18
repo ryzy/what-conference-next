@@ -14,6 +14,24 @@
       "budgets": [
         {
           "type": "bundle",
+          "name": "common",
+          "baseline": "100kb",
+          "maximumError": "10%"
+        },
+        {
+          "type": "bundle",
+          "name": "event-form",
+          "baseline": "200kb",
+          "maximumError": "10%"
+        },
+        {
+          "type": "bundle",
+          "name": "event-list",
+          "baseline": "30kb",
+          "maximumError": "10%"
+        },
+        {
+          "type": "bundle",
           "name": "inline",
           "baseline": "2kb",
           "maximumError": "10%"
@@ -21,8 +39,8 @@
         {
           "type": "bundle",
           "name": "main",
-          "baseline": "720kb",
-          "error": "10%"
+          "baseline": "1400kb",
+          "maximumError": "10%"
         },
         {
           "type": "bundle",
@@ -37,8 +55,14 @@
           "error": "10%"
         },
         {
+          "type": "bundle",
+          "name": "user",
+          "baseline": "20kb",
+          "maximumError": "10%"
+        },
+        {
           "type": "allScript",
-          "baseline": "800kb",
+          "baseline": "1600kb",
           "error": "10%"
         }
       ],

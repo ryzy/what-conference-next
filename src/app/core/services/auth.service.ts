@@ -6,12 +6,12 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { defer } from 'rxjs/observable/defer';
 import { fromPromise } from 'rxjs/observable/fromPromise';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { AppRootState } from '../store/index';
 import { User } from '../model/user';
-import { SetUserAction } from '../store/app-actions';
-import * as appSelectors from '../store/app-selectors';
+import { SetUserAction } from '../store/app/app-actions';
+import * as appSelectors from '../store/app/app-selectors';
 
 @Injectable()
 export class AuthService {
@@ -42,8 +42,8 @@ export class AuthService {
   /**
    * Log in the user
    */
-  public loginWithPopup(): Observable<firebase.auth.UserCredential> {
-    return fromPromise(this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider()));
+  public loginWithDefaultMethod(): Observable<firebase.auth.UserCredential> {
+    return fromPromise(this.afAuth.auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider()));
   }
 
   /**

@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { mockUser } from '../../../testing/fixtures/user';
-import { User } from '../model/user';
+
+import { mockUser } from '../../../../testing/fixtures/user';
+import { User } from '../../model/user';
+import { AppRootState, reducers } from '../index';
 import { AppActions, AppActionType, SetUserAction } from './app-actions';
 import { appInitialState, appReducer, AppState } from './app-reducer';
 import * as appSelectors from './app-selectors';
-import { AppRootState, reducers } from './index';
 
 describe('AppState', () => {
   let store: Store<AppRootState>;

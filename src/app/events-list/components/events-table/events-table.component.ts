@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ConferenceEvent } from '../../model/conference-event';
+import { ConferenceEvent } from '../../../event/model/conference-event';
 import { EventsDataSource } from '../../services/events-data-source';
 
 @Component({

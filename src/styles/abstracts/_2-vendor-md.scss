@@ -17,7 +17,7 @@ $mat-typography: mat-typography-config(
   $input: mat-typography-level(16px, $app-line-height-small, $app-font-weight-semi-bold)
 );
 
-$candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
-$candy-app-warn: mat-palette($mat-red);
+$candy-app-primary: mat-palette($mat-blue-grey, 800, 700, 900);
+$candy-app-accent: mat-palette($mat-pink, 600, 400, 800);
+$candy-app-warn: mat-palette($mat-amber, 800, 500, 900);
 $app-mat-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
