@@ -7,10 +7,10 @@ import { Observable } from 'rxjs/Observable';
 import { debounceTime, filter, map, startWith, takeUntil, tap, take } from 'rxjs/operators';
 
 import { FirestoreDbService } from '../../../core/services/firestore-db.service';
-import { countriesData } from '../../../event/data/countries';
-import { builtinSizeBands, EventSizeBand } from '../../../event/data/size-bands';
-import { Country } from '../../../event/model/country';
-import { EventTopic } from '../../../event/model/event-topic';
+import { countriesData } from '../../../event-base/data/countries';
+import { builtinSizeBands, EventSizeBand } from '../../../event-base/data/size-bands';
+import { Country } from '../../../event-base/model/country';
+import { EventTopic } from '../../../event-base/model/event-topic';
 
 @Component({
   selector: 'app-event-form',

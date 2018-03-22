@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 
 import { AppTestingWithFirestoreModule } from '../../../testing/app-testing-with-firestore.module';
 import { mockTopics } from '../../../testing/fixtures/topics';
-import { EventTopic } from '../../event/model/event-topic';
+import { EventTopic } from '../../event-base/model/event-topic';
 import { FirestoreDbService } from './firestore-db.service';
 
 describe('FirestoreDbService', () => {

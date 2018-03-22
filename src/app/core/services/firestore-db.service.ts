@@ -3,7 +3,7 @@ import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
-import { EventTopic } from '../../event/model/event-topic';
+import { EventTopic } from '../../event-base/model/event-topic';
 
 @Injectable()
 export class FirestoreDbService {
