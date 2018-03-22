@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatTableModule } from '@angular/material';
-import { EventBaseModule } from '../event/event-base.module';
+import { EventBaseModule } from '../event-base/event-base.module';
 
 import { SharedModule } from '../shared/shared.module';
 import { EventsListService } from './services/events-list.service';
