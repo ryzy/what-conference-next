@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { FirestoreDbService } from '../app/core/services/firestore-db.service';
-import { EventTopic } from '../app/event/model/event-topic';
+import { EventTopic } from '../app/event-base/model/event-topic';
 import { mockTopics } from './fixtures/topics';
 
 @Injectable()

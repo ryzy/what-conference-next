@@ -29,7 +29,7 @@
 
     <div class="grid-x grid-margin-x">
       <mat-form-field class="cell mini-3">
-        <input matInput [matDatepicker]="eventDatePicker" formControlName="date" placeholder="Event start date" required>
+        <input matInput [matDatepicker]="eventDatePicker" formControlName="date" (focus)="eventDatePicker.open()" placeholder="Event start date" required>
         <mat-datepicker-toggle matSuffix [for]="eventDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #eventDatePicker></mat-datepicker>
       </mat-form-field>

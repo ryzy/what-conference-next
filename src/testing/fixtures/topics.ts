@@ -1,4 +1,4 @@
-import { EventTopic } from '../../app/event/model/event-topic';
+import { EventTopic } from '../../app/event-base/model/event-topic';
 
 export const mockTopics: EventTopic[] = [
   { id: 'angular', name: 'angular' },
