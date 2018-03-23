@@ -1,0 +1,61 @@
+image: circleci/node:8-browsers
+
+stages:
+  - install
+  - test
+  - integration
+  - deploy
+
+cache:
+  policy: pull
+  untracked: true
+
+before_script:
+  - yarn install
+
+install: # This job is just to generate and push to the cache
+  stage: install
+  cache:
+    policy: pull-push
+    untracked: true
+  script:
+    - yarn install --frozen-lockfile
+
+build:
+  stage: test
+  artifacts:
+    paths:
+      - dist/
+  script:
+    - yarn build:prod --progress=false
+
+unit-tests:
+  stage: test
+  artifacts:
+    paths:
+      - coverage/
+  script:
+    - yarn test:ci --progress=false
+    - yarn codecov # Uploads report to codecov.io and updates GH status check
+
+linting:
+  stage: test
+  script:
+    - yarn lint
+
+coverage:
+  stage: integration
+  dependencies:
+    - unit-tests
+  script:
+    - yarn coverage
+
+deployment:
+  stage: deploy
+  when: manual
+  environment:
+    name: prod
+    url: https://some.url/
+  tags: [ shell ]
+  script:
+    - ls -al
