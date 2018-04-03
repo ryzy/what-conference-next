@@ -3,6 +3,7 @@ image: circleci/node:8-browsers
 variables:
   # CODECLIMATE_REPO_TOKEN: ... # set in CI secret variables
   CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
+  APP_WEB_ROOT: /var/opt/gitlab/nginx/www
   APP_DEPLOY_SLUG: pr-$CI_COMMIT_REF_SLUG-wcn.bscode.net
 
 stages:
@@ -59,8 +60,8 @@ deploy pr:
     - master
   tags: [ shell ]
   script:
-    - rsync -av --delete dist/app/ /var/opt/gitlab/nginx/www/$APP_DEPLOY_SLUG/
-    - rsync -av --delete coverage/ /var/opt/gitlab/nginx/www/$APP_DEPLOY_SLUG/coverage/
+    - rsync -av --delete dist/app/ $APP_WEB_ROOT/$APP_DEPLOY_SLUG/
+    - rsync -av --delete coverage/ $APP_WEB_ROOT/$APP_DEPLOY_SLUG/coverage/
     - |
       curl --request POST --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" "https://bscode.net/api/v4/projects/$CI_PROJECT_ID/statuses/$CI_COMMIT_SHA?name=Coverage%20Report&state=success&target_url=https://$APP_DEPLOY_SLUG/coverage"
 
@@ -73,7 +74,7 @@ delete pr:
   when: manual
   tags: [ shell ]
   script:
-    - rm -rf /var/opt/gitlab/nginx/www/$APP_DEPLOY_SLUG
+    - rm -rf $APP_WEB_ROOT/$APP_DEPLOY_SLUG
 
 deploy dev:
   stage: deploy
@@ -84,4 +85,4 @@ deploy dev:
     - master
   tags: [ shell ]
   script:
-    - rsync -av --delete dist /var/opt/gitlab/nginx/www/dev-wcn.bscode.net
+    - rsync -av --delete dist/app/ $APP_WEB_ROOT/dev-wcn.bscode.net/
