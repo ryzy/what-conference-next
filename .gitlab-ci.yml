@@ -3,9 +3,10 @@ image: circleci/node:8-browsers
 variables:
   # CODECLIMATE_REPO_TOKEN: ... # set in CI secret variables
   CODECLIMATE_API_HOST: https://codebeat.co/webhooks/code_coverage
+  APP_DEPLOY_SLUG: pr-$CI_COMMIT_REF_SLUG-wcn.bscode.net
 
 stages:
-  - install
+  - build
   - test
   - integration
   - deploy
@@ -14,24 +15,17 @@ cache:
   policy: pull
   untracked: true
 
-before_script:
-  - yarn install
-
-install: # This job is just to generate and push to the cache
-  stage: install
+build: # This job is just to generate and push to the cache
+  stage: build
   cache:
     policy: pull-push
     untracked: true
-  script:
-    - yarn install --frozen-lockfile
-
-build:
-  stage: test
   artifacts:
     paths:
       - dist/
   script:
-    - yarn build:prod --progress=false
+    - yarn install --frozen-lockfile
+    - yarn build --progress=false
 
 unit-tests:
   stage: test
@@ -49,17 +43,45 @@ linting:
 
 coverage:
   stage: integration
-  dependencies:
-    - unit-tests
   script:
     - yarn coverage
 
-deployment:
-  stage: deploy
-  when: manual
+# Deploy to PR environment
+deploy pr:
+  stage: integration
   environment:
-    name: prod
-    url: https://some.url/
+    name: pr/$CI_COMMIT_REF_NAME
+    url: http://pr-$CI_COMMIT_REF_SLUG-wcn.bscode.net
+    on_stop: delete pr
+  only:
+    - branches
+  except:
+    - master
   tags: [ shell ]
   script:
-    - ls -al
+    - rsync -av --delete dist/app/ /var/opt/gitlab/nginx/www/$APP_DEPLOY_SLUG/
+    - rsync -av --delete coverage/ /var/opt/gitlab/nginx/www/$APP_DEPLOY_SLUG/coverage/
+    - |
+      curl --request POST --header "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" "https://bscode.net/api/v4/projects/$CI_PROJECT_ID/statuses/$CI_COMMIT_SHA?name=Coverage%20Report&state=success&target_url=https://$APP_DEPLOY_SLUG/coverage"
+
+# Job which deletes the PR environment
+delete pr:
+  stage: integration
+  environment:
+    name: pr/$CI_COMMIT_REF_NAME
+    action: stop
+  when: manual
+  tags: [ shell ]
+  script:
+    - rm -rf /var/opt/gitlab/nginx/www/$APP_DEPLOY_SLUG
+
+deploy dev:
+  stage: deploy
+  environment:
+    name: dev
+    url: https://dev-wcn.bscode.net/
+  only:
+    - master
+  tags: [ shell ]
+  script:
+    - rsync -av --delete dist /var/opt/gitlab/nginx/www/dev-wcn.bscode.net

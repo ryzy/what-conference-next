@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ng serve",
     "start:prod": "ng serve -prod --environment=prod",
-    "build": "ng build -prod --stats-json --environment=dev",
+    "build": "ng build --stats-json --environment=dev",
     "build:prod": "ng build -prod --stats-json --environment=prod",
     "coverage": "nyc report && nyc check-coverage",
     "lint": "ng lint --type-check",
