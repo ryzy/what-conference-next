@@ -1,2 +1,19 @@
 @include mat-core($mat-typography);
 @include angular-material-theme($app-mat-theme);
+
+.mat-cell:first-child,
+.mat-footer-cell:first-child,
+.mat-header-cell:first-child {
+  padding-left: 0; // override default MD padding on the 1st column
+}
+
+.mat-cell--multiline {
+  // Allow "multi-line" content in mat-cell by default
+  flex-flow: wrap;
+
+  // Make the immediate children full width inside mat-cell
+  > * {
+    @extend .text-ellipsis;
+    flex-basis: 100%; // w/o that the text doesn't expand to full cell width and show ellipsis too early
+  }
+}

@@ -4,12 +4,5 @@
 @import 'abstracts';
 
 // Including project styles
-@import
-'atoms/atoms-basics',
-'atoms/atoms-headers',
-'atoms/atoms-typography',
-'molecules/molecules',
-'molecules/molecules-foundation',
-'molecules/molecules-md',
-'organisms/organisms',
-'pages/pages';
+@import 'atoms/atoms-basics', 'atoms/atoms-headers', 'atoms/atoms-typography', 'molecules/molecules',
+  'molecules/molecules-foundation', 'molecules/molecules-md', 'organisms/organisms', 'pages/pages';

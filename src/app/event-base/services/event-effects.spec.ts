@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { Actions } from '@ngrx/effects';
 import { cold, hot } from 'jasmine-marbles';
 
-import { AppTestingWithFirestoreModule } from '../../../testing/app-testing-with-firestore.module';
+import { AppTestingWithDatabaseModule } from '../../../testing/app-testing-with-database.module';
 import { mockTopics } from '../../../testing/fixtures/topics';
-import { TestActions } from '../../../testing/test-actions';
+import { TestActions, TestActionsProvider } from '../../../testing/test-actions';
 import { LoadTopicsAction, SetTopicsAction } from '../store/topics-actions';
 import { EventEffects } from './event-effects';
 
@@ -14,14 +14,8 @@ describe('EventEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingWithFirestoreModule.mockFirebaseDb()],
-      providers: [
-        {
-          provide: Actions,
-          useFactory: () => new TestActions(),
-        },
-        EventEffects,
-      ],
+      imports: [AppTestingWithDatabaseModule],
+      providers: [TestActionsProvider, EventEffects],
     });
 
     actions$ = TestBed.get(Actions);

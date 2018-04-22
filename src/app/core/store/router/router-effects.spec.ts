@@ -7,7 +7,7 @@ import { cold, hot } from 'jasmine-marbles';
 
 import { RouterEffects } from './router-effects';
 import { BackAction, ForwardAction, GoAction } from './router-actions';
-import { TestActions } from '../../../../testing/test-actions';
+import { TestActions, TestActionsProvider } from '../../../../testing/test-actions';
 
 describe('RouterEffects', () => {
   let actions$: TestActions;
@@ -18,13 +18,7 @@ describe('RouterEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [
-        {
-          provide: Actions,
-          useFactory: () => new TestActions(),
-        },
-        RouterEffects,
-      ],
+      providers: [TestActionsProvider, RouterEffects],
     });
 
     actions$ = TestBed.get(Actions);

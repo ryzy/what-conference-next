@@ -1,21 +1,38 @@
 version: 2
+
 jobs:
   build:
     docker:
       - image: circleci/node:8-browsers
 
     steps:
+      - run: env && yarn versions && npm version # just to check env and versions...
       - checkout
-      - run: yarn versions && npm version
+      - restore_cache:
+          keys:
+            - npm-dep-{{ checksum "yarn.lock" }}
 
-      # Note: frozen-lockfile to make sure yarn.lock is in sync (otherwise fail, developer must commit latest yarn.lock)
       - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: npm-dep-{{ checksum "yarn.lock" }}
+          paths: [ node_modules, ~/.cache/Cypress/ ]
+
+      - run:
+          name: Build
+          command: |
+            export APP_ENV_NAME=dev
+            [ "${CI_COMMIT_REF_NAME}" = prod ] && export APP_ENV_NAME=prod
+            yarn build:$APP_ENV_NAME --progress=false
 
       - run: yarn test:ci --progress=false
-      - run: yarn build:prod --progress=false
       - run: yarn lint
       - run: yarn coverage
-      - run: yarn e2e:ci --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5
+
+      - run:
+          name: E2E
+          command: |
+            yarn serve &
+            yarn e2e:ci
 
       - deploy:
           name: Deploy DEV
@@ -35,3 +52,6 @@ jobs:
               # Send deploy message to #frontend-events-dev Slack channel
               curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"Firebase CI\", \"text\": \"*https://frontend-events.firebaseapp.com deployed LIVE with success* :green_heart:\", \"icon_emoji\": \":princess:\"}" https://hooks.slack.com/services/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
             fi
+
+      - store_test_results:
+          path: dist/

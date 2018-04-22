@@ -2,10 +2,5 @@
 // Can be used while styling component, to include this light file,
 // instead of entire app.scss.
 
-@import
-'abstracts/1-variables',
-'abstracts/1-variables-colors',
-'abstracts/2-vendor-foundation',
-'abstracts/2-vendor-md',
-'abstracts/3-functions',
-'abstracts/4-mixins';
+@import 'abstracts/1-variables', 'abstracts/1-variables-colors', 'abstracts/2-vendor-foundation',
+  'abstracts/2-vendor-md', 'abstracts/3-functions', 'abstracts/4-mixins';

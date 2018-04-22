@@ -11,8 +11,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { environment } from '../../environments/environment';
-import { throwIfAlreadyLoaded } from './core-utils';
-import { FirestoreDbService } from './services/firestore-db.service';
+import { isUnitTestContext, throwIfAlreadyLoaded } from './core-utils';
+import { DatabaseService } from './services/database.service';
 import { reducers, metaReducers } from './store/index';
 import { RouterEffects } from './store/router/router-effects';
 import { AppRouterStateSerializer } from './store/router/router-state-serializer';
@@ -31,27 +31,21 @@ import { AuthService } from './services/auth.service';
     EffectsModule.forRoot([AuthService, RouterEffects]),
 
     // Firebase setup
-    AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
+    isUnitTestContext() ? AngularFirestoreModule : AngularFirestoreModule.enablePersistence(),
 
     // SW
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }, AuthService, FirestoreDbService],
+  providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }, AuthService, DatabaseService],
 })
 export class CoreModule {
   public constructor(
-    @Optional() fbApp?: FirebaseApp,
     @Optional()
     @SkipSelf()
     parentModule?: CoreModule,
   ) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
-
-    // Configure FirebaseApp directly
-    if (fbApp) {
-      fbApp.firestore().settings({ timestampsInSnapshots: true });
-    }
   }
 }

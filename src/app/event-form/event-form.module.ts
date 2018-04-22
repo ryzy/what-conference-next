@@ -4,7 +4,6 @@ import {
   MatDatepickerModule,
   MatInputModule,
   MatNativeDateModule,
-  MAT_DATE_LOCALE,
   MatSelectModule,
   MatCheckboxModule,
   MatAutocompleteModule,

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppTestingWithFirestoreModule } from '../../../../testing/app-testing-with-firestore.module';
+import { AppTestingWithDatabaseModule } from '../../../../testing/app-testing-with-database.module';
 import { EventsPageComponent } from './events-page.component';
 import { EventsListModule } from '../../events-list.module';
 
@@ -10,7 +10,7 @@ describe('EventsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingWithFirestoreModule, EventsListModule],
+      imports: [AppTestingWithDatabaseModule, EventsListModule],
     }).compileComponents();
   }));
 

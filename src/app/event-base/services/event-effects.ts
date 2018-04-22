@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, defer, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { FirestoreDbService } from '../../core/services/firestore-db.service';
+import { DatabaseService } from '../../core/services/database.service';
 import { EventTopic } from '../model/event-topic';
 import { LoadTopicsAction, TopicsActionType, SetTopicsAction } from '../store/topics-actions';
 import { EventsRootState } from '../store/index';
@@ -23,9 +23,5 @@ export class EventEffects {
     return of(new LoadTopicsAction());
   });
 
-  public constructor(
-    private actions$: Actions,
-    private store: Store<EventsRootState>,
-    private fdb: FirestoreDbService,
-  ) {}
+  public constructor(private actions$: Actions, private store: Store<EventsRootState>, private fdb: DatabaseService) {}
 }

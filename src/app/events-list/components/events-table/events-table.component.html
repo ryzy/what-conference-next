@@ -1,12 +1,12 @@
 <mat-table #table [dataSource]="dataSource">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
-  <mat-header-row *matHeaderRowDef="displayColumns" class="header-row"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayColumns;" class="table-row"></mat-row>
+  <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
 
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef class="col--name header--name"> Name </mat-header-cell>
-    <mat-cell *matCellDef="let row" class="col--name cell--name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="mat-cell--multiline">
       <h2 class="event-name">
         {{ row.name }}
         <a href="{{ row.website }}" target="_blank" class="show-on-hover"><mat-icon>open_in_new</mat-icon></a>
@@ -16,8 +16,8 @@
   </ng-container>
 
   <ng-container matColumnDef="date">
-    <mat-header-cell *matHeaderCellDef class="col--date header--date"> When </mat-header-cell>
-    <mat-cell *matCellDef="let row" class="col--date cell--date">
+    <mat-header-cell *matHeaderCellDef>When</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="mat-cell--multiline">
       <div class="event-date">
         <ng-container *ngIf="row.date && row.date.toISOString; else noDate"> {{ row.date | date:'EE, M MMM yyyy' }}</ng-container>
         <ng-template #noDate>{{ row.date || 'TBA' }}</ng-template>
@@ -32,22 +32,22 @@
   </ng-container>
 
   <ng-container matColumnDef="price">
-    <mat-header-cell *matHeaderCellDef class="col--price header--price"> Price (from) </mat-header-cell>
-    <mat-cell *matCellDef="let row" class="col--price cell--price">
+    <mat-header-cell *matHeaderCellDef>Price (from)</mat-header-cell>
+    <mat-cell *matCellDef="let row">
       {{ row.price | currency:row.priceCurrency:'symbol-narrow':'1.0' }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="focus">
-    <mat-header-cell *matHeaderCellDef class="header--focus"> Focus </mat-header-cell>
-    <mat-cell *matCellDef="let row" class="cell--focus text-center">
+    <mat-header-cell *matHeaderCellDef>Focus</mat-header-cell>
+    <mat-cell *matCellDef="let row">
       <span *ngFor="let eventFocus of row.tags" class="badge">{{ eventFocus }}</span>
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef class="col--actions header--actions text-center"></mat-header-cell>
-    <mat-cell *matCellDef="let row" class="col--actions cell--actions text-center">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let row">
       <mat-icon class="show-on-hover">stars</mat-icon>
     </mat-cell>
   </ng-container>

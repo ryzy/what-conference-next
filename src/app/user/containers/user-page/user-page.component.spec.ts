@@ -29,7 +29,7 @@ describe('UserPageComponent', () => {
   });
 
   it('should login', () => {
-    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect').and.callThrough();
+    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect').and.returnValue(Promise.resolve(true));
     component.login();
     expect(signInSpy).toHaveBeenCalled();
   });

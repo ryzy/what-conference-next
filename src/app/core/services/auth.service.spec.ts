@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of';
 import * as firebase from 'firebase/app';
 
 import { mockUser } from '../../../testing/fixtures/user';
-import { TestActions } from '../../../testing/test-actions';
+import { TestActions, TestActionsProvider } from '../../../testing/test-actions';
 import { CoreModule } from '../core.module';
 import { User } from '../model/user';
 import { SetUserAction } from '../store/app/app-actions';
@@ -26,7 +26,7 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, CoreModule],
-      providers: [{ provide: Actions, useFactory: () => new TestActions() }],
+      providers: [TestActionsProvider],
     });
 
     authService = TestBed.get(AuthService);

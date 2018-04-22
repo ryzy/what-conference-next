@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppTestingWithFirestoreModule } from '../../../../testing/app-testing-with-firestore.module';
+import { AppTestingWithDatabaseModule } from '../../../../testing/app-testing-with-database.module';
 
 import { EventFormModule } from '../../event-form.module';
 import { EventFormComponent } from './event-form.component';
@@ -10,7 +10,7 @@ describe('EventFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [EventFormModule, AppTestingWithFirestoreModule],
+      imports: [EventFormModule, AppTestingWithDatabaseModule],
     }).compileComponents();
   }));
 
