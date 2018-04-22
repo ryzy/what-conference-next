@@ -6,7 +6,7 @@ import { EventsDataSource } from '../../services/events-data-source';
   selector: 'app-events-table',
   templateUrl: './events-table.component.html',
   styleUrls: ['./events-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsTableComponent implements OnInit {
   /**

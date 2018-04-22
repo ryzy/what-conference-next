@@ -1,16 +1,18 @@
-
 const URLs = {
   Home: '/',
   NewEventForm: '/ev',
 };
 
 function randomRange(min = 0, max = 10) {
-  return Math.floor(Math.random() * (max-min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 class AppPage {
   static link(linkText) {
-    return cy.get('a, button').contains(linkText).parent();
+    return cy
+      .get('a, button')
+      .contains(linkText)
+      .parent();
   }
 }
 
@@ -31,8 +33,7 @@ class EventFormPage extends AppPage {
    * @return {Cypress.Chainable<JQuery<HTMLElement>>}
    */
   static checkboxes(fieldName, indexFrom1 = 0) {
-    const ch = cy.get(`[formarrayname="${fieldName}"]`)
-      .find('input[type=checkbox]');
+    const ch = cy.get(`[formarrayname="${fieldName}"]`).find('input[type=checkbox]');
 
     return indexFrom1 ? ch.eq(indexFrom1 - 1) : ch;
   }
@@ -51,20 +52,22 @@ class EventFormPage extends AppPage {
   }
 
   static select(fieldName, optionIdx) {
-    return EventFormPage.formField(fieldName)
-      .click()
-      .wait(100) // wait for opening anim
-      .get('.mat-select-panel .mat-option')
+    return (
+      EventFormPage.formField(fieldName)
+        .click()
+        .wait(100) // wait for opening anim
+        .get('.mat-select-panel .mat-option')
         .eq(optionIdx)
         .click({ force: true })
-      .wait(100) // wait for closing anim
+        .wait(100) // wait for closing anim
 
-      // Click somewhere else, to un-focus that open overlay.
-      // W/o that, sometimes, it doesn't hide it and it causes problems (for the next dropdowns, which needs to open)
-      // Also, use `force: true` so it doesn't fail when it's covered by overlay, as that's the case
-      // we're actually sorting out here (unfocus/hide the overlay).
-      .root()
-      .click({force: true});
+        // Click somewhere else, to un-focus that open overlay.
+        // W/o that, sometimes, it doesn't hide it and it causes problems (for the next dropdowns, which needs to open)
+        // Also, use `force: true` so it doesn't fail when it's covered by overlay, as that's the case
+        // we're actually sorting out here (unfocus/hide the overlay).
+        .root()
+        .click({ force: true })
+    );
   }
 
   /**
@@ -74,17 +77,20 @@ class EventFormPage extends AppPage {
    * @return {Cypress.Chainable<JQuery<HTMLHtmlElement>>}
    */
   static autocomplete(optionIndexFrom1) {
-    return cy.get('.mat-autocomplete-panel .mat-option')
-      .eq(optionIndexFrom1 - 1)
-      .click({ force: true })
-      .wait(100) // wait for closing anim
+    return (
+      cy
+        .get('.mat-autocomplete-panel .mat-option')
+        .eq(optionIndexFrom1 - 1)
+        .click({ force: true })
+        .wait(100) // wait for closing anim
 
-      // Click somewhere else, to un-focus that open overlay.
-      // W/o that, sometimes, it doesn't hide it and it causes problems (for the next dropdowns, which needs to open)
-      // Also, use `force: true` so it doesn't fail when it's covered by overlay, as that's the case
-      // we're actually sorting out here (unfocus/hide the overlay).
-      .root()
-      .click({force: true});
+        // Click somewhere else, to un-focus that open overlay.
+        // W/o that, sometimes, it doesn't hide it and it causes problems (for the next dropdowns, which needs to open)
+        // Also, use `force: true` so it doesn't fail when it's covered by overlay, as that's the case
+        // we're actually sorting out here (unfocus/hide the overlay).
+        .root()
+        .click({ force: true })
+    );
   }
 
   /**
@@ -93,7 +99,10 @@ class EventFormPage extends AppPage {
    * @return {Cypress.Chainable<JQuery<HTMLButtonElement>>}
    */
   static button(buttonLabel, disabled = undefined) {
-    const el = cy.get('button').contains(buttonLabel).parent('button');
+    const el = cy
+      .get('button')
+      .contains(buttonLabel)
+      .parent('button');
 
     if (true === disabled) {
       el.should('be.disabled');
@@ -104,7 +113,6 @@ class EventFormPage extends AppPage {
     return el;
   }
 }
-
 
 given('I visit {string} page', (url) => {
   expect(URLs[url]).not.to.be.empty;
@@ -124,8 +132,7 @@ then(`I should see {string} button {string}`, (buttonLabel, state = 'enabled') =
 });
 
 when('I click on a {string} link', (linkText) => {
-  EventFormPage.link(linkText)
-    .click();
+  EventFormPage.link(linkText).click();
 });
 
 when('I enter {string} in the field {string}', (fieldValue, fieldName) => {
@@ -136,11 +143,12 @@ when('I select {string} in the calendar field {string}', (date, fieldName) => {
   EventFormPage.formField(fieldName)
     .focus()
     .get('.mat-calendar-next-button')
-    .click().click().click()
+    .click()
+    .click()
+    .click()
     .get('.mat-calendar-body-cell')
     .eq(randomRange(0, 28))
-    .click()
-  ;
+    .click();
 });
 
 when('I tick checkbox no {string} in the field {string}', (idx, fieldName) => {

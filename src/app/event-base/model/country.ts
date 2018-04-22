@@ -12,6 +12,6 @@ export interface Country {
   capital: string;
   region: string;
   subregion: string;
-  latlng: [ number, number ];
+  latlng: [number, number];
   timezones: string[]; // e.g. 'UTC+04:30'
 }

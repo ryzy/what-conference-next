@@ -28,9 +28,8 @@ export function logger(reducer: ActionReducer<AppRootState>): ActionReducer<AppR
 
 /* istanbul ignore next */
 export const metaReducers: MetaReducer<AppRootState>[] = environment.production
-  ? [
-  ]
+  ? []
   : [
-    storeFreeze,
-    // logger,
-  ];
+      storeFreeze,
+      // logger,
+    ];

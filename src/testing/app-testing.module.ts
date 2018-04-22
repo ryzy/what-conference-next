@@ -4,13 +4,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 
 @NgModule({
-  imports: [
-    NoopAnimationsModule,
-    HttpClientTestingModule,
-    RouterTestingModule,
-  ],
-  providers: [
-  ],
+  imports: [NoopAnimationsModule, HttpClientTestingModule, RouterTestingModule],
+  providers: [],
 })
 export class AppTestingModule {
   // public static provideWithFirestore(): ModuleWithProviders {

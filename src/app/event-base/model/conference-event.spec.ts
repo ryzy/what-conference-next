@@ -14,7 +14,7 @@ describe('ConferenceEvent', () => {
   });
 
   it('should generate nice ID from name', () => {
-    const ev = new ConferenceEvent({ name: 'My Super Dupęr Conf **Title**'});
+    const ev = new ConferenceEvent({ name: 'My Super Dupęr Conf **Title**' });
     expect(ev.id).toEqual('my-super-duper-conf-title');
   });
 });

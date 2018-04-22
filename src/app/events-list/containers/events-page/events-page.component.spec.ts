@@ -10,12 +10,8 @@ describe('EventsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppTestingWithFirestoreModule,
-        EventsListModule,
-      ],
-    })
-    .compileComponents();
+      imports: [AppTestingWithFirestoreModule, EventsListModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

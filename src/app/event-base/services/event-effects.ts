@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { defer } from 'rxjs/observable/defer';
-import { of } from 'rxjs/observable/of';
+import { Observable, defer, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { FirestoreDbService } from '../../core/services/firestore-db.service';
@@ -13,7 +11,6 @@ import { EventsRootState } from '../store/index';
 
 @Injectable()
 export class EventEffects {
-
   @Effect()
   public setTopics$: Observable<SetTopicsAction> = this.actions$.pipe(
     ofType(TopicsActionType.LOAD_TOPICS),
@@ -30,6 +27,5 @@ export class EventEffects {
     private actions$: Actions,
     private store: Store<EventsRootState>,
     private fdb: FirestoreDbService,
-  ) {
-  }
+  ) {}
 }

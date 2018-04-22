@@ -1,9 +1,16 @@
 import {
-  Component, OnInit, ChangeDetectionStrategy, OnDestroy, EventEmitter, ChangeDetectorRef, ViewChildren, QueryList,
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  EventEmitter,
+  ChangeDetectorRef,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { debounceTime, filter, map, startWith, takeUntil, tap, take } from 'rxjs/operators';
 
 import { FirestoreDbService } from '../../../core/services/firestore-db.service';
@@ -19,7 +26,6 @@ import { EventTopic } from '../../../event-base/model/event-topic';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventFormComponent implements OnInit, OnDestroy {
-
   public eventForm!: FormGroup;
 
   public topics: EventTopic[] = [];
@@ -37,21 +43,14 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
-  public constructor(
-    private fdb: FirestoreDbService,
-    private cdRef: ChangeDetectorRef,
-  ) {
-  }
+  public constructor(private fdb: FirestoreDbService, private cdRef: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     // Focus on the 1st field. Call it on the next event loop, otherwise it doesn't work sometimes.
     setTimeout(() => this.formFields.first.focus());
 
     this.eventForm = new FormGroup({
-      name: new FormControl('', [
-        Validators.minLength(3),
-        Validators.maxLength(255),
-      ]),
+      name: new FormControl('', [Validators.minLength(3), Validators.maxLength(255)]),
       topicTags: new FormArray([], [Validators.required]),
       country: new FormControl(),
       city: new FormControl(),
@@ -71,43 +70,38 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.countries$ = (this.eventForm.get('country') as FormControl).valueChanges.pipe(
       takeUntil(this.ngOnDestroy$),
       startWith(''),
-      filter<string>((q: string|Country) => typeof q === 'string'),
-      map(q => q.trim().toLowerCase()),
+      filter<string>((q: string | Country) => typeof q === 'string'),
+      map((q) => q.trim().toLowerCase()),
       map((q: string): Country[] => {
-        return countriesData.filter(country => {
+        return countriesData.filter((country) => {
           return country.name.toLowerCase().includes(q) || country.isoCode.toLowerCase().includes(q);
         });
       }),
     );
     // Countries: on change, set the city value to selected Country.capital
-    (this.eventForm.get('country') as FormControl).valueChanges.pipe(
-      takeUntil(this.ngOnDestroy$),
-      filter<Country>((c: string|Country) => typeof c === 'object' && 'isoCode' in c),
-    ).subscribe(c => {
-      this.eventForm.patchValue({ city: c.capital });
-    });
+    (this.eventForm.get('country') as FormControl).valueChanges
+      .pipe(
+        takeUntil(this.ngOnDestroy$),
+        filter<Country>((c: string | Country) => typeof c === 'object' && 'isoCode' in c),
+      )
+      .subscribe((c) => {
+        this.eventForm.patchValue({ city: c.capital });
+      });
 
-    this.eventForm.valueChanges.pipe(
-      takeUntil(this.ngOnDestroy$),
-      debounceTime(300),
-    ).subscribe(v => {
+    this.eventForm.valueChanges.pipe(takeUntil(this.ngOnDestroy$), debounceTime(300)).subscribe((v) => {
       console.log('[EVENT FORM] values', v);
     });
-    this.eventForm.statusChanges.pipe(
-      takeUntil(this.ngOnDestroy$),
-    ).subscribe(v => {
+    this.eventForm.statusChanges.pipe(takeUntil(this.ngOnDestroy$)).subscribe((v) => {
       console.log('[EVENT FORM] status', v);
       this.isFormValid = v === 'VALID';
     });
-
-
   }
 
   public ngOnDestroy(): void {
     this.ngOnDestroy$.emit(true);
   }
 
-  public displayCountryFn(country?: Country): string|undefined {
+  public displayCountryFn(country?: Country): string | undefined {
     return country && country.name;
   }
 
@@ -115,16 +109,17 @@ export class EventFormComponent implements OnInit, OnDestroy {
    * Set/Update topics form controls, so it's in sync with current list of topics
    */
   private setFormTopicsTags(): void {
-    this.fdb.getTopics().pipe(
-      take(1),
-    ).subscribe((topics: EventTopic[]) => {
-      this.topics = topics;
+    this.fdb
+      .getTopics()
+      .pipe(take(1))
+      .subscribe((topics: EventTopic[]) => {
+        this.topics = topics;
 
-      // Update form controls, one checkbox for each topic tag:
-      const topicsTagsControls: FormControl[] = topics.map(() => new FormControl(false));
-      this.eventForm.setControl('topicTags', new FormArray(topicsTagsControls, [Validators.required]));
+        // Update form controls, one checkbox for each topic tag:
+        const topicsTagsControls: FormControl[] = topics.map(() => new FormControl(false));
+        this.eventForm.setControl('topicTags', new FormArray(topicsTagsControls, [Validators.required]));
 
-      this.cdRef.detectChanges();
-    });
+        this.cdRef.detectChanges();
+      });
   }
 }

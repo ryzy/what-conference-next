@@ -4,17 +4,17 @@ import * as firebase from 'firebase/app';
  * User representation in the app (instantiated from Firebase user)
  */
 export class User {
-  public uid: string|null = null;
-  public displayName: string|null = null;
-  public email: string|null = null;
-  public photoUrl: string|null = null;
+  public uid: string | null = null;
+  public displayName: string | null = null;
+  public email: string | null = null;
+  public photoUrl: string | null = null;
   public createdAt?: Date;
   public lastLoginAt?: Date;
 
   /**
    * Create new instance of User from firebase User
    */
-  public static fromFirebase(user?: firebase.User): User|undefined {
+  public static fromFirebase(user?: firebase.User): User | undefined {
     if (user) {
       return new User({
         uid: user.uid,

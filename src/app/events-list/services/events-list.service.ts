@@ -6,7 +6,6 @@ import { EventsDatabase } from './events-database';
 
 @Injectable()
 export class EventsListService {
-
   /**
    * Get DataSource collection (compatible with mat-table) with the events to display
    */

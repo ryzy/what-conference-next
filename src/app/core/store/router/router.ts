@@ -32,5 +32,6 @@ export interface AppRouterState {
   queryParams: Params;
 }
 
-export const getRouterState: MemoizedSelector<object, RouterReducerState<AppRouterState>>
-  = createFeatureSelector('router');
+export const getRouterState: MemoizedSelector<object, RouterReducerState<AppRouterState>> = createFeatureSelector(
+  'router',
+);

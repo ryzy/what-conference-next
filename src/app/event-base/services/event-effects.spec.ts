@@ -14,9 +14,7 @@ describe('EventEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppTestingWithFirestoreModule.mockFirebaseDb(),
-      ],
+      imports: [AppTestingWithFirestoreModule.mockFirebaseDb()],
       providers: [
         {
           provide: Actions,

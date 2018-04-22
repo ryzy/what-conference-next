@@ -25,13 +25,8 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        CoreModule,
-      ],
-      providers: [
-        { provide: Actions, useFactory: () => new TestActions() },
-      ],
+      imports: [RouterTestingModule, CoreModule],
+      providers: [{ provide: Actions, useFactory: () => new TestActions() }],
     });
 
     authService = TestBed.get(AuthService);
@@ -52,8 +47,8 @@ describe('AuthService', () => {
   });
 
   it('#getCurrentUser', () => {
-    let user: User|undefined;
-    authService.getCurrentUser().subscribe(u => user = u);
+    let user: User | undefined;
+    authService.getCurrentUser().subscribe((u) => (user = u));
     expect(user).toBe(undefined);
 
     store.dispatch(new SetUserAction(mockUser));
@@ -62,9 +57,11 @@ describe('AuthService', () => {
 
   it('#loginWithDefaultMethod', (done) => {
     const mockFirebaseCredentials = { user: mockFirebaseUser };
-    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect').and.returnValue(Promise.resolve(mockFirebaseCredentials));
+    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect').and.returnValue(
+      Promise.resolve(mockFirebaseCredentials),
+    );
 
-    authService.loginWithDefaultMethod().subscribe(v => {
+    authService.loginWithDefaultMethod().subscribe((v) => {
       expect(v).toEqual(mockFirebaseCredentials as any);
       done();
     });
@@ -75,7 +72,7 @@ describe('AuthService', () => {
   it('#loginWithDefaultMethod', (done) => {
     const signOutSpy = spyOn(afAuth.auth, 'signOut').and.returnValue(Promise.resolve());
 
-    authService.logout().subscribe(v => {
+    authService.logout().subscribe((v) => {
       expect(v).toEqual(true);
       done();
     });

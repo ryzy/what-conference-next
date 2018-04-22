@@ -13,12 +13,8 @@ describe('FirestoreDbService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppTestingWithFirestoreModule,
-      ],
-      providers: [
-        FirestoreDbService,
-      ],
+      imports: [AppTestingWithFirestoreModule],
+      providers: [FirestoreDbService],
     });
 
     fdbService = TestBed.get(FirestoreDbService);
@@ -37,7 +33,7 @@ describe('FirestoreDbService', () => {
     mockCollection.add(mockTopics[0]);
     mockCollection.add(mockTopics[1]);
 
-    fdbService.getTopics().subscribe(v => {
+    fdbService.getTopics().subscribe((v) => {
       expect(v).toEqual(jasmine.arrayContaining(mockTopics));
       done();
     });

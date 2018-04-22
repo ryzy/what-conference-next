@@ -12,11 +12,8 @@ describe('UserAvatarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-      ],
-    })
-    .compileComponents();
+      imports: [SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

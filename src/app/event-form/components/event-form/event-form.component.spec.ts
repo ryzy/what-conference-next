@@ -10,12 +10,8 @@ describe('EventFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        EventFormModule,
-        AppTestingWithFirestoreModule,
-      ],
-    })
-    .compileComponents();
+      imports: [EventFormModule, AppTestingWithFirestoreModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
