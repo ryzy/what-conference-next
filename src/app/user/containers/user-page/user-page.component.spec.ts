@@ -29,13 +29,13 @@ describe('UserPageComponent', () => {
   });
 
   it('should login', () => {
-    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect');
+    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect').and.callThrough();
     component.login();
     expect(signInSpy).toHaveBeenCalled();
   });
 
   it('should log out', () => {
-    const signOutSpy = spyOn(afAuth.auth, 'signOut');
+    const signOutSpy = spyOn(afAuth.auth, 'signOut').and.callThrough();
     component.logout();
     expect(signOutSpy).toHaveBeenCalled();
   });

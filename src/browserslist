@@ -1,0 +1,17 @@
+### Supported Browsers
+
+# This list is used by angular-cli to generate optimised code (CSS)
+# only for browser specified on the list below.
+#
+# @see https://github.com/angular/angular-cli/wiki/stories-autoprefixer
+# @see https://github.com/ai/browserslist
+#
+# How to test this list?
+# run `yarn browserlist`
+
+> 2%
+last 2 versions
+
+# completely exclude IE and IE Mobile
+not ie <= 11
+not ie_mob <= 11
