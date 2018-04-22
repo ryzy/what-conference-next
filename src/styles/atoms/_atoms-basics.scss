@@ -11,7 +11,9 @@
 html {
   box-sizing: border-box;
 }
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -137,7 +139,6 @@ fieldset {
   }
 }
 
-
 /**
  * 1. Add the correct display in IE 9-.
  * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
@@ -218,7 +219,7 @@ svg:not(:root) {
 hr {
   clear: both;
   height: 0;
-  margin: 2*$app-spacing-unit 0;
+  margin: 2 * $app-spacing-unit 0;
   padding: 0;
   border: 0 none;
   border-bottom: 1px solid #aaaaaa;

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { MatButtonModule, MatCardModule, MatIconModule } from '@angular/material';
 
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
@@ -9,7 +10,7 @@ import { UserAvatarComponent } from './components/user-avatar/user-avatar.compon
 export const IMPORT_EXPORT_MODULES = [CommonModule, RouterModule];
 
 // Material Design modules (but only those which truly needs to be shared)
-export const MAT_SHARED_MODULES = [MatIconModule, MatButtonModule, MatCardModule];
+export const MAT_SHARED_MODULES = [OverlayModule, MatIconModule, MatButtonModule, MatCardModule];
 
 export const APP_COMPONENTS = [NotFoundPageComponent, UserAvatarComponent];
 

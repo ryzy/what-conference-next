@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import { FirestoreDbService } from '../../../core/services/firestore-db.service';
+import { DatabaseService } from '../../../core/services/database.service';
 
 @Component({
   selector: 'app-event-page',
@@ -9,7 +9,7 @@ import { FirestoreDbService } from '../../../core/services/firestore-db.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventFormPageComponent implements OnInit {
-  public constructor(private fdb: FirestoreDbService) {}
+  public constructor(private fdb: DatabaseService) {}
 
   public ngOnInit(): void {}
 }

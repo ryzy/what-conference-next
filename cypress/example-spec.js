@@ -55,25 +55,21 @@ describe('Kitchen Sink', function() {
 
     it('cy.contains() - query DOM elements with matching content', function() {
       // https://on.cypress.io/contains
-      cy
-        .get('.query-list')
+      cy.get('.query-list')
         .contains('bananas')
         .should('have.class', 'third');
 
       // we can pass a regexp to `.contains()`
-      cy
-        .get('.query-list')
+      cy.get('.query-list')
         .contains(/^b\w+/)
         .should('have.class', 'third');
 
-      cy
-        .get('.query-list')
+      cy.get('.query-list')
         .contains('apples')
         .should('have.class', 'first');
 
       // passing a selector to contains will yield the selector containing the text
-      cy
-        .get('#querying')
+      cy.get('#querying')
         .contains('ul', 'oranges')
         .should('have.class', 'query-list');
 
@@ -81,8 +77,7 @@ describe('Kitchen Sink', function() {
       // button, a, and label over deeper elements inside them
       // this will not yield the <span> inside the button,
       // but the <button> itself
-      cy
-        .get('.query-button')
+      cy.get('.query-button')
         .contains('Save Form')
         .should('have.class', 'btn');
     });
@@ -116,40 +111,35 @@ describe('Kitchen Sink', function() {
 
     it('.children() - get child DOM elements', function() {
       // https://on.cypress.io/children
-      cy
-        .get('.traversal-breadcrumb')
+      cy.get('.traversal-breadcrumb')
         .children('.active')
         .should('contain', 'Data');
     });
 
     it('.closest() - get closest ancestor DOM element', function() {
       // https://on.cypress.io/closest
-      cy
-        .get('.traversal-badge')
+      cy.get('.traversal-badge')
         .closest('ul')
         .should('have.class', 'list-group');
     });
 
     it('.eq() - get a DOM element at a specific index', function() {
       // https://on.cypress.io/eq
-      cy
-        .get('.traversal-list>li')
+      cy.get('.traversal-list>li')
         .eq(1)
         .should('contain', 'siamese');
     });
 
     it('.filter() - get DOM elements that match the selector', function() {
       // https://on.cypress.io/filter
-      cy
-        .get('.traversal-nav>li')
+      cy.get('.traversal-nav>li')
         .filter('.active')
         .should('contain', 'About');
     });
 
     it('.find() - get descendant DOM elements of the selector', function() {
       // https://on.cypress.io/find
-      cy
-        .get('.traversal-pagination')
+      cy.get('.traversal-pagination')
         .find('li')
         .find('a')
         .should('have.length', 7);
@@ -157,24 +147,21 @@ describe('Kitchen Sink', function() {
 
     it('.first() - get first DOM element', function() {
       // https://on.cypress.io/first
-      cy
-        .get('.traversal-table td')
+      cy.get('.traversal-table td')
         .first()
         .should('contain', '1');
     });
 
     it('.last() - get last DOM element', function() {
       // https://on.cypress.io/last
-      cy
-        .get('.traversal-buttons .btn')
+      cy.get('.traversal-buttons .btn')
         .last()
         .should('contain', 'Submit');
     });
 
     it('.next() - get next sibling DOM element', function() {
       // https://on.cypress.io/next
-      cy
-        .get('.traversal-ul')
+      cy.get('.traversal-ul')
         .contains('apples')
         .next()
         .should('contain', 'oranges');
@@ -182,8 +169,7 @@ describe('Kitchen Sink', function() {
 
     it('.nextAll() - get all next sibling DOM elements', function() {
       // https://on.cypress.io/nextall
-      cy
-        .get('.traversal-next-all')
+      cy.get('.traversal-next-all')
         .contains('oranges')
         .nextAll()
         .should('have.length', 3);
@@ -191,40 +177,35 @@ describe('Kitchen Sink', function() {
 
     it('.nextUntil() - get next sibling DOM elements until next el', function() {
       // https://on.cypress.io/nextuntil
-      cy
-        .get('#veggies')
+      cy.get('#veggies')
         .nextUntil('#nuts')
         .should('have.length', 3);
     });
 
     it('.not() - remove DOM elements from set of DOM elements', function() {
       // https://on.cypress.io/not
-      cy
-        .get('.traversal-disabled .btn')
+      cy.get('.traversal-disabled .btn')
         .not('[disabled]')
         .should('not.contain', 'Disabled');
     });
 
     it('.parent() - get parent DOM element from DOM elements', function() {
       // https://on.cypress.io/parent
-      cy
-        .get('.traversal-mark')
+      cy.get('.traversal-mark')
         .parent()
         .should('contain', 'Morbi leo risus');
     });
 
     it('.parents() - get parent DOM elements from DOM elements', function() {
       // https://on.cypress.io/parents
-      cy
-        .get('.traversal-cite')
+      cy.get('.traversal-cite')
         .parents()
         .should('match', 'blockquote');
     });
 
     it('.parentsUntil() - get parent DOM elements from DOM elements until el', function() {
       // https://on.cypress.io/parentsuntil
-      cy
-        .get('.clothes-nav')
+      cy.get('.clothes-nav')
         .find('.active')
         .parentsUntil('.clothes-nav')
         .should('have.length', 2);
@@ -232,8 +213,7 @@ describe('Kitchen Sink', function() {
 
     it('.prev() - get previous sibling DOM element', function() {
       // https://on.cypress.io/prev
-      cy
-        .get('.birds')
+      cy.get('.birds')
         .find('.active')
         .prev()
         .should('contain', 'Lorikeets');
@@ -241,8 +221,7 @@ describe('Kitchen Sink', function() {
 
     it('.prevAll() - get all previous sibling DOM elements', function() {
       // https://on.cypress.io/prevAll
-      cy
-        .get('.fruits-list')
+      cy.get('.fruits-list')
         .find('.third')
         .prevAll()
         .should('have.length', 2);
@@ -250,16 +229,14 @@ describe('Kitchen Sink', function() {
 
     it('.prevUntil() - get all previous sibling DOM elements until el', function() {
       // https://on.cypress.io/prevUntil
-      cy
-        .get('.foods-list')
+      cy.get('.foods-list')
         .find('#nuts')
         .prevUntil('#veggies');
     });
 
     it('.siblings() - get all sibling DOM elements', function() {
       // https://on.cypress.io/siblings
-      cy
-        .get('.traversal-pills .active')
+      cy.get('.traversal-pills .active')
         .siblings()
         .should('have.length', 2);
     });
@@ -275,8 +252,7 @@ describe('Kitchen Sink', function() {
 
     it('.type() - type into a DOM element', function() {
       // https://on.cypress.io/type
-      cy
-        .get('.action-email')
+      cy.get('.action-email')
         .type('fake@email.com')
         .should('have.value', 'fake@email.com')
 
@@ -294,8 +270,7 @@ describe('Kitchen Sink', function() {
         .type('slow.typing@email.com', { delay: 100 })
         .should('have.value', 'slow.typing@email.com');
 
-      cy
-        .get('.action-disabled')
+      cy.get('.action-disabled')
         // Ignore error checking prior to type
         // like whether the input is visible or disabled
         .type('disabled error checking', { force: true })
@@ -304,8 +279,7 @@ describe('Kitchen Sink', function() {
 
     it('.focus() - focus on a DOM element', function() {
       // https://on.cypress.io/focus
-      cy
-        .get('.action-focus')
+      cy.get('.action-focus')
         .focus()
         .should('have.class', 'focus')
         .prev()
@@ -314,8 +288,7 @@ describe('Kitchen Sink', function() {
 
     it('.blur() - blur off a DOM element', function() {
       // https://on.cypress.io/blur
-      cy
-        .get('.action-blur')
+      cy.get('.action-blur')
         .type("I'm about to blur")
         .blur()
         .should('have.class', 'error')
@@ -325,8 +298,7 @@ describe('Kitchen Sink', function() {
 
     it('.clear() - clears an input or textarea element', function() {
       // https://on.cypress.io/clear
-      cy
-        .get('.action-clear')
+      cy.get('.action-clear')
         .type('We are going to clear this text')
         .should('have.value', 'We are going to clear this text')
         .clear()
@@ -335,12 +307,10 @@ describe('Kitchen Sink', function() {
 
     it('.submit() - submit a form', function() {
       // https://on.cypress.io/submit
-      cy
-        .get('.action-form')
+      cy.get('.action-form')
         .find('[type="text"]')
         .type('HALFOFF');
-      cy
-        .get('.action-form')
+      cy.get('.action-form')
         .submit()
         .next()
         .should('contain', 'Your form has been submitted!');
@@ -378,8 +348,7 @@ describe('Kitchen Sink', function() {
       // .click() accepts an x and y coordinate
       // that controls where the click occurs :)
 
-      cy
-        .get('#action-canvas')
+      cy.get('#action-canvas')
         .click(80, 75) // click 80px on x coord and 75px on y coord
         .click(170, 75)
         .click(80, 165)
@@ -402,8 +371,7 @@ describe('Kitchen Sink', function() {
       // that hides the div and shows an input on double click
 
       // https://on.cypress.io/dblclick
-      cy
-        .get('.action-div')
+      cy.get('.action-div')
         .dblclick()
         .should('not.be.visible');
       cy.get('.action-input-hidden').should('be.visible');
@@ -414,14 +382,12 @@ describe('Kitchen Sink', function() {
       // matching checkbox or radio elements in succession, one after another
 
       // https://on.cypress.io/check
-      cy
-        .get('.action-checkboxes [type="checkbox"]')
+      cy.get('.action-checkboxes [type="checkbox"]')
         .not('[disabled]')
         .check()
         .should('be.checked');
 
-      cy
-        .get('.action-radios [type="radio"]')
+      cy.get('.action-radios [type="radio"]')
         .not('[disabled]')
         .check()
         .should('be.checked');
@@ -429,29 +395,25 @@ describe('Kitchen Sink', function() {
       // .check() accepts a value argument
       // that checks only checkboxes or radios
       // with matching values
-      cy
-        .get('.action-radios [type="radio"]')
+      cy.get('.action-radios [type="radio"]')
         .check('radio1')
         .should('be.checked');
 
       // .check() accepts an array of values
       // that checks only checkboxes or radios
       // with matching values
-      cy
-        .get('.action-multiple-checkboxes [type="checkbox"]')
+      cy.get('.action-multiple-checkboxes [type="checkbox"]')
         .check(['checkbox1', 'checkbox2'])
         .should('be.checked');
 
       // Ignore error checking prior to checking
       // like whether the element is visible, clickable or disabled
       // this checkbox below is disabled.
-      cy
-        .get('.action-checkboxes [disabled]')
+      cy.get('.action-checkboxes [disabled]')
         .check({ force: true })
         .should('be.checked');
 
-      cy
-        .get('.action-radios [type="radio"]')
+      cy.get('.action-radios [type="radio"]')
         .check('radio3', { force: true })
         .should('be.checked');
     });
@@ -461,8 +423,7 @@ describe('Kitchen Sink', function() {
       // checkbox elements in succession, one after another
 
       // https://on.cypress.io/uncheck
-      cy
-        .get('.action-check [type="checkbox"]')
+      cy.get('.action-check [type="checkbox"]')
         .not('[disabled]')
         .uncheck()
         .should('not.be.checked');
@@ -470,8 +431,7 @@ describe('Kitchen Sink', function() {
       // .uncheck() accepts a value argument
       // that unchecks only checkboxes
       // with matching values
-      cy
-        .get('.action-check [type="checkbox"]')
+      cy.get('.action-check [type="checkbox"]')
         .check('checkbox1')
         .uncheck('checkbox1')
         .should('not.be.checked');
@@ -479,8 +439,7 @@ describe('Kitchen Sink', function() {
       // .uncheck() accepts an array of values
       // that unchecks only checkboxes or radios
       // with matching values
-      cy
-        .get('.action-check [type="checkbox"]')
+      cy.get('.action-check [type="checkbox"]')
         .check(['checkbox1', 'checkbox3'])
         .uncheck(['checkbox1', 'checkbox3'])
         .should('not.be.checked');
@@ -488,8 +447,7 @@ describe('Kitchen Sink', function() {
       // Ignore error checking prior to unchecking
       // like whether the element is visible, clickable or disabled
       // this checkbox below is disabled.
-      cy
-        .get('.action-check [disabled]')
+      cy.get('.action-check [disabled]')
         .uncheck({ force: true })
         .should('not.be.checked');
     });
@@ -518,24 +476,21 @@ describe('Kitchen Sink', function() {
       cy.get('#scroll-horizontal button').should('not.be.visible');
 
       // scroll the button into view, as if the user had scrolled
-      cy
-        .get('#scroll-horizontal button')
+      cy.get('#scroll-horizontal button')
         .scrollIntoView()
         .should('be.visible');
 
       cy.get('#scroll-vertical button').should('not.be.visible');
 
       // Cypress handles the scroll direction needed
-      cy
-        .get('#scroll-vertical button')
+      cy.get('#scroll-vertical button')
         .scrollIntoView()
         .should('be.visible');
 
       cy.get('#scroll-both button').should('not.be.visible');
 
       // Cypress knows to scroll to the right and down
-      cy
-        .get('#scroll-both button')
+      cy.get('#scroll-both button')
         .scrollIntoView()
         .should('be.visible');
     });
@@ -589,8 +544,7 @@ describe('Kitchen Sink', function() {
       // by some browsers
 
       // https://on.cypress.io/trigger
-      cy
-        .get('.trigger-input-range')
+      cy.get('.trigger-input-range')
         .invoke('val', 25)
         .trigger('change')
         .get('input[type=range]')
@@ -614,8 +568,7 @@ describe('Kitchen Sink', function() {
 
     it('cy.document() - get the document object', function() {
       // https://on.cypress.io/document
-      cy
-        .document()
+      cy.document()
         .should('have.property', 'charset')
         .and('eq', 'UTF-8');
     });
@@ -639,12 +592,10 @@ describe('Kitchen Sink', function() {
 
       // the navbar should have collapse since our screen is smaller
       cy.get('#navbar').should('not.be.visible');
-      cy
-        .get('.navbar-toggle')
+      cy.get('.navbar-toggle')
         .should('be.visible')
         .click();
-      cy
-        .get('.nav')
+      cy.get('.nav')
         .find('a')
         .should('be.visible');
 
@@ -727,12 +678,10 @@ describe('Kitchen Sink', function() {
   context('Navigation', function() {
     beforeEach(function() {
       cy.visit('https://example.cypress.io');
-      cy
-        .get('.navbar-nav')
+      cy.get('.navbar-nav')
         .contains('Commands')
         .click();
-      cy
-        .get('.dropdown-menu')
+      cy.get('.dropdown-menu')
         .contains('Navigation')
         .click();
     });
@@ -789,16 +738,14 @@ describe('Kitchen Sink', function() {
     describe('Implicit Assertions', function() {
       it('.should() - make an assertion about the current subject', function() {
         // https://on.cypress.io/should
-        cy
-          .get('.assertion-table')
+        cy.get('.assertion-table')
           .find('tbody tr:last')
           .should('have.class', 'success');
       });
 
       it('.and() - chain multiple assertions together', function() {
         // https://on.cypress.io/and
-        cy
-          .get('.assertions-link')
+        cy.get('.assertions-link')
           .should('have.class', 'active')
           .and('have.attr', 'href')
           .and('include', 'cypress.io');
@@ -821,8 +768,7 @@ describe('Kitchen Sink', function() {
 
         // Pass a function to should that can have any number
         // of explicit assertions within it.
-        cy
-          .get('.assertions-p')
+        cy.get('.assertions-p')
           .find('p')
           .should(function($p) {
             // return an array of texts from all of the p's
@@ -861,8 +807,7 @@ describe('Kitchen Sink', function() {
       // https://on.cypress.io/end
       cy.get('.misc-table').within(function() {
         // ends the current chain and yields null
-        cy
-          .contains('Cheryl')
+        cy.contains('Cheryl')
           .click()
           .end();
 
@@ -877,8 +822,7 @@ describe('Kitchen Sink', function() {
       // but outside the scope of Cypress.
 
       // https://on.cypress.io/exec
-      cy
-        .exec('echo Jane Lane')
+      cy.exec('echo Jane Lane')
         .its('stdout')
         .should('contain', 'Jane Lane');
 
@@ -888,18 +832,15 @@ describe('Kitchen Sink', function() {
       cy.log(`Platform ${Cypress.platform} architecture ${Cypress.arch}`);
 
       if (Cypress.platform === 'win32') {
-        cy
-          .exec('print cypress.json')
+        cy.exec('print cypress.json')
           .its('stderr')
           .should('be.empty');
       } else {
-        cy
-          .exec('cat cypress.json')
+        cy.exec('cat cypress.json')
           .its('stderr')
           .should('be.empty');
 
-        cy
-          .exec('pwd')
+        cy.exec('pwd')
           .its('code')
           .should('eq', 0);
       }
@@ -907,14 +848,12 @@ describe('Kitchen Sink', function() {
 
     it('cy.focused() - get the DOM element that has focus', function() {
       // https://on.cypress.io/focused
-      cy
-        .get('.misc-form')
+      cy.get('.misc-form')
         .find('#name')
         .click();
       cy.focused().should('have.id', 'name');
 
-      cy
-        .get('.misc-form')
+      cy.get('.misc-form')
         .find('#description')
         .click();
       cy.focused().should('have.id', 'description');
@@ -927,8 +866,7 @@ describe('Kitchen Sink', function() {
 
     it('cy.wrap() - wrap an object', function() {
       // https://on.cypress.io/wrap
-      cy
-        .wrap({ foo: 'bar' })
+      cy.wrap({ foo: 'bar' })
         .should('have.property', 'foo')
         .and('include', 'bar');
     });
@@ -948,8 +886,7 @@ describe('Kitchen Sink', function() {
 
     it('.its() - get properties on the current subject', function() {
       // https://on.cypress.io/its
-      cy
-        .get('.connectors-its-ul>li')
+      cy.get('.connectors-its-ul>li')
         // calls the 'length' property yielding that value
         .its('length')
         .should('be.gt', 2);
@@ -960,8 +897,7 @@ describe('Kitchen Sink', function() {
       // $('.connectors-div').hide()
 
       // https://on.cypress.io/invoke
-      cy
-        .get('.connectors-div')
+      cy.get('.connectors-div')
         .should('be.hidden')
 
         // call the jquery method 'show' on the 'div.container'
@@ -1005,8 +941,7 @@ describe('Kitchen Sink', function() {
       // we don't want to write this long traversal again
 
       // https://on.cypress.io/as
-      cy
-        .get('.as-table')
+      cy.get('.as-table')
         .find('tbody>tr')
         .first()
         .find('td')
@@ -1020,8 +955,7 @@ describe('Kitchen Sink', function() {
       // @ in front of it's name
       cy.get('@firstBtn').click();
 
-      cy
-        .get('@firstBtn')
+      cy.get('@firstBtn')
         .should('have.class', 'btn-success')
         .and('contain', 'Changed');
     });
@@ -1120,8 +1054,7 @@ describe('Kitchen Sink', function() {
       // continuing to the next command
 
       // https://on.cypress.io/wait
-      cy
-        .wait('@getComment')
+      cy.wait('@getComment')
         .its('status')
         .should('eq', 200);
 
@@ -1143,15 +1076,13 @@ describe('Kitchen Sink', function() {
       });
 
       // **** Stubbed PUT comment route ****
-      cy
-        .route({
-          method: 'PUT',
-          url: /comments\/\d+/,
-          status: 404,
-          response: { error: message },
-          delay: 500,
-        })
-        .as('putComment');
+      cy.route({
+        method: 'PUT',
+        url: /comments\/\d+/,
+        status: 404,
+        response: { error: message },
+        delay: 500,
+      }).as('putComment');
 
       // we have code that puts a comment when
       // the button is clicked in scripts.js
@@ -1184,8 +1115,7 @@ describe('Kitchen Sink', function() {
       // the button is clicked in scripts.js
       cy.get('.fixture-btn').click();
 
-      cy
-        .wait('@getComment')
+      cy.wait('@getComment')
         .its('responseBody')
         .should('have.property', 'name')
         .and('include', 'Using fixtures to represent data');
@@ -1197,8 +1127,7 @@ describe('Kitchen Sink', function() {
       // the button is clicked in scripts.js
       cy.get('.fixture-btn').click();
 
-      cy
-        .wait('@getComment')
+      cy.wait('@getComment')
         .its('responseBody')
         .should('have.property', 'name')
         .and('include', 'Using fixtures to represent data');
@@ -1211,8 +1140,7 @@ describe('Kitchen Sink', function() {
       // the button is clicked in scripts.js
       cy.get('.fixture-btn').click();
 
-      cy
-        .wait('@getComment')
+      cy.wait('@getComment')
         .its('responseBody')
         .should('have.property', 'name')
         .and('include', 'Using fixtures to represent data');
@@ -1264,8 +1192,7 @@ describe('Kitchen Sink', function() {
 
     it('cy.clearLocalStorage() - clear all data in local storage', function() {
       // https://on.cypress.io/clearlocalstorage
-      cy
-        .get('.ls-btn')
+      cy.get('.ls-btn')
         .click()
         .should(function() {
           expect(localStorage.getItem('prop1')).to.eq('red');
@@ -1281,8 +1208,7 @@ describe('Kitchen Sink', function() {
       });
 
       // **** Clear key matching string in Local Storage ****
-      cy
-        .get('.ls-btn')
+      cy.get('.ls-btn')
         .click()
         .should(function() {
           expect(localStorage.getItem('prop1')).to.eq('red');
@@ -1297,8 +1223,7 @@ describe('Kitchen Sink', function() {
       });
 
       // **** Clear key's matching regex in Local Storage ****
-      cy
-        .get('.ls-btn')
+      cy.get('.ls-btn')
         .click()
         .should(function() {
           expect(localStorage.getItem('prop1')).to.eq('red');
@@ -1340,8 +1265,7 @@ describe('Kitchen Sink', function() {
       cy.get('#getCookies .set-a-cookie').click();
 
       // cy.getCookies() yields an array of cookies
-      cy
-        .getCookies()
+      cy.getCookies()
         .should('have.length', 1)
         .should(function(cookies) {
           // each cookie has these properties
@@ -1432,8 +1356,7 @@ describe('Kitchen Sink', function() {
       // https://on.cypress.io/clock
       cy.clock(now);
       cy.visit('https://example.cypress.io/commands/spies-stubs-clocks');
-      cy
-        .get('#clock-div')
+      cy.get('#clock-div')
         .click()
         .should('have.text', '1489449600');
     });
@@ -1446,13 +1369,11 @@ describe('Kitchen Sink', function() {
       // https://on.cypress.io/tick
       cy.clock(now);
       cy.visit('https://example.cypress.io/commands/spies-stubs-clocks');
-      cy
-        .get('#tick-div')
+      cy.get('#tick-div')
         .click()
         .should('have.text', '1489449600');
       cy.tick(10000); // 10 seconds passed
-      cy
-        .get('#tick-div')
+      cy.get('#tick-div')
         .click()
         .should('have.text', '1489449610');
     });
@@ -1467,7 +1388,8 @@ describe('Kitchen Sink', function() {
       // use the _.chain, _.map, _.take, and _.value functions
       // https://on.cypress.io/_
       cy.request('https://jsonplaceholder.typicode.com/users').then(function(response) {
-        let ids = Cypress._.chain(response.body)
+        let ids = Cypress._
+          .chain(response.body)
           .map('id')
           .take(3)
           .value();
@@ -1480,8 +1402,7 @@ describe('Kitchen Sink', function() {
       // https://on.cypress.io/$
       let $li = Cypress.$('.utility-jquery li:first');
 
-      cy
-        .wrap($li)
+      cy.wrap($li)
         .should('not.have.class', 'active')
         .click()
         .should('have.class', 'active');
@@ -1494,8 +1415,7 @@ describe('Kitchen Sink', function() {
         .utc('2014-04-25T19:38:53.196Z')
         .format('h:mm A');
 
-      cy
-        .get('.utility-moment')
+      cy.get('.utility-moment')
         .contains('3:38 PM')
         .should('have.class', 'badge');
     });
@@ -1517,8 +1437,7 @@ describe('Kitchen Sink', function() {
           // append the image
           $div.append(img);
 
-          cy
-            .get('.utility-blob img')
+          cy.get('.utility-blob img')
             .click()
             .should('have.attr', 'src', dataUrl);
         });

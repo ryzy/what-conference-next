@@ -50,11 +50,30 @@
     "prefer-const": true,
     "quotemark": [true, "single", "avoid-escape"],
     "radix": true,
+    "rxjs-ban-observables": {
+      "options": [{
+        "empty": "Use EMPTY",
+        "never": "Use NEVER"
+      }],
+      "severity": "warning"
+    },
+    "rxjs-ban-operators": {
+      "options": [{
+        "combineLatest": "Use the static combineLatest",
+        "concat": "Use the static concat",
+        "merge": "Use the static merge",
+        "race": "Use the static race",
+        "zip": "Use the static zip"
+      }],
+      "severity": "warning"
+    },
     "rxjs-no-add": true,
+    "rxjs-no-internal": true,
     "rxjs-no-deep-operators": true,
     "rxjs-no-operator": true,
     "rxjs-no-patched": true,
     "rxjs-no-subject-unsubscribe": true,
+    "rxjs-no-subject-value": true,
     "rxjs-no-unsafe-switchmap": true,
     "rxjs-no-unused-add": true,
     "rxjs-throw-error": true,

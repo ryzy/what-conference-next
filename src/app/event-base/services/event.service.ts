@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { FirestoreDbService } from '../../core/services/firestore-db.service';
+import { DatabaseService } from '../../core/services/database.service';
 import { EventsRootState } from '../store/index';
 
 @Injectable()
 export class EventService {
-  public constructor(private store: Store<EventsRootState>, private fdb: FirestoreDbService) {}
+  public constructor(private store: Store<EventsRootState>, private fdb: DatabaseService) {}
 }

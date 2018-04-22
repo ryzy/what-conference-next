@@ -3,7 +3,6 @@
   "defaultCommandTimeout": 12000,
   "viewportWidth": 1200,
   "viewportHeight": 1000,
-  "screenshotOnHeadlessFailure": false,
-  "screenshotsFolder": false,
-  "fixturesFolder": false
+  "fixturesFolder": false,
+  "projectId": "3fk9iw"
 }

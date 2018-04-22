@@ -65,7 +65,7 @@
     <div class="grid-x grid-margin-x">
       <mat-form-field class="cell mini-3">
         <input matInput formControlName="country" [matAutocomplete]="countriesAutocomplete" placeholder="Country" required>
-        <mat-autocomplete #countriesAutocomplete [displayWith]="displayCountryFn">
+        <mat-autocomplete #countriesAutocomplete="matAutocomplete" [displayWith]="displayCountryFn">
           <mat-option *ngFor="let country of countries$ | async" [value]="country">{{ country.name }}</mat-option>
         </mat-autocomplete>
       </mat-form-field>

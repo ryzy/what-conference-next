@@ -6,20 +6,20 @@ import { map } from 'rxjs/operators';
 import { EventTopic } from '../../event-base/model/event-topic';
 
 @Injectable()
-export class FirestoreDbService {
+export class DatabaseService {
   public constructor(private afs: AngularFirestore) {}
 
   public getTopics(): Observable<EventTopic[]> {
     return this.afs
-      .collection('topics')
+      .collection<EventTopic>('topics')
       .snapshotChanges()
       .pipe(
-        map((actions: DocumentChangeAction[]) => {
-          return actions.map((action: DocumentChangeAction) => {
+        map((actions: DocumentChangeAction<EventTopic>[]) => {
+          return actions.map((action: DocumentChangeAction<EventTopic>) => {
             return {
               id: action.payload.doc.id,
               ...action.payload.doc.data(),
-            } as EventTopic;
+            };
           });
         }),
       );

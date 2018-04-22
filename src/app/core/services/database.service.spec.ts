@@ -1,32 +1,27 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
-import { AppTestingWithFirestoreModule } from '../../../testing/app-testing-with-firestore.module';
+import { AppTestingWithDatabaseModule } from '../../../testing/app-testing-with-database.module';
 import { mockTopics } from '../../../testing/fixtures/topics';
 import { EventTopic } from '../../event-base/model/event-topic';
-import { FirestoreDbService } from './firestore-db.service';
+import { DatabaseService } from './database.service';
 
-describe('FirestoreDbService', () => {
-  let fdbService: FirestoreDbService;
+describe('DatabaseService', () => {
+  let fdbService: DatabaseService;
   let afs: AngularFirestore;
   let mockCollection: AngularFirestoreCollection<EventTopic>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingWithFirestoreModule],
-      providers: [FirestoreDbService],
+      imports: [AppTestingWithDatabaseModule.withRealDatabaseService()],
+      providers: [DatabaseService],
     });
 
-    fdbService = TestBed.get(FirestoreDbService);
+    fdbService = TestBed.get(DatabaseService);
 
     afs = TestBed.get(AngularFirestore);
     mockCollection = afs.collection('topics');
     spyOn(afs, 'collection').and.returnValue(mockCollection);
-  });
-
-  afterEach(async (done: Function) => {
-    await afs.app.delete();
-    done();
   });
 
   it('#getTopics', (done: Function) => {

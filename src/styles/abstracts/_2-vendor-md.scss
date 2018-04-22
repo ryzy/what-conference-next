@@ -14,7 +14,7 @@ $mat-typography: mat-typography-config(
   $body-2: mat-typography-level(14px, $app-line-height, $app-font-weight-normal),
   $caption: mat-typography-level(14px, $app-line-height, $app-font-weight-normal),
   $button: mat-typography-level(14px, $app-line-height, $app-font-weight-normal),
-  $input: mat-typography-level(16px, $app-line-height-small, $app-font-weight-semi-bold)
+  $input: mat-typography-level(16px, $app-line-height-small, $app-font-weight-semi-bold),
 );
 
 $candy-app-primary: mat-palette($mat-blue-grey, 800, 700, 900);
