@@ -13,13 +13,8 @@ describe('EventsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CoreModule,
-        EventsListModule,
-        AppTestingModule,
-      ],
-    })
-    .compileComponents();
+      imports: [CoreModule, EventsListModule, AppTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

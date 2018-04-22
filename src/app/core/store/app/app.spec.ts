@@ -12,7 +12,6 @@ describe('AppState', () => {
   let store: Store<AppRootState>;
 
   describe('appReducer:', () => {
-
     it('should return state', () => {
       expect(appReducer(appInitialState, {} as AppActions)).toBe(appInitialState);
     });
@@ -29,17 +28,15 @@ describe('AppState', () => {
   describe('selectors:', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [
-          StoreModule.forRoot(reducers),
-        ],
+        imports: [StoreModule.forRoot(reducers)],
       });
 
       store = TestBed.get(Store);
     });
 
     it('#getUser', () => {
-      let user: User|undefined;
-      store.select(appSelectors.getUser).subscribe(u => user = u);
+      let user: User | undefined;
+      store.select(appSelectors.getUser).subscribe((u) => (user = u));
       expect(user).toBe(undefined);
 
       store.dispatch(new SetUserAction(mockUser));

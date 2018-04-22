@@ -6,10 +6,5 @@ import { EventsRootState } from '../store/index';
 
 @Injectable()
 export class EventService {
-
-  public constructor(
-    private store: Store<EventsRootState>,
-    private fdb: FirestoreDbService,
-  ) {
-  }
+  public constructor(private store: Store<EventsRootState>, private fdb: FirestoreDbService) {}
 }

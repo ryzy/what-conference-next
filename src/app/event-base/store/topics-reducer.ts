@@ -33,9 +33,4 @@ export function topicsReducer(state: TopicsState = topicsInitialState, action: T
   }
 }
 
-export const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal
-} = adapter.getSelectors();
+export const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();

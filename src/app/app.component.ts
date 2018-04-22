@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { User } from './core/model/user';
 
 import { AuthService } from './core/services/auth.service';
@@ -13,7 +13,7 @@ import { GoAction } from './core/store/router/router-actions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  public user$: Observable<User|undefined>;
+  public user$: Observable<User | undefined>;
 
   public constructor(authService: AuthService, private store: Store<AppRootState>) {
     this.user$ = authService.getCurrentUser();

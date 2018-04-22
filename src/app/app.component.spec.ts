@@ -8,14 +8,8 @@ import { SharedModule } from './shared/shared.module';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        CoreModule,
-        SharedModule,
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule, CoreModule, SharedModule],
+      declarations: [AppComponent],
     }).compileComponents();
   }));
 

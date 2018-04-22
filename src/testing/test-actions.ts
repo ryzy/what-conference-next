@@ -1,13 +1,12 @@
 import { Actions } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
-import { empty } from 'rxjs/observable/empty';
+import { Observable, EMPTY } from 'rxjs';
 
 /**
  * Helper class to use while testing Effects with jasmine-marbles
  */
 export class TestActions extends Actions {
   constructor() {
-    super(empty());
+    super(EMPTY);
   }
 
   set stream(source: Observable<any>) {

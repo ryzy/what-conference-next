@@ -18,8 +18,7 @@ describe('EventFormPageComponent', () => {
         EventFormModule,
         // AppTestingWithFirestoreModule,
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

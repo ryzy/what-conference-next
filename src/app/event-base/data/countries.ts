@@ -12,8 +12,8 @@ export const countriesData: Country[] = [
       {
         code: 'AFN',
         name: 'Afghan afghani',
-        symbol: '؋'
-      }
+        symbol: '؋',
+      },
     ],
     flag: 'https://restcountries.eu/data/afg.svg',
     name: 'Afghanistan',
@@ -21,21 +21,16 @@ export const countriesData: Country[] = [
     capital: 'Kabul',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      33,
-      65
-    ],
-    timezones: [
-      'UTC+04:30'
-    ]
+    latlng: [33, 65],
+    timezones: ['UTC+04:30'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/ala.svg',
     name: 'Åland Islands',
@@ -43,21 +38,16 @@ export const countriesData: Country[] = [
     capital: 'Mariehamn',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      60.116667,
-      19.9
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [60.116667, 19.9],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'ALL',
         name: 'Albanian lek',
-        symbol: 'L'
-      }
+        symbol: 'L',
+      },
     ],
     flag: 'https://restcountries.eu/data/alb.svg',
     name: 'Albania',
@@ -65,21 +55,16 @@ export const countriesData: Country[] = [
     capital: 'Tirana',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      41,
-      20
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [41, 20],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'DZD',
         name: 'Algerian dinar',
-        symbol: 'د.ج'
-      }
+        symbol: 'د.ج',
+      },
     ],
     flag: 'https://restcountries.eu/data/dza.svg',
     name: 'Algeria',
@@ -87,21 +72,16 @@ export const countriesData: Country[] = [
     capital: 'Algiers',
     region: 'Africa',
     subregion: 'Northern Africa',
-    latlng: [
-      28,
-      3
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [28, 3],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United State Dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/asm.svg',
     name: 'American Samoa',
@@ -109,21 +89,16 @@ export const countriesData: Country[] = [
     capital: 'Pago Pago',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -14.33333333,
-      -170
-    ],
-    timezones: [
-      'UTC-11:00'
-    ]
+    latlng: [-14.33333333, -170],
+    timezones: ['UTC-11:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/and.svg',
     name: 'Andorra',
@@ -131,21 +106,16 @@ export const countriesData: Country[] = [
     capital: 'Andorra la Vella',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      42.5,
-      1.5
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [42.5, 1.5],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'AOA',
         name: 'Angolan kwanza',
-        symbol: 'Kz'
-      }
+        symbol: 'Kz',
+      },
     ],
     flag: 'https://restcountries.eu/data/ago.svg',
     name: 'Angola',
@@ -153,21 +123,16 @@ export const countriesData: Country[] = [
     capital: 'Luanda',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      -12.5,
-      18.5
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [-12.5, 18.5],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/aia.svg',
     name: 'Anguilla',
@@ -175,26 +140,21 @@ export const countriesData: Country[] = [
     capital: 'The Valley',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.25,
-      -63.16666666
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [18.25, -63.16666666],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'GBP',
         name: 'British pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/ata.svg',
     name: 'Antarctica',
@@ -202,50 +162,33 @@ export const countriesData: Country[] = [
     capital: '',
     region: 'Polar',
     subregion: '',
-    latlng: [
-      -74.65,
-      4.48
-    ],
-    timezones: [
-      'UTC-03:00',
-      'UTC+03:00',
-      'UTC+05:00',
-      'UTC+06:00',
-      'UTC+07:00',
-      'UTC+08:00',
-      'UTC+10:00',
-      'UTC+12:00'
-    ]
+    latlng: [-74.65, 4.48],
+    timezones: ['UTC-03:00', 'UTC+03:00', 'UTC+05:00', 'UTC+06:00', 'UTC+07:00', 'UTC+08:00', 'UTC+10:00', 'UTC+12:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/atg.svg',
     name: 'Antigua and Barbuda',
     isoCode: 'AG',
-    capital: 'Saint John\'s',
+    capital: "Saint John's",
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      17.05,
-      -61.8
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [17.05, -61.8],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'ARS',
         name: 'Argentine peso',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/arg.svg',
     name: 'Argentina',
@@ -253,20 +196,15 @@ export const countriesData: Country[] = [
     capital: 'Buenos Aires',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -34,
-      -64
-    ],
-    timezones: [
-      'UTC-03:00'
-    ]
+    latlng: [-34, -64],
+    timezones: ['UTC-03:00'],
   },
   {
     currencies: [
       {
         code: 'AMD',
-        name: 'Armenian dram'
-      }
+        name: 'Armenian dram',
+      },
     ],
     flag: 'https://restcountries.eu/data/arm.svg',
     name: 'Armenia',
@@ -274,21 +212,16 @@ export const countriesData: Country[] = [
     capital: 'Yerevan',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      40,
-      45
-    ],
-    timezones: [
-      'UTC+04:00'
-    ]
+    latlng: [40, 45],
+    timezones: ['UTC+04:00'],
   },
   {
     currencies: [
       {
         code: 'AWG',
         name: 'Aruban florin',
-        symbol: 'ƒ'
-      }
+        symbol: 'ƒ',
+      },
     ],
     flag: 'https://restcountries.eu/data/abw.svg',
     name: 'Aruba',
@@ -296,21 +229,16 @@ export const countriesData: Country[] = [
     capital: 'Oranjestad',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      12.5,
-      -69.96666666
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [12.5, -69.96666666],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/aus.svg',
     name: 'Australia',
@@ -318,28 +246,16 @@ export const countriesData: Country[] = [
     capital: 'Canberra',
     region: 'Oceania',
     subregion: 'Australia and New Zealand',
-    latlng: [
-      -27,
-      133
-    ],
-    timezones: [
-      'UTC+05:00',
-      'UTC+06:30',
-      'UTC+07:00',
-      'UTC+08:00',
-      'UTC+09:30',
-      'UTC+10:00',
-      'UTC+10:30',
-      'UTC+11:30'
-    ]
+    latlng: [-27, 133],
+    timezones: ['UTC+05:00', 'UTC+06:30', 'UTC+07:00', 'UTC+08:00', 'UTC+09:30', 'UTC+10:00', 'UTC+10:30', 'UTC+11:30'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/aut.svg',
     name: 'Austria',
@@ -347,20 +263,15 @@ export const countriesData: Country[] = [
     capital: 'Vienna',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      47.33333333,
-      13.33333333
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [47.33333333, 13.33333333],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'AZN',
-        name: 'Azerbaijani manat'
-      }
+        name: 'Azerbaijani manat',
+      },
     ],
     flag: 'https://restcountries.eu/data/aze.svg',
     name: 'Azerbaijan',
@@ -368,21 +279,16 @@ export const countriesData: Country[] = [
     capital: 'Baku',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      40.5,
-      47.5
-    ],
-    timezones: [
-      'UTC+04:00'
-    ]
+    latlng: [40.5, 47.5],
+    timezones: ['UTC+04:00'],
   },
   {
     currencies: [
       {
         code: 'BSD',
         name: 'Bahamian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/bhs.svg',
     name: 'Bahamas',
@@ -390,21 +296,16 @@ export const countriesData: Country[] = [
     capital: 'Nassau',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      24.25,
-      -76
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [24.25, -76],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'BHD',
         name: 'Bahraini dinar',
-        symbol: '.د.ب'
-      }
+        symbol: '.د.ب',
+      },
     ],
     flag: 'https://restcountries.eu/data/bhr.svg',
     name: 'Bahrain',
@@ -412,21 +313,16 @@ export const countriesData: Country[] = [
     capital: 'Manama',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      26,
-      50.55
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [26, 50.55],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'BDT',
         name: 'Bangladeshi taka',
-        symbol: '৳'
-      }
+        symbol: '৳',
+      },
     ],
     flag: 'https://restcountries.eu/data/bgd.svg',
     name: 'Bangladesh',
@@ -434,21 +330,16 @@ export const countriesData: Country[] = [
     capital: 'Dhaka',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      24,
-      90
-    ],
-    timezones: [
-      'UTC+06:00'
-    ]
+    latlng: [24, 90],
+    timezones: ['UTC+06:00'],
   },
   {
     currencies: [
       {
         code: 'BBD',
         name: 'Barbadian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/brb.svg',
     name: 'Barbados',
@@ -456,26 +347,21 @@ export const countriesData: Country[] = [
     capital: 'Bridgetown',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      13.16666666,
-      -59.53333333
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [13.16666666, -59.53333333],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'BYN',
         name: 'New Belarusian ruble',
-        symbol: 'Br'
+        symbol: 'Br',
       },
       {
         code: 'BYR',
         name: 'Old Belarusian ruble',
-        symbol: 'Br'
-      }
+        symbol: 'Br',
+      },
     ],
     flag: 'https://restcountries.eu/data/blr.svg',
     name: 'Belarus',
@@ -483,21 +369,16 @@ export const countriesData: Country[] = [
     capital: 'Minsk',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      53,
-      28
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [53, 28],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/bel.svg',
     name: 'Belgium',
@@ -505,21 +386,16 @@ export const countriesData: Country[] = [
     capital: 'Brussels',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      50.83333333,
-      4
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [50.83333333, 4],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'BZD',
         name: 'Belize dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/blz.svg',
     name: 'Belize',
@@ -527,21 +403,16 @@ export const countriesData: Country[] = [
     capital: 'Belmopan',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      17.25,
-      -88.75
-    ],
-    timezones: [
-      'UTC-06:00'
-    ]
+    latlng: [17.25, -88.75],
+    timezones: ['UTC-06:00'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/ben.svg',
     name: 'Benin',
@@ -549,21 +420,16 @@ export const countriesData: Country[] = [
     capital: 'Porto-Novo',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      9.5,
-      2.25
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [9.5, 2.25],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'BMD',
         name: 'Bermudian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/bmu.svg',
     name: 'Bermuda',
@@ -571,26 +437,21 @@ export const countriesData: Country[] = [
     capital: 'Hamilton',
     region: 'Americas',
     subregion: 'Northern America',
-    latlng: [
-      32.33333333,
-      -64.75
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [32.33333333, -64.75],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'BTN',
         name: 'Bhutanese ngultrum',
-        symbol: 'Nu.'
+        symbol: 'Nu.',
       },
       {
         code: 'INR',
         name: 'Indian rupee',
-        symbol: '₹'
-      }
+        symbol: '₹',
+      },
     ],
     flag: 'https://restcountries.eu/data/btn.svg',
     name: 'Bhutan',
@@ -598,21 +459,16 @@ export const countriesData: Country[] = [
     capital: 'Thimphu',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      27.5,
-      90.5
-    ],
-    timezones: [
-      'UTC+06:00'
-    ]
+    latlng: [27.5, 90.5],
+    timezones: ['UTC+06:00'],
   },
   {
     currencies: [
       {
         code: 'BOB',
         name: 'Bolivian boliviano',
-        symbol: 'Bs.'
-      }
+        symbol: 'Bs.',
+      },
     ],
     flag: 'https://restcountries.eu/data/bol.svg',
     name: 'Bolivia (Plurinational State of)',
@@ -620,21 +476,16 @@ export const countriesData: Country[] = [
     capital: 'Sucre',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -17,
-      -65
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [-17, -65],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/bes.svg',
     name: 'Bonaire, Sint Eustatius and Saba',
@@ -642,20 +493,15 @@ export const countriesData: Country[] = [
     capital: 'Kralendijk',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      12.15,
-      -68.266667
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [12.15, -68.266667],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'BAM',
-        name: 'Bosnia and Herzegovina convertible mark'
-      }
+        name: 'Bosnia and Herzegovina convertible mark',
+      },
     ],
     flag: 'https://restcountries.eu/data/bih.svg',
     name: 'Bosnia and Herzegovina',
@@ -663,21 +509,16 @@ export const countriesData: Country[] = [
     capital: 'Sarajevo',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      44,
-      18
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [44, 18],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'BWP',
         name: 'Botswana pula',
-        symbol: 'P'
-      }
+        symbol: 'P',
+      },
     ],
     flag: 'https://restcountries.eu/data/bwa.svg',
     name: 'Botswana',
@@ -685,21 +526,16 @@ export const countriesData: Country[] = [
     capital: 'Gaborone',
     region: 'Africa',
     subregion: 'Southern Africa',
-    latlng: [
-      -22,
-      24
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-22, 24],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'NOK',
         name: 'Norwegian krone',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/bvt.svg',
     name: 'Bouvet Island',
@@ -707,21 +543,16 @@ export const countriesData: Country[] = [
     capital: '',
     region: '',
     subregion: '',
-    latlng: [
-      -54.43333333,
-      3.4
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [-54.43333333, 3.4],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'BRL',
         name: 'Brazilian real',
-        symbol: 'R$'
-      }
+        symbol: 'R$',
+      },
     ],
     flag: 'https://restcountries.eu/data/bra.svg',
     name: 'Brazil',
@@ -729,24 +560,16 @@ export const countriesData: Country[] = [
     capital: 'Brasília',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -10,
-      -55
-    ],
-    timezones: [
-      'UTC-05:00',
-      'UTC-04:00',
-      'UTC-03:00',
-      'UTC-02:00'
-    ]
+    latlng: [-10, -55],
+    timezones: ['UTC-05:00', 'UTC-04:00', 'UTC-03:00', 'UTC-02:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/iot.svg',
     name: 'British Indian Ocean Territory',
@@ -754,21 +577,16 @@ export const countriesData: Country[] = [
     capital: 'Diego Garcia',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -6,
-      71.5
-    ],
-    timezones: [
-      'UTC+06:00'
-    ]
+    latlng: [-6, 71.5],
+    timezones: ['UTC+06:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/vgb.svg',
     name: 'Virgin Islands (British)',
@@ -776,21 +594,16 @@ export const countriesData: Country[] = [
     capital: 'Road Town',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.431383,
-      -64.62305
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [18.431383, -64.62305],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/vir.svg',
     name: 'Virgin Islands (U.S.)',
@@ -798,26 +611,21 @@ export const countriesData: Country[] = [
     capital: 'Charlotte Amalie',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.34,
-      -64.93
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [18.34, -64.93],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'BND',
         name: 'Brunei dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'SGD',
         name: 'Singapore dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/brn.svg',
     name: 'Brunei Darussalam',
@@ -825,21 +633,16 @@ export const countriesData: Country[] = [
     capital: 'Bandar Seri Begawan',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      4.5,
-      114.66666666
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [4.5, 114.66666666],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'BGN',
         name: 'Bulgarian lev',
-        symbol: 'лв'
-      }
+        symbol: 'лв',
+      },
     ],
     flag: 'https://restcountries.eu/data/bgr.svg',
     name: 'Bulgaria',
@@ -847,21 +650,16 @@ export const countriesData: Country[] = [
     capital: 'Sofia',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      43,
-      25
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [43, 25],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/bfa.svg',
     name: 'Burkina Faso',
@@ -869,21 +667,16 @@ export const countriesData: Country[] = [
     capital: 'Ouagadougou',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      13,
-      -2
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [13, -2],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'BIF',
         name: 'Burundian franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/bdi.svg',
     name: 'Burundi',
@@ -891,26 +684,21 @@ export const countriesData: Country[] = [
     capital: 'Bujumbura',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -3.5,
-      30
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-3.5, 30],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'KHR',
         name: 'Cambodian riel',
-        symbol: '៛'
+        symbol: '៛',
       },
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/khm.svg',
     name: 'Cambodia',
@@ -918,21 +706,16 @@ export const countriesData: Country[] = [
     capital: 'Phnom Penh',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      13,
-      105
-    ],
-    timezones: [
-      'UTC+07:00'
-    ]
+    latlng: [13, 105],
+    timezones: ['UTC+07:00'],
   },
   {
     currencies: [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/cmr.svg',
     name: 'Cameroon',
@@ -940,21 +723,16 @@ export const countriesData: Country[] = [
     capital: 'Yaoundé',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      6,
-      12
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [6, 12],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'CAD',
         name: 'Canadian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/can.svg',
     name: 'Canada',
@@ -962,26 +740,16 @@ export const countriesData: Country[] = [
     capital: 'Ottawa',
     region: 'Americas',
     subregion: 'Northern America',
-    latlng: [
-      60,
-      -95
-    ],
-    timezones: [
-      'UTC-08:00',
-      'UTC-07:00',
-      'UTC-06:00',
-      'UTC-05:00',
-      'UTC-04:00',
-      'UTC-03:30'
-    ]
+    latlng: [60, -95],
+    timezones: ['UTC-08:00', 'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:30'],
   },
   {
     currencies: [
       {
         code: 'CVE',
         name: 'Cape Verdean escudo',
-        symbol: 'Esc'
-      }
+        symbol: 'Esc',
+      },
     ],
     flag: 'https://restcountries.eu/data/cpv.svg',
     name: 'Cabo Verde',
@@ -989,21 +757,16 @@ export const countriesData: Country[] = [
     capital: 'Praia',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      16,
-      -24
-    ],
-    timezones: [
-      'UTC-01:00'
-    ]
+    latlng: [16, -24],
+    timezones: ['UTC-01:00'],
   },
   {
     currencies: [
       {
         code: 'KYD',
         name: 'Cayman Islands dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/cym.svg',
     name: 'Cayman Islands',
@@ -1011,21 +774,16 @@ export const countriesData: Country[] = [
     capital: 'George Town',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      19.5,
-      -80.5
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [19.5, -80.5],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/caf.svg',
     name: 'Central African Republic',
@@ -1033,43 +791,33 @@ export const countriesData: Country[] = [
     capital: 'Bangui',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      7,
-      21
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [7, 21],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/tcd.svg',
     name: 'Chad',
     isoCode: 'TD',
-    capital: 'N\'Djamena',
+    capital: "N'Djamena",
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      15,
-      19
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [15, 19],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'CLP',
         name: 'Chilean peso',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/chl.svg',
     name: 'Chile',
@@ -1077,22 +825,16 @@ export const countriesData: Country[] = [
     capital: 'Santiago',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -30,
-      -71
-    ],
-    timezones: [
-      'UTC-06:00',
-      'UTC-04:00'
-    ]
+    latlng: [-30, -71],
+    timezones: ['UTC-06:00', 'UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'CNY',
         name: 'Chinese yuan',
-        symbol: '¥'
-      }
+        symbol: '¥',
+      },
     ],
     flag: 'https://restcountries.eu/data/chn.svg',
     name: 'China',
@@ -1100,21 +842,16 @@ export const countriesData: Country[] = [
     capital: 'Beijing',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      35,
-      105
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [35, 105],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/cxr.svg',
     name: 'Christmas Island',
@@ -1122,21 +859,16 @@ export const countriesData: Country[] = [
     capital: 'Flying Fish Cove',
     region: 'Oceania',
     subregion: 'Australia and New Zealand',
-    latlng: [
-      -10.5,
-      105.66666666
-    ],
-    timezones: [
-      'UTC+07:00'
-    ]
+    latlng: [-10.5, 105.66666666],
+    timezones: ['UTC+07:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/cck.svg',
     name: 'Cocos (Keeling) Islands',
@@ -1144,21 +876,16 @@ export const countriesData: Country[] = [
     capital: 'West Island',
     region: 'Oceania',
     subregion: 'Australia and New Zealand',
-    latlng: [
-      -12.5,
-      96.83333333
-    ],
-    timezones: [
-      'UTC+06:30'
-    ]
+    latlng: [-12.5, 96.83333333],
+    timezones: ['UTC+06:30'],
   },
   {
     currencies: [
       {
         code: 'COP',
         name: 'Colombian peso',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/col.svg',
     name: 'Colombia',
@@ -1166,21 +893,16 @@ export const countriesData: Country[] = [
     capital: 'Bogotá',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      4,
-      -72
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [4, -72],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'KMF',
         name: 'Comorian franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/com.svg',
     name: 'Comoros',
@@ -1188,21 +910,16 @@ export const countriesData: Country[] = [
     capital: 'Moroni',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -12.16666666,
-      44.25
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [-12.16666666, 44.25],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/cog.svg',
     name: 'Congo',
@@ -1210,21 +927,16 @@ export const countriesData: Country[] = [
     capital: 'Brazzaville',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      -1,
-      15
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [-1, 15],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'CDF',
         name: 'Congolese franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/cod.svg',
     name: 'Congo (Democratic Republic of the)',
@@ -1232,27 +944,21 @@ export const countriesData: Country[] = [
     capital: 'Kinshasa',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      0,
-      25
-    ],
-    timezones: [
-      'UTC+01:00',
-      'UTC+02:00'
-    ]
+    latlng: [0, 25],
+    timezones: ['UTC+01:00', 'UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'CKD',
         name: 'Cook Islands dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/cok.svg',
     name: 'Cook Islands',
@@ -1260,21 +966,16 @@ export const countriesData: Country[] = [
     capital: 'Avarua',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -21.23333333,
-      -159.76666666
-    ],
-    timezones: [
-      'UTC-10:00'
-    ]
+    latlng: [-21.23333333, -159.76666666],
+    timezones: ['UTC-10:00'],
   },
   {
     currencies: [
       {
         code: 'CRC',
         name: 'Costa Rican colón',
-        symbol: '₡'
-      }
+        symbol: '₡',
+      },
     ],
     flag: 'https://restcountries.eu/data/cri.svg',
     name: 'Costa Rica',
@@ -1282,21 +983,16 @@ export const countriesData: Country[] = [
     capital: 'San José',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      10,
-      -84
-    ],
-    timezones: [
-      'UTC-06:00'
-    ]
+    latlng: [10, -84],
+    timezones: ['UTC-06:00'],
   },
   {
     currencies: [
       {
         code: 'HRK',
         name: 'Croatian kuna',
-        symbol: 'kn'
-      }
+        symbol: 'kn',
+      },
     ],
     flag: 'https://restcountries.eu/data/hrv.svg',
     name: 'Croatia',
@@ -1304,26 +1000,21 @@ export const countriesData: Country[] = [
     capital: 'Zagreb',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      45.16666666,
-      15.5
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [45.16666666, 15.5],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'CUC',
         name: 'Cuban convertible peso',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'CUP',
         name: 'Cuban peso',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/cub.svg',
     name: 'Cuba',
@@ -1331,21 +1022,16 @@ export const countriesData: Country[] = [
     capital: 'Havana',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      21.5,
-      -80
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [21.5, -80],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'ANG',
         name: 'Netherlands Antillean guilder',
-        symbol: 'ƒ'
-      }
+        symbol: 'ƒ',
+      },
     ],
     flag: 'https://restcountries.eu/data/cuw.svg',
     name: 'Curaçao',
@@ -1353,21 +1039,16 @@ export const countriesData: Country[] = [
     capital: 'Willemstad',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      12.116667,
-      -68.933333
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [12.116667, -68.933333],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/cyp.svg',
     name: 'Cyprus',
@@ -1375,21 +1056,16 @@ export const countriesData: Country[] = [
     capital: 'Nicosia',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      35,
-      33
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [35, 33],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'CZK',
         name: 'Czech koruna',
-        symbol: 'Kč'
-      }
+        symbol: 'Kč',
+      },
     ],
     flag: 'https://restcountries.eu/data/cze.svg',
     name: 'Czech Republic',
@@ -1397,21 +1073,16 @@ export const countriesData: Country[] = [
     capital: 'Prague',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      49.75,
-      15.5
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [49.75, 15.5],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'DKK',
         name: 'Danish krone',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/dnk.svg',
     name: 'Denmark',
@@ -1419,25 +1090,16 @@ export const countriesData: Country[] = [
     capital: 'Copenhagen',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      56,
-      10
-    ],
-    timezones: [
-      'UTC-04:00',
-      'UTC-03:00',
-      'UTC-01:00',
-      'UTC',
-      'UTC+01:00'
-    ]
+    latlng: [56, 10],
+    timezones: ['UTC-04:00', 'UTC-03:00', 'UTC-01:00', 'UTC', 'UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'DJF',
         name: 'Djiboutian franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/dji.svg',
     name: 'Djibouti',
@@ -1445,21 +1107,16 @@ export const countriesData: Country[] = [
     capital: 'Djibouti',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      11.5,
-      43
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [11.5, 43],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/dma.svg',
     name: 'Dominica',
@@ -1467,21 +1124,16 @@ export const countriesData: Country[] = [
     capital: 'Roseau',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      15.41666666,
-      -61.33333333
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [15.41666666, -61.33333333],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'DOP',
         name: 'Dominican peso',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/dom.svg',
     name: 'Dominican Republic',
@@ -1489,21 +1141,16 @@ export const countriesData: Country[] = [
     capital: 'Santo Domingo',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      19,
-      -70.66666666
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [19, -70.66666666],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/ecu.svg',
     name: 'Ecuador',
@@ -1511,22 +1158,16 @@ export const countriesData: Country[] = [
     capital: 'Quito',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -2,
-      -77.5
-    ],
-    timezones: [
-      'UTC-06:00',
-      'UTC-05:00'
-    ]
+    latlng: [-2, -77.5],
+    timezones: ['UTC-06:00', 'UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'EGP',
         name: 'Egyptian pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/egy.svg',
     name: 'Egypt',
@@ -1534,21 +1175,16 @@ export const countriesData: Country[] = [
     capital: 'Cairo',
     region: 'Africa',
     subregion: 'Northern Africa',
-    latlng: [
-      27,
-      30
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [27, 30],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/slv.svg',
     name: 'El Salvador',
@@ -1556,21 +1192,16 @@ export const countriesData: Country[] = [
     capital: 'San Salvador',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      13.83333333,
-      -88.91666666
-    ],
-    timezones: [
-      'UTC-06:00'
-    ]
+    latlng: [13.83333333, -88.91666666],
+    timezones: ['UTC-06:00'],
   },
   {
     currencies: [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/gnq.svg',
     name: 'Equatorial Guinea',
@@ -1578,21 +1209,16 @@ export const countriesData: Country[] = [
     capital: 'Malabo',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      2,
-      10
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [2, 10],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'ERN',
         name: 'Eritrean nakfa',
-        symbol: 'Nfk'
-      }
+        symbol: 'Nfk',
+      },
     ],
     flag: 'https://restcountries.eu/data/eri.svg',
     name: 'Eritrea',
@@ -1600,21 +1226,16 @@ export const countriesData: Country[] = [
     capital: 'Asmara',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      15,
-      39
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [15, 39],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/est.svg',
     name: 'Estonia',
@@ -1622,21 +1243,16 @@ export const countriesData: Country[] = [
     capital: 'Tallinn',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      59,
-      26
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [59, 26],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'ETB',
         name: 'Ethiopian birr',
-        symbol: 'Br'
-      }
+        symbol: 'Br',
+      },
     ],
     flag: 'https://restcountries.eu/data/eth.svg',
     name: 'Ethiopia',
@@ -1644,21 +1260,16 @@ export const countriesData: Country[] = [
     capital: 'Addis Ababa',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      8,
-      38
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [8, 38],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'FKP',
         name: 'Falkland Islands pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/flk.svg',
     name: 'Falkland Islands (Malvinas)',
@@ -1666,26 +1277,21 @@ export const countriesData: Country[] = [
     capital: 'Stanley',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -51.75,
-      -59
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [-51.75, -59],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'DKK',
         name: 'Danish krone',
-        symbol: 'kr'
+        symbol: 'kr',
       },
       {
         code: '(none)',
         name: 'Faroese króna',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/fro.svg',
     name: 'Faroe Islands',
@@ -1693,21 +1299,16 @@ export const countriesData: Country[] = [
     capital: 'Tórshavn',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      62,
-      -7
-    ],
-    timezones: [
-      'UTC+00:00'
-    ]
+    latlng: [62, -7],
+    timezones: ['UTC+00:00'],
   },
   {
     currencies: [
       {
         code: 'FJD',
         name: 'Fijian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/fji.svg',
     name: 'Fiji',
@@ -1715,21 +1316,16 @@ export const countriesData: Country[] = [
     capital: 'Suva',
     region: 'Oceania',
     subregion: 'Melanesia',
-    latlng: [
-      -18,
-      175
-    ],
-    timezones: [
-      'UTC+12:00'
-    ]
+    latlng: [-18, 175],
+    timezones: ['UTC+12:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/fin.svg',
     name: 'Finland',
@@ -1737,21 +1333,16 @@ export const countriesData: Country[] = [
     capital: 'Helsinki',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      64,
-      26
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [64, 26],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/fra.svg',
     name: 'France',
@@ -1759,10 +1350,7 @@ export const countriesData: Country[] = [
     capital: 'Paris',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      46,
-      2
-    ],
+    latlng: [46, 2],
     timezones: [
       'UTC-10:00',
       'UTC-09:30',
@@ -1775,16 +1363,16 @@ export const countriesData: Country[] = [
       'UTC+04:00',
       'UTC+05:00',
       'UTC+11:00',
-      'UTC+12:00'
-    ]
+      'UTC+12:00',
+    ],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/guf.svg',
     name: 'French Guiana',
@@ -1792,21 +1380,16 @@ export const countriesData: Country[] = [
     capital: 'Cayenne',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      4,
-      -53
-    ],
-    timezones: [
-      'UTC-03:00'
-    ]
+    latlng: [4, -53],
+    timezones: ['UTC-03:00'],
   },
   {
     currencies: [
       {
         code: 'XPF',
         name: 'CFP franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/pyf.svg',
     name: 'French Polynesia',
@@ -1814,23 +1397,16 @@ export const countriesData: Country[] = [
     capital: 'Papeetē',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -15,
-      -140
-    ],
-    timezones: [
-      'UTC-10:00',
-      'UTC-09:30',
-      'UTC-09:00'
-    ]
+    latlng: [-15, -140],
+    timezones: ['UTC-10:00', 'UTC-09:30', 'UTC-09:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/atf.svg',
     name: 'French Southern Territories',
@@ -1838,21 +1414,16 @@ export const countriesData: Country[] = [
     capital: 'Port-aux-Français',
     region: 'Africa',
     subregion: 'Southern Africa',
-    latlng: [
-      -49.25,
-      69.167
-    ],
-    timezones: [
-      'UTC+05:00'
-    ]
+    latlng: [-49.25, 69.167],
+    timezones: ['UTC+05:00'],
   },
   {
     currencies: [
       {
         code: 'XAF',
         name: 'Central African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/gab.svg',
     name: 'Gabon',
@@ -1860,21 +1431,16 @@ export const countriesData: Country[] = [
     capital: 'Libreville',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      -1,
-      11.75
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [-1, 11.75],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'GMD',
         name: 'Gambian dalasi',
-        symbol: 'D'
-      }
+        symbol: 'D',
+      },
     ],
     flag: 'https://restcountries.eu/data/gmb.svg',
     name: 'Gambia',
@@ -1882,21 +1448,16 @@ export const countriesData: Country[] = [
     capital: 'Banjul',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      13.46666666,
-      -16.56666666
-    ],
-    timezones: [
-      'UTC+00:00'
-    ]
+    latlng: [13.46666666, -16.56666666],
+    timezones: ['UTC+00:00'],
   },
   {
     currencies: [
       {
         code: 'GEL',
         name: 'Georgian Lari',
-        symbol: 'ლ'
-      }
+        symbol: 'ლ',
+      },
     ],
     flag: 'https://restcountries.eu/data/geo.svg',
     name: 'Georgia',
@@ -1904,21 +1465,16 @@ export const countriesData: Country[] = [
     capital: 'Tbilisi',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      42,
-      43.5
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [42, 43.5],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/deu.svg',
     name: 'Germany',
@@ -1926,21 +1482,16 @@ export const countriesData: Country[] = [
     capital: 'Berlin',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      51,
-      9
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [51, 9],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'GHS',
         name: 'Ghanaian cedi',
-        symbol: '₵'
-      }
+        symbol: '₵',
+      },
     ],
     flag: 'https://restcountries.eu/data/gha.svg',
     name: 'Ghana',
@@ -1948,21 +1499,16 @@ export const countriesData: Country[] = [
     capital: 'Accra',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      8,
-      -2
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [8, -2],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'GIP',
         name: 'Gibraltar pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/gib.svg',
     name: 'Gibraltar',
@@ -1970,21 +1516,16 @@ export const countriesData: Country[] = [
     capital: 'Gibraltar',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      36.13333333,
-      -5.35
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [36.13333333, -5.35],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/grc.svg',
     name: 'Greece',
@@ -1992,21 +1533,16 @@ export const countriesData: Country[] = [
     capital: 'Athens',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      39,
-      22
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [39, 22],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'DKK',
         name: 'Danish krone',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/grl.svg',
     name: 'Greenland',
@@ -2014,46 +1550,33 @@ export const countriesData: Country[] = [
     capital: 'Nuuk',
     region: 'Americas',
     subregion: 'Northern America',
-    latlng: [
-      72,
-      -40
-    ],
-    timezones: [
-      'UTC-04:00',
-      'UTC-03:00',
-      'UTC-01:00',
-      'UTC+00:00'
-    ]
+    latlng: [72, -40],
+    timezones: ['UTC-04:00', 'UTC-03:00', 'UTC-01:00', 'UTC+00:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/grd.svg',
     name: 'Grenada',
     isoCode: 'GD',
-    capital: 'St. George\'s',
+    capital: "St. George's",
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      12.11666666,
-      -61.66666666
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [12.11666666, -61.66666666],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/glp.svg',
     name: 'Guadeloupe',
@@ -2061,21 +1584,16 @@ export const countriesData: Country[] = [
     capital: 'Basse-Terre',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      16.25,
-      -61.583333
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [16.25, -61.583333],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/gum.svg',
     name: 'Guam',
@@ -2083,21 +1601,16 @@ export const countriesData: Country[] = [
     capital: 'Hagåtña',
     region: 'Oceania',
     subregion: 'Micronesia',
-    latlng: [
-      13.46666666,
-      144.78333333
-    ],
-    timezones: [
-      'UTC+10:00'
-    ]
+    latlng: [13.46666666, 144.78333333],
+    timezones: ['UTC+10:00'],
   },
   {
     currencies: [
       {
         code: 'GTQ',
         name: 'Guatemalan quetzal',
-        symbol: 'Q'
-      }
+        symbol: 'Q',
+      },
     ],
     flag: 'https://restcountries.eu/data/gtm.svg',
     name: 'Guatemala',
@@ -2105,26 +1618,21 @@ export const countriesData: Country[] = [
     capital: 'Guatemala City',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      15.5,
-      -90.25
-    ],
-    timezones: [
-      'UTC-06:00'
-    ]
+    latlng: [15.5, -90.25],
+    timezones: ['UTC-06:00'],
   },
   {
     currencies: [
       {
         code: 'GBP',
         name: 'British pound',
-        symbol: '£'
+        symbol: '£',
       },
       {
         code: '(none)',
         name: 'Guernsey pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/ggy.svg',
     name: 'Guernsey',
@@ -2132,21 +1640,16 @@ export const countriesData: Country[] = [
     capital: 'St. Peter Port',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      49.46666666,
-      -2.58333333
-    ],
-    timezones: [
-      'UTC+00:00'
-    ]
+    latlng: [49.46666666, -2.58333333],
+    timezones: ['UTC+00:00'],
   },
   {
     currencies: [
       {
         code: 'GNF',
         name: 'Guinean franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/gin.svg',
     name: 'Guinea',
@@ -2154,21 +1657,16 @@ export const countriesData: Country[] = [
     capital: 'Conakry',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      11,
-      -10
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [11, -10],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/gnb.svg',
     name: 'Guinea-Bissau',
@@ -2176,21 +1674,16 @@ export const countriesData: Country[] = [
     capital: 'Bissau',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      12,
-      -15
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [12, -15],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'GYD',
         name: 'Guyanese dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/guy.svg',
     name: 'Guyana',
@@ -2198,21 +1691,16 @@ export const countriesData: Country[] = [
     capital: 'Georgetown',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      5,
-      -59
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [5, -59],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'HTG',
         name: 'Haitian gourde',
-        symbol: 'G'
-      }
+        symbol: 'G',
+      },
     ],
     flag: 'https://restcountries.eu/data/hti.svg',
     name: 'Haiti',
@@ -2220,21 +1708,16 @@ export const countriesData: Country[] = [
     capital: 'Port-au-Prince',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      19,
-      -72.41666666
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [19, -72.41666666],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/hmd.svg',
     name: 'Heard Island and McDonald Islands',
@@ -2242,21 +1725,16 @@ export const countriesData: Country[] = [
     capital: '',
     region: '',
     subregion: '',
-    latlng: [
-      -53.1,
-      72.51666666
-    ],
-    timezones: [
-      'UTC+05:00'
-    ]
+    latlng: [-53.1, 72.51666666],
+    timezones: ['UTC+05:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/vat.svg',
     name: 'Holy See',
@@ -2264,21 +1742,16 @@ export const countriesData: Country[] = [
     capital: 'Rome',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      41.9,
-      12.45
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [41.9, 12.45],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'HNL',
         name: 'Honduran lempira',
-        symbol: 'L'
-      }
+        symbol: 'L',
+      },
     ],
     flag: 'https://restcountries.eu/data/hnd.svg',
     name: 'Honduras',
@@ -2286,21 +1759,16 @@ export const countriesData: Country[] = [
     capital: 'Tegucigalpa',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      15,
-      -86.5
-    ],
-    timezones: [
-      'UTC-06:00'
-    ]
+    latlng: [15, -86.5],
+    timezones: ['UTC-06:00'],
   },
   {
     currencies: [
       {
         code: 'HKD',
         name: 'Hong Kong dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/hkg.svg',
     name: 'Hong Kong',
@@ -2308,21 +1776,16 @@ export const countriesData: Country[] = [
     capital: 'City of Victoria',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      22.25,
-      114.16666666
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [22.25, 114.16666666],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'HUF',
         name: 'Hungarian forint',
-        symbol: 'Ft'
-      }
+        symbol: 'Ft',
+      },
     ],
     flag: 'https://restcountries.eu/data/hun.svg',
     name: 'Hungary',
@@ -2330,21 +1793,16 @@ export const countriesData: Country[] = [
     capital: 'Budapest',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      47,
-      20
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [47, 20],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'ISK',
         name: 'Icelandic króna',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/isl.svg',
     name: 'Iceland',
@@ -2352,21 +1810,16 @@ export const countriesData: Country[] = [
     capital: 'Reykjavík',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      65,
-      -18
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [65, -18],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'INR',
         name: 'Indian rupee',
-        symbol: '₹'
-      }
+        symbol: '₹',
+      },
     ],
     flag: 'https://restcountries.eu/data/ind.svg',
     name: 'India',
@@ -2374,21 +1827,16 @@ export const countriesData: Country[] = [
     capital: 'New Delhi',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      20,
-      77
-    ],
-    timezones: [
-      'UTC+05:30'
-    ]
+    latlng: [20, 77],
+    timezones: ['UTC+05:30'],
   },
   {
     currencies: [
       {
         code: 'IDR',
         name: 'Indonesian rupiah',
-        symbol: 'Rp'
-      }
+        symbol: 'Rp',
+      },
     ],
     flag: 'https://restcountries.eu/data/idn.svg',
     name: 'Indonesia',
@@ -2396,45 +1844,33 @@ export const countriesData: Country[] = [
     capital: 'Jakarta',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      -5,
-      120
-    ],
-    timezones: [
-      'UTC+07:00',
-      'UTC+08:00',
-      'UTC+09:00'
-    ]
+    latlng: [-5, 120],
+    timezones: ['UTC+07:00', 'UTC+08:00', 'UTC+09:00'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/civ.svg',
-    name: 'Côte d\'Ivoire',
+    name: "Côte d'Ivoire",
     isoCode: 'CI',
     capital: 'Yamoussoukro',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      8,
-      -5
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [8, -5],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'IRR',
         name: 'Iranian rial',
-        symbol: '﷼'
-      }
+        symbol: '﷼',
+      },
     ],
     flag: 'https://restcountries.eu/data/irn.svg',
     name: 'Iran (Islamic Republic of)',
@@ -2442,21 +1878,16 @@ export const countriesData: Country[] = [
     capital: 'Tehran',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      32,
-      53
-    ],
-    timezones: [
-      'UTC+03:30'
-    ]
+    latlng: [32, 53],
+    timezones: ['UTC+03:30'],
   },
   {
     currencies: [
       {
         code: 'IQD',
         name: 'Iraqi dinar',
-        symbol: 'ع.د'
-      }
+        symbol: 'ع.د',
+      },
     ],
     flag: 'https://restcountries.eu/data/irq.svg',
     name: 'Iraq',
@@ -2464,21 +1895,16 @@ export const countriesData: Country[] = [
     capital: 'Baghdad',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      33,
-      44
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [33, 44],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/irl.svg',
     name: 'Ireland',
@@ -2486,26 +1912,21 @@ export const countriesData: Country[] = [
     capital: 'Dublin',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      53,
-      -8
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [53, -8],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'GBP',
         name: 'British pound',
-        symbol: '£'
+        symbol: '£',
       },
       {
         code: 'IMP[G]',
         name: 'Manx pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/imn.svg',
     name: 'Isle of Man',
@@ -2513,21 +1934,16 @@ export const countriesData: Country[] = [
     capital: 'Douglas',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      54.25,
-      -4.5
-    ],
-    timezones: [
-      'UTC+00:00'
-    ]
+    latlng: [54.25, -4.5],
+    timezones: ['UTC+00:00'],
   },
   {
     currencies: [
       {
         code: 'ILS',
         name: 'Israeli new shekel',
-        symbol: '₪'
-      }
+        symbol: '₪',
+      },
     ],
     flag: 'https://restcountries.eu/data/isr.svg',
     name: 'Israel',
@@ -2535,21 +1951,16 @@ export const countriesData: Country[] = [
     capital: 'Jerusalem',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      31.5,
-      34.75
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [31.5, 34.75],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/ita.svg',
     name: 'Italy',
@@ -2557,21 +1968,16 @@ export const countriesData: Country[] = [
     capital: 'Rome',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      42.83333333,
-      12.83333333
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [42.83333333, 12.83333333],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'JMD',
         name: 'Jamaican dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/jam.svg',
     name: 'Jamaica',
@@ -2579,21 +1985,16 @@ export const countriesData: Country[] = [
     capital: 'Kingston',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.25,
-      -77.5
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [18.25, -77.5],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'JPY',
         name: 'Japanese yen',
-        symbol: '¥'
-      }
+        symbol: '¥',
+      },
     ],
     flag: 'https://restcountries.eu/data/jpn.svg',
     name: 'Japan',
@@ -2601,26 +2002,21 @@ export const countriesData: Country[] = [
     capital: 'Tokyo',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      36,
-      138
-    ],
-    timezones: [
-      'UTC+09:00'
-    ]
+    latlng: [36, 138],
+    timezones: ['UTC+09:00'],
   },
   {
     currencies: [
       {
         code: 'GBP',
         name: 'British pound',
-        symbol: '£'
+        symbol: '£',
       },
       {
         code: 'JEP[G]',
         name: 'Jersey pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/jey.svg',
     name: 'Jersey',
@@ -2628,21 +2024,16 @@ export const countriesData: Country[] = [
     capital: 'Saint Helier',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      49.25,
-      -2.16666666
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [49.25, -2.16666666],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'JOD',
         name: 'Jordanian dinar',
-        symbol: 'د.ا'
-      }
+        symbol: 'د.ا',
+      },
     ],
     flag: 'https://restcountries.eu/data/jor.svg',
     name: 'Jordan',
@@ -2650,20 +2041,15 @@ export const countriesData: Country[] = [
     capital: 'Amman',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      31,
-      36
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [31, 36],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'KZT',
-        name: 'Kazakhstani tenge'
-      }
+        name: 'Kazakhstani tenge',
+      },
     ],
     flag: 'https://restcountries.eu/data/kaz.svg',
     name: 'Kazakhstan',
@@ -2671,22 +2057,16 @@ export const countriesData: Country[] = [
     capital: 'Astana',
     region: 'Asia',
     subregion: 'Central Asia',
-    latlng: [
-      48,
-      68
-    ],
-    timezones: [
-      'UTC+05:00',
-      'UTC+06:00'
-    ]
+    latlng: [48, 68],
+    timezones: ['UTC+05:00', 'UTC+06:00'],
   },
   {
     currencies: [
       {
         code: 'KES',
         name: 'Kenyan shilling',
-        symbol: 'Sh'
-      }
+        symbol: 'Sh',
+      },
     ],
     flag: 'https://restcountries.eu/data/ken.svg',
     name: 'Kenya',
@@ -2694,26 +2074,21 @@ export const countriesData: Country[] = [
     capital: 'Nairobi',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      1,
-      38
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [1, 38],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: '(none)',
         name: 'Kiribati dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/kir.svg',
     name: 'Kiribati',
@@ -2721,23 +2096,16 @@ export const countriesData: Country[] = [
     capital: 'South Tarawa',
     region: 'Oceania',
     subregion: 'Micronesia',
-    latlng: [
-      1.41666666,
-      173
-    ],
-    timezones: [
-      'UTC+12:00',
-      'UTC+13:00',
-      'UTC+14:00'
-    ]
+    latlng: [1.41666666, 173],
+    timezones: ['UTC+12:00', 'UTC+13:00', 'UTC+14:00'],
   },
   {
     currencies: [
       {
         code: 'KWD',
         name: 'Kuwaiti dinar',
-        symbol: 'د.ك'
-      }
+        symbol: 'د.ك',
+      },
     ],
     flag: 'https://restcountries.eu/data/kwt.svg',
     name: 'Kuwait',
@@ -2745,21 +2113,16 @@ export const countriesData: Country[] = [
     capital: 'Kuwait City',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      29.5,
-      45.75
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [29.5, 45.75],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'KGS',
         name: 'Kyrgyzstani som',
-        symbol: 'с'
-      }
+        symbol: 'с',
+      },
     ],
     flag: 'https://restcountries.eu/data/kgz.svg',
     name: 'Kyrgyzstan',
@@ -2767,21 +2130,16 @@ export const countriesData: Country[] = [
     capital: 'Bishkek',
     region: 'Asia',
     subregion: 'Central Asia',
-    latlng: [
-      41,
-      75
-    ],
-    timezones: [
-      'UTC+06:00'
-    ]
+    latlng: [41, 75],
+    timezones: ['UTC+06:00'],
   },
   {
     currencies: [
       {
         code: 'LAK',
         name: 'Lao kip',
-        symbol: '₭'
-      }
+        symbol: '₭',
+      },
     ],
     flag: 'https://restcountries.eu/data/lao.svg',
     name: 'Laos',
@@ -2789,21 +2147,16 @@ export const countriesData: Country[] = [
     capital: 'Vientiane',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      18,
-      105
-    ],
-    timezones: [
-      'UTC+07:00'
-    ]
+    latlng: [18, 105],
+    timezones: ['UTC+07:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/lva.svg',
     name: 'Latvia',
@@ -2811,21 +2164,16 @@ export const countriesData: Country[] = [
     capital: 'Riga',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      57,
-      25
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [57, 25],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'LBP',
         name: 'Lebanese pound',
-        symbol: 'ل.ل'
-      }
+        symbol: 'ل.ل',
+      },
     ],
     flag: 'https://restcountries.eu/data/lbn.svg',
     name: 'Lebanon',
@@ -2833,26 +2181,21 @@ export const countriesData: Country[] = [
     capital: 'Beirut',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      33.83333333,
-      35.83333333
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [33.83333333, 35.83333333],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'LSL',
         name: 'Lesotho loti',
-        symbol: 'L'
+        symbol: 'L',
       },
       {
         code: 'ZAR',
         name: 'South African rand',
-        symbol: 'R'
-      }
+        symbol: 'R',
+      },
     ],
     flag: 'https://restcountries.eu/data/lso.svg',
     name: 'Lesotho',
@@ -2860,21 +2203,16 @@ export const countriesData: Country[] = [
     capital: 'Maseru',
     region: 'Africa',
     subregion: 'Southern Africa',
-    latlng: [
-      -29.5,
-      28.5
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-29.5, 28.5],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'LRD',
         name: 'Liberian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/lbr.svg',
     name: 'Liberia',
@@ -2882,21 +2220,16 @@ export const countriesData: Country[] = [
     capital: 'Monrovia',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      6.5,
-      -9.5
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [6.5, -9.5],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'LYD',
         name: 'Libyan dinar',
-        symbol: 'ل.د'
-      }
+        symbol: 'ل.د',
+      },
     ],
     flag: 'https://restcountries.eu/data/lby.svg',
     name: 'Libya',
@@ -2904,21 +2237,16 @@ export const countriesData: Country[] = [
     capital: 'Tripoli',
     region: 'Africa',
     subregion: 'Northern Africa',
-    latlng: [
-      25,
-      17
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [25, 17],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'CHF',
         name: 'Swiss franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/lie.svg',
     name: 'Liechtenstein',
@@ -2926,21 +2254,16 @@ export const countriesData: Country[] = [
     capital: 'Vaduz',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      47.26666666,
-      9.53333333
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [47.26666666, 9.53333333],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/ltu.svg',
     name: 'Lithuania',
@@ -2948,21 +2271,16 @@ export const countriesData: Country[] = [
     capital: 'Vilnius',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      56,
-      24
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [56, 24],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/lux.svg',
     name: 'Luxembourg',
@@ -2970,21 +2288,16 @@ export const countriesData: Country[] = [
     capital: 'Luxembourg',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      49.75,
-      6.16666666
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [49.75, 6.16666666],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'MOP',
         name: 'Macanese pataca',
-        symbol: 'P'
-      }
+        symbol: 'P',
+      },
     ],
     flag: 'https://restcountries.eu/data/mac.svg',
     name: 'Macao',
@@ -2992,21 +2305,16 @@ export const countriesData: Country[] = [
     capital: '',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      22.16666666,
-      113.55
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [22.16666666, 113.55],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'MKD',
         name: 'Macedonian denar',
-        symbol: 'ден'
-      }
+        symbol: 'ден',
+      },
     ],
     flag: 'https://restcountries.eu/data/mkd.svg',
     name: 'Macedonia (the former Yugoslav Republic of)',
@@ -3014,21 +2322,16 @@ export const countriesData: Country[] = [
     capital: 'Skopje',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      41.83333333,
-      22
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [41.83333333, 22],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'MGA',
         name: 'Malagasy ariary',
-        symbol: 'Ar'
-      }
+        symbol: 'Ar',
+      },
     ],
     flag: 'https://restcountries.eu/data/mdg.svg',
     name: 'Madagascar',
@@ -3036,21 +2339,16 @@ export const countriesData: Country[] = [
     capital: 'Antananarivo',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -20,
-      47
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [-20, 47],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'MWK',
         name: 'Malawian kwacha',
-        symbol: 'MK'
-      }
+        symbol: 'MK',
+      },
     ],
     flag: 'https://restcountries.eu/data/mwi.svg',
     name: 'Malawi',
@@ -3058,21 +2356,16 @@ export const countriesData: Country[] = [
     capital: 'Lilongwe',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -13.5,
-      34
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-13.5, 34],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'MYR',
         name: 'Malaysian ringgit',
-        symbol: 'RM'
-      }
+        symbol: 'RM',
+      },
     ],
     flag: 'https://restcountries.eu/data/mys.svg',
     name: 'Malaysia',
@@ -3080,21 +2373,16 @@ export const countriesData: Country[] = [
     capital: 'Kuala Lumpur',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      2.5,
-      112.5
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [2.5, 112.5],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'MVR',
         name: 'Maldivian rufiyaa',
-        symbol: '.ރ'
-      }
+        symbol: '.ރ',
+      },
     ],
     flag: 'https://restcountries.eu/data/mdv.svg',
     name: 'Maldives',
@@ -3102,21 +2390,16 @@ export const countriesData: Country[] = [
     capital: 'Malé',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      3.25,
-      73
-    ],
-    timezones: [
-      'UTC+05:00'
-    ]
+    latlng: [3.25, 73],
+    timezones: ['UTC+05:00'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/mli.svg',
     name: 'Mali',
@@ -3124,21 +2407,16 @@ export const countriesData: Country[] = [
     capital: 'Bamako',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      17,
-      -4
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [17, -4],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/mlt.svg',
     name: 'Malta',
@@ -3146,21 +2424,16 @@ export const countriesData: Country[] = [
     capital: 'Valletta',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      35.83333333,
-      14.58333333
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [35.83333333, 14.58333333],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/mhl.svg',
     name: 'Marshall Islands',
@@ -3168,21 +2441,16 @@ export const countriesData: Country[] = [
     capital: 'Majuro',
     region: 'Oceania',
     subregion: 'Micronesia',
-    latlng: [
-      9,
-      168
-    ],
-    timezones: [
-      'UTC+12:00'
-    ]
+    latlng: [9, 168],
+    timezones: ['UTC+12:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/mtq.svg',
     name: 'Martinique',
@@ -3190,21 +2458,16 @@ export const countriesData: Country[] = [
     capital: 'Fort-de-France',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      14.666667,
-      -61
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [14.666667, -61],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'MRO',
         name: 'Mauritanian ouguiya',
-        symbol: 'UM'
-      }
+        symbol: 'UM',
+      },
     ],
     flag: 'https://restcountries.eu/data/mrt.svg',
     name: 'Mauritania',
@@ -3212,21 +2475,16 @@ export const countriesData: Country[] = [
     capital: 'Nouakchott',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      20,
-      -12
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [20, -12],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'MUR',
         name: 'Mauritian rupee',
-        symbol: '₨'
-      }
+        symbol: '₨',
+      },
     ],
     flag: 'https://restcountries.eu/data/mus.svg',
     name: 'Mauritius',
@@ -3234,21 +2492,16 @@ export const countriesData: Country[] = [
     capital: 'Port Louis',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -20.28333333,
-      57.55
-    ],
-    timezones: [
-      'UTC+04:00'
-    ]
+    latlng: [-20.28333333, 57.55],
+    timezones: ['UTC+04:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/myt.svg',
     name: 'Mayotte',
@@ -3256,21 +2509,16 @@ export const countriesData: Country[] = [
     capital: 'Mamoudzou',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -12.83333333,
-      45.16666666
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [-12.83333333, 45.16666666],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'MXN',
         name: 'Mexican peso',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/mex.svg',
     name: 'Mexico',
@@ -3278,23 +2526,16 @@ export const countriesData: Country[] = [
     capital: 'Mexico City',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      23,
-      -102
-    ],
-    timezones: [
-      'UTC-08:00',
-      'UTC-07:00',
-      'UTC-06:00'
-    ]
+    latlng: [23, -102],
+    timezones: ['UTC-08:00', 'UTC-07:00', 'UTC-06:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/fsm.svg',
     name: 'Micronesia (Federated States of)',
@@ -3302,22 +2543,16 @@ export const countriesData: Country[] = [
     capital: 'Palikir',
     region: 'Oceania',
     subregion: 'Micronesia',
-    latlng: [
-      6.91666666,
-      158.25
-    ],
-    timezones: [
-      'UTC+10:00',
-      'UTC+11'
-    ]
+    latlng: [6.91666666, 158.25],
+    timezones: ['UTC+10:00', 'UTC+11'],
   },
   {
     currencies: [
       {
         code: 'MDL',
         name: 'Moldovan leu',
-        symbol: 'L'
-      }
+        symbol: 'L',
+      },
     ],
     flag: 'https://restcountries.eu/data/mda.svg',
     name: 'Moldova (Republic of)',
@@ -3325,21 +2560,16 @@ export const countriesData: Country[] = [
     capital: 'Chișinău',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      47,
-      29
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [47, 29],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/mco.svg',
     name: 'Monaco',
@@ -3347,21 +2577,16 @@ export const countriesData: Country[] = [
     capital: 'Monaco',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      43.73333333,
-      7.4
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [43.73333333, 7.4],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'MNT',
         name: 'Mongolian tögrög',
-        symbol: '₮'
-      }
+        symbol: '₮',
+      },
     ],
     flag: 'https://restcountries.eu/data/mng.svg',
     name: 'Mongolia',
@@ -3369,22 +2594,16 @@ export const countriesData: Country[] = [
     capital: 'Ulan Bator',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      46,
-      105
-    ],
-    timezones: [
-      'UTC+07:00',
-      'UTC+08:00'
-    ]
+    latlng: [46, 105],
+    timezones: ['UTC+07:00', 'UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/mne.svg',
     name: 'Montenegro',
@@ -3392,21 +2611,16 @@ export const countriesData: Country[] = [
     capital: 'Podgorica',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      42.5,
-      19.3
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [42.5, 19.3],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/msr.svg',
     name: 'Montserrat',
@@ -3414,21 +2628,16 @@ export const countriesData: Country[] = [
     capital: 'Plymouth',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      16.75,
-      -62.2
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [16.75, -62.2],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'MAD',
         name: 'Moroccan dirham',
-        symbol: 'د.م.'
-      }
+        symbol: 'د.م.',
+      },
     ],
     flag: 'https://restcountries.eu/data/mar.svg',
     name: 'Morocco',
@@ -3436,21 +2645,16 @@ export const countriesData: Country[] = [
     capital: 'Rabat',
     region: 'Africa',
     subregion: 'Northern Africa',
-    latlng: [
-      32,
-      -5
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [32, -5],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'MZN',
         name: 'Mozambican metical',
-        symbol: 'MT'
-      }
+        symbol: 'MT',
+      },
     ],
     flag: 'https://restcountries.eu/data/moz.svg',
     name: 'Mozambique',
@@ -3458,21 +2662,16 @@ export const countriesData: Country[] = [
     capital: 'Maputo',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -18.25,
-      35
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-18.25, 35],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'MMK',
         name: 'Burmese kyat',
-        symbol: 'Ks'
-      }
+        symbol: 'Ks',
+      },
     ],
     flag: 'https://restcountries.eu/data/mmr.svg',
     name: 'Myanmar',
@@ -3480,26 +2679,21 @@ export const countriesData: Country[] = [
     capital: 'Naypyidaw',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      22,
-      98
-    ],
-    timezones: [
-      'UTC+06:30'
-    ]
+    latlng: [22, 98],
+    timezones: ['UTC+06:30'],
   },
   {
     currencies: [
       {
         code: 'NAD',
         name: 'Namibian dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'ZAR',
         name: 'South African rand',
-        symbol: 'R'
-      }
+        symbol: 'R',
+      },
     ],
     flag: 'https://restcountries.eu/data/nam.svg',
     name: 'Namibia',
@@ -3507,20 +2701,15 @@ export const countriesData: Country[] = [
     capital: 'Windhoek',
     region: 'Africa',
     subregion: 'Southern Africa',
-    latlng: [
-      -22,
-      17
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [-22, 17],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
+        symbol: '$',
       },
     ],
     flag: 'https://restcountries.eu/data/nru.svg',
@@ -3529,21 +2718,16 @@ export const countriesData: Country[] = [
     capital: 'Yaren',
     region: 'Oceania',
     subregion: 'Micronesia',
-    latlng: [
-      -0.53333333,
-      166.91666666
-    ],
-    timezones: [
-      'UTC+12:00'
-    ]
+    latlng: [-0.53333333, 166.91666666],
+    timezones: ['UTC+12:00'],
   },
   {
     currencies: [
       {
         code: 'NPR',
         name: 'Nepalese rupee',
-        symbol: '₨'
-      }
+        symbol: '₨',
+      },
     ],
     flag: 'https://restcountries.eu/data/npl.svg',
     name: 'Nepal',
@@ -3551,21 +2735,16 @@ export const countriesData: Country[] = [
     capital: 'Kathmandu',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      28,
-      84
-    ],
-    timezones: [
-      'UTC+05:45'
-    ]
+    latlng: [28, 84],
+    timezones: ['UTC+05:45'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/nld.svg',
     name: 'Netherlands',
@@ -3573,22 +2752,16 @@ export const countriesData: Country[] = [
     capital: 'Amsterdam',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      52.5,
-      5.75
-    ],
-    timezones: [
-      'UTC-04:00',
-      'UTC+01:00'
-    ]
+    latlng: [52.5, 5.75],
+    timezones: ['UTC-04:00', 'UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'XPF',
         name: 'CFP franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/ncl.svg',
     name: 'New Caledonia',
@@ -3596,21 +2769,16 @@ export const countriesData: Country[] = [
     capital: 'Nouméa',
     region: 'Oceania',
     subregion: 'Melanesia',
-    latlng: [
-      -21.5,
-      165.5
-    ],
-    timezones: [
-      'UTC+11:00'
-    ]
+    latlng: [-21.5, 165.5],
+    timezones: ['UTC+11:00'],
   },
   {
     currencies: [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/nzl.svg',
     name: 'New Zealand',
@@ -3618,25 +2786,16 @@ export const countriesData: Country[] = [
     capital: 'Wellington',
     region: 'Oceania',
     subregion: 'Australia and New Zealand',
-    latlng: [
-      -41,
-      174
-    ],
-    timezones: [
-      'UTC-11:00',
-      'UTC-10:00',
-      'UTC+12:00',
-      'UTC+12:45',
-      'UTC+13:00'
-    ]
+    latlng: [-41, 174],
+    timezones: ['UTC-11:00', 'UTC-10:00', 'UTC+12:00', 'UTC+12:45', 'UTC+13:00'],
   },
   {
     currencies: [
       {
         code: 'NIO',
         name: 'Nicaraguan córdoba',
-        symbol: 'C$'
-      }
+        symbol: 'C$',
+      },
     ],
     flag: 'https://restcountries.eu/data/nic.svg',
     name: 'Nicaragua',
@@ -3644,21 +2803,16 @@ export const countriesData: Country[] = [
     capital: 'Managua',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      13,
-      -85
-    ],
-    timezones: [
-      'UTC-06:00'
-    ]
+    latlng: [13, -85],
+    timezones: ['UTC-06:00'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/ner.svg',
     name: 'Niger',
@@ -3666,21 +2820,16 @@ export const countriesData: Country[] = [
     capital: 'Niamey',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      16,
-      8
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [16, 8],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'NGN',
         name: 'Nigerian naira',
-        symbol: '₦'
-      }
+        symbol: '₦',
+      },
     ],
     flag: 'https://restcountries.eu/data/nga.svg',
     name: 'Nigeria',
@@ -3688,26 +2837,21 @@ export const countriesData: Country[] = [
     capital: 'Abuja',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      10,
-      8
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [10, 8],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: '(none)',
         name: 'Niue dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/niu.svg',
     name: 'Niue',
@@ -3715,21 +2859,16 @@ export const countriesData: Country[] = [
     capital: 'Alofi',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -19.03333333,
-      -169.86666666
-    ],
-    timezones: [
-      'UTC-11:00'
-    ]
+    latlng: [-19.03333333, -169.86666666],
+    timezones: ['UTC-11:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/nfk.svg',
     name: 'Norfolk Island',
@@ -3737,21 +2876,16 @@ export const countriesData: Country[] = [
     capital: 'Kingston',
     region: 'Oceania',
     subregion: 'Australia and New Zealand',
-    latlng: [
-      -29.03333333,
-      167.95
-    ],
-    timezones: [
-      'UTC+11:30'
-    ]
+    latlng: [-29.03333333, 167.95],
+    timezones: ['UTC+11:30'],
   },
   {
     currencies: [
       {
         code: 'KPW',
         name: 'North Korean won',
-        symbol: '₩'
-      }
+        symbol: '₩',
+      },
     ],
     flag: 'https://restcountries.eu/data/prk.svg',
     name: 'North Korea',
@@ -3759,21 +2893,16 @@ export const countriesData: Country[] = [
     capital: 'Pyongyang',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      40,
-      127
-    ],
-    timezones: [
-      'UTC+09:00'
-    ]
+    latlng: [40, 127],
+    timezones: ['UTC+09:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/mnp.svg',
     name: 'Northern Mariana Islands',
@@ -3781,21 +2910,16 @@ export const countriesData: Country[] = [
     capital: 'Saipan',
     region: 'Oceania',
     subregion: 'Micronesia',
-    latlng: [
-      15.2,
-      145.75
-    ],
-    timezones: [
-      'UTC+10:00'
-    ]
+    latlng: [15.2, 145.75],
+    timezones: ['UTC+10:00'],
   },
   {
     currencies: [
       {
         code: 'NOK',
         name: 'Norwegian krone',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/nor.svg',
     name: 'Norway',
@@ -3803,21 +2927,16 @@ export const countriesData: Country[] = [
     capital: 'Oslo',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      62,
-      10
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [62, 10],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'OMR',
         name: 'Omani rial',
-        symbol: 'ر.ع.'
-      }
+        symbol: 'ر.ع.',
+      },
     ],
     flag: 'https://restcountries.eu/data/omn.svg',
     name: 'Oman',
@@ -3825,21 +2944,16 @@ export const countriesData: Country[] = [
     capital: 'Muscat',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      21,
-      57
-    ],
-    timezones: [
-      'UTC+04:00'
-    ]
+    latlng: [21, 57],
+    timezones: ['UTC+04:00'],
   },
   {
     currencies: [
       {
         code: 'PKR',
         name: 'Pakistani rupee',
-        symbol: '₨'
-      }
+        symbol: '₨',
+      },
     ],
     flag: 'https://restcountries.eu/data/pak.svg',
     name: 'Pakistan',
@@ -3847,26 +2961,21 @@ export const countriesData: Country[] = [
     capital: 'Islamabad',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      30,
-      70
-    ],
-    timezones: [
-      'UTC+05:00'
-    ]
+    latlng: [30, 70],
+    timezones: ['UTC+05:00'],
   },
   {
     currencies: [
       {
         code: '(none)',
         name: '[E]',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/plw.svg',
     name: 'Palau',
@@ -3874,21 +2983,16 @@ export const countriesData: Country[] = [
     capital: 'Ngerulmud',
     region: 'Oceania',
     subregion: 'Micronesia',
-    latlng: [
-      7.5,
-      134.5
-    ],
-    timezones: [
-      'UTC+09:00'
-    ]
+    latlng: [7.5, 134.5],
+    timezones: ['UTC+09:00'],
   },
   {
     currencies: [
       {
         code: 'ILS',
         name: 'Israeli new sheqel',
-        symbol: '₪'
-      }
+        symbol: '₪',
+      },
     ],
     flag: 'https://restcountries.eu/data/pse.svg',
     name: 'Palestine',
@@ -3896,26 +3000,21 @@ export const countriesData: Country[] = [
     capital: 'Ramallah',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      31.9,
-      35.2
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [31.9, 35.2],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'PAB',
         name: 'Panamanian balboa',
-        symbol: 'B/.'
+        symbol: 'B/.',
       },
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/pan.svg',
     name: 'Panama',
@@ -3923,21 +3022,16 @@ export const countriesData: Country[] = [
     capital: 'Panama City',
     region: 'Americas',
     subregion: 'Central America',
-    latlng: [
-      9,
-      -80
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [9, -80],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'PGK',
         name: 'Papua New Guinean kina',
-        symbol: 'K'
-      }
+        symbol: 'K',
+      },
     ],
     flag: 'https://restcountries.eu/data/png.svg',
     name: 'Papua New Guinea',
@@ -3945,21 +3039,16 @@ export const countriesData: Country[] = [
     capital: 'Port Moresby',
     region: 'Oceania',
     subregion: 'Melanesia',
-    latlng: [
-      -6,
-      147
-    ],
-    timezones: [
-      'UTC+10:00'
-    ]
+    latlng: [-6, 147],
+    timezones: ['UTC+10:00'],
   },
   {
     currencies: [
       {
         code: 'PYG',
         name: 'Paraguayan guaraní',
-        symbol: '₲'
-      }
+        symbol: '₲',
+      },
     ],
     flag: 'https://restcountries.eu/data/pry.svg',
     name: 'Paraguay',
@@ -3967,21 +3056,16 @@ export const countriesData: Country[] = [
     capital: 'Asunción',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -23,
-      -58
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [-23, -58],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'PEN',
         name: 'Peruvian sol',
-        symbol: 'S/.'
-      }
+        symbol: 'S/.',
+      },
     ],
     flag: 'https://restcountries.eu/data/per.svg',
     name: 'Peru',
@@ -3989,21 +3073,16 @@ export const countriesData: Country[] = [
     capital: 'Lima',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -10,
-      -76
-    ],
-    timezones: [
-      'UTC-05:00'
-    ]
+    latlng: [-10, -76],
+    timezones: ['UTC-05:00'],
   },
   {
     currencies: [
       {
         code: 'PHP',
         name: 'Philippine peso',
-        symbol: '₱'
-      }
+        symbol: '₱',
+      },
     ],
     flag: 'https://restcountries.eu/data/phl.svg',
     name: 'Philippines',
@@ -4011,20 +3090,15 @@ export const countriesData: Country[] = [
     capital: 'Manila',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      13,
-      122
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [13, 122],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
+        symbol: '$',
       },
     ],
     flag: 'https://restcountries.eu/data/pcn.svg',
@@ -4033,21 +3107,16 @@ export const countriesData: Country[] = [
     capital: 'Adamstown',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -25.06666666,
-      -130.1
-    ],
-    timezones: [
-      'UTC-08:00'
-    ]
+    latlng: [-25.06666666, -130.1],
+    timezones: ['UTC-08:00'],
   },
   {
     currencies: [
       {
         code: 'PLN',
         name: 'Polish złoty',
-        symbol: 'zł'
-      }
+        symbol: 'zł',
+      },
     ],
     flag: 'https://restcountries.eu/data/pol.svg',
     name: 'Poland',
@@ -4055,21 +3124,16 @@ export const countriesData: Country[] = [
     capital: 'Warsaw',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      52,
-      20
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [52, 20],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/prt.svg',
     name: 'Portugal',
@@ -4077,22 +3141,16 @@ export const countriesData: Country[] = [
     capital: 'Lisbon',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      39.5,
-      -8
-    ],
-    timezones: [
-      'UTC-01:00',
-      'UTC'
-    ]
+    latlng: [39.5, -8],
+    timezones: ['UTC-01:00', 'UTC'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/pri.svg',
     name: 'Puerto Rico',
@@ -4100,21 +3158,16 @@ export const countriesData: Country[] = [
     capital: 'San Juan',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.25,
-      -66.5
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [18.25, -66.5],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'QAR',
         name: 'Qatari riyal',
-        symbol: 'ر.ق'
-      }
+        symbol: 'ر.ق',
+      },
     ],
     flag: 'https://restcountries.eu/data/qat.svg',
     name: 'Qatar',
@@ -4122,21 +3175,16 @@ export const countriesData: Country[] = [
     capital: 'Doha',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      25.5,
-      51.25
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [25.5, 51.25],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/kos.svg',
     name: 'Republic of Kosovo',
@@ -4144,21 +3192,16 @@ export const countriesData: Country[] = [
     capital: 'Pristina',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      42.666667,
-      21.166667
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [42.666667, 21.166667],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/reu.svg',
     name: 'Réunion',
@@ -4166,21 +3209,16 @@ export const countriesData: Country[] = [
     capital: 'Saint-Denis',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -21.15,
-      55.5
-    ],
-    timezones: [
-      'UTC+04:00'
-    ]
+    latlng: [-21.15, 55.5],
+    timezones: ['UTC+04:00'],
   },
   {
     currencies: [
       {
         code: 'RON',
         name: 'Romanian leu',
-        symbol: 'lei'
-      }
+        symbol: 'lei',
+      },
     ],
     flag: 'https://restcountries.eu/data/rou.svg',
     name: 'Romania',
@@ -4188,21 +3226,16 @@ export const countriesData: Country[] = [
     capital: 'Bucharest',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      46,
-      25
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [46, 25],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'RUB',
         name: 'Russian ruble',
-        symbol: '₽'
-      }
+        symbol: '₽',
+      },
     ],
     flag: 'https://restcountries.eu/data/rus.svg',
     name: 'Russian Federation',
@@ -4210,10 +3243,7 @@ export const countriesData: Country[] = [
     capital: 'Moscow',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      60,
-      100
-    ],
+    latlng: [60, 100],
     timezones: [
       'UTC+03:00',
       'UTC+04:00',
@@ -4223,16 +3253,16 @@ export const countriesData: Country[] = [
       'UTC+09:00',
       'UTC+10:00',
       'UTC+11:00',
-      'UTC+12:00'
-    ]
+      'UTC+12:00',
+    ],
   },
   {
     currencies: [
       {
         code: 'RWF',
         name: 'Rwandan franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/rwa.svg',
     name: 'Rwanda',
@@ -4240,21 +3270,16 @@ export const countriesData: Country[] = [
     capital: 'Kigali',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -2,
-      30
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-2, 30],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/blm.svg',
     name: 'Saint Barthélemy',
@@ -4262,21 +3287,16 @@ export const countriesData: Country[] = [
     capital: 'Gustavia',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.5,
-      -63.41666666
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [18.5, -63.41666666],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'SHP',
         name: 'Saint Helena pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/shn.svg',
     name: 'Saint Helena',
@@ -4284,21 +3304,16 @@ export const countriesData: Country[] = [
     capital: 'Jamestown',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      -15.95,
-      -5.7
-    ],
-    timezones: [
-      'UTC+00:00'
-    ]
+    latlng: [-15.95, -5.7],
+    timezones: ['UTC+00:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/kna.svg',
     name: 'Saint Kitts and Nevis',
@@ -4306,21 +3321,16 @@ export const countriesData: Country[] = [
     capital: 'Basseterre',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      17.33333333,
-      -62.75
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [17.33333333, -62.75],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/lca.svg',
     name: 'Saint Lucia',
@@ -4328,21 +3338,16 @@ export const countriesData: Country[] = [
     capital: 'Castries',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      13.88333333,
-      -60.96666666
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [13.88333333, -60.96666666],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/maf.svg',
     name: 'Saint Martin (French part)',
@@ -4350,21 +3355,16 @@ export const countriesData: Country[] = [
     capital: 'Marigot',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.08333333,
-      -63.95
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [18.08333333, -63.95],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/spm.svg',
     name: 'Saint Pierre and Miquelon',
@@ -4372,21 +3372,16 @@ export const countriesData: Country[] = [
     capital: 'Saint-Pierre',
     region: 'Americas',
     subregion: 'Northern America',
-    latlng: [
-      46.83333333,
-      -56.33333333
-    ],
-    timezones: [
-      'UTC-03:00'
-    ]
+    latlng: [46.83333333, -56.33333333],
+    timezones: ['UTC-03:00'],
   },
   {
     currencies: [
       {
         code: 'XCD',
         name: 'East Caribbean dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/vct.svg',
     name: 'Saint Vincent and the Grenadines',
@@ -4394,21 +3389,16 @@ export const countriesData: Country[] = [
     capital: 'Kingstown',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      13.25,
-      -61.2
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [13.25, -61.2],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'WST',
         name: 'Samoan tālā',
-        symbol: 'T'
-      }
+        symbol: 'T',
+      },
     ],
     flag: 'https://restcountries.eu/data/wsm.svg',
     name: 'Samoa',
@@ -4416,21 +3406,16 @@ export const countriesData: Country[] = [
     capital: 'Apia',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -13.58333333,
-      -172.33333333
-    ],
-    timezones: [
-      'UTC+13:00'
-    ]
+    latlng: [-13.58333333, -172.33333333],
+    timezones: ['UTC+13:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/smr.svg',
     name: 'San Marino',
@@ -4438,21 +3423,16 @@ export const countriesData: Country[] = [
     capital: 'City of San Marino',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      43.76666666,
-      12.41666666
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [43.76666666, 12.41666666],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'STD',
         name: 'São Tomé and Príncipe dobra',
-        symbol: 'Db'
-      }
+        symbol: 'Db',
+      },
     ],
     flag: 'https://restcountries.eu/data/stp.svg',
     name: 'Sao Tome and Principe',
@@ -4460,21 +3440,16 @@ export const countriesData: Country[] = [
     capital: 'São Tomé',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      1,
-      7
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [1, 7],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'SAR',
         name: 'Saudi riyal',
-        symbol: 'ر.س'
-      }
+        symbol: 'ر.س',
+      },
     ],
     flag: 'https://restcountries.eu/data/sau.svg',
     name: 'Saudi Arabia',
@@ -4482,21 +3457,16 @@ export const countriesData: Country[] = [
     capital: 'Riyadh',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      25,
-      45
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [25, 45],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/sen.svg',
     name: 'Senegal',
@@ -4504,21 +3474,16 @@ export const countriesData: Country[] = [
     capital: 'Dakar',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      14,
-      -14
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [14, -14],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'RSD',
         name: 'Serbian dinar',
-        symbol: 'дин.'
-      }
+        symbol: 'дин.',
+      },
     ],
     flag: 'https://restcountries.eu/data/srb.svg',
     name: 'Serbia',
@@ -4526,21 +3491,16 @@ export const countriesData: Country[] = [
     capital: 'Belgrade',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      44,
-      21
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [44, 21],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'SCR',
         name: 'Seychellois rupee',
-        symbol: '₨'
-      }
+        symbol: '₨',
+      },
     ],
     flag: 'https://restcountries.eu/data/syc.svg',
     name: 'Seychelles',
@@ -4548,21 +3508,16 @@ export const countriesData: Country[] = [
     capital: 'Victoria',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -4.58333333,
-      55.66666666
-    ],
-    timezones: [
-      'UTC+04:00'
-    ]
+    latlng: [-4.58333333, 55.66666666],
+    timezones: ['UTC+04:00'],
   },
   {
     currencies: [
       {
         code: 'SLL',
         name: 'Sierra Leonean leone',
-        symbol: 'Le'
-      }
+        symbol: 'Le',
+      },
     ],
     flag: 'https://restcountries.eu/data/sle.svg',
     name: 'Sierra Leone',
@@ -4570,26 +3525,21 @@ export const countriesData: Country[] = [
     capital: 'Freetown',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      8.5,
-      -11.5
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [8.5, -11.5],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'BND',
         name: 'Brunei dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'SGD',
         name: 'Singapore dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/sgp.svg',
     name: 'Singapore',
@@ -4597,21 +3547,16 @@ export const countriesData: Country[] = [
     capital: 'Singapore',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      1.36666666,
-      103.8
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [1.36666666, 103.8],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'ANG',
         name: 'Netherlands Antillean guilder',
-        symbol: 'ƒ'
-      }
+        symbol: 'ƒ',
+      },
     ],
     flag: 'https://restcountries.eu/data/sxm.svg',
     name: 'Sint Maarten (Dutch part)',
@@ -4619,21 +3564,16 @@ export const countriesData: Country[] = [
     capital: 'Philipsburg',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      18.033333,
-      -63.05
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [18.033333, -63.05],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/svk.svg',
     name: 'Slovakia',
@@ -4641,21 +3581,16 @@ export const countriesData: Country[] = [
     capital: 'Bratislava',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      48.66666666,
-      19.5
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [48.66666666, 19.5],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/svn.svg',
     name: 'Slovenia',
@@ -4663,21 +3598,16 @@ export const countriesData: Country[] = [
     capital: 'Ljubljana',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      46.11666666,
-      14.81666666
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [46.11666666, 14.81666666],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'SBD',
         name: 'Solomon Islands dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/slb.svg',
     name: 'Solomon Islands',
@@ -4685,21 +3615,16 @@ export const countriesData: Country[] = [
     capital: 'Honiara',
     region: 'Oceania',
     subregion: 'Melanesia',
-    latlng: [
-      -8,
-      159
-    ],
-    timezones: [
-      'UTC+11:00'
-    ]
+    latlng: [-8, 159],
+    timezones: ['UTC+11:00'],
   },
   {
     currencies: [
       {
         code: 'SOS',
         name: 'Somali shilling',
-        symbol: 'Sh'
-      }
+        symbol: 'Sh',
+      },
     ],
     flag: 'https://restcountries.eu/data/som.svg',
     name: 'Somalia',
@@ -4707,21 +3632,16 @@ export const countriesData: Country[] = [
     capital: 'Mogadishu',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      10,
-      49
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [10, 49],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'ZAR',
         name: 'South African rand',
-        symbol: 'R'
-      }
+        symbol: 'R',
+      },
     ],
     flag: 'https://restcountries.eu/data/zaf.svg',
     name: 'South Africa',
@@ -4729,20 +3649,15 @@ export const countriesData: Country[] = [
     capital: 'Pretoria',
     region: 'Africa',
     subregion: 'Southern Africa',
-    latlng: [
-      -29,
-      24
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-29, 24],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'GBP',
         name: 'British pound',
-        symbol: '£'
+        symbol: '£',
       },
     ],
     flag: 'https://restcountries.eu/data/sgs.svg',
@@ -4751,21 +3666,16 @@ export const countriesData: Country[] = [
     capital: 'King Edward Point',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -54.5,
-      -37
-    ],
-    timezones: [
-      'UTC-02:00'
-    ]
+    latlng: [-54.5, -37],
+    timezones: ['UTC-02:00'],
   },
   {
     currencies: [
       {
         code: 'KRW',
         name: 'South Korean won',
-        symbol: '₩'
-      }
+        symbol: '₩',
+      },
     ],
     flag: 'https://restcountries.eu/data/kor.svg',
     name: 'South Korea',
@@ -4773,21 +3683,16 @@ export const countriesData: Country[] = [
     capital: 'Seoul',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      37,
-      127.5
-    ],
-    timezones: [
-      'UTC+09:00'
-    ]
+    latlng: [37, 127.5],
+    timezones: ['UTC+09:00'],
   },
   {
     currencies: [
       {
         code: 'SSP',
         name: 'South Sudanese pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/ssd.svg',
     name: 'South Sudan',
@@ -4795,21 +3700,16 @@ export const countriesData: Country[] = [
     capital: 'Juba',
     region: 'Africa',
     subregion: 'Middle Africa',
-    latlng: [
-      7,
-      30
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [7, 30],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
-      }
+        symbol: '€',
+      },
     ],
     flag: 'https://restcountries.eu/data/esp.svg',
     name: 'Spain',
@@ -4817,22 +3717,16 @@ export const countriesData: Country[] = [
     capital: 'Madrid',
     region: 'Europe',
     subregion: 'Southern Europe',
-    latlng: [
-      40,
-      -4
-    ],
-    timezones: [
-      'UTC',
-      'UTC+01:00'
-    ]
+    latlng: [40, -4],
+    timezones: ['UTC', 'UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'LKR',
         name: 'Sri Lankan rupee',
-        symbol: 'Rs'
-      }
+        symbol: 'Rs',
+      },
     ],
     flag: 'https://restcountries.eu/data/lka.svg',
     name: 'Sri Lanka',
@@ -4840,21 +3734,16 @@ export const countriesData: Country[] = [
     capital: 'Colombo',
     region: 'Asia',
     subregion: 'Southern Asia',
-    latlng: [
-      7,
-      81
-    ],
-    timezones: [
-      'UTC+05:30'
-    ]
+    latlng: [7, 81],
+    timezones: ['UTC+05:30'],
   },
   {
     currencies: [
       {
         code: 'SDG',
         name: 'Sudanese pound',
-        symbol: 'ج.س.'
-      }
+        symbol: 'ج.س.',
+      },
     ],
     flag: 'https://restcountries.eu/data/sdn.svg',
     name: 'Sudan',
@@ -4862,21 +3751,16 @@ export const countriesData: Country[] = [
     capital: 'Khartoum',
     region: 'Africa',
     subregion: 'Northern Africa',
-    latlng: [
-      15,
-      30
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [15, 30],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'SRD',
         name: 'Surinamese dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/sur.svg',
     name: 'Suriname',
@@ -4884,21 +3768,16 @@ export const countriesData: Country[] = [
     capital: 'Paramaribo',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      4,
-      -56
-    ],
-    timezones: [
-      'UTC-03:00'
-    ]
+    latlng: [4, -56],
+    timezones: ['UTC-03:00'],
   },
   {
     currencies: [
       {
         code: 'NOK',
         name: 'Norwegian krone',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/sjm.svg',
     name: 'Svalbard and Jan Mayen',
@@ -4906,21 +3785,16 @@ export const countriesData: Country[] = [
     capital: 'Longyearbyen',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      78,
-      20
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [78, 20],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'SZL',
         name: 'Swazi lilangeni',
-        symbol: 'L'
-      }
+        symbol: 'L',
+      },
     ],
     flag: 'https://restcountries.eu/data/swz.svg',
     name: 'Swaziland',
@@ -4928,21 +3802,16 @@ export const countriesData: Country[] = [
     capital: 'Lobamba',
     region: 'Africa',
     subregion: 'Southern Africa',
-    latlng: [
-      -26.5,
-      31.5
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-26.5, 31.5],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'SEK',
         name: 'Swedish krona',
-        symbol: 'kr'
-      }
+        symbol: 'kr',
+      },
     ],
     flag: 'https://restcountries.eu/data/swe.svg',
     name: 'Sweden',
@@ -4950,21 +3819,16 @@ export const countriesData: Country[] = [
     capital: 'Stockholm',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      62,
-      15
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [62, 15],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'CHF',
         name: 'Swiss franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/che.svg',
     name: 'Switzerland',
@@ -4972,21 +3836,16 @@ export const countriesData: Country[] = [
     capital: 'Bern',
     region: 'Europe',
     subregion: 'Western Europe',
-    latlng: [
-      47,
-      8
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [47, 8],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'SYP',
         name: 'Syrian pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/syr.svg',
     name: 'Syrian Arab Republic',
@@ -4994,21 +3853,16 @@ export const countriesData: Country[] = [
     capital: 'Damascus',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      35,
-      38
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [35, 38],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'TWD',
         name: 'New Taiwan dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/twn.svg',
     name: 'Taiwan',
@@ -5016,21 +3870,16 @@ export const countriesData: Country[] = [
     capital: 'Taipei',
     region: 'Asia',
     subregion: 'Eastern Asia',
-    latlng: [
-      23.5,
-      121
-    ],
-    timezones: [
-      'UTC+08:00'
-    ]
+    latlng: [23.5, 121],
+    timezones: ['UTC+08:00'],
   },
   {
     currencies: [
       {
         code: 'TJS',
         name: 'Tajikistani somoni',
-        symbol: 'ЅМ'
-      }
+        symbol: 'ЅМ',
+      },
     ],
     flag: 'https://restcountries.eu/data/tjk.svg',
     name: 'Tajikistan',
@@ -5038,21 +3887,16 @@ export const countriesData: Country[] = [
     capital: 'Dushanbe',
     region: 'Asia',
     subregion: 'Central Asia',
-    latlng: [
-      39,
-      71
-    ],
-    timezones: [
-      'UTC+05:00'
-    ]
+    latlng: [39, 71],
+    timezones: ['UTC+05:00'],
   },
   {
     currencies: [
       {
         code: 'TZS',
         name: 'Tanzanian shilling',
-        symbol: 'Sh'
-      }
+        symbol: 'Sh',
+      },
     ],
     flag: 'https://restcountries.eu/data/tza.svg',
     name: 'Tanzania',
@@ -5060,21 +3904,16 @@ export const countriesData: Country[] = [
     capital: 'Dodoma',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -6,
-      35
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [-6, 35],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'THB',
         name: 'Thai baht',
-        symbol: '฿'
-      }
+        symbol: '฿',
+      },
     ],
     flag: 'https://restcountries.eu/data/tha.svg',
     name: 'Thailand',
@@ -5082,20 +3921,15 @@ export const countriesData: Country[] = [
     capital: 'Bangkok',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      15,
-      100
-    ],
-    timezones: [
-      'UTC+07:00'
-    ]
+    latlng: [15, 100],
+    timezones: ['UTC+07:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
+        symbol: '$',
       },
     ],
     flag: 'https://restcountries.eu/data/tls.svg',
@@ -5104,21 +3938,16 @@ export const countriesData: Country[] = [
     capital: 'Dili',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      -8.83333333,
-      125.91666666
-    ],
-    timezones: [
-      'UTC+09:00'
-    ]
+    latlng: [-8.83333333, 125.91666666],
+    timezones: ['UTC+09:00'],
   },
   {
     currencies: [
       {
         code: 'XOF',
         name: 'West African CFA franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/tgo.svg',
     name: 'Togo',
@@ -5126,21 +3955,16 @@ export const countriesData: Country[] = [
     capital: 'Lomé',
     region: 'Africa',
     subregion: 'Western Africa',
-    latlng: [
-      8,
-      1.16666666
-    ],
-    timezones: [
-      'UTC'
-    ]
+    latlng: [8, 1.16666666],
+    timezones: ['UTC'],
   },
   {
     currencies: [
       {
         code: 'NZD',
         name: 'New Zealand dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/tkl.svg',
     name: 'Tokelau',
@@ -5148,43 +3972,33 @@ export const countriesData: Country[] = [
     capital: 'Fakaofo',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -9,
-      -172
-    ],
-    timezones: [
-      'UTC+13:00'
-    ]
+    latlng: [-9, -172],
+    timezones: ['UTC+13:00'],
   },
   {
     currencies: [
       {
         code: 'TOP',
         name: 'Tongan paʻanga',
-        symbol: 'T$'
-      }
+        symbol: 'T$',
+      },
     ],
     flag: 'https://restcountries.eu/data/ton.svg',
     name: 'Tonga',
     isoCode: 'TO',
-    capital: 'Nuku\'alofa',
+    capital: "Nuku'alofa",
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -20,
-      -175
-    ],
-    timezones: [
-      'UTC+13:00'
-    ]
+    latlng: [-20, -175],
+    timezones: ['UTC+13:00'],
   },
   {
     currencies: [
       {
         code: 'TTD',
         name: 'Trinidad and Tobago dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/tto.svg',
     name: 'Trinidad and Tobago',
@@ -5192,21 +4006,16 @@ export const countriesData: Country[] = [
     capital: 'Port of Spain',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      11,
-      -61
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [11, -61],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'TND',
         name: 'Tunisian dinar',
-        symbol: 'د.ت'
-      }
+        symbol: 'د.ت',
+      },
     ],
     flag: 'https://restcountries.eu/data/tun.svg',
     name: 'Tunisia',
@@ -5214,20 +4023,15 @@ export const countriesData: Country[] = [
     capital: 'Tunis',
     region: 'Africa',
     subregion: 'Northern Africa',
-    latlng: [
-      34,
-      9
-    ],
-    timezones: [
-      'UTC+01:00'
-    ]
+    latlng: [34, 9],
+    timezones: ['UTC+01:00'],
   },
   {
     currencies: [
       {
         code: 'TRY',
-        name: 'Turkish lira'
-      }
+        name: 'Turkish lira',
+      },
     ],
     flag: 'https://restcountries.eu/data/tur.svg',
     name: 'Turkey',
@@ -5235,21 +4039,16 @@ export const countriesData: Country[] = [
     capital: 'Ankara',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      39,
-      35
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [39, 35],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'TMT',
         name: 'Turkmenistan manat',
-        symbol: 'm'
-      }
+        symbol: 'm',
+      },
     ],
     flag: 'https://restcountries.eu/data/tkm.svg',
     name: 'Turkmenistan',
@@ -5257,21 +4056,16 @@ export const countriesData: Country[] = [
     capital: 'Ashgabat',
     region: 'Asia',
     subregion: 'Central Asia',
-    latlng: [
-      40,
-      60
-    ],
-    timezones: [
-      'UTC+05:00'
-    ]
+    latlng: [40, 60],
+    timezones: ['UTC+05:00'],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/tca.svg',
     name: 'Turks and Caicos Islands',
@@ -5279,26 +4073,21 @@ export const countriesData: Country[] = [
     capital: 'Cockburn Town',
     region: 'Americas',
     subregion: 'Caribbean',
-    latlng: [
-      21.75,
-      -71.58333333
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [21.75, -71.58333333],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'AUD',
         name: 'Australian dollar',
-        symbol: '$'
+        symbol: '$',
       },
       {
         code: 'TVD[G]',
         name: 'Tuvaluan dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/tuv.svg',
     name: 'Tuvalu',
@@ -5306,21 +4095,16 @@ export const countriesData: Country[] = [
     capital: 'Funafuti',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -8,
-      178
-    ],
-    timezones: [
-      'UTC+12:00'
-    ]
+    latlng: [-8, 178],
+    timezones: ['UTC+12:00'],
   },
   {
     currencies: [
       {
         code: 'UGX',
         name: 'Ugandan shilling',
-        symbol: 'Sh'
-      }
+        symbol: 'Sh',
+      },
     ],
     flag: 'https://restcountries.eu/data/uga.svg',
     name: 'Uganda',
@@ -5328,21 +4112,16 @@ export const countriesData: Country[] = [
     capital: 'Kampala',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      1,
-      32
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [1, 32],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'UAH',
         name: 'Ukrainian hryvnia',
-        symbol: '₴'
-      }
+        symbol: '₴',
+      },
     ],
     flag: 'https://restcountries.eu/data/ukr.svg',
     name: 'Ukraine',
@@ -5350,21 +4129,16 @@ export const countriesData: Country[] = [
     capital: 'Kiev',
     region: 'Europe',
     subregion: 'Eastern Europe',
-    latlng: [
-      49,
-      32
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [49, 32],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'AED',
         name: 'United Arab Emirates dirham',
-        symbol: 'د.إ'
-      }
+        symbol: 'د.إ',
+      },
     ],
     flag: 'https://restcountries.eu/data/are.svg',
     name: 'United Arab Emirates',
@@ -5372,21 +4146,16 @@ export const countriesData: Country[] = [
     capital: 'Abu Dhabi',
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      24,
-      54
-    ],
-    timezones: [
-      'UTC+04'
-    ]
+    latlng: [24, 54],
+    timezones: ['UTC+04'],
   },
   {
     currencies: [
       {
         code: 'GBP',
         name: 'British pound',
-        symbol: '£'
-      }
+        symbol: '£',
+      },
     ],
     flag: 'https://restcountries.eu/data/gbr.svg',
     name: 'United Kingdom / Great Britain',
@@ -5394,10 +4163,7 @@ export const countriesData: Country[] = [
     capital: 'London',
     region: 'Europe',
     subregion: 'Northern Europe',
-    latlng: [
-      54,
-      -2
-    ],
+    latlng: [54, -2],
     timezones: [
       'UTC-08:00',
       'UTC-05:00',
@@ -5407,16 +4173,16 @@ export const countriesData: Country[] = [
       'UTC',
       'UTC+01:00',
       'UTC+02:00',
-      'UTC+06:00'
-    ]
+      'UTC+06:00',
+    ],
   },
   {
     currencies: [
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/usa.svg',
     name: 'USA / United States of America',
@@ -5424,10 +4190,7 @@ export const countriesData: Country[] = [
     capital: 'Washington, D.C.',
     region: 'Americas',
     subregion: 'Northern America',
-    latlng: [
-      38,
-      -97
-    ],
+    latlng: [38, -97],
     timezones: [
       'UTC-12:00',
       'UTC-11:00',
@@ -5439,16 +4202,16 @@ export const countriesData: Country[] = [
       'UTC-05:00',
       'UTC-04:00',
       'UTC+10:00',
-      'UTC+12:00'
-    ]
+      'UTC+12:00',
+    ],
   },
   {
     currencies: [
       {
         code: 'UYU',
         name: 'Uruguayan peso',
-        symbol: '$'
-      }
+        symbol: '$',
+      },
     ],
     flag: 'https://restcountries.eu/data/ury.svg',
     name: 'Uruguay',
@@ -5456,20 +4219,15 @@ export const countriesData: Country[] = [
     capital: 'Montevideo',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      -33,
-      -56
-    ],
-    timezones: [
-      'UTC-03:00'
-    ]
+    latlng: [-33, -56],
+    timezones: ['UTC-03:00'],
   },
   {
     currencies: [
       {
         code: 'UZS',
-        name: 'Uzbekistani so\'m'
-      }
+        name: "Uzbekistani so'm",
+      },
     ],
     flag: 'https://restcountries.eu/data/uzb.svg',
     name: 'Uzbekistan',
@@ -5477,21 +4235,16 @@ export const countriesData: Country[] = [
     capital: 'Tashkent',
     region: 'Asia',
     subregion: 'Central Asia',
-    latlng: [
-      41,
-      64
-    ],
-    timezones: [
-      'UTC+05:00'
-    ]
+    latlng: [41, 64],
+    timezones: ['UTC+05:00'],
   },
   {
     currencies: [
       {
         code: 'VUV',
         name: 'Vanuatu vatu',
-        symbol: 'Vt'
-      }
+        symbol: 'Vt',
+      },
     ],
     flag: 'https://restcountries.eu/data/vut.svg',
     name: 'Vanuatu',
@@ -5499,21 +4252,16 @@ export const countriesData: Country[] = [
     capital: 'Port Vila',
     region: 'Oceania',
     subregion: 'Melanesia',
-    latlng: [
-      -16,
-      167
-    ],
-    timezones: [
-      'UTC+11:00'
-    ]
+    latlng: [-16, 167],
+    timezones: ['UTC+11:00'],
   },
   {
     currencies: [
       {
         code: 'VEF',
         name: 'Venezuelan bolívar',
-        symbol: 'Bs F'
-      }
+        symbol: 'Bs F',
+      },
     ],
     flag: 'https://restcountries.eu/data/ven.svg',
     name: 'Venezuela (Bolivarian Republic of)',
@@ -5521,21 +4269,16 @@ export const countriesData: Country[] = [
     capital: 'Caracas',
     region: 'Americas',
     subregion: 'South America',
-    latlng: [
-      8,
-      -66
-    ],
-    timezones: [
-      'UTC-04:00'
-    ]
+    latlng: [8, -66],
+    timezones: ['UTC-04:00'],
   },
   {
     currencies: [
       {
         code: 'VND',
         name: 'Vietnamese đồng',
-        symbol: '₫'
-      }
+        symbol: '₫',
+      },
     ],
     flag: 'https://restcountries.eu/data/vnm.svg',
     name: 'Viet Nam',
@@ -5543,21 +4286,16 @@ export const countriesData: Country[] = [
     capital: 'Hanoi',
     region: 'Asia',
     subregion: 'South-Eastern Asia',
-    latlng: [
-      16.16666666,
-      107.83333333
-    ],
-    timezones: [
-      'UTC+07:00'
-    ]
+    latlng: [16.16666666, 107.83333333],
+    timezones: ['UTC+07:00'],
   },
   {
     currencies: [
       {
         code: 'XPF',
         name: 'CFP franc',
-        symbol: 'Fr'
-      }
+        symbol: 'Fr',
+      },
     ],
     flag: 'https://restcountries.eu/data/wlf.svg',
     name: 'Wallis and Futuna',
@@ -5565,26 +4303,21 @@ export const countriesData: Country[] = [
     capital: 'Mata-Utu',
     region: 'Oceania',
     subregion: 'Polynesia',
-    latlng: [
-      -13.3,
-      -176.2
-    ],
-    timezones: [
-      'UTC+12:00'
-    ]
+    latlng: [-13.3, -176.2],
+    timezones: ['UTC+12:00'],
   },
   {
     currencies: [
       {
         code: 'MAD',
         name: 'Moroccan dirham',
-        symbol: 'د.م.'
+        symbol: 'د.م.',
       },
       {
         code: 'DZD',
         name: 'Algerian dinar',
-        symbol: 'د.ج'
-      }
+        symbol: 'د.ج',
+      },
     ],
     flag: 'https://restcountries.eu/data/esh.svg',
     name: 'Western Sahara',
@@ -5592,43 +4325,33 @@ export const countriesData: Country[] = [
     capital: 'El Aaiún',
     region: 'Africa',
     subregion: 'Northern Africa',
-    latlng: [
-      24.5,
-      -13
-    ],
-    timezones: [
-      'UTC+00:00'
-    ]
+    latlng: [24.5, -13],
+    timezones: ['UTC+00:00'],
   },
   {
     currencies: [
       {
         code: 'YER',
         name: 'Yemeni rial',
-        symbol: '﷼'
-      }
+        symbol: '﷼',
+      },
     ],
     flag: 'https://restcountries.eu/data/yem.svg',
     name: 'Yemen',
     isoCode: 'YE',
-    capital: 'Sana\'a',
+    capital: "Sana'a",
     region: 'Asia',
     subregion: 'Western Asia',
-    latlng: [
-      15,
-      48
-    ],
-    timezones: [
-      'UTC+03:00'
-    ]
+    latlng: [15, 48],
+    timezones: ['UTC+03:00'],
   },
   {
     currencies: [
       {
         code: 'ZMW',
         name: 'Zambian kwacha',
-        symbol: 'ZK'
-      }
+        symbol: 'ZK',
+      },
     ],
     flag: 'https://restcountries.eu/data/zmb.svg',
     name: 'Zambia',
@@ -5636,55 +4359,50 @@ export const countriesData: Country[] = [
     capital: 'Lusaka',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -15,
-      30
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
+    latlng: [-15, 30],
+    timezones: ['UTC+02:00'],
   },
   {
     currencies: [
       {
         code: 'BWP',
         name: 'Botswana pula',
-        symbol: 'P'
+        symbol: 'P',
       },
       {
         code: 'GBP',
         name: 'British pound',
-        symbol: '£'
+        symbol: '£',
       },
       {
         code: 'CNY',
         name: 'Chinese yuan',
-        symbol: '¥'
+        symbol: '¥',
       },
       {
         code: 'EUR',
         name: 'Euro',
-        symbol: '€'
+        symbol: '€',
       },
       {
         code: 'INR',
         name: 'Indian rupee',
-        symbol: '₹'
+        symbol: '₹',
       },
       {
         code: 'JPY',
         name: 'Japanese yen',
-        symbol: '¥'
+        symbol: '¥',
       },
       {
         code: 'ZAR',
         name: 'South African rand',
-        symbol: 'Rs'
+        symbol: 'Rs',
       },
       {
         code: 'USD',
         name: 'United States dollar',
-        symbol: '$'
+        symbol: '$',
       },
     ],
     flag: 'https://restcountries.eu/data/zwe.svg',
@@ -5693,12 +4411,7 @@ export const countriesData: Country[] = [
     capital: 'Harare',
     region: 'Africa',
     subregion: 'Eastern Africa',
-    latlng: [
-      -20,
-      30
-    ],
-    timezones: [
-      'UTC+02:00'
-    ]
-  }
+    latlng: [-20, 30],
+    timezones: ['UTC+02:00'],
+  },
 ];

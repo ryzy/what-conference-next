@@ -13,9 +13,7 @@ describe('AppRouterStateSerializer', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      providers: [
-        { provide: RouterStateSerializer, useClass: AppRouterStateSerializer },
-      ],
+      providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }],
     });
 
     serializer = TestBed.get(RouterStateSerializer);

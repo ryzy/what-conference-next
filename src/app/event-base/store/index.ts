@@ -24,15 +24,19 @@ export const eventsReducers: ActionReducerMap<EventsState, TopicsActions> = {
 
 export const getEventsRootState: MemoizedSelector<object, EventsState> = createFeatureSelector(EventsFeatureStoreName);
 
-export const selectTopicsState: MemoizedSelector<EventsRootState, fromTopics.TopicsState> = createSelector(getEventsRootState,
+export const selectTopicsState: MemoizedSelector<EventsRootState, fromTopics.TopicsState> = createSelector(
+  getEventsRootState,
   (state) => state.topics,
 );
-export const selectAllTopics: MemoizedSelector<EventsRootState, EventTopic[]> = createSelector(selectTopicsState,
+export const selectAllTopics: MemoizedSelector<EventsRootState, EventTopic[]> = createSelector(
+  selectTopicsState,
   fromTopics.selectAll,
 );
-export const selectTopicsTotal: MemoizedSelector<EventsRootState, number> = createSelector(selectTopicsState,
+export const selectTopicsTotal: MemoizedSelector<EventsRootState, number> = createSelector(
+  selectTopicsState,
   fromTopics.selectTotal,
 );
-export const selectTopicsLoadedFlag: MemoizedSelector<EventsRootState, boolean> = createSelector(selectTopicsState,
+export const selectTopicsLoadedFlag: MemoizedSelector<EventsRootState, boolean> = createSelector(
+  selectTopicsState,
   (topicsState) => topicsState.loaded,
 );

@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/table';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { EventsDatabase } from './events-database';
 
@@ -11,7 +11,6 @@ import { EventsDatabase } from './events-database';
  * should be rendered.
  */
 export class EventsDataSource<T> extends DataSource<T> {
-
   constructor(private database: EventsDatabase<T>) {
     super();
   }
@@ -20,6 +19,5 @@ export class EventsDataSource<T> extends DataSource<T> {
     return this.database.events$;
   }
 
-  public disconnect(): void {
-  }
+  public disconnect(): void {}
 }

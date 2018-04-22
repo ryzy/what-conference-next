@@ -7,26 +7,22 @@ import { ConferenceEvent } from '../../app/event-base/model/conference-event';
 export const conferencesMockData: any[] = [
   {
     name: 'NG Poland',
-    location: [
-      'Warsaw',
-      'Poland',
-    ],
+    location: ['Warsaw', 'Poland'],
     date: new Date('2017-11-21T00:00:00.000Z'),
     eventDuration: 1,
     website: 'http://www.ng-poland.pl/',
     price: 90,
     sizeBand: 300,
-    description: ['The biggest Angular Conference in Central/Estern Europe. Learn about the present and future of Angular and its ecosystem, TypeScript, tools and much more.'],
+    description: [
+      'The biggest Angular Conference in Central/Estern Europe. Learn about the present and future of Angular and its ecosystem, TypeScript, tools and much more.',
+    ],
     speakers: [],
     topicTags: ['angular'],
     twitterHandle: undefined,
   },
   {
     name: 'Nodevember',
-    location: [
-      'Nashville',
-      'USA',
-    ],
+    location: ['Nashville', 'USA'],
     date: new Date('2017-11-27T00:00:00.000Z'),
     eventDuration: 2,
     website: 'http://nodevember.org/',
@@ -39,10 +35,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'AWS re:INVENT',
-    location: [
-      'Las Vegas',
-      'USA',
-    ],
+    location: ['Las Vegas', 'USA'],
     date: new Date('2017-11-27T00:00:00.000Z'),
     eventDuration: 5,
     website: 'https://reinvent.awsevents.com/',
@@ -60,10 +53,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'Clarity',
-    location: [
-      'San Francisco',
-      'USA',
-    ],
+    location: ['San Francisco', 'USA'],
     date: new Date('2017-11-28T00:00:00.000Z'),
     eventDuration: 3,
     website: 'https://www.clarityconf.com/',
@@ -71,18 +61,12 @@ export const conferencesMockData: any[] = [
     sizeBand: undefined,
     description: [],
     speakers: [],
-    topicTags: [
-      'UX',
-      'design',
-    ],
+    topicTags: ['UX', 'design'],
     twitterHandle: undefined,
   },
   {
     name: 'dotJS',
-    location: [
-      'Paris',
-      'France',
-    ],
+    location: ['Paris', 'France'],
     date: new Date('2017-11-30T00:00:00.000Z'),
     eventDuration: 2,
     website: 'https://www.dotjs.io/',
@@ -95,10 +79,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'dotCSS',
-    location: [
-      'Paris',
-      'France',
-    ],
+    location: ['Paris', 'France'],
     date: new Date('2017-11-30T00:00:00.000Z'),
     eventDuration: 2,
     website: 'https://www.dotcss.io/',
@@ -111,72 +92,46 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'DevTernity',
-    location: [
-      'Riga',
-      'Latvia',
-    ],
+    location: ['Riga', 'Latvia'],
     date: new Date('2017-12-01T00:00:00.000Z'),
     eventDuration: 2,
     website: 'http://devternity.com/',
     price: undefined,
     sizeBand: undefined,
-    description: [
-      'The place where forward-thinking developers',
-      'pragmatic architects and engineering leaders grow.',
-    ],
+    description: ['The place where forward-thinking developers', 'pragmatic architects and engineering leaders grow.'],
     speakers: [],
-    topicTags: [
-      'architecture',
-      'security',
-      'testing',
-    ],
+    topicTags: ['architecture', 'security', 'testing'],
     twitterHandle: '@devternity',
   },
   {
     name: 'NationJS',
-    location: [
-      'Washington',
-      'USA',
-    ],
+    location: ['Washington', 'USA'],
     date: new Date('2017-12-01T00:00:00.000Z'),
     eventDuration: 1,
     website: 'http://nationjs.com/',
     price: 200,
     sizeBand: undefined,
-    description: ['NationJS is the Mid-Atlantic\'s JavaScript and Web Platform conference.'],
+    description: ["NationJS is the Mid-Atlantic's JavaScript and Web Platform conference."],
     speakers: [],
     topicTags: [],
     twitterHandle: '@nationjs',
   },
   {
     name: 'Spring One',
-    location: [
-      'San Francisco',
-      'USA',
-    ],
+    location: ['San Francisco', 'USA'],
     date: new Date('2017-12-04T00:00:00.000Z'),
     eventDuration: 2,
     website: 'https://2017.springoneplatform.io',
     price: 1300,
     sizeBand: undefined,
-    description: [
-      'Conference for those who build',
-      'deploy',
-      'and run cloud-native software.',
-    ],
+    description: ['Conference for those who build', 'deploy', 'and run cloud-native software.'],
     speakers: [],
-    topicTags: [
-      'Java',
-      'Angular',
-    ],
+    topicTags: ['Java', 'Angular'],
     twitterHandle: undefined,
   },
   {
     name: 'ConFoo CA',
-    location: [
-      'Vancouver',
-      'Canada',
-    ],
+    location: ['Vancouver', 'Canada'],
     date: new Date('2017-12-04T00:00:00.000Z'),
     eventDuration: 2,
     website: 'https://confoo.ca/',
@@ -192,29 +147,20 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'DevRelCon',
-    location: [
-      'London',
-      'UK',
-    ],
+    location: ['London', 'UK'],
     date: new Date('2017-12-06T00:00:00.000Z'),
     eventDuration: 1,
     website: 'https://london-2017.devrel.net/',
     price: 199,
     sizeBand: undefined,
-    description: [
-      'A one day conference about developer relations',
-      'developer experience and developer marketing',
-    ],
+    description: ['A one day conference about developer relations', 'developer experience and developer marketing'],
     speakers: [],
     topicTags: ['developer-experience'],
     twitterHandle: undefined,
   },
   {
     name: 'HolyJS 2017',
-    location: [
-      'Moscow',
-      'Russia',
-    ],
+    location: ['Moscow', 'Russia'],
     date: new Date('2017-12-10T00:00:00.000Z'),
     eventDuration: 2,
     website: 'https://holyjs-moscow.ru/',
@@ -222,18 +168,12 @@ export const conferencesMockData: any[] = [
     sizeBand: 600,
     description: ['HolyJS is a unique conference dedicated to JavaScript only.'],
     speakers: ['Douglas Crockford'],
-    topicTags: [
-      'JavaScript',
-      'NodeJS',
-    ],
+    topicTags: ['JavaScript', 'NodeJS'],
     twitterHandle: '@HolyJSconf',
   },
   {
     name: 'Frontend Love Conference',
-    location: [
-      'Amsterdam',
-      'Netherlands',
-    ],
+    location: ['Amsterdam', 'Netherlands'],
     date: new Date('2018-01-15T00:00:00.000Z'),
     eventDuration: 1,
     website: 'http://frontenddeveloperlove.com/',
@@ -250,10 +190,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'NG Europe',
-    location: [
-      'Paris',
-      'France',
-    ],
+    location: ['Paris', 'France'],
     date: new Date('2018-02-02T00:00:00.000Z'),
     eventDuration: 1,
     website: 'https://ngeurope.org/',
@@ -266,10 +203,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'Smashing Conf',
-    location: [
-      'Toronto',
-      'Canada',
-    ],
+    location: ['Toronto', 'Canada'],
     date: new Date('2018-06-25T23:00:00.000Z'),
     eventDuration: 2,
     website: 'smashingconf.com/toronto-2018',
@@ -299,10 +233,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'The Lead Developer',
-    location: [
-      'NY',
-      'USA',
-    ],
+    location: ['NY', 'USA'],
     date: new Date('2018-04-23T23:00:00.000Z'),
     eventDuration: 1,
     website: 'https://newyork2018.theleaddeveloper.com/',
@@ -320,10 +251,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'Render Conf',
-    location: [
-      'Oxford',
-      'UK',
-    ],
+    location: ['Oxford', 'UK'],
     date: new Date('2018-03-23T00:00:00.000Z'),
     eventDuration: 1,
     website: 'https://2018.render-conf.com/',
@@ -336,26 +264,20 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'NG Conf',
-    location: [
-      'Salt Lake City',
-      'USA',
-    ],
+    location: ['Salt Lake City', 'USA'],
     date: new Date('2018-04-17T23:00:00.000Z'),
     eventDuration: 3,
     website: 'https://www.ng-conf.org/',
     price: 1300,
     sizeBand: undefined,
-    description: ['WORLD\'S ORIGINAL ANGULAR CONFERENCE'],
+    description: ["WORLD'S ORIGINAL ANGULAR CONFERENCE"],
     speakers: [],
     topicTags: ['angular'],
     twitterHandle: undefined,
   },
   {
     name: 'Devoxx UK',
-    location: [
-      'London',
-      'UK',
-    ],
+    location: ['London', 'UK'],
     date: new Date('2018-05-09T23:00:00.000Z'),
     eventDuration: 2,
     website: 'https://www.devoxx.co.uk/',
@@ -368,10 +290,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'Angular UP',
-    location: [
-      'Tel Aviv',
-      'Israel',
-    ],
+    location: ['Tel Aviv', 'Israel'],
     date: new Date('2018-06-20T23:00:00.000Z'),
     eventDuration: 1,
     website: 'http://angular-up.com/',
@@ -389,10 +308,7 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'SeleniumConf',
-    location: [
-      'Chicago',
-      'USA',
-    ],
+    location: ['Chicago', 'USA'],
     date: 'Q3 2018',
     eventDuration: 2,
     website: 'https://www.seleniumconf.de/',
@@ -405,17 +321,14 @@ export const conferencesMockData: any[] = [
   },
   {
     name: 'Angular Connect',
-    location: [
-      'London',
-      'UK',
-    ],
+    location: ['London', 'UK'],
     date: new Date('2018-11-06T00:00:00.000Z'),
     eventDuration: 2,
     website: 'angularconnect.com/2017',
     price: undefined,
     sizeBand: 1000,
     description: [
-      'Europe\'s Largest Angular Conference featuring the world’s leading Angular experts',
+      "Europe's Largest Angular Conference featuring the world’s leading Angular experts",
       'including the core Angular team at Google. This multi-track event features two main tracks of talks',
       'plus mini workshops',
       'and Office Hours and panel sessions with our speakers.',

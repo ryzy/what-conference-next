@@ -10,9 +10,8 @@ describe('NotFoundPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule, SharedModule ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule, SharedModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

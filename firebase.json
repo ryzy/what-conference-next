@@ -9,15 +9,15 @@
     ],
     "headers": [
       {
-        "source" : "/index.html",
-        "headers" : [ {
-          "key" : "Cache-Control",
-          "value" : "max-age=60"
-        } ]
+        "source": "/index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=60"
+          }
+        ]
       }
     ],
-    "ignore": [
-      "stats.json"
-    ]
+    "ignore": ["stats.json"]
   }
 }

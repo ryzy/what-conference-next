@@ -9,19 +9,8 @@ import { EventsListRoutingModule } from './events-list-routing.module';
 import { EventsPageComponent } from './containers/events-page/events-page.component';
 
 @NgModule({
-  imports: [
-    MatTableModule,
-
-    EventBaseModule,
-    SharedModule,
-    EventsListRoutingModule,
-  ],
-  providers: [
-    EventsListService,
-  ],
-  declarations: [
-    EventsPageComponent,
-    EventsTableComponent,
-  ],
+  imports: [MatTableModule, EventBaseModule, SharedModule, EventsListRoutingModule],
+  providers: [EventsListService],
+  declarations: [EventsPageComponent, EventsTableComponent],
 })
 export class EventsListModule {}

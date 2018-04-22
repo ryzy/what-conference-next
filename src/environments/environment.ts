@@ -11,6 +11,6 @@ export const environment = {
     databaseURL: 'https://frontend-events-dev.firebaseio.com',
     projectId: 'frontend-events-dev',
     storageBucket: 'frontend-events-dev.appspot.com',
-    messagingSenderId: '898642869507'
-  }
+    messagingSenderId: '898642869507',
+  },
 };

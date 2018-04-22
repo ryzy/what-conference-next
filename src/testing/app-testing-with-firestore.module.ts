@@ -7,21 +7,14 @@ import { AppTestingModule } from './app-testing.module';
 import { FirestoreDbTestingService } from './firestore-db-testing.service';
 
 @NgModule({
-  imports: [
-    AppTestingModule,
-    CoreModule,
-  ],
-  providers: [
-  ],
+  imports: [AppTestingModule, CoreModule],
+  providers: [],
 })
 export class AppTestingWithFirestoreModule {
-
   public static mockFirebaseDb(): ModuleWithProviders {
     return {
       ngModule: AppTestingWithFirestoreModule,
-      providers: [
-        { provide: FirestoreDbService, useClass: FirestoreDbTestingService },
-      ],
+      providers: [{ provide: FirestoreDbService, useClass: FirestoreDbTestingService }],
     };
   }
 

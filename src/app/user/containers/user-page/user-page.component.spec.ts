@@ -13,13 +13,8 @@ describe('UserPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        CoreModule,
-        UserModule,
-      ],
-    })
-    .compileComponents();
+      imports: [RouterTestingModule, CoreModule, UserModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -13,8 +13,7 @@ import { EventsListService } from '../../services/events-list.service';
 export class EventsPageComponent implements OnInit {
   public eventsDataSource!: EventsDataSource<ConferenceEvent>;
 
-  public constructor(private service: EventsListService) {
-  }
+  public constructor(private service: EventsListService) {}
 
   public ngOnInit(): void {
     this.eventsDataSource = this.service.getEventsDataSource();

@@ -9,10 +9,7 @@ import { FirestoreDbService } from '../../../core/services/firestore-db.service'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventFormPageComponent implements OnInit {
+  public constructor(private fdb: FirestoreDbService) {}
 
-  public constructor(private fdb: FirestoreDbService) {
-  }
-
-  public ngOnInit(): void {
-  }
+  public ngOnInit(): void {}
 }

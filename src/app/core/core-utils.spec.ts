@@ -4,7 +4,6 @@ import { throwIfAlreadyLoaded } from './core-utils';
 describe('core-utils', () => {
   it('#throwIfAlreadyLoaded', () => {
     expect(throwIfAlreadyLoaded(undefined, 'CoreModule')).toBeFalsy();
-    expect(() => throwIfAlreadyLoaded(new CoreModule(), 'CoreModule'))
-      .toThrowError(/has already been loaded/);
+    expect(() => throwIfAlreadyLoaded(new CoreModule(), 'CoreModule')).toThrowError(/has already been loaded/);
   });
 });

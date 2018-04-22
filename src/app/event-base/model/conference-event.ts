@@ -4,7 +4,6 @@ import { EventSizeBand } from '../data/size-bands';
 import { findCountry } from '../utils/event-utils';
 import { Country } from './country';
 
-
 export class ConferenceEvent {
   public id: string;
 
