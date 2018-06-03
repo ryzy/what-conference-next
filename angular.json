@@ -17,7 +17,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "preserveSymlinks": true,
-            "extractCss": true,
+            "sourceMap": false,
+            "extractLicenses": false,
             "assets": [
               {
                 "glob": "**/*",
@@ -36,17 +37,40 @@
             "scripts": []
           },
           "configurations": {
+            "debug": {
+              "sourceMap": true,
+              "extractCss": true
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "src": "src/environments/environment.ts",
+                  "replaceWith": "src/environments/environment.development.ts"
+                }
+              ],
+              "statsJson": true,
+              "extractLicenses": true,
+              "extractCss": true,
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "aot": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "production": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.production.ts"
                 }
               ],
+              "statsJson": true,
+              "extractLicenses": true,
+              "extractCss": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "vendorChunk": false,
@@ -62,15 +86,9 @@
             "host": "0.0.0.0"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "wcn-app:build:production"
+            "debug": {
+              "browserTarget": "wcn-app:build:debug"
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "wcn-app:build"
           }
         },
         "test": {
@@ -80,6 +98,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
+            "sourceMap": false,
             "styles": [
               {
                 "input": "styles/app.scss"
