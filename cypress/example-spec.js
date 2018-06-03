@@ -1388,8 +1388,7 @@ describe('Kitchen Sink', function() {
       // use the _.chain, _.map, _.take, and _.value functions
       // https://on.cypress.io/_
       cy.request('https://jsonplaceholder.typicode.com/users').then(function(response) {
-        let ids = Cypress._
-          .chain(response.body)
+        let ids = Cypress._.chain(response.body)
           .map('id')
           .take(3)
           .value();

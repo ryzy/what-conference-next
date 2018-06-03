@@ -1,5 +1,6 @@
 describe('App', () => {
   it('should work', () => {
-    // cy.visit('/ev');
+    cy.visit('/');
+    cy.contains('Upcoming conferences');
   });
 });
