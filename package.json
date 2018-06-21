@@ -17,9 +17,9 @@
     "test": "ng test --watch",
     "test:ci": "ng test --watch=false --code-coverage",
     "serve": "node scripts/server.js",
-    "e2e": "DEBUG=cypress:cli,cypress:ts,cypress:launcher,cypress:webpack,cypress:server:plugins,cypress:server:preprocessor cypress open",
+    "e2e": "DEBUG=cypress:cli,cypress:launcher cypress open",
     "e2e:debug": "DEBUG=cypress:*,-cypress:server:timers,-cypress:server:specs,-cypress:server:events,-cypress:server:file,-cypress:server:cors,-cypress:server:proxy,-cypress:server:project cypress open",
-    "e2e:ci": "DEBUG=cypress:cli cypress run --record --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5",
+    "e2e:ci": "DEBUG=cypress:cli,cypress:launcher cypress run",
     "analyze": "webpack-bundle-analyzer ./dist/app/stats.json ./dist/app/ --mode=static --report=dist/size-report/index.html --no-open"
   },
   "dependencies": {

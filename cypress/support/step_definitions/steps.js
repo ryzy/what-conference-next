@@ -119,6 +119,14 @@ given('I visit {string} page', (url) => {
   cy.visit(URLs[url]);
 });
 
+/**
+ * Test that browser is on a specified URL
+ */
+then('I should be on the {string} page', (url) => {
+  expect(URLs[url]).not.to.be.empty;
+  cy.url().should('eq', Cypress.config('baseUrl') + URLs[url]);
+});
+
 then('I should see {string}', (content) => {
   cy.contains(content);
 });

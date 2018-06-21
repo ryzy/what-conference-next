@@ -4,5 +4,6 @@
   "viewportWidth": 1200,
   "viewportHeight": 1000,
   "fixturesFolder": false,
+  "videoUploadOnPasses": false,
   "projectId": "3fk9iw"
 }
