@@ -6,7 +6,8 @@ Feature: Event Form
 
       Given I visit "Home" page
        When I click on a "New Event" link
-       Then I should see "Submit Event" button "disabled"
+       Then I should be on the "New Event" page
+        And I should see "Submit Event" button "disabled"
 
 
   Scenario: Form should work with sample data

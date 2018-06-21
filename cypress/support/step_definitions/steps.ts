@@ -123,6 +123,10 @@ then('I should see {string}', (content) => {
   cy.contains(content);
 });
 
+then('I should be on the {string} page', (content) => {
+  cy.contains(content);
+});
+
 then(`I should see {string} in the title`, (title) => {
   cy.title().should('include', title);
 });
