@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:10-stretch-browsers
 
     steps:
       - run: env && yarn versions && npm version # just to check env and versions...
