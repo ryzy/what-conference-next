@@ -1,13 +1,19 @@
+// import { Given, Then, When } from 'cucumber';
+
+const Given = window.given;
+const Then = window.then;
+const When = window.when;
+
 const URLs = {
   Home: '/',
   NewEventForm: '/ev',
 };
 
-function randomRange(min = 0, max = 10) {
+export function randomRange(min = 0, max = 10) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-class AppPage {
+export class AppPage {
   static link(linkText) {
     return cy
       .get('a, button')
@@ -16,7 +22,7 @@ class AppPage {
   }
 }
 
-class EventFormPage extends AppPage {
+export class EventFormPage extends AppPage {
   /**
    *
    * @param {string} fieldName
@@ -114,7 +120,7 @@ class EventFormPage extends AppPage {
   }
 }
 
-given('I visit {string} page', (url) => {
+Given('I visit {string} page', (url) => {
   expect(URLs[url]).not.to.be.empty;
   cy.visit(URLs[url]);
 });
@@ -122,32 +128,32 @@ given('I visit {string} page', (url) => {
 /**
  * Test that browser is on a specified URL
  */
-then('I should be on the {string} page', (url) => {
+Then('I should be on the {string} page', (url) => {
   expect(URLs[url]).not.to.be.empty;
   cy.url().should('eq', Cypress.config('baseUrl') + URLs[url]);
 });
 
-then('I should see {string}', (content) => {
+Then('I should see {string}', (content) => {
   cy.contains(content);
 });
 
-then(`I should see {string} in the title`, (title) => {
+Then(`I should see {string} in the title`, (title) => {
   cy.title().should('include', title);
 });
 
-then(`I should see {string} button {string}`, (buttonLabel, state = 'enabled') => {
+Then(`I should see {string} button {string}`, (buttonLabel, state = 'enabled') => {
   EventFormPage.button(buttonLabel, state === 'disabled');
 });
 
-when('I click on a {string} link', (linkText) => {
+When('I click on a {string} link', (linkText) => {
   EventFormPage.link(linkText).click();
 });
 
-when('I enter {string} in the field {string}', (fieldValue, fieldName) => {
+When('I enter {string} in the field {string}', (fieldValue, fieldName) => {
   EventFormPage.typeIntoFormField(fieldName, fieldValue);
 });
 
-when('I select {string} in the calendar field {string}', (date, fieldName) => {
+When('I select {string} in the calendar field {string}', (date, fieldName) => {
   EventFormPage.formField(fieldName)
     .focus()
     .get('.mat-calendar-next-button')
@@ -159,15 +165,15 @@ when('I select {string} in the calendar field {string}', (date, fieldName) => {
     .click();
 });
 
-when('I tick checkbox no {string} in the field {string}', (idx, fieldName) => {
+When('I tick checkbox no {string} in the field {string}', (idx, fieldName) => {
   EventFormPage.checkboxes(fieldName, idx)
     // Force=true becase the real inputs are hidden behind MD things
     .click({ force: true });
 });
 
-when('I select option no {string} in the dropdown {string}', (optionIdx, fieldName) => {
+When('I select option no {string} in the dropdown {string}', (optionIdx, fieldName) => {
   EventFormPage.select(fieldName, optionIdx);
 });
-when('I select option no {string} from the autocomplete field {string}', (optionIdx) => {
+When('I select option no {string} from the autocomplete field {string}', (optionIdx) => {
   EventFormPage.autocomplete(optionIdx);
 });
