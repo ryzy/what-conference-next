@@ -33,7 +33,7 @@ export class AuthService {
   /**
    * Log in the user
    */
-  public loginWithDefaultMethod(): Observable<firebase.auth.UserCredential> {
+  public loginWithDefaultMethod(): Observable<void> {
     return from(this.afAuth.auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider()));
   }
 

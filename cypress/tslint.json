@@ -1,0 +1,7 @@
+{
+  "extends": "../tslint.json",
+  "rules": {
+    "member-access": false,
+    "typedef": false
+  }
+}

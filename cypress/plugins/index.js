@@ -1,5 +1,4 @@
-// const webpackPreProcessor = require('@cypress/webpack-preprocessor');
-const cucumber = require('cypress-cucumber-preprocessor').default;
+const webpackPreProcessor = require('@cypress/webpack-preprocessor');
 
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
@@ -18,30 +17,28 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
-  // const webpackOptions = {
-  //   resolve: {
-  //     extensions: ['.ts', '.js'],
-  //   },
-  //   module: {
-  //     rules: [
-  //       {
-  //         test: /\.ts$/,
-  //         exclude: [/node_modules/],
-  //         use: [
-  //           {
-  //             loader: 'ts-loader',
-  //           }
-  //         ],
-  //       },
-  //     ],
-  //   },
-  // };
-  //
+  const webpackOptions = {
+    resolve: {
+      extensions: ['.ts'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          exclude: [/node_modules/],
+          use: [
+            {
+              loader: 'ts-loader',
+            },
+          ],
+        },
+      ],
+    },
+  };
 
   // TODO: Cucumber doesn't support Typescript, so... no-go for now ;/
-  // const options = { webpackOptions };
-  // on('file:preprocessor', webpackPreProcessor(options));
+  on('file:preprocessor', webpackPreProcessor({ webpackOptions }));
 
   // Must be after webpack, otherwise cucumber files are
-  on('file:preprocessor', cucumber());
+  // on('file:preprocessor', cucumber());
 };
