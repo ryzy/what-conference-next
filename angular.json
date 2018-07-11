@@ -17,8 +17,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "preserveSymlinks": true,
-            "sourceMap": false,
             "extractLicenses": false,
+            "extractCss": true,
+            "sourceMap": true,
             "assets": [
               {
                 "glob": "**/*",
@@ -37,10 +38,6 @@
             "scripts": []
           },
           "configurations": {
-            "debug": {
-              "sourceMap": true,
-              "extractCss": true
-            },
             "development": {
               "fileReplacements": [
                 {
@@ -50,7 +47,6 @@
               ],
               "statsJson": true,
               "extractLicenses": true,
-              "extractCss": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": true,
@@ -67,7 +63,6 @@
               ],
               "statsJson": true,
               "extractLicenses": true,
-              "extractCss": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -98,7 +93,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "sourceMap": false,
+            "sourceMap": true,
             "styles": [
               {
                 "input": "styles/app.scss"

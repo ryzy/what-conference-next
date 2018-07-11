@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { UserInfo } from 'firebase';
 import * as firebase from 'firebase/app';
 import { Observable, defer, from } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -26,8 +27,12 @@ export class AuthService {
   /**
    * Get currently logged in user
    */
-  public getCurrentUser(): Observable<any> {
+  public getCurrentUser(): Observable<User | undefined> {
     return this.store.select(appSelectors.getUser);
+  }
+
+  public getFirebaseUser(): Observable<firebase.User | undefined> {
+    return this.afAuth.user.pipe(map((u) => u || undefined));
   }
 
   /**
@@ -38,9 +43,20 @@ export class AuthService {
   }
 
   /**
+   * Log in the user
+   */
+  public signInWithEmailAndPassword(email: string, password: string): Observable<firebase.auth.UserCredential> {
+    return from(this.afAuth.auth.signInWithEmailAndPassword(email, password));
+  }
+
+  /**
    * Log out the user
    */
   public logout(): Observable<boolean> {
     return from(this.afAuth.auth.signOut()).pipe(map(() => true));
+  }
+
+  public updateUserDetails(user: firebase.User): Observable<void> {
+    return from(this.afAuth.auth.updateCurrentUser(user));
   }
 }

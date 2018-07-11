@@ -4,7 +4,7 @@
     "target": "es2015",
     "module": "es2015",
     "lib": ["es5", "dom"],
-    "types": ["cypress"]
+    "types": ["cypress", "mocha", "chai"]
   },
   "include": ["**/*.ts"]
 }

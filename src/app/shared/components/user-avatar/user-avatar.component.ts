@@ -4,6 +4,10 @@ import { User } from '../../../core/model/user';
 
 @Component({
   selector: 'app-user-avatar',
+  host: {
+    class: 'app-user-avatar',
+    '[class.app-user-avatar--logged-in]': 'user',
+  },
   templateUrl: './user-avatar.component.html',
   styleUrls: ['./user-avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

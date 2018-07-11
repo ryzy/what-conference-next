@@ -6,7 +6,9 @@
 </div>
 
 <ng-template #showLogin>
-  <button mat-raised-button (click)="login()">
+  <button class="twitter-login-button" mat-raised-button (click)="login()">
     <mat-icon>verified_user</mat-icon> Login with Twitter
   </button>
+  <br />
+  or use <a routerLink="login">login form</a>.
 </ng-template>

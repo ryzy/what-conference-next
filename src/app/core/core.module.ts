@@ -26,12 +26,15 @@ import { AuthService } from './services/auth.service';
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule,
     /* istanbul ignore next */
-    environment.production ? [] : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
+    environment.production || isUnitTestContext()
+      ? []
+      : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
     EffectsModule.forRoot([AuthService, RouterEffects]),
 
     // Firebase setup
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    /* istanbul ignore next */
     isUnitTestContext() ? AngularFirestoreModule : AngularFirestoreModule.enablePersistence(),
 
     // SW

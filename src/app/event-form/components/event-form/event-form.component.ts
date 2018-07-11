@@ -67,7 +67,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.setFormTopicsTags();
 
     // Countries: filter the values
-    this.countries$ = (this.eventForm.get('country') as FormControl).valueChanges.pipe(
+    const countryField: FormControl = this.eventForm.get('country') as FormControl;
+    this.countries$ = countryField.valueChanges.pipe(
       takeUntil(this.ngOnDestroy$),
       startWith(''),
       filter<string>((q: string | Country) => typeof q === 'string'),
@@ -81,7 +82,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
       ),
     );
     // Countries: on change, set the city value to selected Country.capital
-    (this.eventForm.get('country') as FormControl).valueChanges
+    countryField.valueChanges
       .pipe(
         takeUntil(this.ngOnDestroy$),
         filter<Country>((c: string | Country) => typeof c === 'object' && 'isoCode' in c),
