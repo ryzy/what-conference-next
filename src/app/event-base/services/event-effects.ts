@@ -4,12 +4,14 @@ import { Store } from '@ngrx/store';
 import { Observable, defer, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-import { DatabaseService } from '../../core/services/database.service';
+import { DatabaseService } from './database.service';
 import { EventTopic } from '../model/event-topic';
 import { LoadTopicsAction, TopicsActionType, SetTopicsAction } from '../store/topics-actions';
 import { EventsRootState } from '../store/index';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class EventEffects {
   @Effect()
   public setTopics$: Observable<SetTopicsAction> = this.actions$.pipe(

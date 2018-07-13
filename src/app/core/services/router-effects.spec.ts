@@ -6,8 +6,8 @@ import { Actions } from '@ngrx/effects';
 import { cold, hot } from 'jasmine-marbles';
 
 import { RouterEffects } from './router-effects';
-import { BackAction, ForwardAction, GoAction } from './router-actions';
-import { TestActions, TestActionsProvider } from '../../../../testing/test-actions';
+import { BackAction, ForwardAction, GoAction } from '../store/router/router-actions';
+import { TestActions, TestActionsProvider } from '../../../testing/test-actions';
 
 describe('RouterEffects', () => {
   let actions$: TestActions;

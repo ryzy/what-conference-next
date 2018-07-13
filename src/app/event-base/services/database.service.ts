@@ -3,9 +3,11 @@ import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { EventTopic } from '../../event-base/model/event-topic';
+import { EventTopic } from '../model/event-topic';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DatabaseService {
   public constructor(private afs: AngularFirestore) {}
 

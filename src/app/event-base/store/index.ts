@@ -22,11 +22,11 @@ export const eventsReducers: ActionReducerMap<EventsState, TopicsActions> = {
   topics: fromTopics.topicsReducer as ActionReducer<fromTopics.TopicsState, TopicsActions>,
 };
 
-export const getEventsRootState: MemoizedSelector<object, EventsState> = createFeatureSelector(EventsFeatureStoreName);
+export const getEventsState: MemoizedSelector<object, EventsState> = createFeatureSelector(EventsFeatureStoreName);
 
 export const selectTopicsState: MemoizedSelector<EventsRootState, fromTopics.TopicsState> = createSelector(
-  getEventsRootState,
-  (state) => state.topics,
+  getEventsState,
+  (state = eventsInitialState) => state.topics,
 );
 export const selectAllTopics: MemoizedSelector<EventsRootState, EventTopic[]> = createSelector(
   selectTopicsState,

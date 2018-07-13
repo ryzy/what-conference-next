@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { UserModule } from '../../user.module';
-import { AppTestingWithDatabaseModule } from '../../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../../testing/app-testing-with-database.module';
 import { LoginFormPageComponent } from './login-form-page.component';
 
 describe('LoginFormPageComponent', () => {
@@ -15,7 +15,7 @@ describe('LoginFormPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AppTestingWithDatabaseModule, UserModule],
+      imports: [RouterTestingModule, AppTestingAuthAndDbModule, UserModule],
     }).compileComponents();
   }));
 

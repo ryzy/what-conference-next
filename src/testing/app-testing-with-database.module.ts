@@ -1,26 +1,34 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FirebaseApp } from 'angularfire2';
+import { Provider } from '@angular/core/src/di/provider';
+import { Type } from '@angular/core/src/type';
+import { AngularFireModule, FirebaseApp } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firestore } from 'firebase';
 
 import { CoreModule } from '../app/core/core.module';
-import { DatabaseService } from '../app/core/services/database.service';
+import { DatabaseService } from '../app/event-base/services/database.service';
+import { environment } from '../environments/environment';
 import { AppTestingModule } from './app-testing.module';
 import { MockDatabaseService } from './mock-database.service';
 
 let TEST_FIRESTORE_INITIALISED: firestore.Firestore | undefined;
 
 @NgModule({
-  imports: [AppTestingModule, CoreModule],
+  imports: [
+    AppTestingModule,
+
+    // Firebase setup
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+  ],
   providers: [{ provide: DatabaseService, useClass: MockDatabaseService }],
 })
-export class AppTestingWithDatabaseModule {
-  /**
-   * By default `AppTestingWithDatabaseModule` provides mocked database service.
-   * Provide it with this method to have a real `DatabaseService` instead of mocked one.
-   */
+export class AppTestingAuthAndDbModule {
   public static withRealDatabaseService(): ModuleWithProviders {
     return {
-      ngModule: AppTestingWithDatabaseModule,
+      ngModule: AppTestingAuthAndDbModule,
       providers: [{ provide: DatabaseService, useClass: DatabaseService }],
     };
   }

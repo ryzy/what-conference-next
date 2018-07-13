@@ -12,7 +12,9 @@ import { User } from '../model/user';
 import { SetUserAction } from '../store/app/app-actions';
 import * as appSelectors from '../store/app/app-selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   /**
    * Puts user in @ngrx store

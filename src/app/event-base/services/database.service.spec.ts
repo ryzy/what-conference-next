@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
-import { AppTestingWithDatabaseModule } from '../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
 import { mockTopics } from '../../../testing/fixtures/topics';
-import { EventTopic } from '../../event-base/model/event-topic';
+import { EventTopic } from '../model/event-topic';
 import { DatabaseService } from './database.service';
 
 describe('DatabaseService', () => {
@@ -13,8 +13,7 @@ describe('DatabaseService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingWithDatabaseModule.withRealDatabaseService()],
-      providers: [DatabaseService],
+      imports: [AppTestingAuthAndDbModule.withRealDatabaseService()],
     });
 
     fdbService = TestBed.get(DatabaseService);
@@ -25,9 +24,7 @@ describe('DatabaseService', () => {
   });
 
   it('#getTopics', (done: Function) => {
-    mockCollection.add(mockTopics[0]);
-    mockCollection.add(mockTopics[1]);
-
+    mockTopics.forEach((v) => mockCollection.add(v));
     fdbService.getTopics().subscribe((v) => {
       expect(v).toEqual(jasmine.arrayContaining(mockTopics));
       done();

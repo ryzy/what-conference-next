@@ -11,9 +11,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { environment } from '../../environments/environment';
 import { isUnitTestContext, throwIfAlreadyLoaded } from './core-utils';
-import { DatabaseService } from './services/database.service';
 import { reducers, metaReducers } from './store/index';
-import { RouterEffects } from './store/router/router-effects';
+import { RouterEffects } from './services/router-effects';
 import { AppRouterStateSerializer } from './store/router/router-state-serializer';
 import { AuthService } from './services/auth.service';
 
@@ -24,12 +23,12 @@ import { AuthService } from './services/auth.service';
 
     // @ngrx store
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([AuthService, RouterEffects]),
     StoreRouterConnectingModule,
     /* istanbul ignore next */
     environment.production || isUnitTestContext()
       ? []
       : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
-    EffectsModule.forRoot([AuthService, RouterEffects]),
 
     // Firebase setup
     AngularFireModule.initializeApp(environment.firebase),
@@ -40,7 +39,7 @@ import { AuthService } from './services/auth.service';
     // SW
     // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }, AuthService, DatabaseService],
+  providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }],
 })
 export class CoreModule {
   public constructor(

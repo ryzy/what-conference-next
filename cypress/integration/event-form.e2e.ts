@@ -8,7 +8,6 @@ describe('Event Form', () => {
   });
 
   beforeEach(() => {
-    AppPage.visit();
     AppPage.expectToBeLoggedIn();
   });
 
@@ -34,12 +33,12 @@ describe('Event Form', () => {
     cy.focused().contains('31');
   });
 
-  it('Form should work with sample data', () => {
+  it.only('Form should work with sample data', () => {
     cy.log('Given I visit "NewEventForm" page');
     EventFormPage.visit();
 
     cy.log('And I fill the form with some valid data');
-    EventFormPage.fillTheFormWithRandomData();
+    EventFormPage.fillTheFormWithRandomData({ city: false }); // city is auto-set from country
 
     cy.log('Then I should see "Submit Event" button "enabled"');
     EventFormPage.button('Submit Event', false);

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
-import { DatabaseService } from '../../../core/services/database.service';
+import { DatabaseService } from '../../../event-base/services/database.service';
 
 @Component({
   selector: 'app-event-page',

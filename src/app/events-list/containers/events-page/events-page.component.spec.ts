@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppTestingWithDatabaseModule } from '../../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../../testing/app-testing-with-database.module';
 import { EventsPageComponent } from './events-page.component';
 import { EventsListModule } from '../../events-list.module';
 
@@ -10,7 +10,7 @@ describe('EventsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingWithDatabaseModule, EventsListModule],
+      imports: [AppTestingAuthAndDbModule, EventsListModule],
     }).compileComponents();
   }));
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { DatabaseService } from '../app/core/services/database.service';
+import { DatabaseService } from '../app/event-base/services/database.service';
 import { EventTopic } from '../app/event-base/model/event-topic';
 import { mockTopics } from './fixtures/topics';
 
