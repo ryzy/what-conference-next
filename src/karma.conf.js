@@ -2,6 +2,8 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function(config) {
+  const isCi = !config.buildWebpack.options.watch;
+
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -25,7 +27,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: [isCi ? 'ChromeHeadless' : 'Chrome'],
     browserNoActivityTimeout: 30000, // increase from default 10s due to sporadic timeouts on CI
     singleRun: false,
   });

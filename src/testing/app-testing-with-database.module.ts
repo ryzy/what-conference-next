@@ -42,8 +42,11 @@ export class AppTestingAuthAndDbModule {
       // Note: setting `timestampsInSnapshots` doesn't seem to be needed now,
       // but as soon as you call .disableNetwork() it complains, so... re-setting it.
       ffs.settings({ timestampsInSnapshots: true });
-      ffs.disableNetwork();
       TEST_FIRESTORE_INITIALISED = ffs;
     }
+
+    // For now we need network for real DatabaseService tests
+    // TODO: figure out how to better mock Firestore
+    // ffs.disableNetwork();
   }
 }

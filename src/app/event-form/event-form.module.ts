@@ -9,6 +9,7 @@ import {
   MatAutocompleteModule,
   MatProgressSpinnerModule,
   MatTooltipModule,
+  MatSnackBarModule,
 } from '@angular/material';
 import { A11yModule } from '@angular/cdk/a11y';
 
@@ -30,6 +31,7 @@ import { EventFormRoutingModule } from './event-form-routing.module';
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatSnackBarModule,
     MatTooltipModule,
 
     SharedModule,

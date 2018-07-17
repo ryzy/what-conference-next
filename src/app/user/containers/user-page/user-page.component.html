@@ -2,11 +2,11 @@
 
 <div *ngIf="user$ | async as user; else showLogin">
   <h3>Hi {{ user.displayName }}!</h3>
-  <button mat-raised-button (click)="logout()">Logout</button>
+  <button mat-raised-button (click)="logout()" class="button-logout">Logout</button>
 </div>
 
 <ng-template #showLogin>
-  <button class="twitter-login-button" mat-raised-button (click)="login()">
+  <button class="button-login--twitter" mat-raised-button (click)="login()">
     <mat-icon>verified_user</mat-icon> Login with Twitter
   </button>
   <br />

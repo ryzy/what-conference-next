@@ -94,6 +94,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "sourceMap": true,
+            "codeCoverageExclude": [
+              "src/testing/**"
+            ],
             "styles": [
               {
                 "input": "styles/app.scss"

@@ -20,6 +20,6 @@ export class AppComponent {
   }
 
   public goToNewEvent(): void {
-    this.store.dispatch(new GoAction(['ev']));
+    this.store.dispatch(new GoAction(['new']));
   }
 }

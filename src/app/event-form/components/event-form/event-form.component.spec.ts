@@ -20,9 +20,11 @@ describe('EventFormComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it('should create and submit', () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
+
+    component.onSubmit();
   });
 
   it('#displayCountryFn', () => {

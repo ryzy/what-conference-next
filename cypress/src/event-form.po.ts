@@ -27,12 +27,14 @@ export class EventFormPage extends AppPage {
     super.visit(url);
   }
 
-  public static fillTheFormWithRandomData(fields = eventFormFields): void {
+  public static fillTheFormWithRandomData(fields = eventFormFields): string {
     fields = { ...eventFormFields, ...fields }; // some fields might be switched off
+
+    let nameVal = '';
 
     if (fields.name) {
       cy.log('And I enter "Event" in the field "name"');
-      const nameVal = ('string' === typeof fields.name ? fields.name : 'Event') + ' ' + randomRange(1000);
+      nameVal = ('string' === typeof fields.name ? fields.name : 'Test Event') + ' ' + randomRange(1000);
       this.typeIntoFormField('name', nameVal);
     }
 
@@ -40,6 +42,7 @@ export class EventFormPage extends AppPage {
       cy.log('And I tick checkbox no "1" in the field "topicTags"');
       // Force=true becase the real inputs are hidden behind MD things
       this.checkboxes('topicTags', 1).click({ force: true });
+      this.checkboxes('topicTags', 3).click({ force: true });
     }
 
     if (fields.date) {
@@ -90,5 +93,7 @@ export class EventFormPage extends AppPage {
       cy.log('And I enter "Lorem ipsum dolar sit amet." in the field "description"');
       this.typeIntoFormField('description', 'Lorem ipsum dolar sit amet');
     }
+
+    return nameVal;
   }
 }

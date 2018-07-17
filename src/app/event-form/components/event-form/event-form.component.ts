@@ -7,14 +7,15 @@ import {
   ChangeDetectorRef,
   ViewChildren,
   QueryList,
+  Output,
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material';
 import { Observable, combineLatest } from 'rxjs';
-import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
+import { filter, map, startWith, takeUntil, tap, debounceTime } from 'rxjs/operators';
 
 import { builtinSizeBands, EventSizeBand } from '../../../event-base/data/size-bands';
-import { ConferenceEvent } from '../../../event-base/model/conference-event';
+import { ConferenceEventFormData, createEventFromFormValues } from '../../../event-base/model/conference-event';
 import { Country } from '../../../event-base/model/country';
 import { EventTopic } from '../../../event-base/model/event-topic';
 import { EventService } from '../../../event-base/services/event.service';
@@ -27,6 +28,8 @@ import { findCountries } from '../../../event-base/utils/event-utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventFormComponent implements OnInit, OnDestroy {
+  @Output() public formSubmit: EventEmitter<ConferenceEventFormData> = new EventEmitter();
+
   public eventForm!: FormGroup;
 
   public topics: EventTopic[] = [];
@@ -63,19 +66,24 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.handleTopicsTags();
     this.handleCountryAndCity();
 
-    combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges).subscribe(
-      ([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
+    /**/
+    combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges)
+      .pipe(debounceTime(1000))
+      .subscribe(([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
         console.log(
           '[EVENT FORM] ConferenceEvent#fromFormValues',
           formStatus,
-          ConferenceEvent.fromFormValues(formValues, this.topics),
+          createEventFromFormValues(formValues, this.topics),
         );
-      },
-    );
+      }); /**/
   }
 
   public ngOnDestroy(): void {
     this.ngOnDestroy$.emit(true);
+  }
+
+  public onSubmit(): void {
+    this.formSubmit.next(this.eventForm.getRawValue() as ConferenceEventFormData);
   }
 
   public displayCountryFn(country?: Country): string | undefined {

@@ -11,6 +11,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'ev',
+    loadChildren: './event-details/event-details.module#EventDetailsModule',
+  },
+  {
+    path: 'new',
     loadChildren: './event-form/event-form.module#EventFormModule',
   },
   {

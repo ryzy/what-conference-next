@@ -26,6 +26,7 @@ export const getEventsState: MemoizedSelector<object, EventsState> = createFeatu
 
 export const selectTopicsState: MemoizedSelector<EventsRootState, fromTopics.TopicsState> = createSelector(
   getEventsState,
+  /* istanbul ignore next */
   (state = eventsInitialState) => state.topics,
 );
 export const selectAllTopics: MemoizedSelector<EventsRootState, EventTopic[]> = createSelector(

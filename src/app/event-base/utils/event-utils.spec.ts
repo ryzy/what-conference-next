@@ -25,7 +25,6 @@ describe('event-utils', () => {
     expect(findCountries('pl').length).toBe(2);
     expect(findCountries('pol').length).toBe(2); // poland and french polynesia
 
-    console.log(findCountries('z'));
     expect(findCountries('z').length).toBe(16);
   });
 });

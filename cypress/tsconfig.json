@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "outDir": "../dist/out-tsc",
+    "baseUrl": "../node_modules/",
     "target": "es2015",
     "module": "es2015",
-    "lib": ["es5", "dom"],
-    "types": ["cypress", "mocha", "chai"]
+    "sourceMap": true,
+    "lib": ["es2015", "dom"],
+    "skipLibCheck": true,
+    "typeRoots": [],
+    "types": ["cypress", "mocha"]
   },
   "include": ["**/*.ts"]
 }

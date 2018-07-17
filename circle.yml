@@ -32,7 +32,7 @@ jobs:
           name: E2E
           command: |
             yarn serve &
-            yarn e2e:ci --record --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5
+            yarn e2e:ci --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5
 
       - deploy:
           name: Deploy DEV

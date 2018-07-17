@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { mockTopics } from '../../../testing/fixtures/topics';
-import { EventTopic } from '../model/event-topic';
 
 import {
   EventsFeatureStoreName,
@@ -15,6 +13,8 @@ import {
 } from './index';
 import { TopicsActions, TopicsActionType, LoadTopicsAction, SetTopicsAction } from './topics-actions';
 import { topicsInitialState, topicsReducer, TopicsState } from './topics-reducer';
+import { mockTopics } from '../../../testing/fixtures/topics';
+import { EventTopic } from '../model/event-topic';
 
 describe('Topics State', () => {
   let store: Store<EventsRootState>;

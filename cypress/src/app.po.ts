@@ -4,15 +4,18 @@ import { randomRange } from './utils';
 export const URLs = {
   Home: '/',
   User: '/user',
-  NewEventForm: '/ev',
+  NewEventForm: '/new',
+  Event: '/ev',
 };
 
 export class AppPage {
   static URL = URLs.Home;
 
-  public static visit(url = AppPage.URL): void {
+  public static visit(url = AppPage.URL, waitAndCheck = true): void {
     cy.visit(url);
-    cy.url().should('eq', Cypress.config('baseUrl') + url);
+    if (waitAndCheck) {
+      cy.url().should('eq', Cypress.config('baseUrl') + url);
+    }
   }
 
   public static link(linkText) {
@@ -42,9 +45,16 @@ export class AppPage {
   }
 
   public static checkboxes(fieldName, indexFrom1 = 0) {
-    const ch = cy.get(`[formarrayname="${fieldName}"]`).find('input[type=checkbox]');
+    const ch = cy.get(`[formarrayname="${fieldName}"]`).find('input[type=checkbox]', { timeout: 120000 });
 
     return indexFrom1 ? ch.eq(indexFrom1 - 1) : ch;
+  }
+
+  /**
+   * Find snackbar container
+   */
+  public static snackBar() {
+    return cy.get('.mat-snack-bar-container', { timeout: 120000 });
   }
 
   public static typeIntoFormField(fieldName: string, stringToType: string | number) {

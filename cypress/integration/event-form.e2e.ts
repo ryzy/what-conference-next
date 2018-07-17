@@ -7,6 +7,10 @@ describe('Event Form', () => {
     UserPage.loginWithForm(Cypress.env('TEST_EDITOR_USER'), Cypress.env('TEST_EDITOR_PASS'));
   });
 
+  // after(() => {
+  // UserPage.visitAndLogOut();
+  // });
+
   beforeEach(() => {
     AppPage.expectToBeLoggedIn();
   });
@@ -33,18 +37,22 @@ describe('Event Form', () => {
     cy.focused().contains('31');
   });
 
-  it.only('Form should work with sample data', () => {
+  it('Should submit and save new event', () => {
     cy.log('Given I visit "NewEventForm" page');
     EventFormPage.visit();
+    // cy.reload(true);
 
     cy.log('And I fill the form with some valid data');
-    EventFormPage.fillTheFormWithRandomData({ city: false }); // city is auto-set from country
+    const eventName = EventFormPage.fillTheFormWithRandomData({ city: false }); // city is auto-set from country
 
     cy.log('Then I should see "Submit Event" button "enabled"');
     EventFormPage.button('Submit Event', false);
 
     cy.log('And when I submit the form');
-    // EventFormPage.button('Submit Event', false);
-    // TODO
+    EventFormPage.button('Submit Event', false).click();
+
+    cy.log('I should see the saved event page');
+    EventFormPage.snackBar().contains('successfully saved');
+    cy.contains(eventName);
   });
 });
