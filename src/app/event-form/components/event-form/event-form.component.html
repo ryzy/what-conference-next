@@ -1,4 +1,4 @@
-<form [formGroup]="eventForm" novalidate cdkTrapFocus>
+<form [formGroup]="eventForm" novalidate cdkTrapFocus (submit)="onSubmit()">
 
   <fieldset>
     <legend>Event Basic Information</legend>
@@ -92,7 +92,7 @@
     <div class="grid-x grid-margin-x">
       <mat-form-field class="cell mini-6">
         <mat-label>Event short description</mat-label>
-        <textarea matInput matTextareaAutosize matAutosizeMinRows="3" formControlName="description"
+        <textarea matInput formControlName="description"
                   placeholder="Provide a short info about the event - just a few sentences."></textarea>
       </mat-form-field>
     </div>
@@ -102,6 +102,7 @@
     <div class="grid-x grid-margin-x align-right">
       <div class="cell shrink">
         <button mat-button>Cancel</button>
+        <button mat-raised-button color="accent" type="button" (click)="onSubmit()">Test submit</button>
         <button mat-raised-button color="accent" type="submit" [disabled]="!this.eventForm.valid">Submit Event</button>
       </div>
     </div>

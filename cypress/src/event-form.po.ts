@@ -40,6 +40,7 @@ export class EventFormPage extends AppPage {
       cy.log('And I tick checkbox no "1" in the field "topicTags"');
       // Force=true becase the real inputs are hidden behind MD things
       this.checkboxes('topicTags', 1).click({ force: true });
+      this.checkboxes('topicTags', 3).click({ force: true });
     }
 
     if (fields.date) {

@@ -7,6 +7,10 @@ describe('Event Form', () => {
     UserPage.loginWithForm(Cypress.env('TEST_EDITOR_USER'), Cypress.env('TEST_EDITOR_PASS'));
   });
 
+  after(() => {
+    UserPage.visitAndLogOut();
+  });
+
   beforeEach(() => {
     AppPage.expectToBeLoggedIn();
   });
@@ -33,9 +37,10 @@ describe('Event Form', () => {
     cy.focused().contains('31');
   });
 
-  it.only('Form should work with sample data', () => {
+  it('Form should work with sample data', () => {
     cy.log('Given I visit "NewEventForm" page');
     EventFormPage.visit();
+    cy.reload(true);
 
     cy.log('And I fill the form with some valid data');
     EventFormPage.fillTheFormWithRandomData({ city: false }); // city is auto-set from country

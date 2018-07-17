@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { ConferenceEvent } from '../model/conference-event';
 
 import { DatabaseService } from './database.service';
 import { EventTopic } from '../model/event-topic';
@@ -14,5 +15,9 @@ export class EventService {
 
   public getTopics(): Observable<EventTopic[]> {
     return this.store.select(selectAllTopics);
+  }
+
+  public newEvent(ev: ConferenceEvent): Observable<ConferenceEvent> {
+    return this.fdb.newEvent(ev);
   }
 }

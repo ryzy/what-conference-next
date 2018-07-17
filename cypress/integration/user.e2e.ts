@@ -14,7 +14,7 @@ describe('User', () => {
   });
 
   it('should login with form and show error', () => {
-    UserPage.loginWithForm('some-invalid@email.com', 'some invalid passw');
+    UserPage.loginWithForm('some-invalid@email.com', 'some invalid passw', false);
     cy.contains('user-not-found');
     UserPage.expectNotToBeLoggedIn();
   });

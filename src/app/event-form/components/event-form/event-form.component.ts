@@ -11,10 +11,11 @@ import {
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material';
 import { Observable, combineLatest } from 'rxjs';
-import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
+import { filter, map, startWith, takeUntil, tap, debounceTime } from 'rxjs/operators';
+import { mockNewEventFormData } from '../../../../testing/fixtures/event-form';
 
 import { builtinSizeBands, EventSizeBand } from '../../../event-base/data/size-bands';
-import { ConferenceEvent } from '../../../event-base/model/conference-event';
+import { ConferenceEvent, createEventFromFormValues } from '../../../event-base/model/conference-event';
 import { Country } from '../../../event-base/model/country';
 import { EventTopic } from '../../../event-base/model/event-topic';
 import { EventService } from '../../../event-base/services/event.service';
@@ -63,19 +64,35 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.handleTopicsTags();
     this.handleCountryAndCity();
 
-    combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges).subscribe(
-      ([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
+    /**/
+    combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges)
+      .pipe(debounceTime(1000))
+      .subscribe(([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
         console.log(
           '[EVENT FORM] ConferenceEvent#fromFormValues',
           formStatus,
-          ConferenceEvent.fromFormValues(formValues, this.topics),
+          createEventFromFormValues(formValues, this.topics),
         );
-      },
-    );
+      }); /**/
   }
 
   public ngOnDestroy(): void {
     this.ngOnDestroy$.emit(true);
+  }
+
+  public onSubmit(): void {
+    console.log(
+      'onSubmit',
+      this.eventForm.getRawValue(),
+      createEventFromFormValues(this.eventForm.getRawValue(), this.topics),
+    );
+    if (this.eventForm.status === 'VALID') {
+      const ev = createEventFromFormValues(this.eventForm.getRawValue(), this.topics);
+      this.service.newEvent(ev);
+    } else {
+      const ev = createEventFromFormValues(mockNewEventFormData, this.topics);
+      this.service.newEvent(ev);
+    }
   }
 
   public displayCountryFn(country?: Country): string | undefined {

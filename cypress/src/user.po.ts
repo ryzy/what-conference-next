@@ -11,7 +11,11 @@ export class UserPage extends AppPage {
   }
 
   public static loginButton() {
-    return cy.get('.twitter-login-button');
+    return cy.get('.button-login--twitter');
+  }
+
+  public static logoutButton() {
+    return cy.get('.button-logout');
   }
 
   public static loginWithTwitter() {
@@ -41,11 +45,14 @@ export class UserPage extends AppPage {
     cy.log('When I visit user page by clicking on avatar link');
     cy.get('a')
       .get('app-user-avatar')
-      .click();
+      .click({ force: true });
     cy.log('And I am presented with User Profile page');
     cy.contains(this.PAGE_TITLE);
 
+    // Just to make sure we're still logged in...
+    cy.reload(true);
+
     cy.log('Then I should be able to click on logout button and log out');
-    this.button('Logout').click();
+    this.logoutButton().click();
   }
 }

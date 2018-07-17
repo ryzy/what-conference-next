@@ -1,95 +1,116 @@
-import { deburr, kebabCase } from 'lodash-es';
-
 import { EventSizeBand } from '../data/size-bands';
 import { Country } from './country';
 import { EventTopic } from './event-topic';
 
-export class ConferenceEvent {
-  public id: string;
+export interface ConferenceEvent {
+  id: string;
 
   /**
    * Event name to display
    */
-  public name: string = '';
+  name: string;
 
   /**
    * Main topics of the event
    */
-  public topicTags: { [topicTag: string]: boolean } = {};
+  topicTags: { [topicId: string]: boolean };
 
   /**
    * Event date as Date() obj or string (e.g. Q4'2018)
    */
-  public date: Date = new Date();
+  date: Date;
 
   /**
    * Event location
    */
-  public country: string = '';
-  public countryCode: string = '';
-  public countryFlag: string = '';
-  public region: string = '';
-  public subRegion: string = '';
-  public city: string = '';
-  public address: string = '';
-  public addressLatLng?: [number, number];
+  country: string;
+  countryCode: string;
+  countryFlag: string;
+  region: string;
+  subRegion: string;
+  city: string;
+  address: string;
+  addressLatLng?: [number, number];
 
   /**
    * Full website url of the event, including https:// prefix
    */
-  public website: string = '';
+  website: string;
 
   /**
    * Long description of the event
    */
-  public description: string = '';
-  public twitterHandle: string = '';
+  description: string;
+  twitterHandle: string;
 
   /**
    * Duration of event (num of days, incl. workshops days)
    */
-  public eventDuration: number = 1;
+  eventDuration: number;
 
-  public workshopDays: number | undefined;
+  workshopDays?: number;
 
-  public price: number | undefined;
-  public sizeBand: EventSizeBand | undefined;
+  price?: number;
+  sizeBand?: EventSizeBand;
 
   // TODO: hash tags
   // TODO: speakers
+}
 
-  /**
-   * Create ConferenceEvent from event form structure
-   */
-  public static fromFormValues(values: { [key: string]: any }, topicsDb: EventTopic[] = []): ConferenceEvent {
-    const event: ConferenceEvent = new ConferenceEvent(values as ConferenceEvent);
+export interface ConferenceEventFormData {
+  name: string;
+  topicTags: Array<string | boolean>;
 
-    event.topicTags = {}; // re-set, so it doesn't contain any original values
-    if (Array.isArray(values.topicTags)) {
-      event.topicTags = (values.topicTags as boolean[]).reduce((ts: any, selected: boolean, idx: number) => {
-        if (selected && topicsDb[idx]) {
-          ts[topicsDb[idx].id] = true;
+  country: Country;
+  city: string;
+  address: string | undefined;
+  website: string;
+  description: string | undefined;
+  twitterHandle: string | undefined;
+
+  date: Date;
+  eventDuration: number;
+  workshopDays: number | undefined;
+  price: number | undefined;
+  sizeBand: EventSizeBand | undefined;
+}
+
+/**
+ * Create ConferenceEvent from event form structure
+ */
+export function createEventFromFormValues(
+  formData: Partial<ConferenceEventFormData>,
+  topicsDb: EventTopic[] = [],
+): ConferenceEvent {
+  const event: ConferenceEvent = { ...((formData as any) as ConferenceEvent) };
+
+  event.topicTags = {}; // re-set, so it doesn't contain any original values
+  if (Array.isArray(formData.topicTags)) {
+    event.topicTags = formData.topicTags.reduce(
+      (topics: { [topicId: string]: boolean }, selected: boolean | string, idx: number) => {
+        if (true === selected) {
+          if (topicsDb[idx]) {
+            topics[topicsDb[idx].id] = true;
+          }
+        } else if (selected) {
+          topics[selected] = true;
         }
 
-        return ts;
-      }, {});
-    }
-
-    if (values.country) {
-      const selectedCountry = values.country as Country;
-      event.country = selectedCountry.name;
-      event.countryCode = selectedCountry.isoCode;
-      event.countryFlag = selectedCountry.flag;
-      event.region = selectedCountry.region;
-      event.subRegion = selectedCountry.subregion;
-      event.addressLatLng = selectedCountry.latlng;
-    }
-
-    return event;
+        return topics;
+      },
+      {},
+    );
   }
 
-  public constructor(values: Partial<ConferenceEvent>) {
-    Object.assign(this, values);
-    this.id = values.id || kebabCase(deburr(values.name));
+  if (formData.country) {
+    const selectedCountry = formData.country as Country;
+    event.country = selectedCountry.name;
+    event.countryCode = selectedCountry.isoCode;
+    event.countryFlag = selectedCountry.flag;
+    event.region = selectedCountry.region;
+    event.subRegion = selectedCountry.subregion;
+    event.addressLatLng = selectedCountry.latlng;
   }
+
+  return event;
 }
