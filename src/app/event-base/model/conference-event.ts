@@ -1,74 +1,116 @@
-import { deburr, kebabCase } from 'lodash-es';
-
 import { EventSizeBand } from '../data/size-bands';
-import { findCountry } from '../utils/event-utils';
 import { Country } from './country';
+import { EventTopic } from './event-topic';
 
-export class ConferenceEvent {
-  public id: string;
+export interface ConferenceEvent {
+  id: string;
 
   /**
    * Event name to display
    */
-  public name: string;
+  name: string;
 
   /**
    * Main topics of the event
    */
-  public topicTags: string[];
+  topicTags: { [topicId: string]: boolean };
 
   /**
    * Event date as Date() obj or string (e.g. Q4'2018)
    */
-  public date: Date;
+  date: Date;
 
   /**
    * Event location
    */
-  public country?: Country;
-  public city?: string;
-  public address?: string;
-
-  /**
-   * Duration of event (num of days)
-   */
-  public eventDuration: number;
-  public workshopDays: number;
-
-  public price?: number;
-  public sizeBand?: EventSizeBand;
+  country: string;
+  countryCode: string;
+  countryFlag: string;
+  region: string;
+  subRegion: string;
+  city: string;
+  address: string;
+  addressLatLng?: [number, number];
 
   /**
    * Full website url of the event, including https:// prefix
    */
-  public website?: string;
+  website: string;
 
   /**
    * Long description of the event
    */
-  public description?: string;
-  public twitterHandle?: string;
+  description: string;
+  twitterHandle: string;
+
+  /**
+   * Duration of event (num of days, incl. workshops days)
+   */
+  eventDuration: number;
+
+  workshopDays?: number;
+
+  price?: number;
+  sizeBand?: EventSizeBand;
 
   // TODO: hash tags
   // TODO: speakers
+}
 
-  public constructor(values: Partial<ConferenceEvent>) {
-    this.id = values.id || kebabCase(deburr(values.name));
-    this.name = values.name || '';
-    this.topicTags = values.topicTags || [];
+export interface ConferenceEventFormData {
+  name: string;
+  topicTags: Array<string | boolean>;
 
-    this.country = findCountry(values.country);
-    this.city = values.city;
-    this.address = values.address;
+  country: Country;
+  city: string;
+  address: string | undefined;
+  website: string;
+  description: string | undefined;
+  twitterHandle: string | undefined;
 
-    this.date = values.date instanceof Date ? values.date : new Date(values.date as any);
-    this.eventDuration = values.eventDuration || 1;
-    this.workshopDays = values.workshopDays || 0;
-    this.price = values.price || 0;
-    this.sizeBand = values.sizeBand; // TODO: invalidate provided value
+  date: Date;
+  eventDuration: number;
+  workshopDays: number | undefined;
+  price: number | undefined;
+  sizeBand: EventSizeBand | undefined;
+}
 
-    this.website = values.website;
-    this.description = values.website;
-    this.twitterHandle = values.twitterHandle;
+/**
+ * Create ConferenceEvent from event form structure
+ */
+export function createEventFromFormValues(
+  formData: Partial<ConferenceEventFormData>,
+  topicsDb: EventTopic[] = [],
+): ConferenceEvent {
+  const event: ConferenceEvent = { ...((formData as any) as ConferenceEvent) };
+
+  event.topicTags = {}; // re-set, so it doesn't contain any original values
+  if (Array.isArray(formData.topicTags)) {
+    event.topicTags = formData.topicTags.reduce(
+      (topics: { [topicId: string]: boolean }, selected: boolean | string, idx: number) => {
+        if (true === selected) {
+          if (topicsDb[idx]) {
+            topics[topicsDb[idx].id] = true;
+          }
+        } else if (selected) {
+          topics[selected] = true;
+        }
+
+        return topics;
+      },
+      {},
+    );
   }
+
+  if (formData.country) {
+    const selectedCountry = formData.country as Country;
+    event.country = selectedCountry.name;
+    event.countryCode = selectedCountry.isoCode;
+    event.countryFlag = selectedCountry.flag;
+    event.region = selectedCountry.region;
+    event.subRegion = selectedCountry.subregion;
+    event.addressLatLng = selectedCountry.latlng;
+  }
+
+  return event;
 }

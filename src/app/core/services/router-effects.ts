@@ -6,10 +6,12 @@ import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import * as fromRouter from './router-actions';
-import { RouterActionType } from './router-actions';
+import * as fromRouter from '../store/router/router-actions';
+import { RouterActionType } from '../store/router/router-actions';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class RouterEffects {
   @Effect({ dispatch: false })
   public navigate$: Observable<any> = this.actions$.pipe(

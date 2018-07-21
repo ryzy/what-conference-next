@@ -1,5 +1,9 @@
 @import 'abstracts';
 
+button + button {
+  margin-left: $app-spacing-unit;
+}
+
 ::ng-deep {
   .mat-form-field-suffix .mat-icon {
     vertical-align: sub; // better icon positioning in form field suffix

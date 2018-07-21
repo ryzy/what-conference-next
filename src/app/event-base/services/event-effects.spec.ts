@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Actions } from '@ngrx/effects';
 import { cold, hot } from 'jasmine-marbles';
 
-import { AppTestingWithDatabaseModule } from '../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
 import { mockTopics } from '../../../testing/fixtures/topics';
 import { TestActions, TestActionsProvider } from '../../../testing/test-actions';
 import { LoadTopicsAction, SetTopicsAction } from '../store/topics-actions';
@@ -14,7 +14,7 @@ describe('EventEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingWithDatabaseModule],
+      imports: [AppTestingAuthAndDbModule],
       providers: [TestActionsProvider, EventEffects],
     });
 

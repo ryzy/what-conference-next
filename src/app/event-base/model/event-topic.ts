@@ -1,4 +1,3 @@
-export interface EventTopic {
-  id: string;
-  name: string;
-}
+import { Entity } from './entity';
+
+export interface EventTopic extends Entity {}

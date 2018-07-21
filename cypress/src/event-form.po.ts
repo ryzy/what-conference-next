@@ -1,177 +1,99 @@
 import { AppPage, URLs } from './app.po';
 import { randomRange } from './utils';
 
+/**
+ * List of fields in the new event form
+ */
+export const eventFormFields: { [k: string]: boolean | string } = {
+  name: true,
+  topicTags: true,
+  country: true,
+  city: true,
+  address: true,
+  date: true,
+  eventDuration: true,
+  workshopDays: true,
+  website: true,
+  twitterHandle: true,
+  description: true,
+  price: true,
+  sizeBand: true,
+};
+
 export class EventFormPage extends AppPage {
   static URL = URLs.NewEventForm;
 
-  static visit(url = EventFormPage.URL): void {
-    AppPage.visit(url);
+  public static visit(url = EventFormPage.URL): void {
+    super.visit(url);
   }
 
-  /**
-   *
-   * @param {string} fieldName
-   * @return {Cypress.Chainable<JQuery<HTMLElement>>}
-   */
-  static formField(fieldName) {
-    return cy.get(`[formcontrolname="${fieldName}"]`);
-  }
+  public static fillTheFormWithRandomData(fields = eventFormFields): string {
+    fields = { ...eventFormFields, ...fields }; // some fields might be switched off
 
-  /**
-   * @param fieldName
-   * @param indexFrom1: when > 0, only that checkbox will be returned, otherwise all of them
-   */
-  static checkboxes(fieldName, indexFrom1 = 0) {
-    const ch = cy.get(`[formarrayname="${fieldName}"]`).find('input[type=checkbox]');
+    let nameVal = '';
 
-    return indexFrom1 ? ch.eq(indexFrom1 - 1) : ch;
-  }
-
-  /**
-   * @param {string} fieldName
-   * @param {string} stringToType
-   * @return {Cypress.Chainable<JQuery<HTMLElement>>}
-   */
-  static typeIntoFormField(fieldName: string, stringToType: string | number) {
-    return EventFormPage.formField(fieldName)
-      .focus()
-      .type('{esc}', { force: true })
-      .type(stringToType.toString())
-      .blur();
-  }
-
-  static select(fieldName, optionIdx) {
-    return (
-      EventFormPage.formField(fieldName)
-        .click()
-        .wait(100) // wait for opening anim
-        .get('.mat-select-panel .mat-option')
-        .eq(optionIdx)
-        .click({ force: true })
-        .wait(100) // wait for closing anim
-
-        // Click somewhere else, to un-focus that open overlay.
-        // W/o that, sometimes, it doesn't hide it and it causes problems (for the next dropdowns, which needs to open)
-        // Also, use `force: true` so it doesn't fail when it's covered by overlay, as that's the case
-        // we're actually sorting out here (unfocus/hide the overlay).
-        .root()
-        .click({ force: true })
-    );
-  }
-
-  static triggerCalendarField(fieldName) {
-    return EventFormPage.formField(fieldName).focus();
-  }
-
-  static selectDateInCalendarField(fieldName, todoDateToSelect?: string) {
-    return EventFormPage.triggerCalendarField(fieldName)
-      .get('.mat-calendar-next-button')
-      .click()
-      .click()
-      .click()
-      .get('.mat-calendar-body-cell')
-      .eq(randomRange(0, 28))
-      .click();
-  }
-
-  /**
-   * Note: autocomplete dropdown must be already visible before calling this one!
-   *
-   * @param {number} optionIndexFrom1
-   * @return {Cypress.Chainable<JQuery<HTMLHtmlElement>>}
-   */
-  static autocomplete(optionIndexFrom1: number) {
-    return (
-      cy
-        .get('.mat-autocomplete-panel .mat-option')
-        .eq(optionIndexFrom1 - 1)
-        .click({ force: true })
-        .wait(100) // wait for closing anim
-
-        // Click somewhere else, to un-focus that open overlay.
-        // W/o that, sometimes, it doesn't hide it and it causes problems (for the next dropdowns, which needs to open)
-        // Also, use `force: true` so it doesn't fail when it's covered by overlay, as that's the case
-        // we're actually sorting out here (unfocus/hide the overlay).
-        .root()
-        .click({ force: true })
-    );
-  }
-
-  /**
-   * @param {string} buttonLabel
-   * @param {boolean} disabled
-   * @return {Cypress.Chainable<JQuery<HTMLButtonElement>>}
-   */
-  static button(buttonLabel: string, disabled?: boolean) {
-    const el = cy
-      .get('button')
-      .contains(buttonLabel)
-      .parent('button');
-
-    if (true === disabled) {
-      el.should('be.disabled');
-    } else if (false === disabled) {
-      el.should('not.be.disabled');
+    if (fields.name) {
+      cy.log('And I enter "Event" in the field "name"');
+      nameVal = ('string' === typeof fields.name ? fields.name : 'Test Event') + ' ' + randomRange(1000);
+      this.typeIntoFormField('name', nameVal);
     }
 
-    return el;
+    if (fields.topicTags) {
+      cy.log('And I tick checkbox no "1" in the field "topicTags"');
+      // Force=true becase the real inputs are hidden behind MD things
+      this.checkboxes('topicTags', 1).click({ force: true });
+      this.checkboxes('topicTags', 3).click({ force: true });
+    }
+
+    if (fields.date) {
+      cy.log('And I select "some date" in the calendar field "date"');
+      this.selectDateInCalendarField('date');
+    }
+
+    if (fields.sizeBand) {
+      cy.log('And I select option no "1" in the dropdown "sizeBand"');
+      this.select('sizeBand', 1);
+    }
+
+    if (fields.price) {
+      cy.log('And I enter "666" in the field "price"');
+      this.typeIntoFormField('price', 666);
+    }
+
+    if (fields.country) {
+      cy.log('And I enter "Fr" in the field "country"');
+      this.typeIntoFormField('country', 'Fr');
+      cy.log('And I select option no "2" from the autocomplete field "country"');
+      this.autocomplete(2);
+      cy.log('And I should see "France" option in "country" field selected');
+      this.formField('country').should('have.value', 'France');
+    }
+
+    if (fields.city) {
+      cy.log('And I enter "Paris" in the field "city"');
+      this.typeIntoFormField('city', 'Paris');
+    }
+
+    if (fields.address) {
+      cy.log('And I enter "Museum Louvre" in the field "address"');
+      this.typeIntoFormField('address', 'Museum Louvre');
+    }
+
+    if (fields.website) {
+      cy.log('And I enter "https://www.louvre.fr/en/evenements" in the field "website"');
+      this.typeIntoFormField('website', 'https://www.louvre.fr/en/evenements');
+    }
+
+    if (fields.twitterHandle) {
+      cy.log('And I enter "SuperConf" in the field "twitterHandle"');
+      this.typeIntoFormField('twitterHandle', 'SuperConf');
+    }
+
+    if (fields.description) {
+      cy.log('And I enter "Lorem ipsum dolar sit amet." in the field "description"');
+      this.typeIntoFormField('description', 'Lorem ipsum dolar sit amet');
+    }
+
+    return nameVal;
   }
 }
-//
-// given('I visit {string} page', (url) => {
-//   expect(URLs[url]).not.to.be.empty;
-//   cy.visit(URLs[url]);
-// });
-//
-// /**
-//  * Test that browser is on a specified URL
-//  */
-// then('I should be on the {string} page', (url) => {
-//   expect(URLs[url]).not.to.be.empty;
-//   cy.url().should('eq', Cypress.config('baseUrl') + URLs[url]);
-// });
-//
-// then('I should see {string}', (content) => {
-//   cy.contains(content);
-// });
-//
-// then(`I should see {string} in the title`, (title) => {
-//   cy.title().should('include', title);
-// });
-//
-// then(`I should see {string} button {string}`, (buttonLabel, state = 'enabled') => {
-//   EventFormPage.button(buttonLabel, state === 'disabled');
-// });
-//
-// when('I click on a {string} link', (linkText) => {
-//   EventFormPage.link(linkText).click();
-// });
-//
-// when('I enter {string} in the field {string}', (fieldValue, fieldName) => {
-//   EventFormPage.typeIntoFormField(fieldName, fieldValue);
-// });
-//
-// when('I select {string} in the calendar field {string}', (date, fieldName) => {
-//   EventFormPage.formField(fieldName)
-//     .focus()
-//     .get('.mat-calendar-next-button')
-//     .click()
-//     .click()
-//     .click()
-//     .get('.mat-calendar-body-cell')
-//     .eq(randomRange(0, 28))
-//     .click();
-// });
-//
-// when('I tick checkbox no {string} in the field {string}', (idx, fieldName) => {
-//   EventFormPage.checkboxes(fieldName, idx)
-//     // Force=true becase the real inputs are hidden behind MD things
-//     .click({ force: true });
-// });
-//
-// when('I select option no {string} in the dropdown {string}', (optionIdx, fieldName) => {
-//   EventFormPage.select(fieldName, optionIdx);
-// });
-// when('I select option no {string} from the autocomplete field {string}', (optionIdx) => {
-//   EventFormPage.autocomplete(optionIdx);
-// });

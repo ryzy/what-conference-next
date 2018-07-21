@@ -11,9 +11,18 @@ export function findCountry(countryVal?: string | Country): Country | undefined 
     return countryVal;
   } else if (countryVal.length === 2) {
     countryVal = countryVal.toUpperCase();
-    return countriesData.find((c) => c.isoCode === countryVal);
+    return countriesData.find((c) => c.isoCode === (countryVal as string).toUpperCase());
   } else {
-    countryVal = countryVal.toLowerCase();
-    return countriesData.find((c) => c.name.toLowerCase().includes(countryVal as string));
+    countryVal = countryVal.toUpperCase();
+    return countriesData.find((c) => c.name.toUpperCase().includes(countryVal as string));
   }
+}
+
+export function findCountries(countryVal?: string): Country[] {
+  if ('string' === typeof countryVal) {
+    countryVal = countryVal.toUpperCase();
+    return countriesData.filter((c) => c.isoCode === countryVal || c.name.toUpperCase().includes(countryVal as string));
+  }
+
+  return countriesData;
 }

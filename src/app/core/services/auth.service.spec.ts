@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -7,9 +6,10 @@ import { cold, hot } from 'jasmine-marbles';
 import { of } from 'rxjs/observable/of';
 import * as firebase from 'firebase/app';
 
+import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
+import { AppTestingModule } from '../../../testing/app-testing.module';
 import { mockUser } from '../../../testing/fixtures/user';
 import { TestActions, TestActionsProvider } from '../../../testing/test-actions';
-import { CoreModule } from '../core.module';
 import { User } from '../model/user';
 import { SetUserAction } from '../store/app/app-actions';
 import { AppRootState } from '../store/index';
@@ -25,7 +25,7 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, CoreModule],
+      imports: [AppTestingModule.withCoreStateAndEffects(), AppTestingAuthAndDbModule],
       providers: [TestActionsProvider],
     });
 

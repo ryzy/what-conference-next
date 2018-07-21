@@ -11,7 +11,7 @@
         {{ row.name }}
         <a href="{{ row.website }}" target="_blank" class="show-on-hover"><mat-icon>open_in_new</mat-icon></a>
       </h2>
-      <span class="location">{{ row.location.join(', ') }}</span>
+      <span class="location">{{ row.city }}, {{ row.country }}</span>
     </mat-cell>
   </ng-container>
 
@@ -38,7 +38,7 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="focus">
+  <ng-container matColumnDef="topicTags">
     <mat-header-cell *matHeaderCellDef>Focus</mat-header-cell>
     <mat-cell *matCellDef="let row">
       <span *ngFor="let eventFocus of row.tags" class="badge">{{ eventFocus }}</span>

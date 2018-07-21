@@ -14,11 +14,11 @@
     "lint-fix": "prettier --config .prettierrc.json --write '{cypress,scripts,src}/**/*.{js,ts,json,scss}'",
     "deploy": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project dev",
     "deploy:prod": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project prod",
-    "test": "ng test --watch",
+    "test": "ng test --watch --sourceMap=false",
     "test:ci": "ng test --watch=false --code-coverage",
     "serve": "node scripts/server.js",
     "e2e": "DEBUG=cypress:*,-cypress:server:timers,-cypress:server:specs,-cypress:server:events,-cypress:server:file,-cypress:server:cors,-cypress:server:proxy,-cypress:server:project cypress open",
-    "e2e:ci": "DEBUG=cypress:*,-cypress:server:timers,-cypress:server:specs,-cypress:server:events,-cypress:server:file,-cypress:server:cors,-cypress:server:proxy,-cypress:server:project cypress run",
+    "e2e:ci": "cypress run --record=false --browser=chrome",
     "analyze": "webpack-bundle-analyzer ./dist/app/stats.json ./dist/app/ --mode=static --report=dist/size-report/index.html --no-open"
   },
   "dependencies": {
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.7.0-beta.1",
-    "@angular/cli": "6.0.7",
+    "@angular/cli": "6.0.8",
     "@angular/compiler-cli": "6.0.7",
     "@angular/language-service": "6.0.7",
     "@cypress/webpack-preprocessor": "2.0.1",
@@ -59,7 +59,7 @@
     "@ngrx/store-devtools": "6.0.1",
     "@types/jasmine": "2.8.8",
     "@types/lodash-es": "4.17.0",
-    "@types/node": "10.5.1",
+    "@types/node": "10.5.2",
     "codelyzer": "4.4.2",
     "cypress": "3.0.2",
     "express-history-api-fallback": "2.2.1",
