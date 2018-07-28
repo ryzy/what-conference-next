@@ -10,6 +10,12 @@
   }
 }
 
+.app-menu {
+  .app-menu-item--user {
+    margin-left: $app-spacing-unit * 2;
+  }
+}
+
 .app-main-container {
   padding-top: $app-spacing-unit;
   padding-bottom: $gutter-size * 2; // add some extra light at the bottom of the page

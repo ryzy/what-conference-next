@@ -1,3 +1,8 @@
-<h2>Event {{ev?.name}}</h2>
+<ng-container *ngIf="ev">
+  <h2>Event: {{ev.ref.name}}</h2>
 
-<pre>{{ ev | json }}</pre>
+  <a [routerLink]="['/edit', ev.id]" mat-raised-button color="accent">Edit Event</a>
+
+  <pre>{{ ev.ref | json }}</pre>
+
+</ng-container>

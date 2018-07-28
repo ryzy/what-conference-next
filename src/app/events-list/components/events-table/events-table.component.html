@@ -8,10 +8,10 @@
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
     <mat-cell *matCellDef="let row" class="mat-cell--multiline">
       <h2 class="event-name">
-        {{ row.name }}
-        <a href="{{ row.website }}" target="_blank" class="show-on-hover"><mat-icon>open_in_new</mat-icon></a>
+        <a [routerLink]="['ev', row.id]">{{ row.ref.name }}</a>
+        <a href="{{ row.ref.website }}" target="_blank" class="show-on-hover"><mat-icon>open_in_new</mat-icon></a>
       </h2>
-      <span class="location">{{ row.city }}, {{ row.country }}</span>
+      <span class="location">{{ row.ref.city }}, {{ row.ref.country }}</span>
     </mat-cell>
   </ng-container>
 
@@ -19,14 +19,15 @@
     <mat-header-cell *matHeaderCellDef>When</mat-header-cell>
     <mat-cell *matCellDef="let row" class="mat-cell--multiline">
       <div class="event-date">
-        <ng-container *ngIf="row.date && row.date.toISOString; else noDate"> {{ row.date | date:'EE, M MMM yyyy' }}</ng-container>
-        <ng-template #noDate>{{ row.date || 'TBA' }}</ng-template>
+        <!--<ng-container *ngIf="row.ref.date && row.ref.date.toISOString; else noDate"> {{ row.ref.date | date:'EE, M MMM yyyy' }}</ng-container>-->
+        <!--<ng-template #noDate>{{ row.ref.date || 'TBA' }}</ng-template>-->
+        {{ row.date | date:'EE, M MMM yyyy' }}
       </div>
       <div class="event-duration">
         <!-- event duration (num of days) -->
-        <span class="event-duration--days"><mat-icon>event</mat-icon> {{ row.eventDuration }}</span>
+        <span class="event-duration--days"><mat-icon>event</mat-icon> {{ row.ref.eventDuration }}</span>
         <!-- event add-ons, e.g. workshops (in num of days) -->
-        <span class="event-duration--addon" *ngIf="row.eventDuration > 1"><mat-icon>perm_data_setting</mat-icon> {{ row.eventDuration - 1 }}</span>
+        <span class="event-duration--addon" *ngIf="row.ref.eventDuration > 1"><mat-icon>perm_data_setting</mat-icon> {{ row.ref.eventDuration - 1 }}</span>
       </div>
     </mat-cell>
   </ng-container>
@@ -34,14 +35,14 @@
   <ng-container matColumnDef="price">
     <mat-header-cell *matHeaderCellDef>Price (from)</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      {{ row.price | currency:row.priceCurrency:'symbol-narrow':'1.0' }}
+      {{ row.ref.price | currency:row.ref.priceCurrency:'symbol-narrow':'1.0' }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="topicTags">
     <mat-header-cell *matHeaderCellDef>Focus</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <span *ngFor="let eventFocus of row.tags" class="badge">{{ eventFocus }}</span>
+      <span *ngFor="let topic of row.topicTags" class="badge">{{ topic.name }}</span>
     </mat-cell>
   </ng-container>
 

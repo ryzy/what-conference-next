@@ -101,9 +101,16 @@
   <fieldset>
     <div class="grid-x grid-margin-x align-right">
       <div class="cell shrink">
-        <button mat-button color="accent">Test submit</button>
+        <button *ngIf="!editingEventFormData" mat-button color="accent">Mock submit</button>
+
         <button mat-button>Cancel</button>
-        <button mat-raised-button color="accent" type="submit" [disabled]="!this.eventForm.valid">Submit Event</button>
+
+        <button mat-raised-button color="accent"
+                [disabled]="!this.eventForm.valid || submitting"
+                type="submit">
+          <ng-container *ngIf="editingEventFormData">Update Event</ng-container>
+          <ng-container *ngIf="!editingEventFormData">Submit Event</ng-container>
+        </button>
       </div>
     </div>
   </fieldset>

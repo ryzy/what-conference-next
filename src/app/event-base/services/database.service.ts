@@ -4,13 +4,15 @@ import { deburr, kebabCase } from 'lodash-es';
 import { Observable, from, of, throwError } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
-import { ConferenceEvent } from '../model/conference-event';
+import { ConferenceEvent, ConferenceEventRef } from '../model/conference-event';
 import { EventTopic } from '../model/event-topic';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
+  protected topicsCache: EventTopic[] = [];
+
   public constructor(private afs: AngularFirestore) {}
 
   public getTopics(): Observable<EventTopic[]> {
@@ -26,10 +28,24 @@ export class DatabaseService {
             };
           });
         }),
+        tap(v => this.topicsCache = v),
       );
   }
 
-  public getEvent(eventId: string): Observable<ConferenceEvent> {
+  public getEvents(): Observable<ConferenceEventRef[]> {
+    return this.afs
+      .collection<ConferenceEvent>('events')
+      .snapshotChanges()
+      .pipe(
+        map((actions: DocumentChangeAction<ConferenceEvent>[]) => {
+          return actions.map((action: DocumentChangeAction<ConferenceEvent>) => {
+            return new ConferenceEventRef(action.payload.doc.id, action.payload.doc.data(), { topics: this.topicsCache });
+          });
+        }),
+      );
+  }
+
+  public getEvent(eventId: string): Observable<ConferenceEventRef> {
     console.log('DatabaseService#getEvent loading...', eventId);
     return this.afs
       .collection('events')
@@ -41,32 +57,22 @@ export class DatabaseService {
             throw new Error(`Event *${eventId}* doesn't exist.`);
           }
         }),
-        map(
-          (action: Action<DocumentSnapshot<any>>) =>
-            <ConferenceEvent>{
-              id: action.payload.id,
-              ...action.payload.data(),
-            },
-        ),
+        map((action: Action<DocumentSnapshot<any>>) => {
+          return new ConferenceEventRef(action.payload.id, action.payload.data(), { topics: this.topicsCache });
+        }),
         tap((ev: ConferenceEvent) => console.log('DatabaseService#getEvent loaded', ev)),
       );
   }
 
-  public newEvent(ev: ConferenceEvent): Observable<ConferenceEvent> {
-    const evToStore: ConferenceEvent = Object.assign({}, ev);
+  public newEvent(ev: ConferenceEvent): Observable<ConferenceEventRef> {
+    const id = kebabCase(deburr(ev.name)) + '-' + this.afs.createId().substr(0, 8);
 
-    // to avoid any confusion, don't store ID property explicitly
-    // ID should be always from metadata instead.
-    delete evToStore.id;
-
-    const id = ev.id || kebabCase(deburr(ev.name)) + '-' + this.afs.createId().substr(0, 8);
-
-    console.log('DatabaseService#newEvent() ready to store', { evToStore, id, sourceEv: ev });
+    console.log('DatabaseService#newEvent() ready to store', { id, ev });
     return from(
       this.afs
         .collection('events')
         .doc(id)
-        .set(evToStore),
+        .set(ev),
     ).pipe(switchMap(() => this.getEvent(id)));
   }
 }

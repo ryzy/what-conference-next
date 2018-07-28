@@ -1,5 +1,6 @@
 import { countriesData } from '../data/countries';
-import { findCountries, findCountry } from './event-utils';
+import { findCountries, findCountry, getNormalisedDate } from './event-utils';
+const firebase = require('firebase/app');
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'PL');
@@ -26,5 +27,15 @@ describe('event-utils', () => {
     expect(findCountries('pol').length).toBe(2); // poland and french polynesia
 
     expect(findCountries('z').length).toBe(16);
+  });
+
+  it('#getNormalisedDate', () => {
+    expect(getNormalisedDate() instanceof Date).toBe(true);
+
+    const mockDate = new Date();
+    expect(getNormalisedDate(mockDate)).toBe(mockDate);
+
+    const mockTimestamp = new firebase.firestore.Timestamp();
+    expect(getNormalisedDate(mockTimestamp) instanceof Date).toBe(true);
   });
 });

@@ -10,11 +10,11 @@ export const defaultEnvironmentConfig: AppEnvironment = {
    * Firebase config
    */
   firebase: {
-    apiKey: 'AIzaSyBEOVpgRastnqyGLxloAWcaxPoJljHWiVk',
-    authDomain: 'frontend-events-dev.firebaseapp.com',
-    databaseURL: 'https://frontend-events-dev.firebaseio.com',
-    projectId: 'frontend-events-dev',
-    storageBucket: 'frontend-events-dev.appspot.com',
-    messagingSenderId: '898642869507',
+    apiKey: "AIzaSyA_2Ue6zbjd821cfN4eBY8hiMt_2STVLec",
+    authDomain: "dev-what-conference-next.firebaseapp.com",
+    databaseURL: "https://dev-what-conference-next.firebaseio.com",
+    projectId: "dev-what-conference-next",
+    storageBucket: "dev-what-conference-next.appspot.com",
+    messagingSenderId: "584561464783"
   },
 };

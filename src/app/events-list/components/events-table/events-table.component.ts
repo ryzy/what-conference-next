@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ConferenceEvent } from '../../../event-base/model/conference-event';
-import { EventsDataSource } from '../../services/events-data-source';
+
+import { EventsDataSource } from '../../../event-base/services/events-data-source';
 
 @Component({
   selector: 'app-events-table',
@@ -12,7 +12,7 @@ export class EventsTableComponent implements OnInit {
   /**
    * Data source for mat-table
    */
-  @Input() public dataSource!: EventsDataSource<ConferenceEvent>;
+  @Input() public dataSource!: EventsDataSource;
 
   /**
    * Columns to display in the table
@@ -20,6 +20,6 @@ export class EventsTableComponent implements OnInit {
   public displayColumns: string[] = ['name', 'date', 'price', 'topicTags', 'actions'];
 
   public ngOnInit(): void {
-    // this.dataSource.connect().subscribe(events => console.log('[EventsTableComponent] events', events));
+    this.dataSource.connect().subscribe(events => console.log('[EventsTableComponent] events', events));
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
-import { ConferenceEvent } from '../../event-base/model/conference-event';
+import { ConferenceEvent, ConferenceEventRef } from '../../event-base/model/conference-event';
 
 import { EventService } from '../../event-base/services/event.service';
 
@@ -12,7 +12,7 @@ import { EventService } from '../../event-base/services/event.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDetailsPageComponent implements OnInit, OnDestroy {
-  public ev: ConferenceEvent | undefined;
+  public ev: ConferenceEventRef | undefined;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 

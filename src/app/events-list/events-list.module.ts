@@ -5,7 +5,7 @@ import { EventBaseModule } from '../event-base/event-base.module';
 import { SharedModule } from '../shared/shared.module';
 import { EventsTableComponent } from './components/events-table/events-table.component';
 import { EventsListRoutingModule } from './events-list-routing.module';
-import { EventsPageComponent } from './containers/events-page/events-page.component';
+import { EventsPageComponent } from './events-page/events-page.component';
 
 @NgModule({
   imports: [MatTableModule, EventBaseModule, SharedModule, EventsListRoutingModule],

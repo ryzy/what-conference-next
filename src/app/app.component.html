@@ -1,14 +1,12 @@
 <header class="app-header">
   <div class="grid-container">
     <div class="grid-x align-middle align-justify">
-      <div class="cell mini-10">
+      <div class="cell medium-6">
         <h1 class="app-header__name cell"><a routerLink="/">What Converence Next</a></h1>
       </div>
-      <div class="cell shrink">
-        <button mat-button color="primary" (click)="goToNewEvent()">New Event</button>
-      </div>
-      <div class="cell shrink">
-        <a mat-raised-button mat-icon-button routerLink="/user">
+      <div class="cell medium-6 text-right app-menu">
+        <a class="app-menu-item" routerLink="/edit">New Event</a>
+        <a class="app-menu-item app-menu-item--user" mat-raised-button mat-icon-button routerLink="/user">
           <app-user-avatar [user]="user$ | async"></app-user-avatar>
         </a>
       </div>

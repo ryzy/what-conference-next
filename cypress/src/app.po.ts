@@ -4,7 +4,7 @@ import { randomRange } from './utils';
 export const URLs = {
   Home: '/',
   User: '/user',
-  NewEventForm: '/new',
+  NewEventForm: '/edit',
   Event: '/ev',
 };
 

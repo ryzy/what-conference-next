@@ -4,15 +4,15 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
 import { mockNewEventFormData } from '../../../testing/fixtures/event-form';
 import { mockTopics } from '../../../testing/fixtures/topics';
-import { ConferenceEvent, createEventFromFormValues } from '../model/conference-event';
+import { ConferenceEvent, ConferenceEventRef, createEventFromFormData } from '../model/conference-event';
 import { EventTopic } from '../model/event-topic';
 import { DatabaseService } from './database.service';
 
 describe('DatabaseService', () => {
   let fdbService: DatabaseService;
   let afs: AngularFirestore;
-  let mockCollection: AngularFirestoreCollection<EventTopic>;
-  let mockDocument: AngularFirestoreDocument<EventTopic>;
+  let mockCollection: AngularFirestoreCollection<EventTopic|ConferenceEvent>;
+  let mockDocument: AngularFirestoreDocument<EventTopic|ConferenceEvent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,13 +37,13 @@ describe('DatabaseService', () => {
   });
 
   it('#getEvent', async (done: Function) => {
-    const evData = createEventFromFormValues(mockNewEventFormData);
+    const evData: ConferenceEvent = createEventFromFormData(mockNewEventFormData);
     const storedDocRef = await mockCollection.add(evData);
 
-    fdbService.getEvent(storedDocRef.id).subscribe((ev: ConferenceEvent) => {
+    fdbService.getEvent(storedDocRef.id).subscribe((ev: ConferenceEventRef) => {
       expect(ev.id).toBeTruthy();
-      expect(ev.name).toBe(evData.name);
-      expect(ev.topicTags).toEqual(evData.topicTags);
+      expect(ev.ref.name).toBe(evData.name);
+      expect(ev.ref.topicTags).toEqual(evData.topicTags);
       done();
     });
   });
@@ -56,12 +56,12 @@ describe('DatabaseService', () => {
   });
 
   it('#newEvent', (done: Function) => {
-    const evData = createEventFromFormValues(mockNewEventFormData);
+    const evData = createEventFromFormData(mockNewEventFormData);
 
-    fdbService.newEvent(evData).subscribe((ev: ConferenceEvent) => {
+    fdbService.newEvent(evData).subscribe((ev: ConferenceEventRef) => {
       expect(ev.id).toBeTruthy();
-      expect(ev.name).toBe(evData.name);
-      expect(ev.topicTags).toEqual(evData.topicTags);
+      expect(ev.ref.name).toBe(evData.name);
+      expect(ev.ref.topicTags).toEqual(evData.topicTags);
       done();
     });
   });
