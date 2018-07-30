@@ -1,12 +1,25 @@
+import { deburr, kebabCase } from 'lodash-es';
+
 import { builtinSizeBands, EventSizeBand } from '../data/size-bands';
 import { findCountry, getNormalisedDate } from '../utils/event-utils';
 import { Country } from './country';
 import { EventTopic } from './event-topic';
+import { uuid } from '../../core/core-utils';
 
 /**
  * Event obj, as being stored in the db
  */
 export interface ConferenceEvent {
+  /**
+   * Stitch ObjectID, when the item has already representation in the DB
+   */
+  _id?: object | string;
+
+  /**
+   * ID / URL slug of the event
+   */
+  id: string;
+
   /**
    * Event name to display
    */
@@ -20,14 +33,13 @@ export interface ConferenceEvent {
   /**
    * Event date as Date() obj or string (e.g. Q4'2018)
    */
-  date: Date|firebase.firestore.Timestamp;
+  date: Date;
 
   /**
    * Event location
    */
   country: string;
   countryCode: string;
-  countryFlag: string;
   region: string;
   subRegion: string;
   city: string;
@@ -87,7 +99,12 @@ export function createEventFromFormData(
   formData: Partial<ConferenceEventFormData>,
   topicsDb: EventTopic[] = [],
 ): ConferenceEvent {
+  // For now just assign all properties from form.
+  // Later on we fine tune / override them, as needed.
   const event: ConferenceEvent = { ...((formData as any) as ConferenceEvent) };
+
+  // Generate our id / url slug
+  event.id = event.id || kebabCase(deburr(event.name)) + '-' + uuid(6);
 
   event.topicTags = {}; // re-set, so it doesn't contain any original values
   if (Array.isArray(formData.topicTags)) {
@@ -111,7 +128,6 @@ export function createEventFromFormData(
     const selectedCountry = formData.country as Country;
     event.country = selectedCountry.name;
     event.countryCode = selectedCountry.isoCode;
-    event.countryFlag = selectedCountry.flag;
     event.region = selectedCountry.region;
     event.subRegion = selectedCountry.subregion;
     event.addressLatLng = selectedCountry.latlng;
@@ -138,7 +154,7 @@ export function createFormDataFromEvent(ev: ConferenceEvent, topicsDb: EventTopi
     eventDuration: ev.eventDuration,
     workshopDays: ev.workshopDays,
     price: ev.price,
-    sizeBand: builtinSizeBands.find(b => b.id === ev.sizeBand) || null,
+    sizeBand: builtinSizeBands.find((b) => b.id === ev.sizeBand) || null,
   };
 
   // convert topics to boolean flags, compatible with the form
@@ -162,24 +178,17 @@ export class ConferenceEventRef {
   public country: Country;
   public sizeBand?: EventSizeBand;
 
-  public constructor(
-    id: string,
-    ev: ConferenceEvent,
-    dict: { topics: EventTopic[] } = { topics: [] },
-  ) {
+  public constructor(id: string | undefined, ev: ConferenceEvent, dict: { topics: EventTopic[] } = { topics: [] }) {
     this.id = id || 'missing-ConferenceEventRef-id';
     this.ref = ev;
 
-    this.country = findCountry(ev.countryCode) || {} as Country;
+    this.country = findCountry(ev.countryCode) || ({} as Country);
 
     // Get real EventTopic objects from their IDs
-    this.topicTags = Object.keys(ev.topicTags || {}).reduce(
-      (topics: EventTopic[], tid: string) => {
-        const et: EventTopic = dict.topics.find((t: EventTopic) => t.id === tid) || { id: tid, name: tid };
-        return [ ...topics, et ];
-      },
-      [],
-    );
+    this.topicTags = Object.keys(ev.topicTags || {}).reduce((topics: EventTopic[], tid: string) => {
+      const et: EventTopic = dict.topics.find((t: EventTopic) => t.id === tid) || { id: tid, name: tid };
+      return [...topics, et];
+    }, []);
 
     this.date = getNormalisedDate(ev.date);
 

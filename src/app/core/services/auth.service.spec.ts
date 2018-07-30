@@ -1,27 +1,24 @@
-import { TestBed } from '@angular/core/testing';
-import { Actions } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { cold, hot } from 'jasmine-marbles';
-import { of } from 'rxjs/observable/of';
-import * as firebase from 'firebase/app';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { fakeAsync, TestBed } from '@angular/core/testing';
+import { Action, Store } from '@ngrx/store';
 
-import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
 import { AppTestingModule } from '../../../testing/app-testing.module';
-import { mockUser } from '../../../testing/fixtures/user';
-import { TestActions, TestActionsProvider } from '../../../testing/test-actions';
+import { mockStitchProfileResponse } from '../../../testing/fixtures/stitch';
+import { mockStitchUser, mockUser } from '../../../testing/fixtures/user';
+import { MockStitchService } from '../../../testing/mock-stitch.service';
+import { TestActionsProvider } from '../../../testing/test-actions';
 import { User } from '../model/user';
 import { SetUserAction } from '../store/app/app-actions';
 import { AppRootState } from '../store/index';
 import { AuthService } from './auth.service';
+import { StitchService } from '../stitch/stitch.service';
 
 describe('AuthService', () => {
   let authService: AuthService;
-  let actions$: TestActions;
-  let afAuth: AngularFireAuth;
+  let stitch: MockStitchService;
   let store: Store<AppRootState>;
-
-  const mockFirebaseUser: firebase.User = {} as firebase.User;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -29,22 +26,27 @@ describe('AuthService', () => {
       providers: [TestActionsProvider],
     });
 
+    httpMock = TestBed.get(HttpTestingController);
     authService = TestBed.get(AuthService);
-    actions$ = TestBed.get(Actions);
-    afAuth = TestBed.get(AngularFireAuth);
+    stitch = TestBed.get(StitchService);
     store = TestBed.get(Store);
   });
 
-  it('should be created', () => {
-    expect(authService).toBeTruthy();
-  });
+  afterEach(() => httpMock.verify());
 
-  it('#userIntoStore$ @Effect should work', () => {
-    (afAuth as any).authState = of(mockFirebaseUser);
-    actions$.stream = hot('-');
-    const expected = cold('(c|)', { c: new SetUserAction(User.fromFirebase(mockFirebaseUser)) });
-    expect(authService.userIntoStore$).toBeObservable(expected);
-  });
+  it(
+    'should dispatch user to the store',
+    fakeAsync(() => {
+      let dispatchedAction: SetUserAction | undefined;
+      spyOn(store, 'dispatch').and.callFake((v) => (dispatchedAction = v));
+
+      stitch.mockLogin();
+
+      expect(dispatchedAction).toBeTruthy();
+      expect(dispatchedAction.user).toBeTruthy();
+      expect(dispatchedAction.user.email).toBe(mockStitchProfileResponse.data.email);
+    }),
+  );
 
   it('#getCurrentUser', () => {
     let user: User | undefined;
@@ -55,27 +57,22 @@ describe('AuthService', () => {
     expect(user).toBe(mockUser);
   });
 
-  it('#loginWithDefaultMethod', (done) => {
-    const mockFirebaseCredentials = { user: mockFirebaseUser };
-    const signInSpy = spyOn(afAuth.auth, 'signInWithRedirect').and.returnValue(
-      Promise.resolve(mockFirebaseCredentials),
-    );
-
-    authService.loginWithDefaultMethod().subscribe((v) => {
-      expect(v).toEqual(mockFirebaseCredentials as any);
-      done();
-    });
-
-    expect(signInSpy).toHaveBeenCalled();
+  it('#loginWithGoogle', () => {
+    const authSpy = spyOn(stitch.auth, 'loginWithRedirect');
+    authService.loginWithGoogle();
+    expect(authSpy).toHaveBeenCalled();
   });
 
-  it('#loginWithDefaultMethod', (done) => {
-    const signOutSpy = spyOn(afAuth.auth, 'signOut').and.returnValue(Promise.resolve());
+  it('#signInWithEmailAndPassword', () => {
+    const authSpy = spyOn(stitch.auth, 'loginWithCredential').and.returnValue(Promise.resolve(mockStitchUser));
 
-    authService.logout().subscribe((v) => {
-      expect(v).toEqual(true);
-      done();
-    });
-    expect(signOutSpy).toHaveBeenCalled();
+    authService.signInWithEmailAndPassword('email', 'password').subscribe();
+    expect(authSpy).toHaveBeenCalled();
+  });
+
+  it('#logout', () => {
+    const authSpy = spyOn(stitch.auth, 'logout');
+    authService.logout();
+    expect(authSpy).toHaveBeenCalled();
   });
 });

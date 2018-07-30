@@ -10,19 +10,19 @@ export class UserPage extends AppPage {
     super.visit(url);
   }
 
-  public static loginButton() {
-    return cy.get('.button-login--twitter');
+  public static loginGoogleButton() {
+    return cy.get('.button-login--google');
   }
 
   public static logoutButton() {
     return cy.get('.button-logout');
   }
 
-  public static loginWithTwitter() {
+  public static loginWithGoogle() {
     this.visit();
-    this.loginButton()
+    this.loginGoogleButton()
       .should('exist')
-      .should('contain', 'Login with Twitter');
+      .should('contain', 'Login with Google');
   }
 
   public static loginWithForm(username: string = '', password: string = '', expectSuccess = true) {

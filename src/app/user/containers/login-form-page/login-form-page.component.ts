@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StitchServiceError } from 'mongodb-stitch-browser-sdk';
 
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -32,9 +33,9 @@ export class LoginFormPageComponent {
         // console.log('LoginFormPageComponent login success', { user, loginForm: this.loginForm });
         this.router.navigate(['user']);
       },
-      (err) => {
+      (err: StitchServiceError) => {
         // console.warn('LoginFormPageComponent: LOGIN ERROR', { err, loginForm: this.loginForm });
-        this.loginForm.setErrors({ loginError: err.code });
+        this.loginForm.setErrors({ loginError: err.message });
         this.cdRef.markForCheck();
       },
     );

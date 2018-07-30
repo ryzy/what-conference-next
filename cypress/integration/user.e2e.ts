@@ -1,8 +1,8 @@
 import { UserPage } from '../src/user.po';
 
 describe('User', () => {
-  it('should login with Twitter', () => {
-    UserPage.loginWithTwitter();
+  it('should login with Google', () => {
+    UserPage.loginWithGoogle();
   });
 
   it('should login and logout with form', () => {
@@ -14,8 +14,8 @@ describe('User', () => {
   });
 
   it('should login with form and show error', () => {
-    UserPage.loginWithForm('some-invalid@email.com', 'some invalid passw', false);
-    cy.contains('user-not-found');
+    UserPage.loginWithForm('some-invalid@email.com', 'some invalid pass', false);
+    cy.contains('invalid username/password');
     UserPage.expectNotToBeLoggedIn();
   });
 });

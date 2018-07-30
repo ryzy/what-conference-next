@@ -19,10 +19,7 @@ export class AppPage {
   }
 
   public static link(linkText) {
-    return cy
-      .get('a, button')
-      .contains(linkText)
-      .parent('a, button');
+    return cy.get('a').contains(linkText);
   }
 
   public static button(buttonLabel: string, disabled?: boolean) {
@@ -57,12 +54,15 @@ export class AppPage {
     return cy.get('.mat-snack-bar-container', { timeout: 120000 });
   }
 
-  public static typeIntoFormField(fieldName: string, stringToType: string | number) {
-    return this.formField(fieldName)
+  public static typeIntoFormField(fieldName: string, stringToType: string | number, deFocusAfter: boolean = false) {
+    this.formField(fieldName)
       .focus()
       .type('{esc}', { force: true })
-      .type(stringToType.toString())
-      .blur();
+      .type(stringToType.toString());
+
+    if (deFocusAfter) {
+      cy.get('body').click();
+    }
   }
 
   public static select(fieldName, optionIdx) {

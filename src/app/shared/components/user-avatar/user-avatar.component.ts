@@ -13,5 +13,6 @@ import { User } from '../../../core/model/user';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserAvatarComponent {
-  @Input() public user: User | undefined;
+  @Input()
+  public user: User | undefined;
 }

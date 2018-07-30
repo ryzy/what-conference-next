@@ -12,7 +12,8 @@ export class EventsTableComponent implements OnInit {
   /**
    * Data source for mat-table
    */
-  @Input() public dataSource!: EventsDataSource;
+  @Input()
+  public dataSource!: EventsDataSource;
 
   /**
    * Columns to display in the table
@@ -20,6 +21,6 @@ export class EventsTableComponent implements OnInit {
   public displayColumns: string[] = ['name', 'date', 'price', 'topicTags', 'actions'];
 
   public ngOnInit(): void {
-    this.dataSource.connect().subscribe(events => console.log('[EventsTableComponent] events', events));
+    // this.dataSource.connect().subscribe((events) => console.log('[EventsTableComponent] events', events));
   }
 }

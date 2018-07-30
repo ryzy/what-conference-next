@@ -54,4 +54,10 @@ jobs:
             fi
 
       - store_test_results:
-          path: dist/
+          path: dist/coverage/
+
+      - store_artifacts: { path: cypress/videos }
+      - store_artifacts: { path: cypress/screenshots }
+      - store_artifacts: { path: dist/app }
+      - store_artifacts: { path: dist/coverage }
+      - store_artifacts: { path: dist/size-report }

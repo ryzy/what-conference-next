@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 
-import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
 import { mockNewEventFormData } from '../../../testing/fixtures/event-form';
 import { mockEvents } from '../../../testing/fixtures/events-db';
 import { ConferenceEventFormData, ConferenceEventRef } from '../../event-base/model/conference-event';
@@ -44,7 +44,7 @@ describe('EventFormPageComponent', () => {
   });
 
   it('should submit', () => {
-    spyOn(service, 'newEvent').and.returnValue(of(new ConferenceEventRef('id', mockEvents[0])));
+    spyOn(service, 'addOrUpdateEvent').and.returnValue(of(new ConferenceEventRef('id', mockEvents[0])));
     fixture.detectChanges();
 
     component.onSubmit(mockNewEventFormData);
@@ -53,7 +53,7 @@ describe('EventFormPageComponent', () => {
   });
 
   it('should submit and show error (and should stay on the page)', () => {
-    spyOn(service, 'newEvent').and.callFake(throwError);
+    spyOn(service, 'addOrUpdateEvent').and.callFake(throwError);
     fixture.detectChanges();
     component.onSubmit({} as ConferenceEventFormData);
     expect(snackBar.open).toHaveBeenCalled();

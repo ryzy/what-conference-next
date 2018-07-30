@@ -13,6 +13,7 @@ import { EventService } from '../../event-base/services/event.service';
 })
 export class EventDetailsPageComponent implements OnInit, OnDestroy {
   public ev: ConferenceEventRef | undefined;
+  public notFound: boolean = false;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
@@ -22,13 +23,14 @@ export class EventDetailsPageComponent implements OnInit, OnDestroy {
     this.route.paramMap
       .pipe(
         takeUntil(this.ngOnDestroy$),
-        map((params: ParamMap) => params.get('eventId') || 'invalid-event-id'),
+        map((params: ParamMap) => params.get('eventId') || 'url-missing-event-id'),
         switchMap((eventId: string) => this.service.getEvent(eventId)),
         takeUntil(this.ngOnDestroy$),
       )
       .subscribe((ev) => {
-        console.log('EventDetailsPageComponent loaded ev', ev);
+        // console.log('EventDetailsPageComponent loaded ev', ev);
         this.ev = ev;
+        this.notFound = !ev;
         this.cdRef.markForCheck();
       });
   }

@@ -1,68 +1,124 @@
-import { TestBed } from '@angular/core/testing';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { RemoteInsertOneResult, RemoteUpdateResult } from 'mongodb-stitch-browser-sdk';
 
-import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
-import { mockNewEventFormData } from '../../../testing/fixtures/event-form';
+import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
+import { mockEvent, mockEvents } from '../../../testing/fixtures/events-db';
 import { mockTopics } from '../../../testing/fixtures/topics';
-import { ConferenceEvent, ConferenceEventRef, createEventFromFormData } from '../model/conference-event';
+import { MockStitchService } from '../../../testing/mock-stitch.service';
+import { StitchService } from '../../core/stitch/stitch.service';
+import { ConferenceEventRef } from '../model/conference-event';
 import { EventTopic } from '../model/event-topic';
+import { uuid } from '../../core/core-utils';
 import { DatabaseService } from './database.service';
 
 describe('DatabaseService', () => {
-  let fdbService: DatabaseService;
-  let afs: AngularFirestore;
-  let mockCollection: AngularFirestoreCollection<EventTopic|ConferenceEvent>;
-  let mockDocument: AngularFirestoreDocument<EventTopic|ConferenceEvent>;
+  let db: DatabaseService;
+  let stitch: MockStitchService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppTestingAuthAndDbModule.withRealDatabaseService()],
     });
 
-    fdbService = TestBed.get(DatabaseService);
-
-    afs = TestBed.get(AngularFirestore);
-    mockCollection = afs.collection('test');
-    mockDocument = mockCollection.doc('test-' + afs.createId());
-    spyOn(afs, 'collection').and.returnValue(mockCollection);
-    spyOn(afs, 'doc').and.returnValue(mockDocument);
+    httpMock = TestBed.get(HttpTestingController);
+    db = TestBed.get(DatabaseService);
+    stitch = TestBed.get(StitchService);
   });
 
-  it('#getTopics', (done: Function) => {
-    mockTopics.forEach((v) => mockCollection.add(v));
-    fdbService.getTopics().subscribe((v) => {
-      expect(v).toEqual(jasmine.arrayContaining(mockTopics));
-      done();
-    });
+  afterEach(() => {
+    // console.log('httpMock after', httpMock);
+    httpMock.verify();
   });
 
-  it('#getEvent', async (done: Function) => {
-    const evData: ConferenceEvent = createEventFromFormData(mockNewEventFormData);
-    const storedDocRef = await mockCollection.add(evData);
+  it(
+    '#getTopics',
+    fakeAsync(() => {
+      stitch.mockLogin();
 
-    fdbService.getEvent(storedDocRef.id).subscribe((ev: ConferenceEventRef) => {
-      expect(ev.id).toBeTruthy();
-      expect(ev.ref.name).toBe(evData.name);
-      expect(ev.ref.topicTags).toEqual(evData.topicTags);
-      done();
-    });
-  });
+      let res: EventTopic[] | undefined;
+      db.getTopics().subscribe((v) => (res = v));
 
-  it('#getEvent non-existing event', (done: Function) => {
-    fdbService.getEvent('some-non-existing-id-adsfq3uh4r').subscribe(undefined, (e: Error) => {
-      expect(e.message).toContain(`doesn't exist`);
-      done();
-    });
-  });
+      stitch.mockCollectionFindResponse(mockTopics);
 
-  it('#newEvent', (done: Function) => {
-    const evData = createEventFromFormData(mockNewEventFormData);
+      expect(res.length).toEqual(mockTopics.length);
+      expect(res[0].id).toEqual(mockTopics[0].id);
+    }),
+  );
 
-    fdbService.newEvent(evData).subscribe((ev: ConferenceEventRef) => {
-      expect(ev.id).toBeTruthy();
-      expect(ev.ref.name).toBe(evData.name);
-      expect(ev.ref.topicTags).toEqual(evData.topicTags);
-      done();
-    });
-  });
+  it(
+    '#getEvent',
+    fakeAsync(() => {
+      stitch.mockLogin();
+
+      let ev: ConferenceEventRef | undefined;
+      db.getEvent(uuid()).subscribe((v) => (ev = v));
+
+      stitch.mockCollectionFindResponse(mockEvents.slice(0, 1));
+
+      expect(ev instanceof ConferenceEventRef).toBe(true);
+      expect(ev.ref.name).toBe(mockEvents[0].name);
+      expect(ev.ref.topicTags).toEqual(mockEvents[0].topicTags);
+    }),
+  );
+
+  it(
+    '#getEvent non-existing event',
+    fakeAsync(() => {
+      stitch.mockLogin();
+
+      let ev: ConferenceEventRef | string | undefined = 'n/a';
+      let err: any;
+      db.getEvent(uuid()).subscribe((v) => (ev = v), (e) => (err = e));
+
+      stitch.mockCollectionFindResponse([]);
+
+      expect(ev).toBeFalsy();
+      expect(err).toBeFalsy();
+    }),
+  );
+
+  it(
+    '#getEvents',
+    fakeAsync(() => {
+      stitch.mockLogin();
+
+      let ev: ConferenceEventRef[] | undefined;
+      db.getEvents().subscribe((v) => (ev = v));
+
+      stitch.mockCollectionFindResponse(mockEvents);
+
+      expect(ev).toBeTruthy();
+      expect(ev.length).toBe(mockEvents.length);
+    }),
+  );
+
+  it(
+    '#newEvent',
+    fakeAsync(() => {
+      stitch.mockLogin();
+
+      let res: RemoteInsertOneResult | undefined;
+      db.newEvent(mockEvent).subscribe((v) => (res = v));
+
+      stitch.mockInsertOneResponse(); // insert the event into db
+
+      expect(res.insertedId).toBeTruthy();
+    }),
+  );
+
+  it(
+    '#updateEvent',
+    fakeAsync(() => {
+      stitch.mockLogin();
+
+      let res: RemoteUpdateResult | undefined;
+      db.updateEvent(mockEvent).subscribe((v) => (res = v));
+
+      stitch.mockUpdateResponse();
+
+      expect(res.matchedCount).toEqual(1);
+    }),
+  );
 });

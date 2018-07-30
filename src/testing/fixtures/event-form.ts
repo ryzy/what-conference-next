@@ -1,4 +1,4 @@
-import { builtinSizeBands, EventSizeBand } from '../../app/event-base/data/size-bands';
+import { builtinSizeBands } from '../../app/event-base/data/size-bands';
 import { ConferenceEventFormData } from '../../app/event-base/model/conference-event';
 import { Country } from '../../app/event-base/model/country';
 import { findCountry } from '../../app/event-base/utils/event-utils';
@@ -9,7 +9,7 @@ const uk: Country = findCountry('uk') as Country;
 
 export const mockNewEventFormData: ConferenceEventFormData = {
   name: 'NG Poland',
-  topicTags: [ mockTopics[0].id, mockTopics[1].id ],
+  topicTags: [mockTopics[0].id, mockTopics[1].id],
   country: pl,
   city: pl.capital,
   address: '',

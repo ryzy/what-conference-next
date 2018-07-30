@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { pluck, switchMap, map } from 'rxjs/operators';
 import { AppRouterState, getRouterState } from '../../core/store/router/router';
 
 import { EventsDataSource } from './events-data-source';
@@ -14,7 +14,7 @@ import { EventsRootState, selectAllTopics } from '../store/index';
   providedIn: 'root',
 })
 export class EventService {
-  public constructor(private store: Store<EventsRootState>, private fdb: DatabaseService) {}
+  public constructor(private store: Store<EventsRootState>, private db: DatabaseService) {}
 
   public getRouterState(): Observable<AppRouterState> {
     return this.store.select(getRouterState).pipe(pluck('state'));
@@ -25,14 +25,18 @@ export class EventService {
   }
 
   public getEventsDS(): EventsDataSource {
-    return new EventsDataSource(this.fdb);
+    return new EventsDataSource(this.db);
   }
 
-  public getEvent(eventId: string): Observable<ConferenceEventRef> {
-    return this.fdb.getEvent(eventId);
+  public getEvent(eventId: string): Observable<ConferenceEventRef | undefined> {
+    return this.db.getEvent(eventId);
   }
 
-  public newEvent(ev: ConferenceEvent): Observable<ConferenceEventRef> {
-    return this.fdb.newEvent(ev);
+  public addOrUpdateEvent(ev: ConferenceEvent): Observable<boolean> {
+    if (ev._id) {
+      return this.db.updateEvent(ev).pipe(map((v) => !!v.matchedCount));
+    } else {
+      return this.db.newEvent(ev).pipe(map((v) => !!v.insertedId));
+    }
   }
 }

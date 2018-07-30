@@ -3,9 +3,12 @@ import { mockTopics } from '../../../testing/fixtures/topics';
 import { countriesData } from '../data/countries';
 import { builtinSizeBands } from '../data/size-bands';
 import {
-  ConferenceEvent, ConferenceEventFormData, ConferenceEventRef, createEventFromFormData, createFormDataFromEvent,
+  ConferenceEvent,
+  ConferenceEventFormData,
+  ConferenceEventRef,
+  createEventFromFormData,
+  createFormDataFromEvent,
 } from './conference-event';
-const firebase = require('firebase/app');
 
 describe('ConferenceEvent', () => {
   describe('#createEventFromFormData, #createFormDataFromEvent', () => {
@@ -15,6 +18,7 @@ describe('ConferenceEvent', () => {
 
       // convert to event
       ev = createEventFromFormData({ topicTags: formTopicTags }, mockTopics);
+      expect(ev.id).toBeTruthy();
       expect(ev).toEqual(
         jasmine.objectContaining(<ConferenceEvent>{
           topicTags: { [mockTopics[1].id]: true },
@@ -38,7 +42,7 @@ describe('ConferenceEvent', () => {
 
       // convert back to form data
       const formData = createFormDataFromEvent(ev, mockTopics);
-      expect(formData).toEqual(jasmine.objectContaining(<ConferenceEventFormData>{ topicTags: [ false, false, true ] }));
+      expect(formData).toEqual(jasmine.objectContaining(<ConferenceEventFormData>{ topicTags: [false, false, true] }));
     });
 
     it('#topicTags with invalid/incomplete inputs', () => {
@@ -73,7 +77,6 @@ describe('ConferenceEvent', () => {
       expect(ev).toEqual(
         jasmine.objectContaining(<ConferenceEvent>{
           country: mockCountry.name,
-          countryFlag: mockCountry.flag,
           countryCode: mockCountry.isoCode,
           region: mockCountry.region,
           subRegion: mockCountry.subregion,
@@ -121,19 +124,37 @@ describe('ConferenceEvent', () => {
     });
 
     it('#topicTags should be build', () => {
-      const ref = new ConferenceEventRef('id', mockEvent, { topics: mockTopics } );
+      const ref = new ConferenceEventRef('id', mockEvent, { topics: mockTopics });
 
-      expect(ref.topicTags.length).toBe(Object.keys(mockEvent.topicTags).length, 'Built EventTopic list should equal number of provided topic IDs');
-      expect(ref.topicTags[1].id).toBe(Object.keys(mockEvent.topicTags)[1], 'Built EventTopic[1] should equal source topic id');
-      expect(ref.topicTags[1].name).not.toBe(Object.keys(mockEvent.topicTags)[1], 'Built EventTopic[1] name should be built from dictionary of EventTopic');
+      expect(ref.topicTags.length).toBe(
+        Object.keys(mockEvent.topicTags).length,
+        'Built EventTopic list should equal number of provided topic IDs',
+      );
+      expect(ref.topicTags[1].id).toBe(
+        Object.keys(mockEvent.topicTags)[1],
+        'Built EventTopic[1] should equal source topic id',
+      );
+      expect(ref.topicTags[1].name).not.toBe(
+        Object.keys(mockEvent.topicTags)[1],
+        'Built EventTopic[1] name should be built from dictionary of EventTopic',
+      );
     });
 
     it('#topicTags (without dictionary of topics)', () => {
       const ref = new ConferenceEventRef('id', mockEvent);
 
-      expect(ref.topicTags.length).toBe(Object.keys(mockEvent.topicTags).length, 'Built EventTopic list should equal number of provided topic IDs');
-      expect(ref.topicTags[1].id).toBe(Object.keys(mockEvent.topicTags)[1], 'Built EventTopic[1] should equal source topic id');
-      expect(ref.topicTags[1].name).toBe(Object.keys(mockEvent.topicTags)[1], 'Built EventTopic[1] name equal source topic id (since there was no dictionary of topics supplied)');
+      expect(ref.topicTags.length).toBe(
+        Object.keys(mockEvent.topicTags).length,
+        'Built EventTopic list should equal number of provided topic IDs',
+      );
+      expect(ref.topicTags[1].id).toBe(
+        Object.keys(mockEvent.topicTags)[1],
+        'Built EventTopic[1] should equal source topic id',
+      );
+      expect(ref.topicTags[1].name).toBe(
+        Object.keys(mockEvent.topicTags)[1],
+        'Built EventTopic[1] name equal source topic id (since there was no dictionary of topics supplied)',
+      );
     });
 
     it('#country obj should be present', () => {
@@ -141,19 +162,9 @@ describe('ConferenceEvent', () => {
       expect(ref.country.name).toBe(mockEvent.country);
     });
 
-    it('#date should be decoded', () => {
-      const ref = new ConferenceEventRef('id', { ...mockEvent, date: new firebase.firestore.Timestamp(1279755404, 0) });
-      expect(ref.date.getFullYear()).toBe(2010); // year from the Timestamp above
-
-      // this should NOT be converted or anything...
-      const date = new Date();
-      const ref2 = new ConferenceEventRef('id', { ...mockEvent, date });
-      expect(ref2.date).toBe(date);
-    });
-
     it('#sizeBand', () => {
       const ref = new ConferenceEventRef('id', mockEvent);
       expect(ref.sizeBand).toBe(mockNewEventFormData.sizeBand);
     });
-  })
+  });
 });

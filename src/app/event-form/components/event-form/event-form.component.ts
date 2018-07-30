@@ -7,7 +7,9 @@ import {
   ChangeDetectorRef,
   ViewChildren,
   QueryList,
-  Output, Input, OnChanges,
+  Output,
+  Input,
+  OnChanges,
 } from '@angular/core';
 import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -32,14 +34,17 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
   /**
    * Flag indicating submit is in progress
    */
-  @Input() public submitting: boolean = false;
+  @Input()
+  public submitting: boolean = false;
 
-  @Input() public editingEventFormData: ConferenceEventFormData | undefined;
+  @Input()
+  public editingEventFormData: ConferenceEventFormData | undefined;
 
   /**
    * Emits on form submit with all form raw data
    */
-  @Output() public formSubmit: EventEmitter<ConferenceEventFormData> = new EventEmitter();
+  @Output()
+  public formSubmit: EventEmitter<ConferenceEventFormData> = new EventEmitter();
 
   public eventForm!: FormGroup;
 
@@ -49,7 +54,8 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   public countries$!: Observable<Country[]>;
 
-  @ViewChildren(MatInput) private formFields!: QueryList<MatInput>;
+  @ViewChildren(MatInput)
+  private formFields!: QueryList<MatInput>;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
@@ -77,7 +83,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
     this.handleTopicsTags();
     this.handleCountryAndCity();
 
-    /**/
+    /**
     combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges)
       .pipe(debounceTime(1000))
       .subscribe(([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
@@ -90,8 +96,8 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.eventFormData && this.eventForm) {
-      this.eventForm.patchValue(changes.eventFormData.currentValue);
+    if (changes.editingEventFormData && this.eventForm) {
+      this.eventForm.patchValue(changes.editingEventFormData.currentValue);
     }
   }
 

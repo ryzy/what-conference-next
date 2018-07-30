@@ -4,5 +4,4 @@ import { AppEnvironment } from './model';
 export const environment: AppEnvironment = {
   ...defaultEnvironmentConfig,
   production: true,
-  firebase: defaultEnvironmentConfig.firebase,
 };

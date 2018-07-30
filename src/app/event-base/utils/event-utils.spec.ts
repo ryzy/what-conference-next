@@ -1,6 +1,5 @@
 import { countriesData } from '../data/countries';
 import { findCountries, findCountry, getNormalisedDate } from './event-utils';
-const firebase = require('firebase/app');
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'PL');
@@ -32,10 +31,11 @@ describe('event-utils', () => {
   it('#getNormalisedDate', () => {
     expect(getNormalisedDate() instanceof Date).toBe(true);
 
+    // from Date obj
     const mockDate = new Date();
     expect(getNormalisedDate(mockDate)).toBe(mockDate);
 
-    const mockTimestamp = new firebase.firestore.Timestamp();
-    expect(getNormalisedDate(mockTimestamp) instanceof Date).toBe(true);
+    // from string
+    expect(getNormalisedDate(mockDate.toISOString())).toEqual(mockDate);
   });
 });

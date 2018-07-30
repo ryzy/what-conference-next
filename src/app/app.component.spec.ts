@@ -2,7 +2,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 
-import { AppTestingAuthAndDbModule } from '../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../testing/app-testing-auth-db.module';
 import { AppComponent } from './app.component';
 import { RouterEffects } from './core/services/router-effects';
 import { SharedModule } from './shared/shared.module';

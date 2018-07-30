@@ -30,9 +30,9 @@ export function findCountries(countryVal?: string): Country[] {
 /**
  * Return Date obj, converted from Timestamp obj, if needed
  */
-export function getNormalisedDate(date: Date | firebase.firestore.Timestamp = new Date()): Date {
-  if ('nanoseconds' in date) {
-    return date.toDate();
+export function getNormalisedDate(date: Date | string = new Date()): Date {
+  if ('string' === typeof date) {
+    return new Date(date);
   }
 
   return date;

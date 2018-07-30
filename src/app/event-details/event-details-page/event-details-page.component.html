@@ -6,3 +6,7 @@
   <pre>{{ ev.ref | json }}</pre>
 
 </ng-container>
+
+<ng-container *ngIf="notFound">
+  <app-not-found-page message="Hey! It looks like this event doesn't exist yet."></app-not-found-page>
+</ng-container>
