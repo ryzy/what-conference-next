@@ -1,64 +1,71 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { UserInfo } from 'firebase';
-import * as firebase from 'firebase/app';
+import { StitchAuth, UserPasswordCredential, StitchUser, GoogleRedirectCredential } from 'mongodb-stitch-browser-sdk';
 import { Observable, defer, from } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { AppRootState } from '../store/index';
 import { User } from '../model/user';
 import { SetUserAction } from '../store/app/app-actions';
 import * as appSelectors from '../store/app/app-selectors';
+import { StitchService } from '../stitch/stitch.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  /**
-   * Puts user in @ngrx store
-   */
-  @Effect()
-  public userIntoStore$: Observable<SetUserAction> = defer(() => this.afAuth.authState).pipe(
-    map((user) => new SetUserAction(User.fromFirebase(user || undefined))),
-  );
-
-  public constructor(private actions$: Actions, private afAuth: AngularFireAuth, private store: Store<AppRootState>) {}
+  public constructor(private stitch: StitchService, private store: Store<AppRootState>) {
+    // Register Stitch auth listener, so we're notified about changes in the auth
+    // and we can push the user to our Store
+    this.stitch.auth.addAuthListener({ onAuthEvent: this.onStitchAuthEvent.bind(this) });
+  }
 
   /**
    * Get currently logged in user
+   * Note: Safe to call before DB is connected.
    */
   public getCurrentUser(): Observable<User | undefined> {
-    return this.store.select(appSelectors.getUser);
-  }
-
-  public getFirebaseUser(): Observable<firebase.User | undefined> {
-    return this.afAuth.user.pipe(map((u) => u || undefined));
+    return this.store.select(appSelectors.selectUser);
   }
 
   /**
    * Log in the user
    */
-  public loginWithDefaultMethod(): Observable<void> {
-    return from(this.afAuth.auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider()));
+  public signInWithEmailAndPassword(email: string, password: string): Observable<StitchUser> {
+    const credential = new UserPasswordCredential(email, password);
+    return defer(() => from(this.stitch.auth.loginWithCredential(credential)));
   }
 
   /**
    * Log in the user
    */
-  public signInWithEmailAndPassword(email: string, password: string): Observable<firebase.auth.UserCredential> {
-    return from(this.afAuth.auth.signInWithEmailAndPassword(email, password));
+  public loginWithGoogle(): void {
+    const credential = new GoogleRedirectCredential();
+    return this.stitch.auth.loginWithRedirect(credential);
   }
 
   /**
    * Log out the user
    */
-  public logout(): Observable<boolean> {
-    return from(this.afAuth.auth.signOut()).pipe(map(() => true));
+  public logout(): void {
+    this.stitch.auth.logout();
   }
 
-  public updateUserDetails(user: firebase.User): Observable<void> {
-    return from(this.afAuth.auth.updateCurrentUser(user));
+  public navigateToLoginScreen(url?: string): void {
+    console.warn('AuthService TODO: navigateToLoginScreen');
+  }
+
+  public navigateToAfterLoginScreen(url?: string): void {
+    console.warn('AuthService TODO: navigateToAfterLoginScreen');
+  }
+
+  private onStitchAuthEvent(auth: StitchAuth): void {
+    // console.log('AuthService#onStitchAuthEvent', auth);
+    if (auth.user && auth.user.loggedInProviderType !== 'anon-user') {
+      // real user present
+      this.store.dispatch(new SetUserAction(auth.user ? User.fromStitch(auth.user) : undefined));
+    } else {
+      // no real user... or user just logged out
+      this.store.dispatch(new SetUserAction(undefined));
+    }
   }
 }

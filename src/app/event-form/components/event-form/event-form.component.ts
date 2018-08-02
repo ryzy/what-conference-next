@@ -8,14 +8,17 @@ import {
   ViewChildren,
   QueryList,
   Output,
+  Input,
+  OnChanges,
 } from '@angular/core';
+import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material';
 import { Observable, combineLatest } from 'rxjs';
 import { filter, map, startWith, takeUntil, tap, debounceTime } from 'rxjs/operators';
 
 import { builtinSizeBands, EventSizeBand } from '../../../event-base/data/size-bands';
-import { ConferenceEventFormData, createEventFromFormValues } from '../../../event-base/model/conference-event';
+import { ConferenceEventFormData, createEventFromFormData } from '../../../event-base/model/conference-event';
 import { Country } from '../../../event-base/model/country';
 import { EventTopic } from '../../../event-base/model/event-topic';
 import { EventService } from '../../../event-base/services/event.service';
@@ -27,8 +30,21 @@ import { findCountries } from '../../../event-base/utils/event-utils';
   styleUrls: ['./event-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EventFormComponent implements OnInit, OnDestroy {
-  @Output() public formSubmit: EventEmitter<ConferenceEventFormData> = new EventEmitter();
+export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
+  /**
+   * Flag indicating submit is in progress
+   */
+  @Input()
+  public submitting: boolean = false;
+
+  @Input()
+  public editingEventFormData: ConferenceEventFormData | undefined;
+
+  /**
+   * Emits on form submit with all form raw data
+   */
+  @Output()
+  public formSubmit: EventEmitter<ConferenceEventFormData> = new EventEmitter();
 
   public eventForm!: FormGroup;
 
@@ -38,7 +54,8 @@ export class EventFormComponent implements OnInit, OnDestroy {
 
   public countries$!: Observable<Country[]>;
 
-  @ViewChildren(MatInput) private formFields!: QueryList<MatInput>;
+  @ViewChildren(MatInput)
+  private formFields!: QueryList<MatInput>;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
@@ -66,16 +83,22 @@ export class EventFormComponent implements OnInit, OnDestroy {
     this.handleTopicsTags();
     this.handleCountryAndCity();
 
-    /**/
+    /**
     combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges)
       .pipe(debounceTime(1000))
       .subscribe(([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
         console.log(
           '[EVENT FORM] ConferenceEvent#fromFormValues',
           formStatus,
-          createEventFromFormValues(formValues, this.topics),
+          createEventFromFormData(formValues, this.topics),
         );
       }); /**/
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.editingEventFormData && this.eventForm) {
+      this.eventForm.patchValue(changes.editingEventFormData.currentValue);
+    }
   }
 
   public ngOnDestroy(): void {

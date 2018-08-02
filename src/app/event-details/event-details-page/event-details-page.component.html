@@ -1,3 +1,12 @@
-<h2>Event {{ev?.name}}</h2>
+<ng-container *ngIf="ev">
+  <h2>Event: {{ev.ref.name}}</h2>
 
-<pre>{{ ev | json }}</pre>
+  <a [routerLink]="['/edit', ev.id]" mat-raised-button color="accent">Edit Event</a>
+
+  <pre>{{ ev.ref | json }}</pre>
+
+</ng-container>
+
+<ng-container *ngIf="notFound">
+  <app-not-found-page message="Hey! It looks like this event doesn't exist yet."></app-not-found-page>
+</ng-container>

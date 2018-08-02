@@ -26,3 +26,14 @@ export function findCountries(countryVal?: string): Country[] {
 
   return countriesData;
 }
+
+/**
+ * Return Date obj, converted from Timestamp obj, if needed
+ */
+export function getNormalisedDate(date: Date | string = new Date()): Date {
+  if ('string' === typeof date) {
+    return new Date(date);
+  }
+
+  return date;
+}

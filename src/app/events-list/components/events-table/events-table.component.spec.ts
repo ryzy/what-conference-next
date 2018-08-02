@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppTestingAuthAndDbModule } from '../../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../../testing/app-testing-auth-db.module';
+import { EventService } from '../../../event-base/services/event.service';
 import { EventsListModule } from '../../events-list.module';
 import { EventsTableComponent } from './events-table.component';
-import { EventsListService } from '../../services/events-list.service';
 
 describe('EventsTableComponent', () => {
   let component: EventsTableComponent;
   let fixture: ComponentFixture<EventsTableComponent>;
-  let service: EventsListService;
+  let service: EventService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -17,10 +17,10 @@ describe('EventsTableComponent', () => {
   }));
 
   beforeEach(() => {
-    service = TestBed.get(EventsListService);
+    service = TestBed.get(EventService);
     fixture = TestBed.createComponent(EventsTableComponent);
     component = fixture.componentInstance;
-    component.dataSource = service.getEventsDataSource();
+    component.dataSource = service.getEventsDS();
   });
 
   it('should create', () => {

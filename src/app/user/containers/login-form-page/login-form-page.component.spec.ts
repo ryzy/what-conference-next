@@ -1,16 +1,19 @@
+// tslint:disable:rxjs-throw-error
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { of, throwError } from 'rxjs';
 
+import { mockStitchUser } from '../../../../testing/fixtures/user';
 import { UserModule } from '../../user.module';
-import { AppTestingAuthAndDbModule } from '../../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../../testing/app-testing-auth-db.module';
 import { LoginFormPageComponent } from './login-form-page.component';
+import { AuthService } from '../../../core/services/auth.service';
 
 describe('LoginFormPageComponent', () => {
   let component: LoginFormPageComponent;
   let fixture: ComponentFixture<LoginFormPageComponent>;
-  let afAuth: AngularFireAuth;
+  let authService: AuthService;
   let router: Router;
 
   beforeEach(async(() => {
@@ -20,7 +23,7 @@ describe('LoginFormPageComponent', () => {
   }));
 
   beforeEach(() => {
-    afAuth = TestBed.get(AngularFireAuth);
+    authService = TestBed.get(AuthService);
     router = TestBed.get(Router);
     fixture = TestBed.createComponent(LoginFormPageComponent);
     component = fixture.componentInstance;
@@ -33,7 +36,7 @@ describe('LoginFormPageComponent', () => {
 
   it('should login', async () => {
     fixture.detectChanges();
-    const signInSpy = spyOn(afAuth.auth, 'signInWithEmailAndPassword').and.returnValue(Promise.resolve(true));
+    const signInSpy = spyOn(authService, 'signInWithEmailAndPassword').and.returnValue(of(mockStitchUser));
     const navigateSpy = spyOn(router, 'navigate');
 
     component.loginForm.setValue({
@@ -49,10 +52,8 @@ describe('LoginFormPageComponent', () => {
 
   it('should show login error', async () => {
     fixture.detectChanges();
-    const signInSpy = spyOn(afAuth.auth, 'signInWithEmailAndPassword').and.returnValue(
-      Promise.reject({
-        code: 'some/login/error',
-      }),
+    const signInSpy = spyOn(authService, 'signInWithEmailAndPassword').and.returnValue(
+      throwError({ message: 'some/login/error' }),
     );
     const navigateSpy = spyOn(router, 'navigate');
 
@@ -72,7 +73,7 @@ describe('LoginFormPageComponent', () => {
   });
 
   it('should do nothing when user/pass not specified', async () => {
-    const signInSpy = spyOn(afAuth.auth, 'signInWithEmailAndPassword').and.returnValue(Promise.resolve(true));
+    const signInSpy = spyOn(authService, 'signInWithEmailAndPassword').and.returnValue(of(mockStitchUser));
     await component.login();
     expect(signInSpy).not.toHaveBeenCalled();
   });

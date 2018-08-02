@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-with-database.module';
+import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
 import { EventDetailsModule } from '../event-details.module';
 import { EventDetailsPageComponent } from './event-details-page.component';
 

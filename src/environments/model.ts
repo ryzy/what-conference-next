@@ -5,14 +5,10 @@ export interface AppEnvironment {
   production: boolean;
 
   /**
-   * Firebase config
+   * MongoDB Stich settings
    */
-  firebase: {
-    apiKey: string;
-    authDomain: string;
-    databaseURL: string;
-    projectId: string;
-    storageBucket: string;
-    messagingSenderId: string;
+  mongo: {
+    stitchAppId: string;
+    database: string;
   };
 }

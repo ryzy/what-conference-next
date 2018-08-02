@@ -3,16 +3,9 @@ import { EventFormPage } from '../src/event-form.po';
 import { UserPage } from '../src/user.po';
 
 describe('Event Form', () => {
-  before(() => {
-    UserPage.loginWithForm(Cypress.env('TEST_EDITOR_USER'), Cypress.env('TEST_EDITOR_PASS'));
-  });
-
-  // after(() => {
-  // UserPage.visitAndLogOut();
-  // });
-
   beforeEach(() => {
-    AppPage.expectToBeLoggedIn();
+    cy.log('Given I visit "NewEventForm" page');
+    EventFormPage.visit();
   });
 
   it('App should have working "New Event" link on home page', () => {
@@ -25,11 +18,8 @@ describe('Event Form', () => {
   });
 
   it('Calendar field should allow manual input', () => {
-    cy.log('Given I visit "NewEventForm" page');
-    EventFormPage.visit();
-
     cy.log('When I enter "12/31/2099" in the field "date"');
-    EventFormPage.typeIntoFormField('date', '12/31/2099');
+    EventFormPage.typeIntoFormField('date', '12/31/2099', true);
 
     cy.log('I should see date "DEC 2099" in the calendar popover and "31" selected day');
     EventFormPage.triggerCalendarField('date');
@@ -38,10 +28,6 @@ describe('Event Form', () => {
   });
 
   it('Should submit and save new event', () => {
-    cy.log('Given I visit "NewEventForm" page');
-    EventFormPage.visit();
-    // cy.reload(true);
-
     cy.log('And I fill the form with some valid data');
     const eventName = EventFormPage.fillTheFormWithRandomData({ city: false }); // city is auto-set from country
 
@@ -51,8 +37,14 @@ describe('Event Form', () => {
     cy.log('And when I submit the form');
     EventFormPage.button('Submit Event', false).click();
 
-    cy.log('I should see the saved event page');
-    EventFormPage.snackBar().contains('successfully saved');
-    cy.contains(eventName);
+    cy.log('Then I should see the saved event page');
+    EventFormPage.snackBar().contains('successfully created');
+    cy.url()
+      .should('match', /\/ev\/.{5,}/)
+      .then((v) => console.log('url march', v));
+    cy.contains('Event: ' + eventName);
+
+    cy.log('When I click on "Edit Event" button');
+    EventFormPage.link('Edit Event').click();
   });
 });

@@ -1,16 +1,15 @@
-import * as firebase from 'firebase/app';
+import { StitchUser } from 'mongodb-stitch-browser-sdk';
 
 import { User } from '../../app/core/model/user';
 
-export const mockFirebaseUser: firebase.User = {
-  uid: 'uid',
-  displayName: 'Firebase User',
-  email: 'email@example.com',
-  photoURL: '/assets/favicon.png',
-  metadata: {
-    creationTime: '2018-02-19T21:00:16.000Z',
-    lastSignInTime: '2018-02-25T00:23:18.000Z',
+export const mockStitchUser: StitchUser = {
+  id: '5b5ccb894fdd1f82c29b1afc',
+  loggedInProviderName: 'oauth2-google',
+  profile: {
+    name: 'Mock User',
+    email: 'email@example.com',
+    pictureUrl: '/assets/default-avatar.png',
   },
-} as firebase.User;
+} as StitchUser;
 
-export const mockUser: User = User.fromFirebase(mockFirebaseUser) as User;
+export const mockUser: User = User.fromStitch(mockStitchUser);

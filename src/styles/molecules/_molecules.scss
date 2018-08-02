@@ -1,5 +1,9 @@
 @import 'abstracts';
 
+.text-right {
+  text-align: right;
+}
+
 .text-ellipsis {
   overflow: hidden;
   white-space: nowrap;

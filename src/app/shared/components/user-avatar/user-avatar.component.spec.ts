@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { mockUser } from '../../../../testing/fixtures/user';
 
-import { User } from '../../../core/model/user';
+import { mockUser } from '../../../../testing/fixtures/user';
 import { SharedModule } from '../../shared.module';
 import { UserAvatarComponent } from './user-avatar.component';
 
@@ -29,9 +28,9 @@ describe('UserAvatarComponent', () => {
   });
 
   it('should create with logged in user', () => {
-    component.user = new User(mockUser);
+    component.user = mockUser;
     fixture.detectChanges();
     expect(component).toBeTruthy();
-    expect(el.innerHTML).toContain('favicon.png');
+    expect(el.innerHTML).toContain('avatar.png');
   });
 });

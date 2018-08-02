@@ -7,14 +7,10 @@ export const defaultEnvironmentConfig: AppEnvironment = {
   production: false,
 
   /**
-   * Firebase config
+   * MongoDB Stich settings
    */
-  firebase: {
-    apiKey: 'AIzaSyBEOVpgRastnqyGLxloAWcaxPoJljHWiVk',
-    authDomain: 'frontend-events-dev.firebaseapp.com',
-    databaseURL: 'https://frontend-events-dev.firebaseio.com',
-    projectId: 'frontend-events-dev',
-    storageBucket: 'frontend-events-dev.appspot.com',
-    messagingSenderId: '898642869507',
+  mongo: {
+    stitchAppId: 'dev-what-conference-next-kzfdc',
+    database: 'dev-wcn',
   },
 };

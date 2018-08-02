@@ -1,5 +1,5 @@
 import { countriesData } from '../data/countries';
-import { findCountries, findCountry } from './event-utils';
+import { findCountries, findCountry, getNormalisedDate } from './event-utils';
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'PL');
@@ -26,5 +26,16 @@ describe('event-utils', () => {
     expect(findCountries('pol').length).toBe(2); // poland and french polynesia
 
     expect(findCountries('z').length).toBe(16);
+  });
+
+  it('#getNormalisedDate', () => {
+    expect(getNormalisedDate() instanceof Date).toBe(true);
+
+    // from Date obj
+    const mockDate = new Date();
+    expect(getNormalisedDate(mockDate)).toBe(mockDate);
+
+    // from string
+    expect(getNormalisedDate(mockDate.toISOString())).toEqual(mockDate);
   });
 });

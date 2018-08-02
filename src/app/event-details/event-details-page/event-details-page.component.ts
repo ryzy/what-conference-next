@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
-import { ConferenceEvent } from '../../event-base/model/conference-event';
+import { ConferenceEvent, ConferenceEventRef } from '../../event-base/model/conference-event';
 
 import { EventService } from '../../event-base/services/event.service';
 
@@ -12,7 +12,8 @@ import { EventService } from '../../event-base/services/event.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventDetailsPageComponent implements OnInit, OnDestroy {
-  public ev: ConferenceEvent | undefined;
+  public ev: ConferenceEventRef | undefined;
+  public notFound: boolean = false;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
@@ -22,13 +23,14 @@ export class EventDetailsPageComponent implements OnInit, OnDestroy {
     this.route.paramMap
       .pipe(
         takeUntil(this.ngOnDestroy$),
-        map((params: ParamMap) => params.get('eventId') || 'invalid-event-id'),
+        map((params: ParamMap) => params.get('eventId') || 'url-missing-event-id'),
         switchMap((eventId: string) => this.service.getEvent(eventId)),
         takeUntil(this.ngOnDestroy$),
       )
       .subscribe((ev) => {
-        console.log('EventDetailsPageComponent loaded ev', ev);
+        // console.log('EventDetailsPageComponent loaded ev', ev);
         this.ev = ev;
+        this.notFound = !ev;
         this.cdRef.markForCheck();
       });
   }

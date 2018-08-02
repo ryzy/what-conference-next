@@ -1,7 +1,8 @@
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
 
-import { EventsDatabase } from './events-database';
+import { ConferenceEvent, ConferenceEventRef } from '../model/conference-event';
+import { DatabaseService } from './database.service';
 
 /**
  * Data source to provide what data should be rendered in the table. Note that the data source
@@ -10,13 +11,13 @@ import { EventsDatabase } from './events-database';
  * the underlying data. Instead, it only needs to take the data and send the table exactly what
  * should be rendered.
  */
-export class EventsDataSource<T> extends DataSource<T> {
-  constructor(private database: EventsDatabase<T>) {
+export class EventsDataSource extends DataSource<ConferenceEventRef> {
+  constructor(private db: DatabaseService) {
     super();
   }
 
-  public connect(): Observable<T[]> {
-    return this.database.events$;
+  public connect(): Observable<ConferenceEventRef[]> {
+    return this.db.getEvents();
   }
 
   public disconnect(): void {}

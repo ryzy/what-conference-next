@@ -1,35 +1,27 @@
-import * as firebase from 'firebase/app';
+import { StitchUser } from 'mongodb-stitch-browser-sdk';
 
 /**
- * User representation in the app (instantiated from Firebase user)
+ * User representation in the app
  */
 export class User {
-  public uid: string | null = null;
-  public displayName: string | null = null;
-  public email: string | null = null;
-  public photoUrl: string | null = null;
-  public createdAt?: Date;
-  public lastLoginAt?: Date;
+  public id: string = '';
+  public displayName: string = '';
+  public email: string = '';
+  public photoUrl: string = '';
 
   /**
-   * Create new instance of User from firebase User
+   * Create a new instance of app User from StitchUser
    */
-  public static fromFirebase(user?: firebase.User): User | undefined {
-    if (user) {
-      return new User({
-        uid: user.uid,
-        displayName: user.displayName,
-        email: user.email,
-        photoUrl: user.photoURL,
-        createdAt: user.metadata && user.metadata.creationTime ? new Date(user.metadata.creationTime) : undefined,
-        lastLoginAt: user.metadata && user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime) : undefined,
-      });
-    } else {
-      return undefined;
-    }
+  public static fromStitch(user: Partial<StitchUser>): User {
+    return new User({
+      id: user.id || 'unknown-id',
+      displayName: (user.profile && (user.profile.name || user.profile.email)) || 'User Name',
+      email: (user.profile && user.profile.email) || 'unknown@email.com',
+      photoUrl: (user.profile && user.profile.pictureUrl) || '/assets/default-avatar.png',
+    });
   }
 
-  public constructor(userData: User) {
+  public constructor(userData: Partial<User>) {
     Object.assign(this, userData);
   }
 }
