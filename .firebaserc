@@ -1,7 +1,6 @@
 {
   "projects": {
-    "poc": "frontend-events-proto",
-    "dev": "frontend-events-dev",
-    "prod": "frontend-events"
+    "dev": "dev-wcn",
+    "prod": "prod-wcn"
   }
 }

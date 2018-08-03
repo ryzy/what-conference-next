@@ -1,5 +1,5 @@
 // tslint:disable:max-line-length
-import { RemoteInsertOneResult, RemoteUpdateResult } from 'mongodb-stitch-browser-sdk';
+import { RemoteInsertOneResult, RemoteUpdateResult, RemoteDeleteResult } from 'mongodb-stitch-browser-sdk';
 
 export const mockStitchInsertOneResponse: RemoteInsertOneResult = {
   insertedId: {
@@ -14,6 +14,10 @@ export const mockStitchUpdateResponse: RemoteUpdateResult = {
   upsertedId: 'xyz',
   matchedCount: 1,
   modifiedCount: 1,
+};
+
+export const mockStitchDeleteResponse: RemoteDeleteResult = {
+  deletedCount: 1,
 };
 
 export const mockStitchLoginResponse = {

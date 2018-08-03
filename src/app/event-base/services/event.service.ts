@@ -39,4 +39,8 @@ export class EventService {
       return this.db.newEvent(ev).pipe(map((v) => !!v.insertedId));
     }
   }
+
+  public deleteEvent(ev: ConferenceEvent): Observable<boolean> {
+    return this.db.deleteEvent(ev);
+  }
 }

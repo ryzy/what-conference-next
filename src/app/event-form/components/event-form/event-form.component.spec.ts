@@ -25,6 +25,8 @@ describe('EventFormComponent', () => {
     expect(component).toBeTruthy();
 
     component.onSubmit();
+    component.onDelete();
+    component.onCancel();
   });
 
   it('#displayCountryFn', () => {

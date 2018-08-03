@@ -10,7 +10,6 @@ import { AppRootState } from '../../core/store/index';
 import { EventBaseModule } from '../event-base.module';
 import { ConferenceEventRef } from '../model/conference-event';
 import { EventTopic } from '../model/event-topic';
-import { SetTopicsAction } from '../store/topics-actions';
 import { DatabaseService } from './database.service';
 import { EventService } from './event.service';
 
@@ -73,5 +72,11 @@ describe('EventService', () => {
     eventService.addOrUpdateEvent({ _id: '5b5e48101c9d443b15217e3e', ...mockEvent });
     expect(newEventSpy).not.toHaveBeenCalled();
     expect(updateEventSpy).toHaveBeenCalled();
+  });
+
+  it('#deleteEvent', () => {
+    let res: boolean | undefined;
+    eventService.deleteEvent(mockEvent).subscribe((v) => (res = v));
+    expect(res).toBe(true);
   });
 });

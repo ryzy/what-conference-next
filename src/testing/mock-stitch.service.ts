@@ -2,11 +2,12 @@ import { HttpTestingController } from '@angular/common/http/testing';
 import { tick } from '@angular/core/testing';
 import { Injectable, NgZone } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { UserPasswordCredential, StitchUser } from 'mongodb-stitch-browser-sdk';
+import { UserPasswordCredential, StitchUser, RemoteDeleteResult } from 'mongodb-stitch-browser-sdk';
 
 import { StitchService } from '../app/core/stitch/stitch.service';
 import { HttpStitchTransport } from '../app/core/stitch/http-stitch-transport';
 import {
+  mockStitchDeleteResponse,
   mockStitchInsertOneResponse,
   mockStitchLoginResponse,
   mockStitchProfileResponse,
@@ -50,6 +51,12 @@ export class MockStitchService extends StitchService {
   public mockUpdateResponse(): void {
     const r = this.httpMock.expectOne((req) => req.url.includes('/call'));
     r.flush(mockStitchUpdateResponse);
+    tick();
+  }
+
+  public mockDeleteResponse(response: RemoteDeleteResult = mockStitchDeleteResponse): void {
+    const r = this.httpMock.expectOne((req) => req.url.includes('/call'));
+    r.flush(response);
     tick();
   }
 

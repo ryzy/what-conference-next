@@ -1,0 +1,55 @@
+.app-loader {
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
+  padding: 1rem 0;
+}
+.app-loader.centered {
+  justify-content: center;
+}
+
+.app-loader .spinner {
+  position: relative;
+  width: 5rem;
+}
+
+.app-loader svg {
+  animation: anim-rotate 2s linear infinite;
+  transform-origin: center;
+}
+
+.app-loader circle {
+  stroke: #d81b60;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: anim-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes anim-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes anim-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}

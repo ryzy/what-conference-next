@@ -38,13 +38,25 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
   public submitting: boolean = false;
 
   @Input()
-  public editingEventFormData: ConferenceEventFormData | undefined;
+  public editingEventFormData: Partial<ConferenceEventFormData> = {};
 
   /**
    * Emits on form submit with all form raw data
    */
   @Output()
   public formSubmit: EventEmitter<ConferenceEventFormData> = new EventEmitter();
+
+  /**
+   * Emits when user clicks on [delete] btn
+   */
+  @Output()
+  public formDelete: EventEmitter<ConferenceEventFormData> = new EventEmitter();
+
+  /**
+   * Emits when user clicks on [cancel] btn
+   */
+  @Output()
+  public formCancel: EventEmitter<Partial<ConferenceEventFormData>> = new EventEmitter();
 
   public eventForm!: FormGroup;
 
@@ -107,6 +119,12 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   public onSubmit(): void {
     this.formSubmit.next(this.eventForm.getRawValue() as ConferenceEventFormData);
+  }
+  public onCancel(): void {
+    this.formCancel.next(this.eventForm.getRawValue());
+  }
+  public onDelete(): void {
+    this.formDelete.next(this.eventForm.getRawValue());
   }
 
   public displayCountryFn(country?: Country): string | undefined {

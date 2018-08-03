@@ -13,7 +13,7 @@ const pl = findCountry('pl') as Country;
 export const mockEvents: ConferenceEvent[] = [
   {
     id: 'event-1',
-    name: 'Mock Event 1',
+    name: 'Unit Test Event 1',
     topicTags: { [mockTopics[0].id]: true },
     date: new Date('2017-11-21T00:00:00.000Z'),
     city: 'Warsaw',
@@ -43,7 +43,7 @@ export const mockEvents: ConferenceEvent[] = [
     description:
       'A famous JavaScript conference in Asia. Talks, community workshops, hands-on sessions, great food and the DBS beach-party.',
     eventDuration: 3,
-    name: 'Mock Event 2',
+    name: 'Unit Test Event 2',
     region: 'Asia',
     sizeBand: builtinSizeBands[2].id,
     subRegion: 'South-Eastern Asia',

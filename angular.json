@@ -134,7 +134,11 @@
     }
   },
   "schematics": {
+    "@schematics/angular:service": {
+      "flat": true
+    },
     "@schematics/angular:component": {
+      "changeDetection": "OnPush",
       "styleext": "scss"
     }
   },

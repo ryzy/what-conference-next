@@ -1,10 +1,11 @@
-import { AppPage, URLs } from './app.po';
-import { randomRange } from './utils';
+import { ConferenceEvent, ConferenceEventFormData } from '../../src/app/event-base/model/conference-event';
+import { mockEvent } from '../../src/testing/fixtures/events-db';
+import { AbstractPage, URLs } from './abstract.po';
 
 /**
  * List of fields in the new event form
  */
-export const eventFormFields: { [k: string]: boolean | string } = {
+export const eventFormFields: { [k in keyof ConferenceEventFormData]: boolean | string } = {
   name: true,
   topicTags: true,
   country: true,
@@ -20,47 +21,49 @@ export const eventFormFields: { [k: string]: boolean | string } = {
   sizeBand: true,
 };
 
-export class EventFormPage extends AppPage {
+export const mockE2eEvent: ConferenceEvent = {
+  ...mockEvent,
+  name: 'Test Event',
+};
+
+export class EventFormPage extends AbstractPage {
   static URL = URLs.NewEventForm;
 
   public static visit(url = EventFormPage.URL): void {
     super.visit(url);
   }
 
-  public static fillTheFormWithRandomData(fields = eventFormFields): string {
-    fields = { ...eventFormFields, ...fields }; // some fields might be switched off
+  public static fillTheFormWithRandomData(ev: Partial<ConferenceEvent> = mockE2eEvent): string {
+    ev = { ...mockE2eEvent, ...ev }; // some fields might be switched off
 
-    let nameVal = '';
-
-    if (fields.name) {
+    if (ev.name) {
       cy.log('And I enter "Event" in the field "name"');
-      nameVal = ('string' === typeof fields.name ? fields.name : 'Test Event') + ' ' + randomRange(1000);
-      this.typeIntoFormField('name', nameVal);
+      this.typeIntoFormField('name', ev.name);
     }
 
-    if (fields.topicTags) {
+    if (ev.topicTags) {
       cy.log('And I tick checkbox no "1" in the field "topicTags"');
       // Force=true becase the real inputs are hidden behind MD things
       this.checkboxes('topicTags', 1).click({ force: true });
       this.checkboxes('topicTags', 3).click({ force: true });
     }
 
-    if (fields.date) {
+    if (ev.date) {
       cy.log('And I select "some date" in the calendar field "date"');
       this.selectDateInCalendarField('date');
     }
 
-    if (fields.sizeBand) {
+    if (ev.sizeBand) {
       cy.log('And I select option no "1" in the dropdown "sizeBand"');
       this.select('sizeBand', 1);
     }
 
-    if (fields.price) {
+    if (ev.price) {
       cy.log('And I enter "666" in the field "price"');
-      this.typeIntoFormField('price', 666);
+      this.typeIntoFormField('price', ev.price);
     }
 
-    if (fields.country) {
+    if (ev.country) {
       cy.log('And I enter "Fr" in the field "country"');
       this.typeIntoFormField('country', 'Fr');
       cy.log('And I select option no "2" from the autocomplete field "country"');
@@ -69,31 +72,31 @@ export class EventFormPage extends AppPage {
       this.formField('country').should('have.value', 'France');
     }
 
-    if (fields.city) {
+    if (ev.city) {
       cy.log('And I enter "Paris" in the field "city"');
-      this.typeIntoFormField('city', 'Paris');
+      this.typeIntoFormField('city', ev.city);
     }
 
-    if (fields.address) {
+    if (ev.address) {
       cy.log('And I enter "Museum Louvre" in the field "address"');
-      this.typeIntoFormField('address', 'Museum Louvre');
+      this.typeIntoFormField('address', ev.address);
     }
 
-    if (fields.website) {
+    if (ev.website) {
       cy.log('And I enter "https://www.louvre.fr/en/evenements" in the field "website"');
-      this.typeIntoFormField('website', 'https://www.louvre.fr/en/evenements');
+      this.typeIntoFormField('website', ev.website);
     }
 
-    if (fields.twitterHandle) {
+    if (ev.twitterHandle) {
       cy.log('And I enter "SuperConf" in the field "twitterHandle"');
-      this.typeIntoFormField('twitterHandle', 'SuperConf');
+      this.typeIntoFormField('twitterHandle', ev.twitterHandle);
     }
 
-    if (fields.description) {
+    if (ev.description) {
       cy.log('And I enter "Lorem ipsum dolar sit amet." in the field "description"');
-      this.typeIntoFormField('description', 'Lorem ipsum dolar sit amet');
+      this.typeIntoFormField('description', ev.description);
     }
 
-    return nameVal;
+    return ev.name;
   }
 }

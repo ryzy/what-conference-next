@@ -1,3 +1,6 @@
+import { deburr, kebabCase } from 'lodash-es';
+
+import { uuid } from '../../core/core-utils';
 import { countriesData } from '../data/countries';
 import { Country } from '../model/country';
 
@@ -36,4 +39,11 @@ export function getNormalisedDate(date: Date | string = new Date()): Date {
   }
 
   return date;
+}
+
+/**
+ * Generate event id/url slug from provided name
+ */
+export function getEventSlug(eventName: string): string {
+  return kebabCase(deburr(eventName)) + '-' + uuid(6);
 }

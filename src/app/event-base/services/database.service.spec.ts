@@ -121,4 +121,20 @@ describe('DatabaseService', () => {
       expect(res.matchedCount).toEqual(1);
     }),
   );
+
+  it(
+    '#deleteEvent',
+    fakeAsync(() => {
+      stitch.mockLogin();
+
+      let res: boolean | undefined;
+      db.deleteEvent(mockEvent).subscribe((v) => (res = v));
+      stitch.mockDeleteResponse();
+      expect(res).toBe(true);
+
+      db.deleteEvent(mockEvent).subscribe((v) => (res = v));
+      stitch.mockDeleteResponse({ deletedCount: 0 });
+      expect(res).toBe(false);
+    }),
+  );
 });
