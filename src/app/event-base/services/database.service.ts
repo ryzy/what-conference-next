@@ -73,6 +73,12 @@ export class DatabaseService {
     return defer(() => from(this.stitch.db.collection('events').updateOne({ _id: ev._id }, ev)));
   }
 
+  public deleteEvent(ev: ConferenceEvent): Observable<boolean> {
+    return defer(() => from(this.stitch.db.collection('events').deleteOne({ _id: ev._id }))).pipe(
+      map((v) => !!v.deletedCount),
+    );
+  }
+
   /**
    * Map ConferenceEvent to ConferenceEventRef
    */

@@ -1,6 +1,6 @@
-import { AppPage, URLs } from './app.po';
+import { AbstractPage, URLs } from './abstract.po';
 
-export class UserPage extends AppPage {
+export class UserPage extends AbstractPage {
   static URL = URLs.User;
 
   static PAGE_TITLE = 'Your account';

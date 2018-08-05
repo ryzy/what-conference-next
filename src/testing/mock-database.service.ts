@@ -31,4 +31,8 @@ export class MockDatabaseService extends DatabaseService {
   public updateEvent(ev: ConferenceEvent): Observable<RemoteUpdateResult> {
     return of(mockStitchUpdateResponse);
   }
+
+  public deleteEvent(ev: ConferenceEvent): Observable<boolean> {
+    return of(true);
+  }
 }

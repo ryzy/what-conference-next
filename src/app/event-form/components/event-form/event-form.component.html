@@ -1,5 +1,8 @@
 <form [formGroup]="eventForm" novalidate cdkTrapFocus (submit)="onSubmit()">
 
+  <!-- project any content passed here, e.g. event loader -->
+  <ng-content></ng-content>
+
   <fieldset>
     <legend>Event Basic Information</legend>
     <div class="grid-x grid-margin-x">
@@ -99,14 +102,19 @@
   </fieldset>
 
   <fieldset>
-    <div class="grid-x grid-margin-x align-right">
+    <div class="grid-x grid-margin-x align-justify">
       <div class="cell shrink">
+        <button mat-raised-button color="accent" type="button"
+                *ngIf="editingEventFormData"
+                (click)="onDelete()"
+        >Delete Event</button>
+      </div>
+      <div class="cell shrink">
+        <button mat-button type="button" (click)="onCancel()">Cancel</button>
+
         <button *ngIf="!editingEventFormData" mat-button color="accent">Mock submit</button>
-
-        <button mat-button>Cancel</button>
-
         <button mat-raised-button color="accent"
-                [disabled]="!this.eventForm.valid || submitting"
+                [disabled]="!this.eventForm.valid || submitting || eventForm.pristine"
                 type="submit">
           <ng-container *ngIf="editingEventFormData">Update Event</ng-container>
           <ng-container *ngIf="!editingEventFormData">Submit Event</ng-container>

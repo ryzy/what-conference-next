@@ -1,7 +1,7 @@
 import { deburr, kebabCase } from 'lodash-es';
 
 import { builtinSizeBands, EventSizeBand } from '../data/size-bands';
-import { findCountry, getNormalisedDate } from '../utils/event-utils';
+import { findCountry, getEventSlug, getNormalisedDate } from '../utils/event-utils';
 import { Country } from './country';
 import { EventTopic } from './event-topic';
 import { uuid } from '../../core/core-utils';
@@ -104,7 +104,7 @@ export function createEventFromFormData(
   const event: ConferenceEvent = { ...((formData as any) as ConferenceEvent) };
 
   // Generate our id / url slug
-  event.id = event.id || kebabCase(deburr(event.name)) + '-' + uuid(6);
+  event.id = event.id || getEventSlug(event.name);
 
   event.topicTags = {}; // re-set, so it doesn't contain any original values
   if (Array.isArray(formData.topicTags)) {

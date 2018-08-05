@@ -2,6 +2,10 @@
 
 <app-event-form
   (formSubmit)="onSubmit($event)"
+  (formDelete)="onDelete()"
+  (formCancel)="onCancel()"
   [editingEventFormData]="editingEventFormData"
   [submitting]="submitting"
-></app-event-form>
+>
+  <app-loader *ngIf="editingEventLoading"></app-loader>
+</app-event-form>

@@ -1,0 +1,10 @@
+<h3>Are you absolutely sure?</h3>
+
+<p *ngIf="message" [innerHTML]="message"></p>
+
+<p>This change is irreversible. Are you sure you want to proceed?</p>
+
+<p>
+  <button mat-raised-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="accent" (click)="onConfirm()">Sure, do it!</button>
+</p>

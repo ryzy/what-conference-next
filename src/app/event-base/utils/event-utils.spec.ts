@@ -1,5 +1,5 @@
 import { countriesData } from '../data/countries';
-import { findCountries, findCountry, getNormalisedDate } from './event-utils';
+import { findCountries, findCountry, getEventSlug, getNormalisedDate } from './event-utils';
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'PL');
@@ -37,5 +37,11 @@ describe('event-utils', () => {
 
     // from string
     expect(getNormalisedDate(mockDate.toISOString())).toEqual(mockDate);
+  });
+
+  it('#getEventSlug', () => {
+    expect(getEventSlug('Some Event Title')).toContain('some-event-title-');
+    expect(getEventSlug('')).toContain('-');
+    expect(getEventSlug('').length).toBeGreaterThan(5); // we should have at least an -random-suffix here...
   });
 });

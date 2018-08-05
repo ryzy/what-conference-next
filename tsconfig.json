@@ -11,7 +11,6 @@
     "target": "es5",
     "skipLibCheck": true,
     "typeRoots": ["node_modules/@types"],
-    "types": ["cypress"],
     "lib": ["es2017", "dom"]
   }
 }
