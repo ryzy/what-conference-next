@@ -1,4 +1,4 @@
-import { Country } from '../model/country';
+import { Country } from '../core/model/country';
 
 /**
  * List of countries, together with currencies, timezones etc

@@ -5,12 +5,12 @@ import { cold, hot } from 'jasmine-marbles';
 import { of } from 'rxjs';
 
 import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
-import { mockTopics } from '../../../testing/fixtures/topics';
+import { mockTags } from '../../../testing/fixtures/event-tags';
 import { TestActions, TestActionsProvider } from '../../../testing/test-actions';
 import { CoreService } from '../../core/services/core.service';
 import { StitchService } from '../../core/stitch/stitch.service';
 import { AppRootState } from '../../core/store/index';
-import { LoadTopicsAction, SetTopicsAction } from '../store/topics-actions';
+import { LoadTagsAction, SetTagsAction } from '../store/tags-actions';
 import { EventEffects } from './event-effects';
 
 describe('EventEffects', () => {
@@ -39,9 +39,9 @@ describe('EventEffects', () => {
     expect(res).toBe(true);
   });
 
-  it('#setTopics$', () => {
-    actions$.stream = hot('-a', { a: new LoadTopicsAction() });
-    const expected = cold('-c', { c: new SetTopicsAction(mockTopics) });
-    expect(effects.setTopics$).toBeObservable(expected);
+  it('#setTags$', () => {
+    actions$.stream = hot('-a', { a: new LoadTagsAction() });
+    const expected = cold('-c', { c: new SetTagsAction(mockTags) });
+    expect(effects.setTags$).toBeObservable(expected);
   });
 });

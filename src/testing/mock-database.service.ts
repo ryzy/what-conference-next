@@ -4,24 +4,23 @@ import { Observable, of } from 'rxjs';
 
 import { ConferenceEvent, ConferenceEventRef } from '../app/event-base/model/conference-event';
 import { DatabaseService } from '../app/event-base/services/database.service';
-import { EventTopic } from '../app/event-base/model/event-topic';
-import { mockEvent, mockEvents } from './fixtures/events-db';
+import { EventTag } from '../app/event-base/model/event-tag';
+import { mockEvent, mockEvents } from './fixtures/events';
 import { mockStitchInsertOneResponse, mockStitchUpdateResponse } from './fixtures/stitch';
-import { mockTopics } from './fixtures/topics';
+import { mockTags } from './fixtures/event-tags';
 
 @Injectable()
 export class MockDatabaseService extends DatabaseService {
-  public getTopics(): Observable<EventTopic[]> {
-    return of(mockTopics);
+  public getEventTags(): Observable<EventTag[]> {
+    return of(mockTags);
   }
 
   public getEvent(eventId: string): Observable<ConferenceEventRef> {
-    const ev = mockEvent;
-    return of(new ConferenceEventRef(ev.id, ev, { topics: mockTopics }));
+    return of(new ConferenceEventRef(mockEvent, { tags: mockTags }));
   }
 
   public getEvents(): Observable<ConferenceEventRef[]> {
-    return of(mockEvents.map((ev) => new ConferenceEventRef(ev.id, ev, { topics: mockTopics })));
+    return of(mockEvents.map((ev) => new ConferenceEventRef(ev, { tags: mockTags })));
   }
 
   public newEvent(ev: ConferenceEvent): Observable<RemoteInsertOneResult> {

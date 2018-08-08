@@ -39,10 +39,10 @@
     </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="topicTags">
-    <mat-header-cell *matHeaderCellDef>Focus</mat-header-cell>
+  <ng-container matColumnDef="tags">
+    <mat-header-cell *matHeaderCellDef>Tags</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <span *ngFor="let topic of row.topicTags" class="badge">{{ topic.name }}</span>
+      <span *ngFor="let tag of row.tags" class="badge">{{ tag.name }}</span>
     </mat-cell>
   </ng-container>
 

@@ -70,7 +70,7 @@ export class IsAuthenticatedGuard implements CanActivate, CanActivateChild, CanL
       // TODO: we should probably wait instead of just taking 1?
       take(1),
       // ...then check if we're logged in.
-      switchMap(() => this.authService.getCurrentUser().pipe(take(1))),
+      switchMap(() => this.authService.getUser().pipe(take(1))),
       map((user) => !!user),
       tap((isLoggedIn: boolean) => {
         if (!isLoggedIn) {

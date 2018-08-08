@@ -1,47 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, defer } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, from, defer, of, throwError } from 'rxjs';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { RemoteInsertOneResult, RemoteUpdateResult } from 'mongodb-stitch-browser-sdk';
+import { mockEvent } from '../../../testing/fixtures/events';
 
 import { StitchService } from '../../core/stitch/stitch.service';
 import { ConferenceEvent, ConferenceEventRef } from '../model/conference-event';
-import { EventTopic } from '../model/event-topic';
+import { EventTag } from '../model/event-tag';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
-  protected topicsCache: EventTopic[] = [];
+  protected tagsCache: EventTag[] = [];
 
   public constructor(private stitch: StitchService) {}
 
-  public getTopics(): Observable<EventTopic[]> {
-    // console.log('DatabaseService#getTopics');
+  public getEventTags(): Observable<EventTag[]> {
+    // console.log('DatabaseService#getEventTags');
     return defer(() =>
       from(
         this.stitch.db
-          .collection<EventTopic>('topics')
+          .collection<EventTag>('tags')
           .find()
           .asArray(),
       ),
     ).pipe(
-      // tap((v) => console.log('stitch.db.collection(topics)', v)),
-      tap((v) => (this.topicsCache = v)),
+      // tap((v) => console.log('stitch.db.collection(tags)', v)),
+      tap((v) => (this.tagsCache = v)),
     );
   }
 
-  public getEvent(eventId: string): Observable<ConferenceEventRef | undefined> {
+  /**
+   * Load event. Emits error when event not found.
+   */
+  public getEvent(eventId: string): Observable<ConferenceEventRef> {
     // console.log('DatabaseService#getEvent loading...', eventId);
     return defer(() =>
       from(
         this.stitch.db
           .collection<ConferenceEvent>('events')
           .find({ id: eventId })
-          .first(),
+          .first(), // expect one event
       ),
     ).pipe(
-      map((ev?: ConferenceEvent) => ev && this.eventToEventRef(ev)),
-      // tap((ev: ConferenceEventRef) => console.log('DatabaseService#getEvent loaded', ev)),
+      switchMap((ev?: ConferenceEvent) => {
+        if (ev) {
+          return of(this.eventToEventRef(ev));
+        }
+        return throwError(new Error(`Event with ID '${eventId}' not found.`));
+      }),
     );
   }
 
@@ -83,6 +91,6 @@ export class DatabaseService {
    * Map ConferenceEvent to ConferenceEventRef
    */
   private eventToEventRef(ev: ConferenceEvent): ConferenceEventRef {
-    return new ConferenceEventRef(ev.id, ev, { topics: this.topicsCache });
+    return new ConferenceEventRef(ev, { tags: this.tagsCache });
   }
 }

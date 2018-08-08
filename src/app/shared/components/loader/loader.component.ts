@@ -5,6 +5,7 @@ import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@a
   host: {
     class: 'app-loader',
     '[class.centered]': 'centered',
+    '[class.local]': 'local',
   },
   template: `
     <div class="spinner">
@@ -23,6 +24,16 @@ export class LoaderComponent {
   @Input()
   public message: string = 'Loading...';
 
+  /**
+   * Vertically centered loader. Useful when you need full screen loader
+   */
   @Input()
   public centered: boolean = false;
+
+  /**
+   * Local (i.e. not absolutely positioned) loader
+   * TODO: probably it needs more thinking/fine-tuning
+   */
+  @Input()
+  public local: boolean = false;
 }

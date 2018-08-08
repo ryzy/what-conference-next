@@ -1,8 +1,8 @@
 import { deburr, kebabCase } from 'lodash-es';
 
 import { uuid } from '../../core/core-utils';
-import { countriesData } from '../data/countries';
-import { Country } from '../model/country';
+import { countriesData } from '../../data/countries';
+import { Country } from '../../core/model/country';
 
 /**
  * Find country by its ISO code or name

@@ -6,8 +6,8 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { CoreService } from '../../core/services/core.service';
 
 import { DatabaseService } from './database.service';
-import { EventTopic } from '../model/event-topic';
-import { LoadTopicsAction, TopicsActionType, SetTopicsAction } from '../store/topics-actions';
+import { EventTag } from '../model/event-tag';
+import { LoadTagsAction, TagsActionType, SetTagsAction } from '../store/tags-actions';
 import { EventsRootState } from '../store/index';
 
 /**
@@ -18,10 +18,10 @@ import { EventsRootState } from '../store/index';
 })
 export class EventEffects {
   @Effect()
-  public setTopics$: Observable<SetTopicsAction> = this.actions$.pipe(
-    ofType(TopicsActionType.LOAD_TOPICS),
-    switchMap(() => this.db.getTopics()),
-    map((topics: EventTopic[]) => new SetTopicsAction(topics)),
+  public setTags$: Observable<SetTagsAction> = this.actions$.pipe(
+    ofType(TagsActionType.LOAD_TAGS),
+    switchMap(() => this.db.getEventTags()),
+    map((tags: EventTag[]) => new SetTagsAction(tags)),
   );
 
   /**
@@ -30,7 +30,7 @@ export class EventEffects {
   @Effect({ dispatch: false })
   public whenDbReady$: Observable<boolean> = this.core.whenAuthAndDbReady().pipe(
     tap((v) => {
-      this.store.dispatch(new LoadTopicsAction());
+      this.store.dispatch(new LoadTagsAction());
     }),
   );
 

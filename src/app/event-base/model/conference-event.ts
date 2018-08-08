@@ -1,10 +1,17 @@
-import { deburr, kebabCase } from 'lodash-es';
-
+import { Country } from '../../core/model/country';
+import { Entity } from '../../core/model/entity';
+import { GeoPoint, ObjectId } from '../../core/model/mongodb';
 import { builtinSizeBands, EventSizeBand } from '../data/size-bands';
 import { findCountry, getEventSlug, getNormalisedDate } from '../utils/event-utils';
-import { Country } from './country';
-import { EventTopic } from './event-topic';
-import { uuid } from '../../core/core-utils';
+import { ConferenceEventLexicon, EventTag } from './event-tag';
+
+/**
+ * Publication status of the event
+ */
+export enum EventStatus {
+  Draft,
+  Published,
+}
 
 /**
  * Event obj, as being stored in the db
@@ -13,7 +20,7 @@ export interface ConferenceEvent {
   /**
    * Stitch ObjectID, when the item has already representation in the DB
    */
-  _id?: object | string;
+  _id?: ObjectId | string;
 
   /**
    * ID / URL slug of the event
@@ -26,14 +33,22 @@ export interface ConferenceEvent {
   name: string;
 
   /**
-   * Main topics of the event
+   * Event tags of the event, used to indicate focus or topic of the event
+   * @see hashTags
    */
-  topicTags: { [topicId: string]: boolean };
+  tags: string[];
 
   /**
    * Event date as Date() obj or string (e.g. Q4'2018)
    */
   date: Date;
+  /**
+   * Duration of event (num of days, incl. workshops days)
+   */
+  eventDuration: number;
+
+  workshops: boolean;
+  freeWorkshops: boolean;
 
   /**
    * Event location
@@ -43,8 +58,13 @@ export interface ConferenceEvent {
   region: string;
   subRegion: string;
   city: string;
-  address: string | null;
-  addressLatLng?: [number, number];
+  address: string;
+
+  /**
+   * GeoLocation info (compatible with MongoDB GeoJSON type)
+   * @see https://docs.mongodb.com/manual/reference/geojson
+   */
+  geoPoint: GeoPoint;
 
   /**
    * Full website url of the event, including https:// prefix
@@ -55,20 +75,49 @@ export interface ConferenceEvent {
    * Long description of the event
    */
   description: string;
+
+  /**
+   * Twitter @handle
+   * @see hashTags
+   */
   twitterHandle: string;
 
   /**
-   * Duration of event (num of days, incl. workshops days)
+   * TODO: not handled yet...
    */
-  eventDuration: number;
+  hashTags: string[];
 
-  workshopDays: number | null;
+  /**
+   * Event price, in USD.
+   *
+   * Value `0`: free event
+   * Value missing: tba/tbd (to be announced / to be determined)
+   */
+  price?: number;
 
-  price: number | null;
+  /**
+   * Event size band
+   * Optional, NULL means unknown / to be determined/announced
+   */
   sizeBand: string | null;
 
-  // TODO: hash tags
-  // TODO: speakers
+  /**
+   * Info about who creation / edits of the entry
+   */
+  origin: {
+    authorId: string;
+    date: Date;
+
+    /**
+     * TODO, not handled yet
+     */
+    // edits: { authorId: string, date: Date }[];
+  };
+
+  /**
+   * Is the event published or not?
+   */
+  status: EventStatus;
 }
 
 /**
@@ -76,20 +125,50 @@ export interface ConferenceEvent {
  */
 export interface ConferenceEventFormData {
   name: string;
-  topicTags: Array<string | boolean>;
+  tags: Array<string | boolean>;
+  date: Date;
+  eventDuration: number;
+  workshops: boolean;
+  freeWorkshops: boolean;
 
   country: Country;
   city: string;
-  address: string | null;
+  address: string;
+
   website: string;
   description: string;
   twitterHandle: string;
+  hashTags: string;
 
-  date: Date;
-  eventDuration: number;
-  workshopDays: number | null;
-  price: number | null;
-  sizeBand: EventSizeBand | null;
+  price?: number; // see ConferenceEvent for what zero or missing value means
+  sizeBand?: EventSizeBand;
+}
+
+/**
+ * Make sure all required nested objects (e.g. tags) are at least properly initialised.
+ * This is useful when the event JSON data arrives from the API, but some fields are missing,
+ * we don't want to do all these checks later on in the code.
+ *
+ * @internal
+ */
+export function ensureValidConferenceEventObj(ev?: ConferenceEvent | any): ConferenceEvent {
+  ev = { ...(ev || {}) } as ConferenceEvent;
+
+  // Generate our id / url slug
+  ev.id = ev.id || getEventSlug(ev.name);
+
+  if (false === Array.isArray(ev.tags)) {
+    ev.tags = [];
+  }
+  if (false === Array.isArray(ev.hashTags)) {
+    ev.hashTags = [];
+  }
+
+  // make sure we have boolean here...
+  ev.workshops = !!ev.workshops || false;
+  ev.freeWorkshops = !!ev.freeWorkshops || false;
+
+  return ev;
 }
 
 /**
@@ -97,31 +176,28 @@ export interface ConferenceEventFormData {
  */
 export function createEventFromFormData(
   formData: Partial<ConferenceEventFormData>,
-  topicsDb: EventTopic[] = [],
+  lex: ConferenceEventLexicon,
 ): ConferenceEvent {
   // For now just assign all properties from form.
   // Later on we fine tune / override them, as needed.
-  const event: ConferenceEvent = { ...((formData as any) as ConferenceEvent) };
+  const event: ConferenceEvent = ensureValidConferenceEventObj(formData);
 
-  // Generate our id / url slug
-  event.id = event.id || getEventSlug(event.name);
-
-  event.topicTags = {}; // re-set, so it doesn't contain any original values
-  if (Array.isArray(formData.topicTags)) {
-    event.topicTags = formData.topicTags.reduce(
-      (topics: { [topicId: string]: boolean }, selected: boolean | string, idx: number) => {
-        if (true === selected) {
-          if (topicsDb[idx]) {
-            topics[topicsDb[idx].id] = true;
-          }
-        } else if (selected) {
-          topics[selected] = true;
+  // re-set, so it doesn't contain any original values
+  // Then build list of tag IDs, which will be referring to full EventTag objects
+  event.tags = [];
+  if (Array.isArray(formData.tags)) {
+    event.tags = formData.tags.reduce((tags: string[], selected: boolean | string | any, idx: number) => {
+      if ('boolean' === typeof selected) {
+        if (selected && lex.tags[idx]) {
+          const selectedTag: EventTag = lex.tags[idx];
+          return [...tags, selectedTag.id];
         }
+      } else if ('string' === typeof selected && selected) {
+        return [...tags, selected];
+      }
 
-        return topics;
-      },
-      {},
-    );
+      return tags;
+    }, []);
   }
 
   if (formData.country) {
@@ -130,37 +206,56 @@ export function createEventFromFormData(
     event.countryCode = selectedCountry.isoCode;
     event.region = selectedCountry.region;
     event.subRegion = selectedCountry.subregion;
-    event.addressLatLng = selectedCountry.latlng;
+    event.geoPoint = { type: 'Point', coordinates: selectedCountry.latlng };
   }
+
+  // Split coma-separated hash tags from the form into a nice array or hashes
+  event.hashTags = (formData.hashTags || '')
+    .split(',')
+    .filter((v) => !!v)
+    .map((v) => v.trim());
 
   if (formData.sizeBand && formData.sizeBand.id) {
     event.sizeBand = formData.sizeBand.id;
   }
 
+  // Initialise origin obj
+  event.origin = {
+    authorId: '', // will be set on save/update
+    date: new Date(),
+  };
+  // For now, all events are published as soon as we add them to DB
+  event.status = EventStatus.Published;
+
   return event;
 }
 
-export function createFormDataFromEvent(ev: ConferenceEvent, topicsDb: EventTopic[] = []): ConferenceEventFormData {
+/**
+ * Create form data obj (for editing) from ConferenceEvent obj
+ */
+export function createFormDataFromEvent(ev: ConferenceEvent, lex: ConferenceEventLexicon): ConferenceEventFormData {
+  ev = ensureValidConferenceEventObj(ev);
+
   const formData: ConferenceEventFormData = {
     name: ev.name,
-    topicTags: [],
+    tags: [], // needs to be converted to FormArray format (below)
+    date: getNormalisedDate(ev.date),
+    eventDuration: ev.eventDuration,
+    workshops: ev.workshops,
+    freeWorkshops: ev.workshops,
     country: findCountry(ev.countryCode) as Country,
     city: ev.city,
     address: ev.address,
     website: ev.website,
     description: ev.description,
     twitterHandle: ev.twitterHandle,
-    date: getNormalisedDate(ev.date),
-    eventDuration: ev.eventDuration,
-    workshopDays: ev.workshopDays,
+    hashTags: ev.hashTags.join(', '),
     price: ev.price,
-    sizeBand: builtinSizeBands.find((b) => b.id === ev.sizeBand) || null,
+    sizeBand: builtinSizeBands.find((b) => b.id === ev.sizeBand),
   };
 
-  // convert topics to boolean flags, compatible with the form
-  topicsDb.forEach((t: EventTopic, idx: number) => {
-    formData.topicTags[idx] = ev.topicTags[t.id] === true;
-  });
+  // convert tags/tags to array of boolean flags, compatible with FormArray
+  formData.tags = lex.tags.map((tag: EventTag, idx: number) => ev.tags.includes(tag.id));
 
   return formData;
 }
@@ -170,29 +265,38 @@ export function createFormDataFromEvent(ev: ConferenceEvent, topicsDb: EventTopi
  * Convenient to use in the view layer.
  */
 export class ConferenceEventRef {
-  public id: string;
+  public id: string; // shortcut to ConferenceEvent.id
   public ref: ConferenceEvent;
 
   public date: Date;
-  public topicTags: EventTopic[];
+  public tags: EventTag[];
   public country: Country;
   public sizeBand?: EventSizeBand;
 
-  public constructor(id: string | undefined, ev: ConferenceEvent, dict: { topics: EventTopic[] } = { topics: [] }) {
-    this.id = id || 'missing-ConferenceEventRef-id';
+  public constructor(ev: ConferenceEvent, lex: ConferenceEventLexicon) {
+    ev = ensureValidConferenceEventObj(ev);
+
+    this.id = ev.id;
     this.ref = ev;
 
+    // It's rather impossible that we don't have valid country code here... so for now fallback to empty obj, to avoid any errors
     this.country = findCountry(ev.countryCode) || ({} as Country);
 
-    // Get real EventTopic objects from their IDs
-    this.topicTags = Object.keys(ev.topicTags || {}).reduce((topics: EventTopic[], tid: string) => {
-      const et: EventTopic = dict.topics.find((t: EventTopic) => t.id === tid) || { id: tid, name: tid };
-      return [...topics, et];
+    // Get real EventTag objects from their IDs
+    this.tags = ev.tags.reduce((tags: EventTag[], tid: string) => {
+      const tag: EventTag | undefined = lex.tags.find((t: EventTag) => t.id === tid);
+      return tag ? [...tags, tag] : tags;
     }, []);
 
     this.date = getNormalisedDate(ev.date);
 
-    // Restore EventSizeBand from its stored iD
+    // Restore EventSizeBand obj from ID str stored in db
     this.sizeBand = builtinSizeBands.find((band) => band.id === ev.sizeBand);
   }
+}
+
+export function entityToIndex(entity?: Entity | string, dict: Entity[] = []): number {
+  const id = entity && 'object' === typeof entity ? entity.id : entity;
+
+  return dict.findIndex((en) => !!en && en.id === id);
 }
