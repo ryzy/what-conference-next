@@ -4,24 +4,24 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
   EventEmitter,
-  ChangeDetectorRef,
   ViewChildren,
   QueryList,
   Output,
   Input,
   OnChanges,
+  SimpleChanges,
 } from '@angular/core';
-import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material';
 import { Observable, combineLatest } from 'rxjs';
 import { filter, map, startWith, takeUntil, tap, debounceTime } from 'rxjs/operators';
 
 import { builtinSizeBands, EventSizeBand } from '../../../event-base/data/size-bands';
-import { ConferenceEventFormData, createEventFromFormData } from '../../../event-base/model/conference-event';
-import { Country } from '../../../event-base/model/country';
-import { EventTopic } from '../../../event-base/model/event-topic';
+import { ConferenceEventFormData } from '../../../event-base/model/conference-event';
+import { Country } from '../../../core/model/country';
+import { EventTag } from '../../../event-base/model/event-tag';
 import { EventService } from '../../../event-base/services/event.service';
+import { createEventFromFormData } from '../../../event-base/model/conference-event';
 import { findCountries } from '../../../event-base/utils/event-utils';
 
 @Component({
@@ -60,7 +60,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   public eventForm!: FormGroup;
 
-  public topics: EventTopic[] = [];
+  public tags!: EventTag[];
 
   public sizeBands: EventSizeBand[] = builtinSizeBands;
 
@@ -71,7 +71,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
-  public constructor(private service: EventService, private cdRef: ChangeDetectorRef) {}
+  public constructor(private service: EventService) {}
 
   public ngOnInit(): void {
     // Focus on the 1st field. Call it on the next event loop, otherwise it doesn't work sometimes.
@@ -79,20 +79,22 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
     this.eventForm = new FormGroup({
       name: new FormControl('', [Validators.minLength(3), Validators.maxLength(255)]),
-      topicTags: new FormArray([], [Validators.required]),
+      tags: new FormArray([], [Validators.required]),
+      date: new FormControl(),
+      eventDuration: new FormControl(1),
+      workshops: new FormControl(false),
+      freeWorkshops: new FormControl(false),
       country: new FormControl(),
       city: new FormControl(),
       address: new FormControl(),
-      date: new FormControl(),
-      eventDuration: new FormControl(1),
-      workshopDays: new FormControl(0),
       website: new FormControl(),
-      twitterHandle: new FormControl(),
       description: new FormControl(),
+      twitterHandle: new FormControl(),
+      hashTags: new FormControl(),
       price: new FormControl(),
       sizeBand: new FormControl(),
     });
-    this.handleTopicsTags();
+    this.handleTags();
     this.handleCountryAndCity();
 
     /**
@@ -102,7 +104,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
         console.log(
           '[EVENT FORM] ConferenceEvent#fromFormValues',
           formStatus,
-          createEventFromFormData(formValues, this.topics),
+          createEventFromFormData(formValues, { tags: this.tags }),
         );
       }); /**/
   }
@@ -132,24 +134,14 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   /**
-   * Set/Update topics form controls, so it's in sync with current list of topics
+   * Set/Update tags form controls, so it's in sync with current list of tags
    */
-  private handleTopicsTags(): void {
-    this.service
-      .getTopics()
-      .pipe(
-        takeUntil(this.ngOnDestroy$),
-        filter((topics) => !!topics.length),
-      )
-      .subscribe((topics: EventTopic[]) => {
-        this.topics = topics;
+  private handleTags(): void {
+    this.tags = this.service.getEventTagsSnapshot();
 
-        // Update form controls, one checkbox for each topic tag:
-        const topicsTagsControls: FormControl[] = topics.map(() => new FormControl(false));
-        this.eventForm.setControl('topicTags', new FormArray(topicsTagsControls, [Validators.required]));
-
-        this.cdRef.markForCheck();
-      });
+    // Update form controls, one checkbox for each tag:
+    const tagsControls: FormControl[] = this.tags.map(() => new FormControl(false));
+    this.eventForm.setControl('tags', new FormArray(tagsControls, [Validators.required]));
   }
 
   private handleCountryAndCity(): void {

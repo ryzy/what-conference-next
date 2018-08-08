@@ -30,7 +30,10 @@ describe('Event Editing / Deleting', () => {
   });
 
   it('Should create and save a new event', () => {
-    cy.log('And I fill the form with some valid data');
+    cy.log('Given I visit "NewEventForm" page');
+    EventFormPage.visit();
+
+    cy.log('When I fill the form with some valid data');
     EventFormPage.expectToBeOnEventEditingPage(false);
     const eventName = EventFormPage.fillTheFormWithRandomData({ city: '' }); // city is auto-set from country
 
@@ -58,7 +61,7 @@ describe('Event Editing / Deleting', () => {
     EventFormPage.expectToBeOnEventEditingPage(true);
 
     cy.log('Then I should see form with event data present');
-    EventFormPage.waitForLoader('form');
+    EventFormPage.waitForLoaderToDisappear('form');
 
     // EventFormPage.formField('name').should('contain.value', editingEventName);
     EventFormPage.formField('name', editingEventName);
@@ -92,7 +95,7 @@ describe('Event Editing / Deleting', () => {
     cy.log('Then I should be on event editing page');
     EventFormPage.expectToBeOnEventEditingPage(true);
     // wait for event to load, otherwise the [delete] button is not visible yet
-    EventFormPage.waitForLoader('form');
+    EventFormPage.waitForLoaderToDisappear('form');
 
     cy.log('When I click on "Delete Event" button and do NOT confirm');
     EventFormPage.button('Delete Event', false).click();
@@ -105,5 +108,17 @@ describe('Event Editing / Deleting', () => {
     EventFormPage.confirmDialog();
     EventFormPage.snackBar().contains('successfully deleted');
     EventFormPage.expectToBeOnHomePage();
+  });
+
+  it('Should show notification when cannot load event for editing', () => {
+    cy.log('Given I visit "NewEventForm" page with invalid non-existing event link');
+    EventFormPage.visit(EventFormPage.URL + '/some-non-existing-event');
+
+    cy.log('Then I should see the form');
+    EventFormPage.expectToBeOnEventEditingPage();
+    EventFormPage.waitForLoaderToDisappear();
+
+    cy.log('And I should see a notification with not-found message');
+    EventFormPage.snackBar(/Event .+ not found/);
   });
 });

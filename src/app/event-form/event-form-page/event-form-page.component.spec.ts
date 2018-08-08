@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 
 import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
-import { mockNewEventFormData } from '../../../testing/fixtures/event-form';
-import { mockEvent, mockEvents } from '../../../testing/fixtures/events-db';
+import { mockEventFormData } from '../../../testing/fixtures/events';
+import { mockEvent, mockEvents } from '../../../testing/fixtures/events';
+import { mockLex, mockLexEmpty } from '../../../testing/fixtures/event-tags';
 import { ConferenceEventFormData, ConferenceEventRef } from '../../event-base/model/conference-event';
 import { EventService } from '../../event-base/services/event.service';
 import { EventFormModule } from '../event-form.module';
@@ -51,10 +52,10 @@ describe('EventFormPageComponent', () => {
   });
 
   it('should submit', () => {
-    spyOn(service, 'addOrUpdateEvent').and.returnValue(of(new ConferenceEventRef('id', mockEvents[0])));
+    spyOn(service, 'addOrUpdateEvent').and.returnValue(of(new ConferenceEventRef(mockEvents[0], mockLexEmpty)));
     fixture.detectChanges();
 
-    component.onSubmit(mockNewEventFormData);
+    component.onSubmit(mockEventFormData);
     expect(snackBarOpenSpy).toHaveBeenCalled();
     expect(routerNavigateSpy).toHaveBeenCalled();
   });
@@ -68,7 +69,7 @@ describe('EventFormPageComponent', () => {
   });
 
   it('#onCancel should navigate to event details page', () => {
-    component.editingEvent = new ConferenceEventRef(mockEvent.id, mockEvent);
+    component.editingEvent = new ConferenceEventRef(mockEvent, mockLex);
     component.onCancel();
     expect(routerNavigateSpy).toHaveBeenCalledWith(['/', 'ev', mockEvent.id]);
   });
@@ -81,7 +82,7 @@ describe('EventFormPageComponent', () => {
   it('#onDelete should delete event (when confirmed)', () => {
     const dbDeleteEventSpy = spyOn(service, 'deleteEvent').and.returnValue(of(true));
     dialogOpenSpy.and.returnValue(<MatDialogRef<any>>{ afterClosed: () => of(true), close: () => null });
-    component.editingEvent = new ConferenceEventRef(mockEvent.id, mockEvent);
+    component.editingEvent = new ConferenceEventRef(mockEvent, mockLex);
     component.onDelete();
     expect(dialogOpenSpy).toHaveBeenCalled();
     expect(dbDeleteEventSpy).toHaveBeenCalled();
@@ -91,10 +92,28 @@ describe('EventFormPageComponent', () => {
   it('#onDelete should NOT delete event (when not confirmed)', () => {
     const dbDeleteEventSpy = spyOn(service, 'deleteEvent').and.returnValue(of(true));
     dialogOpenSpy.and.returnValue(<MatDialogRef<any>>{ afterClosed: () => of(false), close: () => null });
-    component.editingEvent = new ConferenceEventRef(mockEvent.id, mockEvent);
+    component.editingEvent = new ConferenceEventRef(mockEvent, mockLex);
     component.onDelete();
     expect(dialogOpenSpy).toHaveBeenCalled();
     expect(dbDeleteEventSpy).not.toHaveBeenCalled();
     expect(routerNavigateSpy).not.toHaveBeenCalled();
+  });
+
+  it('editing: should load an event for editing', () => {
+    spyOn(service, 'getRouterState').and.returnValue(of({ params: { eventId: 'some-event-id' } }));
+    fixture.detectChanges();
+
+    // since we testing with mocked DB, we expect the event to be loaded here...
+    expect(component.editingEvent).toBeTruthy();
+    expect(snackBarOpenSpy).not.toHaveBeenCalled();
+  });
+
+  it('editing: should show error for not-found events', () => {
+    spyOn(service, 'getRouterState').and.returnValue(of({ params: { eventId: 'some-event-id' } }));
+    spyOn(service, 'getEvent').and.callFake(throwError);
+    fixture.detectChanges();
+
+    expect(component.editingEvent).toBeFalsy();
+    expect(snackBarOpenSpy).toHaveBeenCalled();
   });
 });

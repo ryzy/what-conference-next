@@ -12,25 +12,13 @@
   font-weight: 400;
   padding: 1rem 0;
 }
+/* Vertically centered version for <app-loader center=true> */
 .app-loader.centered {
   justify-content: center;
 }
-
-.app-loader .spinner {
+/* Local (i.e. not absolute) version of loader */
+.app-loader.local {
   position: relative;
-  width: 5rem;
-}
-
-.app-loader svg {
-  animation: anim-rotate 2s linear infinite;
-  transform-origin: center;
-}
-
-.app-loader circle {
-  stroke: #d81b60;
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  animation: anim-dash 1.5s ease-in-out infinite;
 }
 
 @keyframes anim-rotate {
@@ -38,7 +26,6 @@
     transform: rotate(360deg);
   }
 }
-
 @keyframes anim-dash {
   0% {
     stroke-dasharray: 1, 200;
@@ -52,4 +39,19 @@
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -124px;
   }
+}
+
+.app-loader .spinner {
+  position: relative;
+  width: 5rem;
+}
+.app-loader svg {
+  animation: anim-rotate 2s linear infinite;
+  transform-origin: center;
+}
+.app-loader circle {
+  stroke: #d81b60;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: anim-dash 1.5s ease-in-out infinite;
 }

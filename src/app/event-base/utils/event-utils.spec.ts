@@ -1,4 +1,4 @@
-import { countriesData } from '../data/countries';
+import { countriesData } from '../../data/countries';
 import { findCountries, findCountry, getEventSlug, getNormalisedDate } from './event-utils';
 
 describe('event-utils', () => {

@@ -48,9 +48,9 @@ describe('AuthService', () => {
     }),
   );
 
-  it('#getCurrentUser', () => {
+  it('#getUser', () => {
     let user: User | undefined;
-    authService.getCurrentUser().subscribe((u) => (user = u));
+    authService.getUser().subscribe((u) => (user = u));
     expect(user).toBe(undefined);
 
     store.dispatch(new SetUserAction(mockUser));

@@ -20,7 +20,7 @@ export class CoreService {
   }
 
   /**
-   * Fires when initial app data (required for everything, e.g. dictionary of focus/topics)
+   * Fires when initial app data (required for everything, e.g. tags list)
    */
   public whenInitDataFetched(): Observable<boolean> {
     return this.store.select(selectInitDataFetched).pipe(filter((fetched) => fetched));

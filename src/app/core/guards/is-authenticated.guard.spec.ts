@@ -31,7 +31,7 @@ describe('IsAuthenticatedGuard', () => {
     beforeEach(() => {
       activatedRoute = new ActivatedRouteStub();
       spyOn(coreService, 'whenAuthAndDbReady').and.returnValue(of(true));
-      spyOn(authService, 'getCurrentUser').and.returnValue(of(mockUser));
+      spyOn(authService, 'getUser').and.returnValue(of(mockUser));
     });
 
     it('#canActivate', () => {
@@ -79,7 +79,7 @@ describe('IsAuthenticatedGuard', () => {
     beforeEach(() => {
       activatedRoute = new ActivatedRouteStub();
       spyOn(coreService, 'whenAuthAndDbReady').and.returnValue(of(true));
-      spyOn(authService, 'getCurrentUser').and.returnValue(of(false));
+      spyOn(authService, 'getUser').and.returnValue(of(false));
       spyOn(authService, 'navigateToLoginScreen');
     });
     it('#canActivate', () => {

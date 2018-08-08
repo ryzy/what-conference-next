@@ -10,7 +10,8 @@ export const CoreServiceStub = {
  * @see AuthService
  */
 export const AuthServiceStub = {
-  getCurrentUser: () => {},
+  getUser: () => {},
+  getUserSnapshot: () => {},
   navigateToLoginScreen: () => {},
   navigateToAfterLoginScreen: () => {},
 };

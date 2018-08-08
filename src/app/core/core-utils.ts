@@ -39,3 +39,10 @@ export function uuid(length?: number): string {
   return length ? str.substr(0, length) : str;
 }
 // tslint:enable:no-bitwise
+
+/**
+ * Get random number from given range
+ */
+export function randomRange(min: number = 0, max: number = 999): number {
+  return Math.floor(Math.random() * (max - min)) + min;
+}

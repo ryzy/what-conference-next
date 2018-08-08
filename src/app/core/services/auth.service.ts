@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { StitchAuth, UserPasswordCredential, StitchUser, GoogleRedirectCredential } from 'mongodb-stitch-browser-sdk';
 import { Observable, defer, from } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { AppRootState } from '../store/index';
 import { User } from '../model/user';
@@ -23,8 +24,18 @@ export class AuthService {
    * Get currently logged in user
    * Note: Safe to call before DB is connected.
    */
-  public getCurrentUser(): Observable<User | undefined> {
+  public getUser(): Observable<User | undefined> {
     return this.store.select(appSelectors.selectUser);
+  }
+
+  public getUserSnapshot(): User | undefined {
+    let user: User | undefined;
+
+    this.getUser()
+      .pipe(take(1))
+      .subscribe((u) => (user = u));
+
+    return user;
   }
 
   /**

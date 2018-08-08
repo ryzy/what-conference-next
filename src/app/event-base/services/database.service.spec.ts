@@ -3,12 +3,12 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RemoteInsertOneResult, RemoteUpdateResult } from 'mongodb-stitch-browser-sdk';
 
 import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
-import { mockEvent, mockEvents } from '../../../testing/fixtures/events-db';
-import { mockTopics } from '../../../testing/fixtures/topics';
+import { mockEvent, mockEvents } from '../../../testing/fixtures/events';
+import { mockTags } from '../../../testing/fixtures/event-tags';
 import { MockStitchService } from '../../../testing/mock-stitch.service';
 import { StitchService } from '../../core/stitch/stitch.service';
 import { ConferenceEventRef } from '../model/conference-event';
-import { EventTopic } from '../model/event-topic';
+import { EventTag } from '../model/event-tag';
 import { uuid } from '../../core/core-utils';
 import { DatabaseService } from './database.service';
 
@@ -33,17 +33,17 @@ describe('DatabaseService', () => {
   });
 
   it(
-    '#getTopics',
+    '#getEventTags',
     fakeAsync(() => {
       stitch.mockLogin();
 
-      let res: EventTopic[] | undefined;
-      db.getTopics().subscribe((v) => (res = v));
+      let res: EventTag[] | undefined;
+      db.getEventTags().subscribe((v) => (res = v));
 
-      stitch.mockCollectionFindResponse(mockTopics);
+      stitch.mockCollectionFindResponse(mockTags);
 
-      expect(res.length).toEqual(mockTopics.length);
-      expect(res[0].id).toEqual(mockTopics[0].id);
+      expect(res.length).toEqual(mockTags.length);
+      expect(res[0].id).toEqual(mockTags[0].id);
     }),
   );
 
@@ -59,23 +59,24 @@ describe('DatabaseService', () => {
 
       expect(ev instanceof ConferenceEventRef).toBe(true);
       expect(ev.ref.name).toBe(mockEvents[0].name);
-      expect(ev.ref.topicTags).toEqual(mockEvents[0].topicTags);
+      expect(ev.ref.tags).toEqual(mockEvents[0].tags);
     }),
   );
 
   it(
-    '#getEvent non-existing event',
+    '#getEvent should emit error for non-existing event',
     fakeAsync(() => {
       stitch.mockLogin();
 
-      let ev: ConferenceEventRef | string | undefined = 'n/a';
+      let ev: ConferenceEventRef | undefined;
       let err: any;
       db.getEvent(uuid()).subscribe((v) => (ev = v), (e) => (err = e));
 
       stitch.mockCollectionFindResponse([]);
 
       expect(ev).toBeFalsy();
-      expect(err).toBeFalsy();
+      expect(err).toBeTruthy();
+      expect(err && (err as Error).message).toContain('not found');
     }),
   );
 

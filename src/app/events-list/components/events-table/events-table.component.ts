@@ -18,7 +18,7 @@ export class EventsTableComponent implements OnInit {
   /**
    * Columns to display in the table
    */
-  public displayColumns: string[] = ['name', 'date', 'price', 'topicTags', 'actions'];
+  public displayColumns: string[] = ['name', 'date', 'price', 'tags', 'actions'];
 
   public ngOnInit(): void {
     // this.dataSource.connect().subscribe((events) => console.log('[EventsTableComponent] events', events));

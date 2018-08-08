@@ -1,5 +1,5 @@
 import { EventFormPage } from './event-form.po';
-import { randomRange } from './utils';
+import { randomRange } from '../../src/app/core/core-utils';
 
 export const URLs = {
   Home: '/',
@@ -56,17 +56,29 @@ export class AbstractPage {
     return inputEl;
   }
 
-  public static checkboxes(fieldName, indexFrom1 = 0) {
+  public static checkbox(fieldName: string) {
+    return cy.get(`[formcontrolname="${fieldName}"]`);
+  }
+
+  public static checkboxes(fieldName: string, index?: number) {
     const ch = cy.get(`[formarrayname="${fieldName}"]`).find('input[type=checkbox]');
 
-    return indexFrom1 ? ch.eq(indexFrom1 - 1) : ch;
+    return undefined !== index ? ch.eq(index) : ch;
   }
 
   /**
-   * Find snackbar container
+   * Find SnackBar container
    */
-  public static snackBar() {
-    return cy.get('.mat-snack-bar-container');
+  public static snackBar(expectedContent?: string | RegExp) {
+    const snackBarEl = cy.get('.mat-snack-bar-container');
+
+    if (expectedContent) {
+      return snackBarEl.within((snackBar) => {
+        cy.wrap(snackBar).contains(expectedContent);
+      });
+    }
+
+    return snackBarEl;
   }
 
   public static typeIntoFormField(fieldName: string, stringToType: string | number, deFocusAfter: boolean = false) {
@@ -116,12 +128,14 @@ export class AbstractPage {
 
   /**
    * Note: autocomplete dropdown must be already visible before calling this one!
+   *
+   * @param optionIndexToSelect option to select (starting from 0)
    */
-  public static autocomplete(optionIndexFrom1: number) {
+  public static autocomplete(optionIndexToSelect: number) {
     return (
       cy
         .get('.mat-autocomplete-panel .mat-option')
-        .eq(optionIndexFrom1 - 1)
+        .eq(optionIndexToSelect)
         .click({ force: true })
         .wait(100) // wait for closing anim
 
@@ -137,7 +151,7 @@ export class AbstractPage {
   /**
    * Wait for loader to disappear
    */
-  public static waitForLoader(whereSelector = 'body') {
+  public static waitForLoaderToDisappear(whereSelector = 'body') {
     // wait for loader to actually appear...
     // otherwise it before the loader even kicks in, Cypress continues to the next step
     cy.wait(100);

@@ -1,9 +1,11 @@
+<app-loader *ngIf="loading" message="Loading event..."></app-loader>
+
 <ng-container *ngIf="ev">
   <h2>Event: {{ev.ref.name}}</h2>
 
   <pre>{{ ev.ref | json }}</pre>
 
-  <a [routerLink]="['/edit', ev.id]" mat-raised-button color="accent">Edit Event</a>
+  <a [routerLink]="['/edit', ev.id]" class="edit-btn" mat-raised-button color="accent">Edit Event</a>
 
 </ng-container>
 
