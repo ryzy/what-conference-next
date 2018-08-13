@@ -9,7 +9,7 @@ import { MockDatabaseService } from './mock-database.service';
 import { MockStitchService } from './mock-stitch.service';
 
 @NgModule({
-  imports: [AppTestingModule.withCoreStateAndEffects()],
+  imports: [AppTestingModule.withAppCoreState()],
   providers: [
     { provide: StitchService, useClass: MockStitchService },
     { provide: DatabaseService, useClass: MockDatabaseService },

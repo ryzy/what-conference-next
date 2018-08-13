@@ -40,7 +40,7 @@ describe('DatabaseService', () => {
       let res: EventTag[] | undefined;
       db.getEventTags().subscribe((v) => (res = v));
 
-      stitch.mockCollectionFindResponse(mockTags);
+      stitch.mockCollectionFindResponse('tags', mockTags);
 
       expect(res.length).toEqual(mockTags.length);
       expect(res[0].id).toEqual(mockTags[0].id);
@@ -55,9 +55,9 @@ describe('DatabaseService', () => {
       let ev: ConferenceEventRef | undefined;
       db.getEvent(uuid()).subscribe((v) => (ev = v));
 
-      stitch.mockCollectionFindResponse(mockEvents.slice(0, 1));
+      stitch.mockCollectionFindResponse('events', mockEvents.slice(0, 1));
 
-      expect(ev instanceof ConferenceEventRef).toBe(true);
+      expect((ev as any) instanceof ConferenceEventRef).toBe(true);
       expect(ev.ref.name).toBe(mockEvents[0].name);
       expect(ev.ref.tags).toEqual(mockEvents[0].tags);
     }),
@@ -72,7 +72,7 @@ describe('DatabaseService', () => {
       let err: any;
       db.getEvent(uuid()).subscribe((v) => (ev = v), (e) => (err = e));
 
-      stitch.mockCollectionFindResponse([]);
+      stitch.mockCollectionFindResponse('events', []);
 
       expect(ev).toBeFalsy();
       expect(err).toBeTruthy();
@@ -88,7 +88,7 @@ describe('DatabaseService', () => {
       let ev: ConferenceEventRef[] | undefined;
       db.getEvents().subscribe((v) => (ev = v));
 
-      stitch.mockCollectionFindResponse(mockEvents);
+      stitch.mockCollectionFindResponse('events', mockEvents);
 
       expect(ev).toBeTruthy();
       expect(ev.length).toBe(mockEvents.length);

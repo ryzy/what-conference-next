@@ -53,13 +53,13 @@ export class DatabaseService {
     );
   }
 
-  public getEvents(): Observable<ConferenceEventRef[]> {
+  public getEvents(query: object = {}): Observable<ConferenceEventRef[]> {
     // console.log('DatabaseService#getEvents');
     return defer(() =>
       from(
         this.stitch.db
           .collection<ConferenceEvent>('events')
-          .find({})
+          .find(query)
           .asArray(),
       ),
     ).pipe(

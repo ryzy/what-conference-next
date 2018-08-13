@@ -1,6 +1,6 @@
 import { StitchUser } from 'mongodb-stitch-browser-sdk';
 
-import { User } from '../../app/core/model/user';
+import { User, UserData } from '../../app/core/model/user';
 
 export const mockStitchUser: StitchUser = {
   id: '5b5ccb894fdd1f82c29b1afc',
@@ -13,3 +13,9 @@ export const mockStitchUser: StitchUser = {
 } as StitchUser;
 
 export const mockUser: User = User.fromStitch(mockStitchUser);
+
+export const mockUserData: UserData = {
+  roles: {
+    editor: true,
+  },
+};

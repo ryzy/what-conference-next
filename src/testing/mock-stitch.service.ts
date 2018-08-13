@@ -60,8 +60,9 @@ export class MockStitchService extends StitchService {
     tick();
   }
 
-  public mockCollectionFindResponse(data: any[]): void {
-    const r = this.httpMock.expectOne((req) => req.url.includes('/call'));
+  public mockCollectionFindResponse(collection: string, data: any[]): void {
+    const r = this.httpMock.expectOne((req) => req.url.includes('/call') && req.body.includes(collection));
+
     r.flush(
       data.map((item, idx) => {
         return {
