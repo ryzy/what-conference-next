@@ -13,8 +13,9 @@ import {
 
 import { environment } from '../../../environments/environment';
 import { isUnitTestContext } from '../core-utils';
+import { User } from '../model/user';
 import { HttpStitchTransport } from './http-stitch-transport';
-import { DbReadyAction } from '../store/app/app-actions';
+import { DbReadyAction, SetUserAction } from '../store/app/app-actions';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,7 @@ export class StitchService {
   /**
    * Connects to MongoDB Stitch database, by authenticating anonymous user, if needed.
    * Needs to be called *before* any db.collection() query.
+   *
    * Call it from root module constructor, to make sure it's called as early as possible.
    *
    * Note: for now we don't want to run it during the test, since
@@ -55,11 +57,16 @@ export class StitchService {
    * which are present in the URL (and they disappear after we call .handleRedirectResult()).
    * After that user is authenticated and the tokens are put in local storage.
    */
-  public handleRedirectResultIfNeeded(): Promise<boolean> {
+  public handleRedirectResultIfNeeded(): void {
     if (this.auth.hasRedirectResult()) {
-      return this.auth.handleRedirectResult().then((u) => !!u);
-    } else {
-      return Promise.resolve(false);
+      this.auth.handleRedirectResult().then((u: StitchUser) => {
+        // NOTE: not sure how to handle this case.
+        // Seems like callback called from `stitch.auth.addAuthListener` doesn't
+        // emit full user after `handleRedirectResult()` has been called.
+        // Therefore we re-emit it here.
+        // TODO: this is tight coupled, must be somehow resolved...
+        this.store.dispatch(new SetUserAction(User.fromStitch(u)));
+      });
     }
   }
 

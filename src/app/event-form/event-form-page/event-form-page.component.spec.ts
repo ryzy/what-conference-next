@@ -89,6 +89,17 @@ describe('EventFormPageComponent', () => {
     expect(routerNavigateSpy).toHaveBeenCalled();
   });
 
+  it('#onDelete should handle errors nicely', () => {
+    const dbDeleteEventSpy = spyOn(service, 'deleteEvent').and.callFake(throwError);
+    dialogOpenSpy.and.returnValue(<MatDialogRef<any>>{ afterClosed: () => of(true), close: () => null });
+    component.editingEvent = new ConferenceEventRef(mockEvent, mockLex);
+    component.onDelete();
+    expect(dialogOpenSpy).toHaveBeenCalled();
+    expect(dbDeleteEventSpy).toHaveBeenCalled();
+    expect(routerNavigateSpy).not.toHaveBeenCalled();
+    expect(snackBarOpenSpy.calls.mostRecent().args[0]).toContain('Try again');
+  });
+
   it('#onDelete should NOT delete event (when not confirmed)', () => {
     const dbDeleteEventSpy = spyOn(service, 'deleteEvent').and.returnValue(of(true));
     dialogOpenSpy.and.returnValue(<MatDialogRef<any>>{ afterClosed: () => of(false), close: () => null });

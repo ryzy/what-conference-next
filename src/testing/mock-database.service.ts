@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RemoteInsertOneResult, RemoteUpdateResult } from 'mongodb-stitch-browser-sdk';
 import { Observable, of } from 'rxjs';
 
+import { UserData } from '../app/core/model/user';
 import { ConferenceEvent, ConferenceEventRef } from '../app/event-base/model/conference-event';
 import { DatabaseService } from '../app/event-base/services/database.service';
 import { EventTag } from '../app/event-base/model/event-tag';
@@ -11,6 +12,10 @@ import { mockTags } from './fixtures/event-tags';
 
 @Injectable()
 export class MockDatabaseService extends DatabaseService {
+  public getUserData(): Observable<UserData | undefined> {
+    return of(<UserData>{ roles: { editor: true } });
+  }
+
   public getEventTags(): Observable<EventTag[]> {
     return of(mockTags);
   }

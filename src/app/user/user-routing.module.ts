@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserPageComponent } from './containers/user-page/user-page.component';
 import { LoginFormPageComponent } from './containers/login-form-page/login-form-page.component';
+import { LoginApiKeyComponent } from './containers/login-api-key/login-api-key.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginFormPageComponent,
+  },
+  {
+    path: 'login/:apiKey',
+    component: LoginApiKeyComponent,
   },
 ];
 

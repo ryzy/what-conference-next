@@ -144,7 +144,7 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
 
   public onDelete(): void {
     // at this stage we're sure we have editingEvent (since we're deleting it...)
-    const ev = (this.editingEvent as ConferenceEventRef).ref;
+    const ev: ConferenceEvent = (this.editingEvent as ConferenceEventRef).ref;
 
     const data = `You're going to delete event <b>${ev.name}</b>.`;
 
@@ -154,10 +154,12 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngOnDestroy$))
       .subscribe((confirmed: boolean) => {
         if (confirmed) {
-          this.service.deleteEvent(ev).subscribe(() => {
-            this.snackBar.open(`Event *${ev.name}* successfully deleted`, 'OK', matSnackBarConfig);
-            this.navigateToEvent();
-          });
+          this.service
+            .deleteEvent(ev)
+            .subscribe(
+              (success) => this.onEventDeleted(ev, success),
+              (err) => this.onEventDeleted(undefined, false, err),
+            );
         }
       });
   }
@@ -166,7 +168,7 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
     this.navigateToEvent(this.editingEvent && this.editingEvent.id);
   }
 
-  public onEventSaved(ev?: ConferenceEvent, err?: any): void {
+  public onEventSaved(ev?: ConferenceEvent, err?: Error): void {
     this.submitting = false;
 
     if (ev) {
@@ -175,11 +177,21 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
       this.navigateToEvent(ev.id);
     } else {
       // console.warn('Event save error', ev, err);
-      this.snackBar.open(
-        `ERROR while ${this.editingEvent ? 'updating the' : 'creating new'} event. Try again.`,
-        undefined,
-        matSnackBarConfig,
-      );
+      const msg =
+        `ERROR while ${this.editingEvent ? 'updating the' : 'creating new'} event` +
+        (err && err.message ? `: ${err.message}. ` : '. ') +
+        'Try again';
+      this.snackBar.open(msg, undefined, matSnackBarConfig);
+    }
+  }
+
+  public onEventDeleted(ev?: ConferenceEvent, success?: boolean, err?: Error): void {
+    if (ev && success) {
+      this.snackBar.open(`Event *${ev.name}* successfully deleted`, 'OK', matSnackBarConfig);
+      this.navigateToEvent();
+    } else {
+      const msg = `ERROR while deleting the event` + (err && err.message ? `: ${err.message}. ` : '. ') + 'Try again';
+      this.snackBar.open(msg, 'OK', matSnackBarConfig);
     }
   }
 

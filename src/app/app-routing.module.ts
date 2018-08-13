@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { IsDbReadyGuard } from './core/guards/is-db-ready.guard';
-import { IsInitDataFetchedGuard } from './core/guards/is-init-data-fetched.guard';
 
+import { IsInitDataFetchedGuard } from './core/guards/is-init-data-fetched.guard';
 import { NotFoundPageComponent } from './shared/containers/not-found-page/not-found-page.component';
 
 // Application root routes
@@ -36,6 +35,11 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, {
+      // enableTracing: true,
+      initialNavigation: 'enabled',
+      anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'top',
+      relativeLinkResolution: 'corrected',
       preloadingStrategy: PreloadAllModules,
     }),
   ],

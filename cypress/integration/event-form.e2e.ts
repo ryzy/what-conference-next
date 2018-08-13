@@ -1,5 +1,6 @@
 import { AppHomePage } from '../src/app-home.po';
 import { EventFormPage, mockE2eEvent } from '../src/event-form.po';
+import { UserPage } from '../src/user.po';
 
 describe('Event Editing / Deleting', () => {
   it('App should have working "New Event" link on home page', () => {
@@ -30,6 +31,8 @@ describe('Event Editing / Deleting', () => {
   });
 
   it('Should create and save a new event', () => {
+    UserPage.loginWithApiKey();
+
     cy.log('Given I visit "NewEventForm" page');
     EventFormPage.visit();
 
@@ -50,6 +53,8 @@ describe('Event Editing / Deleting', () => {
   });
 
   it('Should edit an event', () => {
+    UserPage.loginWithApiKey();
+
     const editingEventName = mockE2eEvent.name;
 
     cy.log('When I visit home page and select an event to edit');
@@ -83,6 +88,8 @@ describe('Event Editing / Deleting', () => {
   });
 
   it('Should delete an event', () => {
+    UserPage.loginWithApiKey();
+
     const editingEventName = mockE2eEvent.name;
 
     cy.log('When I visit home page and select an event to delete');

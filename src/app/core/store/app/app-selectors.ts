@@ -1,7 +1,7 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { User } from '../../model/user';
-import { appInitialState, AppState } from './app-reducer';
+import { User, UserData } from '../../model/user';
+import { appInitialState, AppState, defaultUserData } from './app-reducer';
 import { AppRootState } from '../index';
 import { selectTagsState } from '../../../event-base/store/index';
 import { TagsState } from '../../../event-base/store/tags-reducer';
@@ -14,6 +14,10 @@ export const getAppState: (state: AppRootState) => AppState = (state: AppRootSta
 export const selectUser: MemoizedSelector<AppRootState, User | undefined> = createSelector(
   getAppState,
   (state: AppState) => state.user,
+);
+export const selectUserData: MemoizedSelector<AppRootState, UserData> = createSelector(
+  getAppState,
+  (state: AppState) => state.userData || defaultUserData,
 );
 
 /**

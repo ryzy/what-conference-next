@@ -1,10 +1,11 @@
 import { Action } from '@ngrx/store';
 
-import { User } from '../../model/user';
+import { User, UserData } from '../../model/user';
 
 export enum AppActionType {
   DB_READY = '[App] Database ready',
   SET_USER = '[App] Set user',
+  SET_USER_DATA = '[App] Set user data',
 }
 
 /**
@@ -23,4 +24,13 @@ export class SetUserAction implements Action {
   public constructor(public user?: User) {}
 }
 
-export type AppActions = SetUserAction | DbReadyAction;
+/**
+ * Fired when user has logged in (or out)
+ */
+export class SetUserDataAction implements Action {
+  public readonly type: AppActionType.SET_USER_DATA = AppActionType.SET_USER_DATA;
+
+  public constructor(public userData?: UserData) {}
+}
+
+export type AppActions = SetUserAction | DbReadyAction | SetUserDataAction;
