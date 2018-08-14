@@ -7,5 +7,9 @@
   "viewportWidth": 1200,
   "viewportHeight": 1000,
   "fixturesFolder": false,
-  "videoUploadOnPasses": false
+  "videoUploadOnPasses": false,
+  "env": {
+    "TEST_USER": "user@test.com",
+    "TEST_USER_PASS": "password"
+  }
 }

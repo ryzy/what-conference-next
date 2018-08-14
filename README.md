@@ -32,8 +32,10 @@ Here's quick recipe for migrating settings from DEV to PROD env:
      database names etc...
 4. Stage/commit your changes (so you can spot any changes the import
    might do)
-5. `stitch:import:prod` to import your prepared changes to PROD.
-6. `stitch:import:dev` - just to check that you really have all
+5. Re-create `secret.json` if needed (you know/kept the content
+   somewhere safe, right?)
+6. `stitch:import:prod` to import your prepared changes to PROD.
+7. `stitch:import:dev` - just to check that you really have all
    changes kept in sync.
 
 If you need to go the other way around, you have respective
