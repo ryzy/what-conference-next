@@ -21,10 +21,17 @@ export function findCountry(countryVal?: string | Country): Country | undefined 
   }
 }
 
-export function findCountries(countryVal?: string): Country[] {
-  if ('string' === typeof countryVal) {
-    countryVal = countryVal.toUpperCase();
-    return countriesData.filter((c) => c.isoCode === countryVal || c.name.toUpperCase().includes(countryVal as string));
+export function findCountries(countryVal: string = ''): Country[] {
+  if ('string' === typeof (countryVal as any)) {
+    countryVal = countryVal.toLowerCase();
+    return countriesData.filter((c) => {
+      return (
+        c.isoCode === countryVal ||
+        c.name.toLowerCase().includes(countryVal) ||
+        c.subregion.toLowerCase().includes(countryVal) ||
+        c.capital.toLowerCase().includes(countryVal)
+      );
+    });
   }
 
   return countriesData;
