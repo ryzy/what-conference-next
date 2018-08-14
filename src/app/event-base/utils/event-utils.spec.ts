@@ -23,9 +23,9 @@ describe('event-utils', () => {
     expect(findCountries('').length).toBe(countriesData.length);
 
     expect(findCountries('pl').length).toBe(2);
-    expect(findCountries('pol').length).toBe(2); // poland and french polynesia
+    expect(findCountries('pol').length).toBe(12); // looks in countries and cities, so it finds a few...
 
-    expect(findCountries('z').length).toBe(16);
+    expect(findCountries('z').length).toBe(24);
   });
 
   it('#getNormalisedDate', () => {
