@@ -167,7 +167,6 @@ describe('ConferenceEvent model', () => {
       ev = createEventFromFormData({}, mockLexEmpty);
       expect(ev.origin).toBeDefined('ConferenceEvent.origin should be initialised');
       expect(ev.origin.authorId).toBe('');
-      expect(ev.origin.date.getDate()).toEqual(new Date().getDate());
     });
 
     it('#status should be initialised', () => {

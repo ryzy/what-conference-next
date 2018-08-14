@@ -91,13 +91,11 @@ describe('EventService', () => {
 
     // emulate new/fresh/uninitialised event
     ev = eventService.appendEventOriginData({} as ConferenceEvent);
-    expect(ev.origin.date.getDate()).toBe(new Date().getDate());
     expect(ev.origin.authorId).toBe(mockUser.id);
 
     // emulate event with already set origin
     // origin info should NOT be touched (otherwise we loose the info about the original author/date)
     ev = eventService.appendEventOriginData(mockEvent);
-    expect(ev.origin.date.getDate()).toBe(mockEvent.origin.date.getDate());
     expect(ev.origin.authorId).toBe(mockEvent.origin.authorId);
   });
 

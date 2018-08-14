@@ -62,12 +62,11 @@ export class EventService {
    */
   public appendEventOriginData(ev: ConferenceEvent): ConferenceEvent {
     const origin = { ...ev.origin };
-    origin.date = origin.date || new Date();
 
     // DB rules will prevent saving the event without valid user id...
     const currentUser = this.auth.getUserSnapshot();
     if (!origin.authorId && currentUser) {
-      origin.authorId = currentUser && currentUser.id;
+      origin.authorId = currentUser.id;
     }
 
     return { ...ev, origin };
