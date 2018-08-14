@@ -1,0 +1,12 @@
+{
+    "app_id": "dev-what-conference-next-kzfdc",
+    "config_version": 20180301,
+    "name": "dev-what-conference-next",
+    "security": {
+        "allowed_request_origins": [
+            "https://next.what-conference-next.com",
+            "http://localhost:4100",
+            "http://localhost:4104"
+        ]
+    }
+}

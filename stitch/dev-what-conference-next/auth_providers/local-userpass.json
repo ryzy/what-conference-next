@@ -1,0 +1,12 @@
+{
+    "id": "5b722af82d4a1cb8e566d11d",
+    "name": "local-userpass",
+    "type": "local-userpass",
+    "config": {
+        "emailConfirmationSubject": "Confirm your e-mail address",
+        "emailConfirmationUrl": "https://next.what-conference-next.com/user/confirm",
+        "resetPasswordSubject": "Reset your password on what-conference-next.com",
+        "resetPasswordUrl": "https://next.what-conference-next.com/user/reset"
+    },
+    "disabled": false
+}

@@ -1,0 +1,9 @@
+{
+    "id": "5b7306104fdd1f63f4d43425",
+    "name": "mongodb-atlas",
+    "type": "mongodb-atlas",
+    "config": {
+        "clusterName": "Cluster0"
+    },
+    "version": 1
+}

@@ -20,6 +20,13 @@
     "e2e": "DEBUG=cypress:*,-cypress:server:timers,-cypress:server:specs,-cypress:server:events,-cypress:server:file,-cypress:server:cors,-cypress:server:proxy,-cypress:server:project cypress open",
     "e2e:ci": "cypress run --browser=electron",
     "analyze": "webpack-bundle-analyzer ./dist/app/stats.json ./dist/app/ --mode=static --report=dist/size-report/index.html --no-open",
+    "stitch:login": "stitch-cli login --username=$ATLAS_MONGODB_API_USER --api-key=$ATLAS_MONGODB_API_KEY --yes",
+    "prestitch:export:dev": "rm -rf stitch/dev-what-conference-next",
+    "prestitch:export:prod": "rm -rf stitch/what-conference-next",
+    "stitch:export:dev": "stitch-cli export --app-id=dev-what-conference-next-kzfdc --output=stitch/dev-what-conference-next --yes",
+    "stitch:export:prod": "stitch-cli export --app-id=what-conference-next-eqvxa --output=stitch/what-conference-next --yes",
+    "stitch:import:dev": "stitch-cli import --app-id=dev-what-conference-next-kzfdc --app-name=dev-what-conference-next --path=stitch/dev-what-conference-next --strategy=replace",
+    "stitch:import:prod": "stitch-cli import --app-id=what-conference-next-eqvxa --app-name=what-conference-next --path=stitch/what-conference-next --strategy=replace",
     "all": "yarn install --frozen-lockfile && yarn lint-fix && yarn test:ci && yarn coverage && yarn build:dev && yarn analyze"
   },
   "dependencies": {
@@ -70,6 +77,7 @@
     "karma-coverage-istanbul-reporter": "2.0.1",
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "1.2.0",
+    "mongodb-stitch-cli": "1.1.0",
     "ngrx-store-freeze": "0.2.4",
     "nyc": "12.0.2",
     "prettier": "1.14.0",
