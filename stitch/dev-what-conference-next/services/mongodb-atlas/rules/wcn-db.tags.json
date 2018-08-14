@@ -1,0 +1,23 @@
+{
+    "id": "5b7306104fdd1f63f4d4342e",
+    "database": "wcn-db",
+    "collection": "tags",
+    "roles": [
+        {
+            "name": "default",
+            "apply_when": {},
+            "read": true,
+            "write": false,
+            "insert": false,
+            "delete": false,
+            "additional_fields": {}
+        }
+    ],
+    "schema": {
+        "properties": {
+            "_id": {
+                "bsonType": "objectId"
+            }
+        }
+    }
+}

@@ -6568,6 +6568,12 @@ mongodb-stitch-bson@^1.0.0:
   dependencies:
     buffer "^5.1.0"
 
+mongodb-stitch-cli@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/mongodb-stitch-cli/-/mongodb-stitch-cli-1.1.0.tgz#946bf5a34610d479744e3d904880352da93794f8"
+  dependencies:
+    request "^2.87.0"
+
 mongodb-stitch-core-sdk@^4.0.12:
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/mongodb-stitch-core-sdk/-/mongodb-stitch-core-sdk-4.0.12.tgz#a98bb1d8de7d1e50a833ee9ea541d3dcf6f3d91a"
@@ -8052,7 +8058,7 @@ request@2.86.0:
     tunnel-agent "^0.6.0"
     uuid "^3.1.0"
 
-request@2.87.0, request@^2.0.0, request@^2.58.0, request@^2.72.0, request@^2.74.0, request@^2.79.0, request@^2.81.0, request@^2.83.0:
+request@2.87.0, request@^2.0.0, request@^2.58.0, request@^2.72.0, request@^2.74.0, request@^2.79.0, request@^2.81.0, request@^2.83.0, request@^2.87.0:
   version "2.87.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.87.0.tgz#32f00235cd08d482b4d0d68db93a829c0ed5756e"
   dependencies:

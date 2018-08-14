@@ -1,0 +1,32 @@
+{
+    "id": "5b7306104fdd1f63f4d4342f",
+    "database": "wcn-db",
+    "collection": "usersData",
+    "filters": [
+        {
+            "name": "onlyOwnRecord",
+            "query": {
+                "userId": "%%user.id"
+            },
+            "apply_when": {}
+        }
+    ],
+    "roles": [
+        {
+            "name": "default",
+            "apply_when": {},
+            "read": true,
+            "write": false,
+            "insert": false,
+            "delete": false,
+            "additional_fields": {}
+        }
+    ],
+    "schema": {
+        "properties": {
+            "_id": {
+                "bsonType": "objectId"
+            }
+        }
+    }
+}
