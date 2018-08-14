@@ -43,15 +43,15 @@ describe('LoginApiKeyComponent', () => {
     activatedRoute.testParams = { apiKey: 'some-api-key' };
     spyOn(authService, 'loginWithUserApiKey').and.returnValue(of(mockUser));
     fixture.detectChanges();
-    expect(component.successMsg).toBeTruthy();
-    expect(component.errorMsg).toBeFalsy();
+    expect(component.message).toBeTruthy();
+    expect(component.message).not.toMatch(/error/i);
   });
 
   it('should NOT login for invalid api key', () => {
     activatedRoute.testParams = { apiKey: 'some-api-key' };
     spyOn(authService, 'loginWithUserApiKey').and.returnValue(throwError(new Error('invalid API key')));
     fixture.detectChanges();
-    expect(component.successMsg).toBeFalsy();
-    expect(component.errorMsg).toBeTruthy();
+    expect(component.message).toBeTruthy();
+    expect(component.message).toContain('invalid API key');
   });
 });

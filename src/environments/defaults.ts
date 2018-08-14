@@ -11,6 +11,6 @@ export const defaultEnvironmentConfig: AppEnvironment = {
    */
   mongo: {
     stitchAppId: 'dev-what-conference-next-kzfdc',
-    database: 'dev-wcn',
+    database: 'wcn-db',
   },
 };

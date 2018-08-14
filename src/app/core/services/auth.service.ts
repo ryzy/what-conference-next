@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Effect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
+import { deburr, kebabCase } from 'lodash-es';
 import {
   StitchAuth,
   UserPasswordCredential,
@@ -12,6 +13,7 @@ import {
 } from 'mongodb-stitch-browser-sdk';
 import { Observable, defer, of, from } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
+import { uuid } from '../core-utils';
 
 import { AppRootState } from '../store/index';
 import { User, UserData } from '../model/user';
@@ -88,11 +90,17 @@ export class AuthService {
 
   /**
    * Create new user API key (for already authenticated user)
-   *
-  public createUserApiKey(): Promise<UserApiKey> {
+   */
+  public createUserApiKey(apiKeyName: string): Promise<UserApiKey> {
+    apiKeyName = kebabCase(deburr(apiKeyName)) + '-' + uuid(5);
     const apiKeyClient = this.stitch.auth.getProviderClient(UserApiKeyAuthProviderClient.factory);
-    return apiKeyClient.createApiKey('cypress-api-key');
-  } /**/
+    return apiKeyClient.createApiKey(apiKeyName);
+  }
+
+  public fetchUserApiKeys(): Promise<UserApiKey[]> {
+    const apiKeyClient = this.stitch.auth.getProviderClient(UserApiKeyAuthProviderClient.factory);
+    return apiKeyClient.fetchApiKeys();
+  }
 
   /**
    * Log in the user
@@ -128,11 +136,6 @@ export class AuthService {
           .find()
           .first(),
       ),
-    ).pipe(
-      map((v: UserData) => {
-        delete (v as any)._id; // no need for that _id anywhere...
-        return v;
-      }),
     );
   }
 

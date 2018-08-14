@@ -4,6 +4,7 @@ import { randomRange } from '../../src/app/core/core-utils';
 export const URLs = {
   Home: '/',
   User: '/user',
+  UserAuth: '/user/auth',
   NewEventForm: '/edit',
   Event: '/ev',
 };

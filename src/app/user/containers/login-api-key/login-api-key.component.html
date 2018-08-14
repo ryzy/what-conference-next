@@ -3,3 +3,14 @@
   <code *ngIf="successMsg">Success. {{successMsg}}</code>
   <code *ngIf="errorMsg">ERROR {{ errorMsg }}</code>
 </p>
+
+<pre>
+{{ apiKey }}
+{{ apiKeys | json }}
+{{ !apiKey && !apiKeys ? 'NO API KEY' : '' }} {{ message }}
+</pre>
+
+<p *ngIf="currentUser">
+  <button mat-raised-button (click)="getUserApiKeys()" color="primary">Fetch all keys for <b>{{currentUser.email}}</b></button>
+  <button mat-raised-button (click)="createUserApiKey()" color="accent">Create a new API KEY for <b>{{currentUser.email}}</b></button>
+</p>

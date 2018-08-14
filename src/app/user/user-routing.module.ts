@@ -15,7 +15,11 @@ const routes: Routes = [
     component: LoginFormPageComponent,
   },
   {
-    path: 'login/:apiKey',
+    path: 'auth',
+    component: LoginApiKeyComponent,
+  },
+  {
+    path: 'auth/:apiKey',
     component: LoginApiKeyComponent,
   },
 ];
