@@ -106,7 +106,6 @@ export interface ConferenceEvent {
    */
   origin: {
     authorId: string;
-    date: Date;
 
     /**
      * TODO, not handled yet
@@ -222,7 +221,6 @@ export function createEventFromFormData(
   // Initialise origin obj
   event.origin = {
     authorId: '', // will be set on save/update
-    date: new Date(),
   };
   // For now, all events are published as soon as we add them to DB
   event.status = EventStatus.Published;

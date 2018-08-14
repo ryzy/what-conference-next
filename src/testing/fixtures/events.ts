@@ -36,8 +36,7 @@ export const mockEvents: ConferenceEvent[] = [
     price: 100,
     sizeBand: builtinSizeBands[2].id,
     origin: {
-      authorId: '5b5cc113058429b7820af78e', // editor@test.com from DEV db
-      date: new Date('25 Sep 2018'),
+      authorId: 'mock-event-1-editor',
     },
     status: EventStatus.Published,
   },
@@ -65,8 +64,7 @@ export const mockEvents: ConferenceEvent[] = [
     price: 500,
     sizeBand: builtinSizeBands[1].id,
     origin: {
-      authorId: '5b5ccb894fdd1f82c29b1afc', // marcin@ryzycki from DEV db
-      date: new Date('11 Jul 2019'),
+      authorId: 'mock-event-2-editor',
     },
     status: EventStatus.Published,
   },
