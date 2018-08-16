@@ -3,7 +3,7 @@ import { MAT_DATE_LOCALE } from '@angular/material';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { EventEffects } from './services/event-effects';
+import { EventsEffects } from './services/events-effects';
 import { EventsFeatureStoreName, eventsInitialState, eventsReducers } from './store/index';
 
 /**
@@ -12,7 +12,7 @@ import { EventsFeatureStoreName, eventsInitialState, eventsReducers } from './st
 @NgModule({
   imports: [
     StoreModule.forFeature(EventsFeatureStoreName, eventsReducers, { initialState: eventsInitialState }),
-    EffectsModule.forFeature([EventEffects]),
+    EffectsModule.forFeature([EventsEffects]),
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: window.navigator.language },

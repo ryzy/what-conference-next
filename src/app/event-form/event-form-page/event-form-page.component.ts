@@ -1,30 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { MatDialog, MatDialogRef, MatSnackBar, MatSnackBarConfig, MatDialogConfig } from '@angular/material';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
-import { map, switchMap, takeUntil, take, tap } from 'rxjs/operators';
+import { map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { mockEventFormData } from '../../../testing/fixtures/events';
+import { randomRange } from '../../core/core-utils';
 
 import {
-  ConferenceEvent,
-  ConferenceEventFormData,
-  ConferenceEventRef,
-  createEventFromFormData,
+  ConferenceEvent, ConferenceEventFormData, ConferenceEventRef, createEventFromFormData, createFormDataFromEvent,
 } from '../../event-base/model/conference-event';
 import { ConferenceEventLexicon, EventTag } from '../../event-base/model/event-tag';
-import { randomRange } from '../../core/core-utils';
-import { EventService } from '../../event-base/services/event.service';
-import { createFormDataFromEvent } from '../../event-base/model/conference-event';
+import { EventsService } from '../../event-base/services/events.service';
 import { ConfirmationComponent } from '../../shared/components/confirmation/confirmation.component';
-import { mockEventFormData } from '../../../testing/fixtures/events';
-
-/**
- * Default options for SnackBar
- */
-const matSnackBarConfig: MatSnackBarConfig = { duration: 5000 };
-/**
- * Default options for confirmation Dialog modal
- */
-const matDialogConfig: MatDialogConfig = {};
+import { matDialogConfig, matSnackBarConfig } from '../../shared/configs';
 
 @Component({
   selector: 'app-event-page',
@@ -64,7 +52,7 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
   public constructor(
-    private service: EventService,
+    private service: EventsService,
     private router: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,

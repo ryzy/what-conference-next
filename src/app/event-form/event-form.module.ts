@@ -23,7 +23,6 @@ import { EventFormRoutingModule } from './event-form-routing.module';
   imports: [
     ReactiveFormsModule,
 
-    A11yModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,

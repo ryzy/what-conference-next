@@ -20,7 +20,7 @@ import { builtinSizeBands, EventSizeBand } from '../../../event-base/data/size-b
 import { ConferenceEventFormData } from '../../../event-base/model/conference-event';
 import { Country } from '../../../core/model/country';
 import { EventTag } from '../../../event-base/model/event-tag';
-import { EventService } from '../../../event-base/services/event.service';
+import { EventsService } from '../../../event-base/services/events.service';
 import { createEventFromFormData } from '../../../event-base/model/conference-event';
 import { findCountries } from '../../../event-base/utils/event-utils';
 
@@ -71,7 +71,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
-  public constructor(private service: EventService) {}
+  public constructor(private service: EventsService) {}
 
   public ngOnInit(): void {
     // Focus on the 1st field. Call it on the next event loop, otherwise it doesn't work sometimes.

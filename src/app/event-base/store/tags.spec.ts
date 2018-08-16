@@ -11,7 +11,7 @@ import {
   selectTagsState,
   selectTagsCount,
 } from './index';
-import { TagsActions, TagsActionType, LoadTagsAction, SetTagsAction } from './tags-actions';
+import { TagsActions, TagsActionType, FetchTagsAction, SetTagsAction } from './tags-actions';
 import { tagsInitialState, tagsReducer, TagsState } from './tags-reducer';
 import { mockTags } from '../../../testing/fixtures/event-tags';
 import { EventTag } from '../model/event-tag';
@@ -25,8 +25,8 @@ describe('TagsState', () => {
       expect(tagsReducer(tagsInitialState, {} as TagsActions)).toBe(tagsInitialState);
     });
 
-    it(`should generate state for *${TagsActionType.LOAD_TAGS}*`, () => {
-      state = tagsReducer(tagsInitialState, new LoadTagsAction());
+    it(`should generate state for *${TagsActionType.FETCH_TAGS}*`, () => {
+      state = tagsReducer(tagsInitialState, new FetchTagsAction());
       expect(state.loaded).toBe(false);
       expect(state.ids).toEqual([]);
       expect(state.entities).toEqual({});
@@ -35,7 +35,7 @@ describe('TagsState', () => {
       expect(state.loaded).toBe(true);
       expect(state.ids.length).toBeGreaterThan(0);
 
-      state = tagsReducer(state, new LoadTagsAction());
+      state = tagsReducer(state, new FetchTagsAction());
       expect(state.loaded).toBe(false);
       expect(state.ids).toEqual([]);
       expect(state.entities).toEqual({});

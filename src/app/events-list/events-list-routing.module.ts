@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EventsPageComponent } from './events-page/events-page.component';
+import { EventsPageView } from './events-view/events-page.view';
 
 const routes: Routes = [
   {
     path: '',
-    component: EventsPageComponent,
+    component: EventsPageView,
+  },
+  {
+    path: 'q',
+    component: EventsPageView,
   },
 ];
 

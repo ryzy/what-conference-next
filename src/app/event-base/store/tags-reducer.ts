@@ -16,7 +16,7 @@ export const tagsInitialState: TagsState = {
 
 export function tagsReducer(state: TagsState = tagsInitialState, action: TagsActions): TagsState {
   switch (action.type) {
-    case TagsActionType.LOAD_TAGS:
+    case TagsActionType.FETCH_TAGS:
       return adapter.removeAll(<TagsState>{
         ...state,
         loaded: false,

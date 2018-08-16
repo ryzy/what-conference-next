@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { ConferenceEventRef } from '../../event-base/model/conference-event';
 
-import { EventService } from '../../event-base/services/event.service';
+import { EventsService } from '../../event-base/services/events.service';
 
 @Component({
   selector: 'app-event-details-page',
@@ -18,7 +18,7 @@ export class EventDetailsPageComponent implements OnInit, OnDestroy {
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
-  public constructor(private service: EventService, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) {}
+  public constructor(private service: EventsService, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this.route.paramMap

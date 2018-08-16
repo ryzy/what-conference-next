@@ -81,17 +81,17 @@ describe('AuthService', () => {
     expect(authSpy).toHaveBeenCalled();
   });
 
-  it('#loginWithUserApiKey', () => {
-    const authSpy = spyOn(stitch.auth, 'loginWithCredential').and.returnValue(Promise.resolve(mockStitchUser));
-
-    authService.loginWithUserApiKey('some api key').subscribe();
-    expect(authSpy).toHaveBeenCalled();
-  });
-
   it('#loginWithEmailAndPassword', () => {
     const authSpy = spyOn(stitch.auth, 'loginWithCredential').and.returnValue(Promise.resolve(mockStitchUser));
 
     authService.loginWithEmailAndPassword('email', 'password').subscribe();
+    expect(authSpy).toHaveBeenCalled();
+  });
+
+  it('#loginWithUserApiKey', () => {
+    const authSpy = spyOn(stitch.auth, 'loginWithCredential').and.returnValue(Promise.resolve(mockStitchUser));
+
+    authService.loginWithUserApiKey('some api key').subscribe();
     expect(authSpy).toHaveBeenCalled();
   });
 
@@ -128,4 +128,11 @@ describe('AuthService', () => {
       expect(res.roles.editor).toBe(true);
     }),
   );
+
+  it('#navigateToLoginScreen, #navigateToAfterLoginScreen', () => {
+    authService.navigateToLoginScreen();
+    authService.navigateToAfterLoginScreen();
+    // TODO: cover with tests when/if implemented...
+    expect(true).toBe(true);
+  });
 });
