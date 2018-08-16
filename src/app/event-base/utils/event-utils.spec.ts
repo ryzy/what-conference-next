@@ -1,5 +1,6 @@
+import { Entity } from '../../core/model/entity';
 import { countriesData } from '../../data/countries';
-import { findCountries, findCountry, getEventSlug, getNormalisedDate } from './event-utils';
+import { findCountries, findCountry, getEventSlug, getNormalisedDate, getRegionList, slug } from './event-utils';
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'PL');
@@ -28,6 +29,16 @@ describe('event-utils', () => {
     expect(findCountries('z').length).toBe(24);
   });
 
+  it('#getRegionList', () => {
+    const regionsCount = 27;
+    const res: Entity[] = getRegionList();
+    expect(res.length).toBe(regionsCount);
+
+    const r: Entity = res.pop();
+    expect(r.id).toBeTruthy();
+    expect(r.id.split(',').length).toBe(2); // expect url-friendly id part
+  });
+
   it('#getNormalisedDate', () => {
     expect(getNormalisedDate() instanceof Date).toBe(true);
 
@@ -37,6 +48,11 @@ describe('event-utils', () => {
 
     // from string
     expect(getNormalisedDate(mockDate.toISOString())).toEqual(mockDate);
+  });
+
+  it('#slug', () => {
+    expect(slug(undefined as string)).toEqual('');
+    expect(slug('Some String')).toEqual('some-string');
   });
 
   it('#getEventSlug', () => {

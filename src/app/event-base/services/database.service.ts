@@ -5,8 +5,10 @@ import { RemoteInsertOneResult, RemoteUpdateResult } from 'mongodb-stitch-browse
 import { mockEvent } from '../../../testing/fixtures/events';
 
 import { StitchService } from '../../core/stitch/stitch.service';
-import { ConferenceEvent, ConferenceEventRef } from '../model/conference-event';
+import { ConferenceEvent, ConferenceEventRef, EventStatus } from '../model/conference-event';
 import { EventTag } from '../model/event-tag';
+
+export const DEFAULT_LIST_SIZE_LIMIT = 10;
 
 @Injectable({
   providedIn: 'root',
@@ -53,13 +55,26 @@ export class DatabaseService {
     );
   }
 
-  public getEvents(query: object = {}): Observable<ConferenceEventRef[]> {
-    // console.log('DatabaseService#getEvents');
+  public getEvents(
+    query: object = {},
+    sort: { [k in keyof ConferenceEvent]?: number } = { date: 1 },
+  ): Observable<ConferenceEventRef[]> {
+    console.log('DatabaseService#getEvents', { query, sort });
     return defer(() =>
       from(
         this.stitch.db
           .collection<ConferenceEvent>('events')
-          .find(query)
+          .aggregate([
+            {
+              $match: query,
+            },
+            {
+              $sort: sort,
+            },
+            // { $limit: 2 },
+            // { $skip: 1 },
+          ])
+          // .find(query, { sort })
           .asArray(),
       ),
     ).pipe(

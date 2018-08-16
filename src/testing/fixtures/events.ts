@@ -1,9 +1,14 @@
 // tslint:disable:max-line-length
 import { builtinSizeBands } from '../../app/event-base/data/size-bands';
-import { ConferenceEvent, ConferenceEventFormData, EventStatus } from '../../app/event-base/model/conference-event';
+import {
+  ConferenceEvent,
+  ConferenceEventFormData,
+  ConferenceEventRef,
+  EventStatus,
+} from '../../app/event-base/model/conference-event';
 import { Country } from '../../app/core/model/country';
 import { findCountry } from '../../app/event-base/utils/event-utils';
-import { mockTags } from './event-tags';
+import { mockLex, mockTags } from './event-tags';
 
 const mockCountry1 = findCountry('aw') as Country;
 const mockCountry2 = findCountry('pl') as Country;
@@ -69,6 +74,8 @@ export const mockEvents: ConferenceEvent[] = [
     status: EventStatus.Published,
   },
 ];
+
+export const mockEventRefs: ConferenceEventRef[] = mockEvents.map((v) => new ConferenceEventRef(v, mockLex));
 
 export const mockEvent: ConferenceEvent = mockEvents[0];
 

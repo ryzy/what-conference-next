@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { pluck, switchMap, map, take } from 'rxjs/operators';
-import { AuthService } from '../../core/services/auth.service';
-import { AppRouterState, getRouterState } from '../../core/store/router/router';
+import { map, take } from 'rxjs/operators';
+import { AppSortInfo } from '../../core/model/entity';
 
-import { EventsDataSource } from './events-data-source';
+import { AuthService } from '../../core/services/auth.service';
+import { AppRouterState, getAppRouterState } from '../../core/store/router/router';
 import { ConferenceEvent, ConferenceEventRef } from '../model/conference-event';
-import { DatabaseService } from './database.service';
 import { EventTag } from '../model/event-tag';
-import { EventsRootState, selectAllTags } from '../store/index';
+import { EventsFilters } from '../model/events-filters';
+import * as fromEventsList from '../store/events-list-actions';
+import { EventsRootState, selectAllEvents, selectAllTags } from '../store/index';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class EventService {
+export class EventsService {
   public constructor(private store: Store<EventsRootState>, private db: DatabaseService, private auth: AuthService) {}
 
   public getRouterState(): Observable<AppRouterState> {
-    return this.store.select(getRouterState).pipe(pluck('state'));
+    return this.store.select(getAppRouterState);
   }
 
   public getEventTags(): Observable<EventTag[]> {
@@ -33,17 +35,13 @@ export class EventService {
     return tags;
   }
 
-  public getEventsDS(): EventsDataSource {
-    return new EventsDataSource(this.db);
-  }
-
   public getEvent(eventId: string): Observable<ConferenceEventRef> {
     return this.db.getEvent(eventId);
   }
 
   public addOrUpdateEvent(ev: ConferenceEvent): Observable<boolean> {
     ev = this.appendEventOriginData(ev);
-    // console.log(`EventService#addOrUpdateEvent (with 'origin' data)`, ev);
+    // console.log(`EventsService#addOrUpdateEvent (with 'origin' data)`, ev);
 
     if (ev._id) {
       return this.db.updateEvent(ev).pipe(map((v) => !!v.matchedCount));
@@ -70,5 +68,24 @@ export class EventService {
     }
 
     return { ...ev, origin };
+  }
+
+  /**
+   * Get events currently in the store
+   */
+  public getEvents(): Observable<ConferenceEventRef[]> {
+    return this.store.select(selectAllEvents);
+  }
+
+  public dispatchFetchEvents(): void {
+    this.store.dispatch(new fromEventsList.FetchEventsAction());
+  }
+
+  public dispatchNewEventsSorting(sort: AppSortInfo): void {
+    this.store.dispatch(new fromEventsList.SetEventsSortingAction(sort));
+  }
+
+  public dispatchNewEventsFilters(filters: EventsFilters): void {
+    this.store.dispatch(new fromEventsList.SetEventsFiltersAction(filters));
   }
 }

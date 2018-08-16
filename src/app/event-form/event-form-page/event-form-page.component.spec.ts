@@ -8,14 +8,14 @@ import { mockEventFormData } from '../../../testing/fixtures/events';
 import { mockEvent, mockEvents } from '../../../testing/fixtures/events';
 import { mockLex, mockLexEmpty } from '../../../testing/fixtures/event-tags';
 import { ConferenceEventFormData, ConferenceEventRef } from '../../event-base/model/conference-event';
-import { EventService } from '../../event-base/services/event.service';
+import { EventsService } from '../../event-base/services/events.service';
 import { EventFormModule } from '../event-form.module';
 import { EventFormPageComponent } from './event-form-page.component';
 
 describe('EventFormPageComponent', () => {
   let component: EventFormPageComponent;
   let fixture: ComponentFixture<EventFormPageComponent>;
-  let service: EventService;
+  let service: EventsService;
   let router: Router;
   let snackBar: MatSnackBar;
   let dialog: MatDialog;
@@ -31,7 +31,7 @@ describe('EventFormPageComponent', () => {
   }));
 
   beforeEach(() => {
-    service = TestBed.get(EventService);
+    service = TestBed.get(EventsService);
     router = TestBed.get(Router);
     snackBar = TestBed.get(MatSnackBar);
     dialog = TestBed.get(MatDialog);

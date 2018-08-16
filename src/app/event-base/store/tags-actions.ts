@@ -3,12 +3,15 @@ import { Action } from '@ngrx/store';
 import { EventTag } from '../model/event-tag';
 
 export enum TagsActionType {
-  LOAD_TAGS = '[App] Load tags list',
+  FETCH_TAGS = '[App] Fetch tags list...',
   SET_TAGS = '[App] Tags loaded',
 }
 
-export class LoadTagsAction implements Action {
-  public readonly type: TagsActionType.LOAD_TAGS = TagsActionType.LOAD_TAGS;
+/**
+ * Dispatched when tags lists needs to be loaded...
+ */
+export class FetchTagsAction implements Action {
+  public readonly type: TagsActionType.FETCH_TAGS = TagsActionType.FETCH_TAGS;
 }
 
 export class SetTagsAction implements Action {
@@ -17,4 +20,4 @@ export class SetTagsAction implements Action {
   public constructor(public payload: EventTag[]) {}
 }
 
-export type TagsActions = LoadTagsAction | SetTagsAction;
+export type TagsActions = FetchTagsAction | SetTagsAction;

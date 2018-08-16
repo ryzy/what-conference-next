@@ -13,10 +13,10 @@ import { EventBaseModule } from '../event-base.module';
 import { ConferenceEvent, ConferenceEventRef } from '../model/conference-event';
 import { EventTag } from '../model/event-tag';
 import { DatabaseService } from './database.service';
-import { EventService } from './event.service';
+import { EventsService } from './events.service';
 
-describe('EventService', () => {
-  let eventService: EventService;
+describe('EventsService', () => {
+  let eventService: EventsService;
   let authService: AuthService;
   let db: MockDatabaseService;
   let store: Store<AppRootState>;
@@ -30,7 +30,7 @@ describe('EventService', () => {
       ],
     });
 
-    eventService = TestBed.get(EventService);
+    eventService = TestBed.get(EventsService);
     authService = TestBed.get(AuthService);
     db = TestBed.get(DatabaseService);
     store = TestBed.get(Store);

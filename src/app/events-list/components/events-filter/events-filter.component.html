@@ -1,0 +1,19 @@
+<form [formGroup]="filterForm" novalidate class="grid-x grid-margin-x">
+  <fieldset class="cell mini-2">
+    <legend>Where</legend>
+    <mat-select placeholder="Anywhere" formControlName="where">
+      <mat-option>Anywhere</mat-option>
+      <mat-optgroup label="By region">
+        <mat-option *ngFor="let region of regionsList" [value]="region.id">{{ region.name }}</mat-option>
+      </mat-optgroup>
+      <mat-optgroup label="By country">
+        <mat-option *ngFor="let country of countriesList" [value]="country.isoCode">{{ country.name }}</mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </fieldset>
+
+  <fieldset class="cell mini-2">
+    <mat-slide-toggle formControlName="workshops">Workshops</mat-slide-toggle>
+    <mat-slide-toggle formControlName="freeWorkshops">Free workshops</mat-slide-toggle>
+  </fieldset>
+</form>
