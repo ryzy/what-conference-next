@@ -86,10 +86,10 @@ export const selectAllTagsSorted: MemoizedSelector<EventsRootState, EventTag[]> 
     // filter for primary (w/o parent) tags
     // then inject sub-tags
     const sortFn = (t1: EventTag, t2: EventTag) => t1.name.localeCompare(t2.name);
-    const primaryTags = tags.filter(t => !t.parent).sort(sortFn);
+    const primaryTags = tags.filter((t) => !t.parent).sort(sortFn);
     primaryTags.forEach((tag: EventTag, idx: number) => {
       tree.push(tag);
-      const sub = tags.filter(t => t.parent === tag.id).sort(sortFn);
+      const sub = tags.filter((t) => t.parent === tag.id).sort(sortFn);
       tree.push(...sub);
     });
 

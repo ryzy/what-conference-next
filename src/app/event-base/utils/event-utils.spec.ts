@@ -3,8 +3,8 @@ import { countriesData } from '../../data/countries';
 import { findCountries, findCountry, getEventSlug, getNormalisedDate, getRegionList, slug } from './event-utils';
 
 describe('event-utils', () => {
-  const poland = countriesData.find((c) => c.isoCode === 'PL');
-  const uk = countriesData.find((c) => c.isoCode === 'GB');
+  const poland = countriesData.find((c) => c.isoCode === 'pl');
+  const uk = countriesData.find((c) => c.isoCode === 'gb');
 
   it('#findCountry', () => {
     expect(findCountry()).toBe(undefined);
@@ -23,7 +23,7 @@ describe('event-utils', () => {
     expect(findCountries({} as any).length).toBe(countriesData.length);
     expect(findCountries('').length).toBe(countriesData.length);
 
-    expect(findCountries('pl').length).toBe(2);
+    expect(findCountries('pl').length).toBe(3);
     expect(findCountries('pol').length).toBe(12); // looks in countries and cities, so it finds a few...
 
     expect(findCountries('z').length).toBe(24);

@@ -10,7 +10,7 @@ import { ConferenceEvent, ConferenceEventRef } from '../model/conference-event';
 import { EventTag } from '../model/event-tag';
 import { EventsFilters } from '../model/events-filters';
 import * as fromEventsList from '../store/events-list-actions';
-import { EventsRootState, selectAllEvents, selectAllTags } from '../store/index';
+import { EventsRootState, selectAllEvents, selectAllTags, selectAllTagsSorted } from '../store/index';
 import { DatabaseService } from './database.service';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class EventsService {
   }
 
   public getEventTags(): Observable<EventTag[]> {
-    return this.store.select(selectAllTags);
+    return this.store.select(selectAllTagsSorted);
   }
 
   public getEventTagsSnapshot(): EventTag[] {

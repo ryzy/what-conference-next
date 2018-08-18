@@ -2,7 +2,7 @@ import { Params } from '@angular/router';
 
 import { EventsFilters } from '../event-base/model/events-filters';
 import { AppSortInfo } from './model/entity';
-import { AppRouterState } from './store/router/router';
+import { AppRouterParams, AppRouterState } from './store/router/router';
 
 export enum AppSectionUrls {
   Home = '/',
@@ -30,11 +30,12 @@ export function makeParamsForRouter(params: Params, overrides: Params): Params {
   return newParams;
 }
 
-export function makeEventsFiltersForRouter(filters: EventsFilters = {}): Params {
-  return {
+export function makeEventsFiltersForRouter(filters: EventsFilters = {}): AppRouterParams {
+  return <AppRouterParams>{
     where: filters.where || undefined,
     ws: filters.workshops ? '1' : undefined,
     fws: filters.freeWorkshops ? '1' : undefined,
+    tags: filters.tags && filters.tags.length ? filters.tags.join(',') : undefined,
   };
 }
 
@@ -44,6 +45,7 @@ export function getEventsFiltersFromRouter(state: AppRouterState): EventsFilters
       where: state.params.where || '',
       workshops: !!state.params.ws,
       freeWorkshops: !!state.params.fws,
+      tags: state.params.tags ? state.params.tags.split(',') : undefined,
     }
   );
 }

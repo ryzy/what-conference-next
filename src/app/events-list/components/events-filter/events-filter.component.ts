@@ -13,6 +13,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { Country } from '../../../core/model/country';
 import { Entity } from '../../../core/model/entity';
+import { EventTag } from '../../../event-base/model/event-tag';
 import { EventsFilters } from '../../../event-base/model/events-filters';
 import { findCountries, getRegionList } from '../../../event-base/utils/event-utils';
 
@@ -23,19 +24,32 @@ import { findCountries, getRegionList } from '../../../event-base/utils/event-ut
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsFilterComponent implements OnInit, OnDestroy {
+  /**
+   * Set current filters (as they arrive from router)
+   * If form is already available, patch the value there.
+   */
   @Input()
   public set filters(filters: EventsFilters) {
     this._filters = filters;
-    if (this.filterForm) {
-      this.filterForm.patchValue(filters, { onlySelf: true, emitEvent: false });
+    if (this.form) {
+      this.form.patchValue(filters, { onlySelf: true, emitEvent: false });
       this.cdRef.markForCheck();
     }
   }
 
+  /**
+   * List of all available tags in Store
+   */
+  @Input()
+  public tagsList: EventTag[] = [];
+
+  /**
+   * Emits clean list of selected tags (e.g. w/o parents, if child tags are present)
+   */
   @Output()
   public filtersChanged: EventEmitter<EventsFilters> = new EventEmitter<EventsFilters>();
 
-  public filterForm!: FormGroup;
+  public form!: FormGroup;
   public countriesList: Country[] = findCountries();
   public regionsList: Entity[] = getRegionList();
 
@@ -49,14 +63,16 @@ export class EventsFilterComponent implements OnInit, OnDestroy {
   constructor(private cdRef: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
-    this.filterForm = new FormGroup({
+    this.form = new FormGroup({
       where: new FormControl(this._filters.where),
       workshops: new FormControl(this._filters.workshops),
       freeWorkshops: new FormControl(this._filters.freeWorkshops),
+      tags: new FormControl(this._filters.tags),
     });
 
-    this.filterForm.statusChanges.pipe(takeUntil(this.ngOnDestroy$)).subscribe(() => {
-      this.filtersChanged.emit(this.filterForm.getRawValue() as EventsFilters);
+    this.form.statusChanges.pipe(takeUntil(this.ngOnDestroy$)).subscribe((status) => {
+      // console.log('EventsFilterComponent', this.form.getRawValue());
+      this.filtersChanged.emit(this.form.getRawValue() as EventsFilters);
     });
   }
 

@@ -10,10 +10,11 @@ import {
   selectTagsIsLoaded,
   selectTagsState,
   selectTagsCount,
+  selectAllTagsSorted,
 } from './index';
 import { TagsActions, TagsActionType, FetchTagsAction, SetTagsAction } from './tags-actions';
 import { tagsInitialState, tagsReducer, TagsState } from './tags-reducer';
-import { mockTags } from '../../../testing/fixtures/event-tags';
+import { mockTags, mockTagsWithSub } from '../../../testing/fixtures/event-tags';
 import { EventTag } from '../model/event-tag';
 
 describe('TagsState', () => {
@@ -86,6 +87,16 @@ describe('TagsState', () => {
 
       store.dispatch(new SetTagsAction(mockTags));
       expect(res).toBe(true);
+    });
+
+    it('#selectAllTagsSorted', () => {
+      let res: EventTag[] | undefined;
+      store.select(selectAllTagsSorted).subscribe((v) => (res = v));
+      store.dispatch(new SetTagsAction(mockTagsWithSub));
+      expect(res[0]).toEqual(mockTagsWithSub[0]); // expect 1st main tag
+      expect(res[1]).toEqual(mockTagsWithSub[1]); // expect 2nd main tag
+      expect(res[2]).toEqual(mockTagsWithSub[5]); // expect 2nd main tag sub-tag
+      expect(res[3]).toEqual(mockTagsWithSub[2]); // expect 3rd main tag
     });
   });
 });

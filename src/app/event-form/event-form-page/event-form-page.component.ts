@@ -7,7 +7,11 @@ import { mockEventFormData } from '../../../testing/fixtures/events';
 import { randomRange } from '../../core/core-utils';
 
 import {
-  ConferenceEvent, ConferenceEventFormData, ConferenceEventRef, createEventFromFormData, createFormDataFromEvent,
+  ConferenceEvent,
+  ConferenceEventFormData,
+  ConferenceEventRef,
+  createEventFromFormData,
+  createFormDataFromEvent,
 } from '../../event-base/model/conference-event';
 import { ConferenceEventLexicon, EventTag } from '../../event-base/model/event-tag';
 import { EventsService } from '../../event-base/services/events.service';

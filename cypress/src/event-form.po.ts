@@ -30,10 +30,14 @@ export class EventFormPage extends AbstractPage {
 
     if (ev.tags) {
       cy.log(`And I tick tags "${ev.tags.join(', ')}"`);
-      // Force=true because the real inputs are hidden behind MD things
-      ev.tags.forEach((tagId: string) => {
-        this.checkboxes('tags', entityToIndex(tagId, mockTags)).click({ force: true });
-      });
+      cy.get('.primary-tags')
+        .get('.mat-chip')
+        .contains('Frontend')
+        .click();
+      cy.get('.secondary-tags')
+        .get('.mat-chip')
+        .contains('Angular')
+        .click();
     }
 
     if (ev.date) {

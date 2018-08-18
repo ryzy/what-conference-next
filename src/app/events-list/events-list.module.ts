@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
-  MatCheckboxModule,
-  MatPseudoCheckboxModule,
+  MatChipsModule,
   MatSelectModule,
   MatSlideToggleModule,
   MatSortModule,
@@ -22,8 +21,8 @@ import { EventsPageView } from './events-view/events-page.view';
     MatSortModule,
     MatSlideToggleModule,
     MatSelectModule,
-    EventBaseModule,
     SharedModule,
+    EventBaseModule,
     EventsListRoutingModule,
   ],
   providers: [],
