@@ -28,17 +28,20 @@ describe('url-utils', () => {
   it('#makeEventsFiltersForRouter, #getEventsFiltersFromRouter', () => {
     expect(makeEventsFiltersForRouter()).toEqual(<AppRouterParams>{
       where: undefined,
+      tags: undefined,
       ws: undefined,
       fws: undefined,
     });
 
     const testFilters: EventsFilters = {
       where: 'europe',
+      tags: ['some', 'tag'],
       workshops: true,
       freeWorkshops: true,
     };
     const expectedParams: AppRouterParams = {
       where: 'europe',
+      tags: 'some,tag',
       ws: '1',
       fws: '1',
     };

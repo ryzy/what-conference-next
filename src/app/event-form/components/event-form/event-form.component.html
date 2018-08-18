@@ -11,15 +11,23 @@
       </mat-form-field>
     </div>
 
-    <fieldset formArrayName="tags">
+    <fieldset>
       <legend>Event tags</legend>
-      <div class="grid-x grid-margin-x" style="min-height: 2rem">
-        <ng-container *ngFor="let tag of tags; let i = index">
-          <div class="cell mini-3">
-            <mat-checkbox [formControlName]="i">{{ tag.name }}</mat-checkbox>
-          </div>
-        </ng-container>
-      </div>
+      <app-tags-selector
+        formControlName="tags"
+        [tagsList]="tags"
+        [redundantTagsInValue]="true"
+      >
+        <p class="tags-selector__header-1-end show-for-large">
+          Select event tags (so they're easy to filter). Although tags are tags, we differentiate them here
+          to <i>primary</i> and <i>secondary</i> group, to ease the selection when the list gets too long.
+        </p>
+        <p class="tags-selector__header-2-start show-for-large">
+          <strong>Select additional tags.</strong>
+          Be as specific as possible. Leave empty if not applicable.
+          Get in touch to add more tags.
+        </p>
+      </app-tags-selector>
     </fieldset>
 
     <div class="grid-x grid-margin-x">

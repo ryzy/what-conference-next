@@ -11,7 +11,6 @@ import {
   MatTooltipModule,
   MatSnackBarModule,
 } from '@angular/material';
-import { A11yModule } from '@angular/cdk/a11y';
 
 import { SharedModule } from '../shared/shared.module';
 import { EventBaseModule } from '../event-base/event-base.module';

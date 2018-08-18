@@ -14,11 +14,10 @@ export function findCountry(countryVal?: string | Country): Country | undefined 
   } else if ('object' === typeof countryVal) {
     return countryVal;
   } else if (countryVal.length === 2) {
-    countryVal = countryVal.toUpperCase();
-    return countriesData.find((c) => c.isoCode === (countryVal as string).toUpperCase());
+    return countriesData.find((c) => c.isoCode === (countryVal as string).toLowerCase());
   } else {
-    countryVal = countryVal.toUpperCase();
-    return countriesData.find((c) => c.name.toUpperCase().includes(countryVal as string));
+    countryVal = countryVal.toLowerCase();
+    return countriesData.find((c) => c.name.toLowerCase().includes(countryVal as string));
   }
 }
 
@@ -93,4 +92,14 @@ export function slug(str: string): string {
  */
 export function getEventSlug(eventName: string): string {
   return kebabCase(deburr(eventName)) + '-' + uuid(6);
+}
+
+/**
+ * Gets list of entities and returns obj "indexed" by entities IDs
+ */
+export function entitiesById<T extends Entity>(entities: T[] = []): { [entityId: string]: T } {
+  return entities.reduce((obj: { [id: string]: T }, entity: T) => {
+    obj[entity.id] = entity;
+    return obj;
+  }, {});
 }

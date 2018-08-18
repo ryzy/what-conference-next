@@ -1,13 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppTestingAuthAndDbModule } from '../../../../testing/app-testing-auth-db.module';
+import { mockTagsWithSub } from '../../../../testing/fixtures/event-tags';
 import { EventsFilters } from '../../../event-base/model/events-filters';
 import { EventsListModule } from '../../events-list.module';
 import { EventsFilterComponent } from './events-filter.component';
 
-describe('EventsFilterComponent', () => {
+describe('TagsSelectorComponent', () => {
   let component: EventsFilterComponent;
   let fixture: ComponentFixture<EventsFilterComponent>;
+  let emitValuesSpy: jasmine.Spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,6 +20,8 @@ describe('EventsFilterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EventsFilterComponent);
     component = fixture.componentInstance;
+    component.tagsList = mockTagsWithSub;
+    emitValuesSpy = spyOn(component.filtersChanged, 'emit').and.callThrough();
   });
 
   it('should create', () => {
@@ -30,7 +34,7 @@ describe('EventsFilterComponent', () => {
 
     fixture.detectChanges();
     expect(component).toBeTruthy();
-    expect(component.filterForm.getRawValue()).toEqual(
+    expect(component.form.getRawValue()).toEqual(
       jasmine.objectContaining({
         where: 'europe',
       }),
@@ -43,7 +47,7 @@ describe('EventsFilterComponent', () => {
     expect(res).toBe(undefined);
 
     fixture.detectChanges();
-    component.filterForm.patchValue({
+    component.form.patchValue({
       where: 'europe',
     });
     expect(res).toEqual(

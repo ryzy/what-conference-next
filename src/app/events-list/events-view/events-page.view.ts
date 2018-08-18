@@ -1,11 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 
 import { AppSortInfo } from '../../core/model/entity';
 import { AppRouterState } from '../../core/store/router/router';
 import { defaultSortInfo, getEventsSortInfoFromRouter, getEventsFiltersFromRouter } from '../../core/url-utils';
 import { ConferenceEventRef } from '../../event-base/model/conference-event';
+import { EventTag } from '../../event-base/model/event-tag';
 import { EventsFilters } from '../../event-base/model/events-filters';
 import { EventsService } from '../../event-base/services/events.service';
 
@@ -27,6 +28,7 @@ export class EventsPageView implements OnInit, OnDestroy {
    * Current filters state (made from router state)
    */
   public filters: EventsFilters = {};
+  public tagsList: EventTag[] = [];
   public sortInfo: AppSortInfo = defaultSortInfo;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -46,6 +48,10 @@ export class EventsPageView implements OnInit, OnDestroy {
         this.sortInfo = getEventsSortInfoFromRouter(routerState) || defaultSortInfo;
         this.cdRef.markForCheck();
       });
+    this.service
+      .getEventTags()
+      .pipe(take(1))
+      .subscribe((t) => (this.tagsList = t));
 
     // Pull events from the Store and push them into listing table's DataSource
     // Any change in filters is done via dispatching action to the Store,
@@ -55,7 +61,7 @@ export class EventsPageView implements OnInit, OnDestroy {
       .getEvents()
       .pipe(takeUntil(this.ngOnDestroy$))
       .subscribe((events: ConferenceEventRef[]) => {
-        console.log('EventsPageView#ngOnInit', { events, sortInfo: this.sortInfo, filters: this.filters });
+        // console.log('EventsPageView#ngOnInit', { events, sortInfo: this.sortInfo, filters: this.filters });
         this.eventsDataSource.data = events;
         this.cdRef.markForCheck();
       });

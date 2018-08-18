@@ -1,0 +1,45 @@
+<form [formGroup]="form" novalidate class="grid-x margin-collapse align-justify">
+
+  <div class="cell primary-tags">
+    <ng-content select=".tags-selector__header-1-start"></ng-content>
+    <mat-chip-list [multiple]="true">
+      <mat-chip
+        *ngFor="let tag of renderPrimaryTags"
+        color="accent"
+        [selected]="isTagSelected(tag)"
+        (click)="toggleTag(tag)"
+      >{{ tag.name }}</mat-chip>
+    </mat-chip-list>
+    <ng-content select=".tags-selector__header-1-end"></ng-content>
+  </div>
+
+  <div
+    *ngIf="hasAnySecondaryTagsToShow()"
+    class="cell secondary-tags"
+  >
+    <ng-content select=".tags-selector__header-2-start"></ng-content>
+
+    <mat-chip-list *ngIf="secondaryTagsAsChips" [multiple]="true">
+      <mat-chip
+        *ngFor="let tag of renderSecondaryTags"
+        color="primary"
+        [selected]="isTagSelected(tag)"
+        (click)="toggleTag(tag)"
+      >{{ tag.name }}</mat-chip>
+    </mat-chip-list>
+
+    <mat-form-field *ngIf="!secondaryTagsAsChips" floatLabel="never">
+      <mat-select [multiple]="true" formControlName="secondaryTags" placeholder="More specific topics...">
+        <ng-container *ngFor="let primaryTag of renderPrimaryTags">
+          <mat-optgroup *ngIf="isTagSelected(primaryTag) && hasAnySecondaryTagsToShow(primaryTag)" [label]="primaryTag.name">
+            <ng-container *ngFor="let tag of renderSecondaryTags">
+              <mat-option *ngIf="tag.parent == primaryTag.id" [value]="tag.id">{{ tag.name }}</mat-option>
+            </ng-container>
+          </mat-optgroup>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+
+    <ng-content select=".tags-selector__header-2-end"></ng-content>
+  </div>
+</form>

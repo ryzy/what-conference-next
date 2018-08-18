@@ -1,5 +1,6 @@
 @import 'abstracts';
 
+/** TODO: all that should perhaps go into global CSS? **/
 .mat-icon {
   $icon-size: 1.125rem; // decrease slightly icon size (from def 24px)
   width: $icon-size;
@@ -63,10 +64,10 @@
   flex-grow: 0.2;
   text-align: center;
 }
-
 .show-on-hover {
   display: none;
   .mat-row:hover & {
     display: inline-block;
   }
 }
+/** TODO: ends here. See above. **/

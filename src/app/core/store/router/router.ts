@@ -12,6 +12,7 @@ export interface AppRouterParams extends Params {
 
   // events filters
   where?: string;
+  tags?: string;
   ws?: string; // workshops
   fws?: string; // free workshops
 

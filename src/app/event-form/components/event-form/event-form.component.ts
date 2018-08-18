@@ -11,10 +11,10 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material';
 import { Observable, combineLatest } from 'rxjs';
-import { filter, map, startWith, takeUntil, tap, debounceTime } from 'rxjs/operators';
+import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
 
 import { builtinSizeBands, EventSizeBand } from '../../../event-base/data/size-bands';
 import { ConferenceEventFormData } from '../../../event-base/model/conference-event';
@@ -74,12 +74,14 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
   public constructor(private service: EventsService) {}
 
   public ngOnInit(): void {
+    this.tags = this.service.getEventTagsSnapshot();
+
     // Focus on the 1st field. Call it on the next event loop, otherwise it doesn't work sometimes.
     setTimeout(() => this.formFields.first.focus());
 
     this.eventForm = new FormGroup({
       name: new FormControl('', [Validators.minLength(3), Validators.maxLength(255)]),
-      tags: new FormArray([], [Validators.required]),
+      tags: new FormControl([], [Validators.minLength(1)]),
       date: new FormControl(),
       eventDuration: new FormControl(1),
       workshops: new FormControl(false),
@@ -94,19 +96,18 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
       price: new FormControl(),
       sizeBand: new FormControl(),
     });
-    this.handleTags();
     this.handleCountryAndCity();
 
     /**
-    combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges)
-      .pipe(debounceTime(1000))
-      .subscribe(([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
+    combineLatest(this.eventForm.valueChanges, this.eventForm.statusChanges).subscribe(
+      ([formValues, formStatus]: [any, 'VALID' | 'INVALID']) => {
         console.log(
           '[EVENT FORM] ConferenceEvent#fromFormValues',
-          formStatus,
+          formValues,
           createEventFromFormData(formValues, { tags: this.tags }),
         );
-      }); /**/
+      },
+    ); /**/
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -131,17 +132,6 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   public displayCountryFn(country?: Country): string | undefined {
     return country && country.name;
-  }
-
-  /**
-   * Set/Update tags form controls, so it's in sync with current list of tags
-   */
-  private handleTags(): void {
-    this.tags = this.service.getEventTagsSnapshot();
-
-    // Update form controls, one checkbox for each tag:
-    const tagsControls: FormControl[] = this.tags.map(() => new FormControl(false));
-    this.eventForm.setControl('tags', new FormArray(tagsControls, [Validators.required]));
   }
 
   private handleCountryAndCity(): void {

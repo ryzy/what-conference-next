@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, from, defer, of, throwError } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { RemoteInsertOneResult, RemoteUpdateResult } from 'mongodb-stitch-browser-sdk';
-import { mockEvent } from '../../../testing/fixtures/events';
 
 import { StitchService } from '../../core/stitch/stitch.service';
 import { ConferenceEvent, ConferenceEventRef, EventStatus } from '../model/conference-event';
@@ -27,10 +26,7 @@ export class DatabaseService {
           .find()
           .asArray(),
       ),
-    ).pipe(
-      // tap((v) => console.log('stitch.db.collection(tags)', v)),
-      tap((v) => (this.tagsCache = v)),
-    );
+    ).pipe(tap((v) => (this.tagsCache = v)));
   }
 
   /**
@@ -55,11 +51,14 @@ export class DatabaseService {
     );
   }
 
+  /**
+   * Fetch events from db, with provided queries
+   */
   public getEvents(
     query: object = {},
     sort: { [k in keyof ConferenceEvent]?: number } = { date: 1 },
   ): Observable<ConferenceEventRef[]> {
-    console.log('DatabaseService#getEvents', { query, sort });
+    // console.log('DatabaseService#getEvents', { query, sort });
     return defer(() =>
       from(
         this.stitch.db
@@ -74,7 +73,6 @@ export class DatabaseService {
             // { $limit: 2 },
             // { $skip: 1 },
           ])
-          // .find(query, { sort })
           .asArray(),
       ),
     ).pipe(

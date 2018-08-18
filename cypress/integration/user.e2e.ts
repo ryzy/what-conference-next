@@ -27,10 +27,10 @@ describe('User', () => {
 
   it('should login with valid API key', () => {
     UserPage.visit(URLs.UserAuth + '/' + Cypress.env(UserApiKeys.TEST_EDITOR_USER_API_KEY));
-    cy.contains(/Success.+?Logged in as/);
+    cy.contains('Logged in as');
   });
 
-  it.only('should see API Key login page', () => {
+  it('should see API Key login page', () => {
     UserPage.loginWithForm(Cypress.env('TEST_USER'), Cypress.env('TEST_USER_PASS'));
     UserPage.expectToBeLoggedIn();
     UserPage.visit(URLs.UserAuth);
