@@ -36,7 +36,7 @@ describe('LoginFormPageComponent', () => {
 
   it('should login', async () => {
     fixture.detectChanges();
-    const signInSpy = spyOn(authService, 'signInWithEmailAndPassword').and.returnValue(of(mockStitchUser));
+    const signInSpy = spyOn(authService, 'loginWithEmailAndPassword').and.returnValue(of(mockStitchUser));
     const navigateSpy = spyOn(router, 'navigate');
 
     component.loginForm.setValue({
@@ -52,7 +52,7 @@ describe('LoginFormPageComponent', () => {
 
   it('should show login error', async () => {
     fixture.detectChanges();
-    const signInSpy = spyOn(authService, 'signInWithEmailAndPassword').and.returnValue(
+    const signInSpy = spyOn(authService, 'loginWithEmailAndPassword').and.returnValue(
       throwError({ message: 'some/login/error' }),
     );
     const navigateSpy = spyOn(router, 'navigate');
@@ -73,7 +73,7 @@ describe('LoginFormPageComponent', () => {
   });
 
   it('should do nothing when user/pass not specified', async () => {
-    const signInSpy = spyOn(authService, 'signInWithEmailAndPassword').and.returnValue(of(mockStitchUser));
+    const signInSpy = spyOn(authService, 'loginWithEmailAndPassword').and.returnValue(of(mockStitchUser));
     await component.login();
     expect(signInSpy).not.toHaveBeenCalled();
   });

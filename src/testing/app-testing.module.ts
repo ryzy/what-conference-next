@@ -21,13 +21,10 @@ import { SharedModule } from '../app/shared/shared.module';
   ],
 })
 export class AppTestingModule {
-  public static withCoreStateAndEffects(): ModuleWithProviders {
+  public static withAppCoreState(): ModuleWithProviders {
     return {
       ngModule: AppTestingModule,
-      providers: [
-        StoreModule.forRoot(reducers).providers as Provider[],
-        EffectsModule.forRoot([AuthService]).providers as Provider[],
-      ],
+      providers: [StoreModule.forRoot(reducers).providers as Provider[]],
     };
   }
 }

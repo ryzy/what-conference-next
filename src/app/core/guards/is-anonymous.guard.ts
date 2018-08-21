@@ -51,7 +51,7 @@ export class IsAnonymousGuard implements CanActivate, CanActivateChild, CanLoad 
   }
 
   private checkLoginWithRedirect(redirectUrl?: string): Observable<boolean> {
-    return this.authService.getCurrentUser().pipe(
+    return this.authService.getUser().pipe(
       // TODO: we should probably wait instead of just taking 1?
       take(1),
       map((isLoggedIn) => !isLoggedIn),

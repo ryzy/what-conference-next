@@ -1,25 +1,12 @@
-import { ConferenceEvent, ConferenceEventFormData } from '../../src/app/event-base/model/conference-event';
-import { mockEvent } from '../../src/testing/fixtures/events-db';
+import { builtinSizeBands } from '../../src/app/event-base/data/size-bands';
+import {
+  ConferenceEvent,
+  ConferenceEventFormData,
+  entityToIndex,
+} from '../../src/app/event-base/model/conference-event';
+import { mockTags } from '../../src/testing/fixtures/event-tags';
+import { mockEvent } from '../../src/testing/fixtures/events';
 import { AbstractPage, URLs } from './abstract.po';
-
-/**
- * List of fields in the new event form
- */
-export const eventFormFields: { [k in keyof ConferenceEventFormData]: boolean | string } = {
-  name: true,
-  topicTags: true,
-  country: true,
-  city: true,
-  address: true,
-  date: true,
-  eventDuration: true,
-  workshopDays: true,
-  website: true,
-  twitterHandle: true,
-  description: true,
-  price: true,
-  sizeBand: true,
-};
 
 export const mockE2eEvent: ConferenceEvent = {
   ...mockEvent,
@@ -41,11 +28,16 @@ export class EventFormPage extends AbstractPage {
       this.typeIntoFormField('name', ev.name);
     }
 
-    if (ev.topicTags) {
-      cy.log('And I tick checkbox no "1" in the field "topicTags"');
-      // Force=true becase the real inputs are hidden behind MD things
-      this.checkboxes('topicTags', 1).click({ force: true });
-      this.checkboxes('topicTags', 3).click({ force: true });
+    if (ev.tags) {
+      cy.log(`And I tick tags "${ev.tags.join(', ')}"`);
+      cy.get('.primary-tags')
+        .get('.mat-chip')
+        .contains('Frontend')
+        .click();
+      cy.get('.secondary-tags')
+        .get('.mat-chip')
+        .contains('Angular')
+        .click();
     }
 
     if (ev.date) {
@@ -54,46 +46,56 @@ export class EventFormPage extends AbstractPage {
     }
 
     if (ev.sizeBand) {
-      cy.log('And I select option no "1" in the dropdown "sizeBand"');
-      this.select('sizeBand', 1);
+      const idx = entityToIndex(ev.sizeBand, builtinSizeBands);
+      cy.log(`And I select option no "${idx}" in the dropdown "sizeBand"`);
+
+      this.select('sizeBand', idx);
     }
 
     if (ev.price) {
-      cy.log('And I enter "666" in the field "price"');
+      cy.log(`And I enter "${ev.price}" in the field "price"`);
       this.typeIntoFormField('price', ev.price);
+    }
+    if (ev.workshops) {
+      cy.log(`And I tick the "workshops" checkbox`);
+      this.checkbox('workshops').click();
+    }
+    if (ev.freeWorkshops) {
+      cy.log(`And I tick the "freeWorkshops" checkbox`);
+      this.checkbox('freeWorkshops').click();
     }
 
     if (ev.country) {
-      cy.log('And I enter "Fr" in the field "country"');
-      this.typeIntoFormField('country', 'Fr');
-      cy.log('And I select option no "2" from the autocomplete field "country"');
-      this.autocomplete(2);
-      cy.log('And I should see "France" option in "country" field selected');
-      this.formField('country').should('have.value', 'France');
+      cy.log(`And I enter "${ev.countryCode}" in the field "country"`);
+      this.typeIntoFormField('country', ev.countryCode);
+      cy.log(`And I select option no "0" from the autocomplete field "country"`);
+      this.autocomplete(0);
+      cy.log(`And I should see ${ev.country} option in "country" field selected`);
+      this.formField('country').should('have.value', ev.country);
     }
 
     if (ev.city) {
-      cy.log('And I enter "Paris" in the field "city"');
+      cy.log(`And I enter "${ev.city}" in the field "city"`);
       this.typeIntoFormField('city', ev.city);
     }
 
     if (ev.address) {
-      cy.log('And I enter "Museum Louvre" in the field "address"');
+      cy.log(`And I enter "${ev.address}" in the field "address"`);
       this.typeIntoFormField('address', ev.address);
     }
 
     if (ev.website) {
-      cy.log('And I enter "https://www.louvre.fr/en/evenements" in the field "website"');
+      cy.log(`And I enter "${ev.website}" in the field "website"`);
       this.typeIntoFormField('website', ev.website);
     }
 
     if (ev.twitterHandle) {
-      cy.log('And I enter "SuperConf" in the field "twitterHandle"');
+      cy.log(`And I enter "${ev.twitterHandle}" in the field "twitterHandle"`);
       this.typeIntoFormField('twitterHandle', ev.twitterHandle);
     }
 
     if (ev.description) {
-      cy.log('And I enter "Lorem ipsum dolar sit amet." in the field "description"');
+      cy.log(`And I enter "${ev.description}" in the field "description"`);
       this.typeIntoFormField('description', ev.description);
     }
 

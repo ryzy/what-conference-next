@@ -1,0 +1,11 @@
+@import 'abstracts';
+
+:host {
+  display: block;
+}
+
+hr.tags-selector__header-2-start {
+  margin: $app-spacing-unit 0;
+  border-bottom-color: $app-color-border;
+  border-bottom-style: dotted;
+}

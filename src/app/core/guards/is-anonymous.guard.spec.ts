@@ -22,7 +22,7 @@ describe('IsAnonymousGuard', () => {
   describe('should return true for anonymous user', () => {
     beforeEach(() => {
       activatedRoute = new ActivatedRouteStub();
-      spyOn(authService, 'getCurrentUser').and.returnValue(of(undefined));
+      spyOn(authService, 'getUser').and.returnValue(of(undefined));
     });
     it('#canActivate', () => {
       let canActivate: boolean | undefined;
@@ -45,7 +45,7 @@ describe('IsAnonymousGuard', () => {
     const afterLoginUrl = 'foo-url';
     beforeEach(() => {
       activatedRoute = new ActivatedRouteStub();
-      spyOn(authService, 'getCurrentUser').and.returnValue(of(mockUser));
+      spyOn(authService, 'getUser').and.returnValue(of(mockUser));
       spyOn(authService, 'navigateToAfterLoginScreen');
     });
 

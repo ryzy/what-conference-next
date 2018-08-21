@@ -1,4 +1,4 @@
-import { User } from '../../model/user';
+import { User, UserData } from '../../model/user';
 import { AppActions, AppActionType } from './app-actions';
 
 /**
@@ -7,8 +7,15 @@ import { AppActions, AppActionType } from './app-actions';
 export interface AppState {
   dbReady?: boolean;
   user?: User;
+  userData?: UserData;
 }
 
+export const defaultUserData: UserData = {
+  roles: {
+    admin: false,
+    editor: false,
+  },
+};
 export const appInitialState: AppState = {};
 
 export function appReducer(state: AppState = appInitialState, action: AppActions): AppState {
@@ -23,6 +30,12 @@ export function appReducer(state: AppState = appInitialState, action: AppActions
       return {
         ...state,
         user: action.user,
+      };
+
+    case AppActionType.SET_USER_DATA:
+      return {
+        ...state,
+        userData: action.userData,
       };
 
     default:

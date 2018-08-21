@@ -16,7 +16,7 @@ export class AppComponent {
   public user$: Observable<User | undefined>;
 
   public constructor(authService: AuthService, private store: Store<AppRootState>) {
-    this.user$ = authService.getCurrentUser();
+    this.user$ = authService.getUser();
   }
 
   public goToNewEvent(): void {

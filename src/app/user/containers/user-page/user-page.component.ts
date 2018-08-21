@@ -14,7 +14,7 @@ export class UserPageComponent implements OnInit {
   public user$: Observable<User | undefined>;
 
   public constructor(public authService: AuthService) {
-    this.user$ = this.authService.getCurrentUser();
+    this.user$ = this.authService.getUser();
   }
 
   public ngOnInit(): void {}

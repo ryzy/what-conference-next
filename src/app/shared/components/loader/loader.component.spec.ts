@@ -15,10 +15,13 @@ describe('LoaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoaderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    component.local = true; // just so it's not full screen on Karma results
+    component.message = 'Loader Test';
+    fixture.detectChanges();
     expect(component).toBeTruthy();
+    expect((fixture.nativeElement as HTMLElement).innerText).toContain('Loader Test');
   });
 });

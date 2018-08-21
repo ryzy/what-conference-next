@@ -1,0 +1,73 @@
+@import 'abstracts';
+
+/** TODO: all that should perhaps go into global CSS? **/
+.mat-icon {
+  $icon-size: 1.125rem; // decrease slightly icon size (from def 24px)
+  width: $icon-size;
+  height: $icon-size;
+  font-size: $icon-size;
+  vertical-align: middle;
+  color: $app-color-text-light;
+}
+
+.mat-header-row,
+.mat-row {
+  padding-left: $app-spacing-unit-medium;
+  padding-right: $app-spacing-unit-medium;
+}
+.mat-row {
+  &:hover {
+    background-color: $app-color-bg-gray;
+  }
+}
+
+.mat-header-cell,
+.mat-cell {
+  margin-right: $gutter-size;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+.mat-header-cell {
+  font-weight: $app-font-weight-bold;
+}
+.mat-cell {
+  padding-top: $app-spacing-unit;
+  padding-bottom: $app-spacing-unit;
+}
+
+.mat-column-name {
+  flex-grow: 2;
+  .event-name {
+    // header
+    margin-bottom: 0;
+  }
+}
+.mat-column-date {
+  .event-date {
+    font-size: map-get($app-font-sizes, h4);
+  }
+  .event-duration {
+    &--addon {
+      margin-left: $gutter-size;
+    }
+  }
+}
+.mat-column-price {
+  flex-grow: 0.5;
+  text-align: right;
+}
+.mat-column-price {
+  font-size: map-get($app-font-sizes, h4);
+}
+.mat-column-actions {
+  flex-grow: 0.2;
+  text-align: center;
+}
+.show-on-hover {
+  display: none;
+  .mat-row:hover & {
+    display: inline-block;
+  }
+}
+/** TODO: ends here. See above. **/

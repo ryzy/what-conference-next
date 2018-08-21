@@ -1,4 +1,4 @@
-import { Entity } from '../model/entity';
+import { Entity } from '../../core/model/entity';
 
 export interface EventSizeBand extends Entity {
   description: string;

@@ -1,9 +1,10 @@
-import { countriesData } from '../data/countries';
-import { findCountries, findCountry, getEventSlug, getNormalisedDate } from './event-utils';
+import { Entity } from '../../core/model/entity';
+import { countriesData } from '../../data/countries';
+import { findCountries, findCountry, getEventSlug, getNormalisedDate, getRegionList, slug } from './event-utils';
 
 describe('event-utils', () => {
-  const poland = countriesData.find((c) => c.isoCode === 'PL');
-  const uk = countriesData.find((c) => c.isoCode === 'GB');
+  const poland = countriesData.find((c) => c.isoCode === 'pl');
+  const uk = countriesData.find((c) => c.isoCode === 'gb');
 
   it('#findCountry', () => {
     expect(findCountry()).toBe(undefined);
@@ -22,10 +23,20 @@ describe('event-utils', () => {
     expect(findCountries({} as any).length).toBe(countriesData.length);
     expect(findCountries('').length).toBe(countriesData.length);
 
-    expect(findCountries('pl').length).toBe(2);
-    expect(findCountries('pol').length).toBe(2); // poland and french polynesia
+    expect(findCountries('pl').length).toBe(3);
+    expect(findCountries('pol').length).toBe(12); // looks in countries and cities, so it finds a few...
 
-    expect(findCountries('z').length).toBe(16);
+    expect(findCountries('z').length).toBe(24);
+  });
+
+  it('#getRegionList', () => {
+    const regionsCount = 27;
+    const res: Entity[] = getRegionList();
+    expect(res.length).toBe(regionsCount);
+
+    const r: Entity = res.pop();
+    expect(r.id).toBeTruthy();
+    expect(r.id.split(',').length).toBe(2); // expect url-friendly id part
   });
 
   it('#getNormalisedDate', () => {
@@ -37,6 +48,11 @@ describe('event-utils', () => {
 
     // from string
     expect(getNormalisedDate(mockDate.toISOString())).toEqual(mockDate);
+  });
+
+  it('#slug', () => {
+    expect(slug(undefined as string)).toEqual('');
+    expect(slug('Some String')).toEqual('some-string');
   });
 
   it('#getEventSlug', () => {

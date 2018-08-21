@@ -1,10 +1,10 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { User } from '../../model/user';
-import { appInitialState, AppState } from './app-reducer';
+import { User, UserData } from '../../model/user';
+import { appInitialState, AppState, defaultUserData } from './app-reducer';
 import { AppRootState } from '../index';
-import { selectTopicsState } from '../../../event-base/store/index';
-import { TopicsState } from '../../../event-base/store/topics-reducer';
+import { selectTagsState } from '../../../event-base/store/index';
+import { TagsState } from '../../../event-base/store/tags-reducer';
 
 export const getAppState: (state: AppRootState) => AppState = (state: AppRootState) => state.app || appInitialState;
 
@@ -14,6 +14,10 @@ export const getAppState: (state: AppRootState) => AppState = (state: AppRootSta
 export const selectUser: MemoizedSelector<AppRootState, User | undefined> = createSelector(
   getAppState,
   (state: AppState) => state.user,
+);
+export const selectUserData: MemoizedSelector<AppRootState, UserData> = createSelector(
+  getAppState,
+  (state: AppState) => state.userData || defaultUserData,
 );
 
 /**
@@ -29,6 +33,6 @@ export const selectIsDbReady: MemoizedSelector<AppRootState, boolean> = createSe
  */
 export const selectInitDataFetched: MemoizedSelector<AppRootState, boolean> = createSelector(
   getAppState,
-  selectTopicsState as any,
-  (app: AppState, topics: TopicsState) => (app.dbReady && topics.loaded) || false,
+  selectTagsState as any,
+  (app: AppState, tagsState: TagsState) => (app.dbReady && tagsState.loaded) || false,
 );

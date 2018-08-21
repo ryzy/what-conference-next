@@ -1,43 +1,98 @@
 import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
-import { EventTopic } from '../model/event-topic';
+import { ConferenceEventRef } from '../model/conference-event';
+import { EventTag } from '../model/event-tag';
 
-import { TopicsActions } from './topics-actions';
-import * as fromTopics from './topics-reducer';
+import { EventsListActions } from './events-list-actions';
+import * as fromEventsList from './events-list-reducer';
+import { TagsActions } from './tags-actions';
+import * as fromTags from './tags-reducer';
 
 export interface EventsState {
-  topics: fromTopics.TopicsState;
+  list: fromEventsList.EventsListState;
+  tags: fromTags.TagsState;
 }
 
 export const EventsFeatureStoreName = 'events';
 
+/**
+ * Root state of this feature module. Not really used here...
+ * might be useful to someone else when testing/composing store
+ */
 export interface EventsRootState {
   [EventsFeatureStoreName]: EventsState;
 }
 
 export const eventsInitialState: EventsState = {
-  topics: fromTopics.topicsInitialState,
+  list: fromEventsList.eventsListInitialState,
+  tags: fromTags.tagsInitialState,
 };
 
-export const eventsReducers: ActionReducerMap<EventsState, TopicsActions> = {
-  topics: fromTopics.topicsReducer as ActionReducer<fromTopics.TopicsState, TopicsActions>,
+export const eventsReducers: ActionReducerMap<EventsState, TagsActions & EventsListActions> = {
+  list: fromEventsList.eventsListReducer as ActionReducer<fromEventsList.EventsListState, EventsListActions>,
+  tags: fromTags.tagsReducer as ActionReducer<fromTags.TagsState, TagsActions>,
 };
 
-export const getEventsState: MemoizedSelector<object, EventsState> = createFeatureSelector(EventsFeatureStoreName);
+//
+// Main selector to get the feature store state
+//
+export const getEventsState: MemoizedSelector<object, EventsState> = createSelector(
+  createFeatureSelector<EventsState>(EventsFeatureStoreName),
+  (state: EventsState) => state || eventsInitialState,
+);
 
-export const selectTopicsState: MemoizedSelector<EventsRootState, fromTopics.TopicsState> = createSelector(
+//
+// events selectors
+//
+export const selectEventsListState: MemoizedSelector<EventsRootState, fromEventsList.EventsListState> = createSelector(
   getEventsState,
-  /* istanbul ignore next */
-  (state = eventsInitialState) => state.topics,
+  (state) => state.list,
 );
-export const selectAllTopics: MemoizedSelector<EventsRootState, EventTopic[]> = createSelector(
-  selectTopicsState,
-  fromTopics.selectAll,
+export const selectAllEvents: MemoizedSelector<EventsRootState, ConferenceEventRef[]> = createSelector(
+  selectEventsListState,
+  fromEventsList.selectAll,
 );
-export const selectTopicsTotal: MemoizedSelector<EventsRootState, number> = createSelector(
-  selectTopicsState,
-  fromTopics.selectTotal,
+export const selectEventsCount: MemoizedSelector<EventsRootState, number> = createSelector(
+  selectEventsListState,
+  fromEventsList.selectTotal,
 );
-export const selectTopicsLoadedFlag: MemoizedSelector<EventsRootState, boolean> = createSelector(
-  selectTopicsState,
-  (topicsState) => topicsState.loaded,
+export const selectEventsIsLoaded: MemoizedSelector<EventsRootState, boolean> = createSelector(
+  selectEventsListState,
+  (eventsState) => eventsState.loaded,
+);
+
+//
+// tags selectors
+//
+export const selectTagsState: MemoizedSelector<EventsRootState, fromTags.TagsState> = createSelector(
+  getEventsState,
+  (state) => state.tags,
+);
+export const selectAllTags: MemoizedSelector<EventsRootState, EventTag[]> = createSelector(
+  selectTagsState,
+  fromTags.selectAll,
+);
+export const selectTagsCount: MemoizedSelector<EventsRootState, number> = createSelector(
+  selectTagsState,
+  fromTags.selectTotal,
+);
+export const selectTagsIsLoaded: MemoizedSelector<EventsRootState, boolean> = createSelector(
+  selectTagsState,
+  (tagsState) => tagsState.loaded,
+);
+export const selectAllTagsSorted: MemoizedSelector<EventsRootState, EventTag[]> = createSelector(
+  selectAllTags,
+  (tags: EventTag[]) => {
+    const tree: EventTag[] = [];
+    // filter for primary (w/o parent) tags
+    // then inject sub-tags
+    const sortFn = (t1: EventTag, t2: EventTag) => t1.name.localeCompare(t2.name);
+    const primaryTags = tags.filter((t) => !t.parent).sort(sortFn);
+    primaryTags.forEach((tag: EventTag, idx: number) => {
+      tree.push(tag);
+      const sub = tags.filter((t) => t.parent === tag.id).sort(sortFn);
+      tree.push(...sub);
+    });
+
+    return tree;
+  },
 );

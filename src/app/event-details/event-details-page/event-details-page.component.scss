@@ -1,0 +1,9 @@
+:host {
+  position: relative; // to keep the loader within...
+  display: block;
+}
+
+.edit-btn {
+  // TODO: temporary fix for button being hidden under the <PRE> with event details...
+  position: absolute;
+}

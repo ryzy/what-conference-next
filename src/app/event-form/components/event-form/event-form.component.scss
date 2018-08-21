@@ -4,12 +4,40 @@ button + button {
   margin-left: $app-spacing-unit;
 }
 
-::ng-deep {
+.mat-form-field ::ng-deep {
   .mat-form-field-suffix .mat-icon {
     vertical-align: sub; // better icon positioning in form field suffix
   }
   .mat-option-text .description {
     opacity: 0.85;
     font-size: map-get($app-font-sizes, h5);
+  }
+}
+
+.app-tags-selector ::ng-deep {
+  .cell {
+    @include xy-cell(50%);
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    @include breakpoint(medium down) {
+      @include xy-cell(100%);
+      &:last-of-type {
+        margin-top: $app-spacing-unit;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .tags-selector__header-1-end {
+    font-size: map-get($app-font-sizes, h6);
+    margin: $app-spacing-unit 0 0;
+  }
+  .tags-selector__header-2-start {
+    font-size: map-get($app-font-sizes, h6);
+    strong {
+      font-weight: $app-font-weight-semi-bold;
+    }
   }
 }

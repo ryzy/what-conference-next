@@ -6,7 +6,7 @@ import { CoreService } from '../services/core.service';
 
 /**
  * Guard to check if initial essential app data
- * (e.g. topics list) has been fetched from db.
+ * (e.g. tags list) has been fetched from db.
  *
  * Usage:
  * ```

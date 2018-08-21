@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { map, switchMap, takeUntil } from 'rxjs/operators';
-import { ConferenceEvent, ConferenceEventRef } from '../../event-base/model/conference-event';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { ConferenceEventRef } from '../../event-base/model/conference-event';
 
-import { EventService } from '../../event-base/services/event.service';
+import { EventsService } from '../../event-base/services/events.service';
 
 @Component({
   selector: 'app-event-details-page',
@@ -14,25 +14,35 @@ import { EventService } from '../../event-base/services/event.service';
 export class EventDetailsPageComponent implements OnInit, OnDestroy {
   public ev: ConferenceEventRef | undefined;
   public notFound: boolean = false;
+  public loading: boolean = true;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
-  public constructor(private service: EventService, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) {}
+  public constructor(private service: EventsService, private route: ActivatedRoute, private cdRef: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this.route.paramMap
       .pipe(
         takeUntil(this.ngOnDestroy$),
         map((params: ParamMap) => params.get('eventId') || 'url-missing-event-id'),
+        tap((v) => (this.loading = !!v)),
         switchMap((eventId: string) => this.service.getEvent(eventId)),
         takeUntil(this.ngOnDestroy$),
       )
-      .subscribe((ev) => {
-        // console.log('EventDetailsPageComponent loaded ev', ev);
-        this.ev = ev;
-        this.notFound = !ev;
-        this.cdRef.markForCheck();
-      });
+      .subscribe(
+        (ev: ConferenceEventRef) => {
+          // console.log('EventDetailsPageComponent loaded ev', ev);
+          this.loading = false;
+          this.ev = ev;
+          this.cdRef.markForCheck();
+        },
+        (err) => {
+          // console.warn('EventDetailsPageComponent error while loading ev', err);
+          this.loading = false;
+          this.notFound = true;
+          this.cdRef.markForCheck();
+        },
+      );
   }
 
   public ngOnDestroy(): void {

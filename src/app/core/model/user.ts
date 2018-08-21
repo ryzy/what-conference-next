@@ -25,3 +25,13 @@ export class User {
     Object.assign(this, userData);
   }
 }
+
+/**
+ * @see AuthService.fetchUserData
+ */
+export interface UserData {
+  roles: {
+    admin?: boolean;
+    editor?: boolean;
+  };
+}

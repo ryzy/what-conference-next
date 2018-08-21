@@ -11,23 +11,23 @@
       </mat-form-field>
     </div>
 
-    <fieldset formArrayName="topicTags">
-      <legend>Event primary topic(s)</legend>
-      <div class="grid-x grid-margin-x" style="min-height: 2rem">
-        <ng-container *ngIf="topics.length; else loadingTopics">
-          <ng-container *ngFor="let topic of topics; let i = index">
-            <div class="cell mini-3">
-              <mat-checkbox [formControlName]="i">{{ topic.name }}</mat-checkbox>
-            </div>
-          </ng-container>
-        </ng-container>
-        <ng-template #loadingTopics>
-          <mat-progress-spinner mode="indeterminate" strokeWidth="2" diameter="20" class="cell shrink"></mat-progress-spinner>
-          <div class="cell auto">
-            Loading topics...
-          </div>
-        </ng-template>
-      </div>
+    <fieldset>
+      <legend>Event tags</legend>
+      <app-tags-selector
+        formControlName="tags"
+        [tagsList]="tags"
+        [redundantTagsInValue]="true"
+      >
+        <p class="tags-selector__header-1-end show-for-large">
+          Select event tags (so they're easy to filter). Although tags are tags, we differentiate them here
+          to <i>primary</i> and <i>secondary</i> group, to ease the selection when the list gets too long.
+        </p>
+        <p class="tags-selector__header-2-start show-for-large">
+          <strong>Select additional tags.</strong>
+          Be as specific as possible. Leave empty if not applicable.
+          Get in touch to add more tags.
+        </p>
+      </app-tags-selector>
     </fieldset>
 
     <div class="grid-x grid-margin-x">
@@ -38,9 +38,6 @@
       </mat-form-field>
       <mat-form-field class="cell mini-3">
         <input matInput formControlName="eventDuration" min="1" max="30" placeholder="Event duration (num of days)" type="number" required>
-      </mat-form-field>
-      <mat-form-field class="cell mini-3">
-        <input matInput formControlName="workshopDays" min="0" max="30" placeholder="Workshop days" type="number">
       </mat-form-field>
     </div>
 
@@ -54,12 +51,22 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="grid-x grid-margin-x">
+    <div class="grid-x grid-margin-x align-middle">
       <mat-form-field class="cell mini-3" matTooltip="Approx. price in US dollars. Set to *0* for free events. Leave *empty* if price is unknown / to be announced." matTooltipPosition="after">
         <mat-label>Price (from)</mat-label>
         <input matInput formControlName="price" #price placeholder="to-be-announced" type="number" min="0" max="9999">
         <span matSuffix>.00 USD</span>
       </mat-form-field>
+      <div class="cell mini-2 mini-offset-3">
+        <mat-checkbox
+          formControlName="workshops"
+          matTooltip="Check if conference features *PAID* workshops (days)">Workshops</mat-checkbox>
+      </div>
+      <div class="cell mini-2">
+        <mat-checkbox
+          formControlName="freeWorkshops"
+          matTooltip="Check if conference features *FREE* workshops (days)">Free Workshops</mat-checkbox>
+      </div>
     </div>
   </fieldset>
 

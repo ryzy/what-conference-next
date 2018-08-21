@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
 
-import { mockTopics } from '../../../../testing/fixtures/topics';
-import { mockUser } from '../../../../testing/fixtures/user';
+import { mockTags } from '../../../../testing/fixtures/event-tags';
+import { mockUser, mockUserData } from '../../../../testing/fixtures/user';
 import { EventsFeatureStoreName, eventsReducers } from '../../../event-base/store/index';
-import { User } from '../../model/user';
+import { User, UserData } from '../../model/user';
 import { AppRootState, reducers } from '../index';
-import { appInitialState, appReducer, AppState } from './app-reducer';
+import { appInitialState, appReducer, AppState, defaultUserData } from './app-reducer';
 import * as appActions from './app-actions';
 import * as appSelectors from './app-selectors';
-import * as topicsActions from '../../../event-base/store/topics-actions';
+import * as tagsActions from '../../../event-base/store/tags-actions';
 
 describe('AppState', () => {
   let store: Store<AppRootState>;
@@ -33,6 +33,14 @@ describe('AppState', () => {
       const state2 = appReducer(appInitialState, new appActions.SetUserAction());
       expect(state2.user).toBe(undefined);
     });
+
+    it(`should generate state for *${appActions.AppActionType.SET_USER_DATA}*`, () => {
+      const state = appReducer(appInitialState, new appActions.SetUserDataAction(mockUserData));
+      expect(state.userData).toBe(mockUserData);
+
+      const state2 = appReducer(appInitialState, new appActions.SetUserDataAction());
+      expect(state2.userData).toBe(undefined);
+    });
   });
 
   describe('selectors:', () => {
@@ -53,7 +61,16 @@ describe('AppState', () => {
       expect(user).toBe(mockUser);
     });
 
-    it('#selectInitDataFetched: first db, then topics', () => {
+    it('#selectUserData', () => {
+      let data: UserData | undefined;
+      store.select(appSelectors.selectUserData).subscribe((u) => (data = u));
+      expect(data).toBe(defaultUserData);
+
+      store.dispatch(new appActions.SetUserDataAction(mockUserData));
+      expect(data).toBe(mockUserData);
+    });
+
+    it('#selectInitDataFetched: first db, then tags', () => {
       let res: boolean | undefined;
       store.select(appSelectors.selectInitDataFetched).subscribe((v) => (res = v));
       expect(res).toBe(false);
@@ -61,7 +78,7 @@ describe('AppState', () => {
       store.dispatch(new appActions.DbReadyAction());
       expect(res).toBe(false);
 
-      store.dispatch(new topicsActions.SetTopicsAction(mockTopics));
+      store.dispatch(new tagsActions.SetTagsAction(mockTags));
       expect(res).toBe(true);
     });
 
@@ -74,12 +91,12 @@ describe('AppState', () => {
       expect(res).toBe(true);
     });
 
-    it('#selectInitDataFetched: first topics, then db', () => {
+    it('#selectInitDataFetched: first tags, then db', () => {
       let res: boolean | undefined;
       store.select(appSelectors.selectInitDataFetched).subscribe((v) => (res = v));
       expect(res).toBe(false);
 
-      store.dispatch(new topicsActions.SetTopicsAction(mockTopics));
+      store.dispatch(new tagsActions.SetTagsAction(mockTags));
       expect(res).toBe(false);
 
       store.dispatch(new appActions.DbReadyAction());

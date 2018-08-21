@@ -1,7 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { MatDialog, MatDialogRef, MatSnackBar, MatSnackBarConfig, MatDialogConfig } from '@angular/material';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { map, switchMap, takeUntil, take, withLatestFrom, tap, filter } from 'rxjs/operators';
+import { EMPTY } from 'rxjs';
+import { map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { mockEventFormData } from '../../../testing/fixtures/events';
+import { randomRange } from '../../core/core-utils';
 
 import {
   ConferenceEvent,
@@ -10,19 +13,10 @@ import {
   createEventFromFormData,
   createFormDataFromEvent,
 } from '../../event-base/model/conference-event';
-import { EventTopic } from '../../event-base/model/event-topic';
-import { EventService } from '../../event-base/services/event.service';
+import { ConferenceEventLexicon, EventTag } from '../../event-base/model/event-tag';
+import { EventsService } from '../../event-base/services/events.service';
 import { ConfirmationComponent } from '../../shared/components/confirmation/confirmation.component';
-import { mockNewEventFormData } from '../../../testing/fixtures/event-form';
-
-/**
- * Default options for SnackBar
- */
-const matSnackBarConfig: MatSnackBarConfig = { duration: 5000, verticalPosition: 'bottom' };
-/**
- * Default options for confirmation Dialog modal
- */
-const matDialogConfig: MatDialogConfig = {};
+import { matDialogConfig, matSnackBarConfig } from '../../shared/configs';
 
 @Component({
   selector: 'app-event-page',
@@ -50,9 +44,9 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
   public editingEventFormData: ConferenceEventFormData | undefined;
 
   /**
-   * Topics dictionary, fetched from the store
+   * Tags list from the Store
    */
-  private topics: EventTopic[] | undefined;
+  private tags: EventTag[] = [];
 
   /**
    * Dialog ref, if opened before
@@ -62,7 +56,7 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 
   public constructor(
-    private service: EventService,
+    private service: EventsService,
     private router: Router,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
@@ -70,32 +64,37 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
+    this.tags = this.service.getEventTagsSnapshot();
+
     this.service
       .getRouterState()
       .pipe(
         takeUntil(this.ngOnDestroy$),
-        filter((state) => state.params && state.params.eventId),
-        tap((v) => (this.editingEventLoading = !!v)),
-        switchMap((state) => this.service.getEvent(state.params.eventId).pipe(take(1))),
-        withLatestFrom(this.service.getTopics()),
+        map((state) => (state.params && state.params.eventId) || ''),
+        tap((eventId) => (this.editingEventLoading = !!eventId)),
+        switchMap((eventId) => (eventId ? this.service.getEvent(eventId) : EMPTY)),
+        take(1),
       )
       .subscribe(
-        ([ev, topics]: [ConferenceEventRef | undefined, EventTopic[]]) => {
+        (ev: ConferenceEventRef) => {
           this.editingEvent = ev;
           this.editingEventLoading = false;
-          this.editingEventFormData = ev && createFormDataFromEvent(ev.ref, topics);
-          // console.log('EventFormPageComponent#ngOnInit, editing event', ev, this.editingEventFormData);
+          this.editingEventFormData = ev && createFormDataFromEvent(ev.ref, { tags: this.tags });
+          /**
+          console.log('EventFormPageComponent#ngOnInit, editing event', {
+            editingEvent: ev,
+            preparedFormData: this.editingEventFormData,
+          });
+          /**/
           this.cdRef.markForCheck();
         },
         (err: Error) => {
-          this.snackBar.open('ERROR: could not load event for editing. ' + err.message);
+          const msg: string = (err && err.message) || 'Error while loading event.';
+          this.snackBar.open(msg + ' Submitting this form will result with a new event.', 'OK', matSnackBarConfig);
+          this.editingEventLoading = false;
+          this.cdRef.markForCheck();
         },
       );
-
-    this.service
-      .getTopics()
-      .pipe(takeUntil(this.ngOnDestroy$))
-      .subscribe((t) => (this.topics = t));
   }
 
   public ngOnDestroy(): void {
@@ -110,10 +109,18 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
   public onSubmit(formData: ConferenceEventFormData): void {
     this.submitting = true;
 
-    let ev = createEventFromFormData(formData, this.topics);
-    // TODO: remove. For now, when empty for got submitted, use mock data instead...
+    const lex: ConferenceEventLexicon = { tags: this.tags };
+    let ev = createEventFromFormData(formData, lex);
+
+    // TODO: temporary, remove. For now, when empty for got submitted, use mock data instead...
     if (Object.values(formData).filter((v) => !!v).length < 5) {
-      ev = createEventFromFormData(mockNewEventFormData, this.topics);
+      ev = createEventFromFormData(
+        {
+          ...mockEventFormData,
+          name: `Form Test Event ${randomRange()}`,
+        },
+        lex,
+      );
     }
 
     // Bring existing DB _id, so down the line services know if it's a new or update record
@@ -129,7 +136,7 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
 
   public onDelete(): void {
     // at this stage we're sure we have editingEvent (since we're deleting it...)
-    const ev = (this.editingEvent as ConferenceEventRef).ref;
+    const ev: ConferenceEvent = (this.editingEvent as ConferenceEventRef).ref;
 
     const data = `You're going to delete event <b>${ev.name}</b>.`;
 
@@ -139,10 +146,12 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngOnDestroy$))
       .subscribe((confirmed: boolean) => {
         if (confirmed) {
-          this.service.deleteEvent(ev).subscribe(() => {
-            this.snackBar.open(`Event *${ev.name}* successfully deleted`, 'OK', matSnackBarConfig);
-            this.navigateToEvent();
-          });
+          this.service
+            .deleteEvent(ev)
+            .subscribe(
+              (success) => this.onEventDeleted(ev, success),
+              (err) => this.onEventDeleted(undefined, false, err),
+            );
         }
       });
   }
@@ -151,7 +160,7 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
     this.navigateToEvent(this.editingEvent && this.editingEvent.id);
   }
 
-  public onEventSaved(ev?: ConferenceEvent, err?: any): void {
+  public onEventSaved(ev?: ConferenceEvent, err?: Error): void {
     this.submitting = false;
 
     if (ev) {
@@ -160,11 +169,21 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
       this.navigateToEvent(ev.id);
     } else {
       // console.warn('Event save error', ev, err);
-      this.snackBar.open(
-        `ERROR while ${this.editingEvent ? 'updating the' : 'creating new'} event. Try again.`,
-        undefined,
-        matSnackBarConfig,
-      );
+      const msg =
+        `ERROR while ${this.editingEvent ? 'updating the' : 'creating new'} event` +
+        (err && err.message ? `: ${err.message}. ` : '. ') +
+        'Try again';
+      this.snackBar.open(msg, undefined, matSnackBarConfig);
+    }
+  }
+
+  public onEventDeleted(ev?: ConferenceEvent, success?: boolean, err?: Error): void {
+    if (ev && success) {
+      this.snackBar.open(`Event *${ev.name}* successfully deleted`, 'OK', matSnackBarConfig);
+      this.navigateToEvent();
+    } else {
+      const msg = `ERROR while deleting the event` + (err && err.message ? `: ${err.message}. ` : '. ') + 'Try again';
+      this.snackBar.open(msg, 'OK', matSnackBarConfig);
     }
   }
 

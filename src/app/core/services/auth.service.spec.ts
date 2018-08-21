@@ -1,15 +1,16 @@
 import { HttpTestingController } from '@angular/common/http/testing';
 import { fakeAsync, TestBed } from '@angular/core/testing';
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
 
 import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.module';
 import { AppTestingModule } from '../../../testing/app-testing.module';
 import { mockStitchProfileResponse } from '../../../testing/fixtures/stitch';
-import { mockStitchUser, mockUser } from '../../../testing/fixtures/user';
+import { mockStitchUser, mockUser, mockUserData } from '../../../testing/fixtures/user';
 import { MockStitchService } from '../../../testing/mock-stitch.service';
 import { TestActionsProvider } from '../../../testing/test-actions';
-import { User } from '../model/user';
-import { SetUserAction } from '../store/app/app-actions';
+import { User, UserData } from '../model/user';
+import { SetUserAction, SetUserDataAction } from '../store/app/app-actions';
 import { AppRootState } from '../store/index';
 import { AuthService } from './auth.service';
 import { StitchService } from '../stitch/stitch.service';
@@ -22,7 +23,7 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingModule.withCoreStateAndEffects(), AppTestingAuthAndDbModule],
+      imports: [AppTestingModule.withAppCoreState(), AppTestingAuthAndDbModule],
       providers: [TestActionsProvider],
     });
 
@@ -32,7 +33,10 @@ describe('AuthService', () => {
     store = TestBed.get(Store);
   });
 
-  afterEach(() => httpMock.verify());
+  afterEach(() => {
+    // console.log('httpMock after', httpMock);
+    httpMock.verify();
+  });
 
   it(
     'should dispatch user to the store',
@@ -48,13 +52,27 @@ describe('AuthService', () => {
     }),
   );
 
-  it('#getCurrentUser', () => {
+  it('#getUser', () => {
     let user: User | undefined;
-    authService.getCurrentUser().subscribe((u) => (user = u));
+    authService.getUser().subscribe((u) => (user = u));
     expect(user).toBe(undefined);
+    expect(authService.getUserSnapshot()).toBe(undefined);
 
     store.dispatch(new SetUserAction(mockUser));
     expect(user).toBe(mockUser);
+    expect(authService.getUserSnapshot()).toBe(mockUser);
+  });
+
+  it('#getUserData', () => {
+    let data: UserData | undefined;
+    authService.getUserData().subscribe((u) => (data = u));
+    expect(data).toBeDefined();
+    expect(data.roles.editor).toBeFalsy();
+
+    store.dispatch(new SetUserDataAction(mockUserData));
+    expect(data).toBe(mockUserData);
+    expect(data.roles.editor).toBe(true);
+    expect(authService.getUserDataSnapshot()).toBe(mockUserData);
   });
 
   it('#loginWithGoogle', () => {
@@ -63,10 +81,17 @@ describe('AuthService', () => {
     expect(authSpy).toHaveBeenCalled();
   });
 
-  it('#signInWithEmailAndPassword', () => {
+  it('#loginWithEmailAndPassword', () => {
     const authSpy = spyOn(stitch.auth, 'loginWithCredential').and.returnValue(Promise.resolve(mockStitchUser));
 
-    authService.signInWithEmailAndPassword('email', 'password').subscribe();
+    authService.loginWithEmailAndPassword('email', 'password').subscribe();
+    expect(authSpy).toHaveBeenCalled();
+  });
+
+  it('#loginWithUserApiKey', () => {
+    const authSpy = spyOn(stitch.auth, 'loginWithCredential').and.returnValue(Promise.resolve(mockStitchUser));
+
+    authService.loginWithUserApiKey('some api key').subscribe();
     expect(authSpy).toHaveBeenCalled();
   });
 
@@ -74,5 +99,40 @@ describe('AuthService', () => {
     const authSpy = spyOn(stitch.auth, 'logout');
     authService.logout();
     expect(authSpy).toHaveBeenCalled();
+  });
+
+  it('#fetchUserData$ effect', () => {
+    let res: SetUserDataAction | undefined;
+    authService.fetchUserData$.subscribe((v) => (res = v));
+    expect(res).toBeDefined();
+    expect(res.userData).toBe(undefined);
+
+    // When new user arrives, user data should be fetched
+    spyOn(authService, 'fetchUserData').and.returnValue(of(mockUserData));
+    store.dispatch(new SetUserAction(mockUser));
+
+    expect(res).toBeDefined();
+    expect(res.userData).toBeDefined();
+  });
+
+  it(
+    '#fetchUserData',
+    fakeAsync(() => {
+      stitch.mockLogin();
+
+      let res: UserData | undefined;
+      authService.fetchUserData().subscribe((v) => (res = v));
+      stitch.mockCollectionFindResponse('user', [mockUserData]);
+
+      expect(res.roles).toBeDefined();
+      expect(res.roles.editor).toBe(true);
+    }),
+  );
+
+  it('#navigateToLoginScreen, #navigateToAfterLoginScreen', () => {
+    authService.navigateToLoginScreen();
+    authService.navigateToAfterLoginScreen();
+    // TODO: cover with tests when/if implemented...
+    expect(true).toBe(true);
   });
 });

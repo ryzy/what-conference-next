@@ -28,7 +28,7 @@ export class LoginFormPageComponent {
       return;
     }
 
-    this.authService.signInWithEmailAndPassword(username, password).subscribe(
+    this.authService.loginWithEmailAndPassword(username, password).subscribe(
       (user) => {
         // console.log('LoginFormPageComponent login success', { user, loginForm: this.loginForm });
         this.router.navigate(['user']);

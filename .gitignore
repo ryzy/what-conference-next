@@ -45,6 +45,9 @@ firebase-debug.log
 /cypress/screenshots
 /cypress/videos
 
+# Stich secrets files shouldn't be commited
+/stitch/*/secrets.json
+
 # System Files
 .DS_Store
 Thumbs.db

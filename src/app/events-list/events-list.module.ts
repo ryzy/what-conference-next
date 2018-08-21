@@ -1,15 +1,31 @@
 import { NgModule } from '@angular/core';
-import { MatTableModule } from '@angular/material';
-import { EventBaseModule } from '../event-base/event-base.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import {
+  MatChipsModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatSortModule,
+  MatTableModule,
+} from '@angular/material';
 
+import { EventBaseModule } from '../event-base/event-base.module';
 import { SharedModule } from '../shared/shared.module';
-import { EventsTableComponent } from './components/events-table/events-table.component';
+import { EventsFilterComponent } from './components/events-filter/events-filter.component';
 import { EventsListRoutingModule } from './events-list-routing.module';
-import { EventsPageComponent } from './events-page/events-page.component';
+import { EventsPageView } from './events-view/events-page.view';
 
 @NgModule({
-  imports: [MatTableModule, EventBaseModule, SharedModule, EventsListRoutingModule],
+  imports: [
+    ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    SharedModule,
+    EventBaseModule,
+    EventsListRoutingModule,
+  ],
   providers: [],
-  declarations: [EventsPageComponent, EventsTableComponent],
+  declarations: [EventsPageView, EventsFilterComponent],
 })
 export class EventsListModule {}

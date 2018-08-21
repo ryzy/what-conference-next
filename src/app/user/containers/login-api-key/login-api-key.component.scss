@@ -1,0 +1,5 @@
+@import 'abstracts';
+
+button + button {
+  margin-left: $app-spacing-unit;
+}

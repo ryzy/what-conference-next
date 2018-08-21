@@ -1,5 +1,11 @@
 import { AbstractPage, URLs } from './abstract.po';
 
+export enum UserApiKeys {
+  TEST_ADMIN_USER_API_KEY = 'TEST_ADMIN_USER_API_KEY', // todo, not used
+  TEST_EDITOR_USER_API_KEY = 'TEST_EDITOR_USER_API_KEY',
+  TEST_SOME_USER_API_KEY = 'TEST_SOME_USER_API_KEY',
+}
+
 export class UserPage extends AbstractPage {
   static URL = URLs.User;
 
@@ -39,6 +45,12 @@ export class UserPage extends AbstractPage {
     if (expectSuccess) {
       this.expectToBeLoggedIn();
     }
+  }
+
+  public static loginWithApiKey(apiKey: UserApiKeys = UserApiKeys.TEST_SOME_USER_API_KEY): void {
+    cy.log(`When I login using ${apiKey} user api key`);
+    this.visit(URLs.UserAuth + '/' + Cypress.env(apiKey));
+    cy.contains('Logged in as');
   }
 
   public static visitAndLogOut() {
