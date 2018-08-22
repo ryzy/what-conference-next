@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { IsAuthenticatedGuard } from './core/guards/is-authenticated.guard';
 
 import { IsInitDataFetchedGuard } from './core/guards/is-init-data-fetched.guard';
 import { NotFoundPageComponent } from './shared/containers/not-found-page/not-found-page.component';
@@ -19,7 +20,7 @@ const appRoutes: Routes = [
   {
     path: 'edit',
     loadChildren: './event-form/event-form.module#EventFormModule',
-    canActivate: [IsInitDataFetchedGuard],
+    canActivate: [IsInitDataFetchedGuard, IsAuthenticatedGuard],
   },
   {
     path: 'user',

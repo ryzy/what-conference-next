@@ -23,6 +23,10 @@ export class UserPageComponent implements OnInit {
     this.authService.loginWithGoogle();
   }
 
+  public loginFacebook(): void {
+    this.authService.loginWithFacebook();
+  }
+
   public logout(): void {
     this.authService.logout();
   }

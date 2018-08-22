@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
@@ -9,6 +10,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
+import { matSnackBarConfig } from '../../shared/configs';
 
 import { AuthService } from '../services/auth.service';
 import { CoreService } from '../services/core.service';
@@ -39,7 +41,11 @@ import { CoreService } from '../services/core.service';
   providedIn: 'root',
 })
 export class IsAuthenticatedGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(protected coreService: CoreService, protected authService: AuthService) {}
+  constructor(
+    protected coreService: CoreService,
+    protected authService: AuthService,
+    protected snackBar: MatSnackBar,
+  ) {}
 
   /**
    * Checks to see if the route can activate
@@ -74,6 +80,7 @@ export class IsAuthenticatedGuard implements CanActivate, CanActivateChild, CanL
       map((user) => !!user),
       tap((isLoggedIn: boolean) => {
         if (!isLoggedIn) {
+          this.snackBar.open('You need to login first.', 'OK', matSnackBarConfig);
           this.authService.navigateToLoginScreen(redirectUrl);
         }
       }),

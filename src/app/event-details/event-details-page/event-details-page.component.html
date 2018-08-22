@@ -5,7 +5,7 @@
 
   <pre>{{ ev.ref | json }}</pre>
 
-  <a [routerLink]="['/edit', ev.id]" class="edit-btn" mat-raised-button color="accent">Edit Event</a>
+  <a [routerLink]="['/', 'edit', ev.id]" class="edit-btn" mat-raised-button color="accent">Edit Event</a>
 
 </ng-container>
 

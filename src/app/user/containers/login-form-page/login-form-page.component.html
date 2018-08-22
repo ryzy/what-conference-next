@@ -22,5 +22,13 @@
 
       <code *ngIf="loginForm.errors && loginForm.errors['loginError']">{{loginForm.errors['loginError']}}</code>
     </div>
+
+    <hr />
+
+    <h6>
+      Note that at this moment there's <strong>no sign-up functionality</strong>.
+      Use one of external providers listed on <a routerLink="/user">user page</a>.
+      Get in touch if you still want to use username/password login.
+    </h6>
   </fieldset>
 </form>

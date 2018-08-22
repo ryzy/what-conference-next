@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { MatSnackBarModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of, EMPTY } from 'rxjs';
 
 import { ActivatedRouteStub } from '../../../testing/activated-route.stub';
@@ -16,6 +18,7 @@ describe('IsAuthenticatedGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule, MatSnackBarModule],
       providers: [
         { provide: CoreService, useValue: CoreServiceStub },
         { provide: AuthService, useValue: AuthServiceStub },

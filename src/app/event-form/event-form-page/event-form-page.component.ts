@@ -110,18 +110,18 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
     this.submitting = true;
 
     const lex: ConferenceEventLexicon = { tags: this.tags };
-    let ev = createEventFromFormData(formData, lex);
+    const ev = createEventFromFormData(formData, lex);
 
     // TODO: temporary, remove. For now, when empty for got submitted, use mock data instead...
-    if (Object.values(formData).filter((v) => !!v).length < 5) {
-      ev = createEventFromFormData(
-        {
-          ...mockEventFormData,
-          name: `Form Test Event ${randomRange()}`,
-        },
-        lex,
-      );
-    }
+    // if (Object.values(formData).filter((v) => !!v).length < 5) {
+    //   ev = createEventFromFormData(
+    //     {
+    //       ...mockEventFormData,
+    //       name: `Form Test Event ${randomRange()}`,
+    //     },
+    //     lex,
+    //   );
+    // }
 
     // Bring existing DB _id, so down the line services know if it's a new or update record
     if (this.editingEvent) {
