@@ -7,6 +7,7 @@ import {
   UserPasswordCredential,
   StitchUser,
   GoogleRedirectCredential,
+  FacebookRedirectCredential,
   UserApiKeyCredential,
   UserApiKey,
   UserApiKeyAuthProviderClient,
@@ -21,6 +22,7 @@ import { SetUserAction, SetUserDataAction } from '../store/app/app-actions';
 import { defaultUserData } from '../store/app/app-reducer';
 import * as appSelectors from '../store/app/app-selectors';
 import { StitchService } from '../stitch/stitch.service';
+import { RouterEffects } from './router-effects';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +37,11 @@ export class AuthService {
     map((ud: UserData) => new SetUserDataAction(ud)),
   );
 
-  public constructor(private stitch: StitchService, private store: Store<AppRootState>) {
+  public constructor(
+    private stitch: StitchService,
+    private store: Store<AppRootState>,
+    private routerEffects: RouterEffects,
+  ) {
     // Register Stitch auth listener, so we're notified about changes in the auth
     // and we can push the user to our Store
     this.stitch.auth.addAuthListener({ onAuthEvent: this.onStitchAuthEvent.bind(this) });
@@ -110,6 +116,11 @@ export class AuthService {
     return this.stitch.auth.loginWithRedirect(credential);
   }
 
+  public loginWithFacebook(): void {
+    const credential = new FacebookRedirectCredential();
+    return this.stitch.auth.loginWithRedirect(credential);
+  }
+
   /**
    * Log out the user
    */
@@ -117,12 +128,12 @@ export class AuthService {
     this.stitch.auth.logout();
   }
 
-  public navigateToLoginScreen(url?: string): void {
-    console.warn('AuthService TODO: navigateToLoginScreen');
+  public navigateToLoginScreen(url: string = '/user'): void {
+    this.routerEffects.navigate([url]);
   }
 
-  public navigateToAfterLoginScreen(url?: string): void {
-    console.warn('AuthService TODO: navigateToAfterLoginScreen');
+  public navigateToAfterLoginScreen(url: string = '/'): void {
+    this.routerEffects.navigate([url]);
   }
 
   /**

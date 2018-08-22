@@ -222,6 +222,6 @@ hr {
   margin: 2 * $app-spacing-unit 0;
   padding: 0;
   border: 0 none;
-  border-bottom: 1px solid #aaaaaa;
+  border-bottom: 1px solid $app-color-border;
   overflow: visible; // Show the overflow in Edge and IE.
 }

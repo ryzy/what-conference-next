@@ -1,9 +1,9 @@
 {
-  "id": "5b722af82d4a1cb8e566d11e",
-  "name": "oauth2-google",
-  "type": "oauth2-google",
+  "id": "5b7ca7de058429ddc32a1109",
+  "name": "oauth2-facebook",
+  "type": "oauth2-facebook",
   "config": {
-    "clientId": "448367381951-92obp1crr0f14nh9pen2oli0m0e87p3j.apps.googleusercontent.com"
+    "clientId": "260582537769459"
   },
   "disabled": false,
   "metadata_fields": [

@@ -20,7 +20,7 @@ export class EventsPageView implements OnInit, OnDestroy {
   /**
    * Columns to display in the table
    */
-  public displayColumns: string[] = ['name', 'date', 'price', 'tags', 'actions'];
+  public displayColumns: string[] = ['name', 'date', 'price', 'tags'];
 
   public eventsDataSource: MatTableDataSource<ConferenceEventRef>;
 

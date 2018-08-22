@@ -10,8 +10,8 @@
     "build:dev": "ng build -c development",
     "build:prod": "ng build -c production",
     "coverage": "nyc report && nyc check-coverage",
-    "lint": "prettier --config .prettierrc.json --list-different '{cypress,scripts,src}/**/*.{js,ts,json,scss}' && echo 'prettier OK, doing ng lint...' && ng lint",
-    "lint-fix": "prettier --config .prettierrc.json --write '{cypress,scripts,src}/**/*.{js,ts,json,scss,yml,yaml}'; ng lint",
+    "lint": "prettier --config .prettierrc.json --list-different '{cypress,scripts,src,stitch}/**/*.{js,ts,json,scss}' && echo 'prettier OK, doing ng lint...' && ng lint",
+    "lint-fix": "prettier --config .prettierrc.json --write '{cypress,scripts,src,stitch}/**/*.{js,ts,json,scss,yml,yaml}'; ng lint",
     "deploy": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project dev",
     "deploy:prod": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project prod",
     "test": "ng test --watch --sourceMap=false",
@@ -25,8 +25,8 @@
     "prestitch:export:prod": "rm -rf stitch/what-conference-next",
     "stitch:export:dev": "stitch-cli export --app-id=dev-what-conference-next-kzfdc --output=stitch/dev-what-conference-next --yes",
     "stitch:export:prod": "stitch-cli export --app-id=what-conference-next-eqvxa --output=stitch/what-conference-next --yes",
-    "stitch:import:dev": "stitch-cli import --app-id=dev-what-conference-next-kzfdc --app-name=dev-what-conference-next --path=stitch/dev-what-conference-next --strategy=replace",
-    "stitch:import:prod": "stitch-cli import --app-id=what-conference-next-eqvxa --app-name=what-conference-next --path=stitch/what-conference-next --strategy=replace",
+    "stitch:deploy:dev": "stitch-cli import --app-id=dev-what-conference-next-kzfdc --app-name=dev-what-conference-next --path=stitch/dev-what-conference-next --strategy=replace",
+    "stitch:deploy:prod": "stitch-cli import --app-id=what-conference-next-eqvxa --app-name=what-conference-next --path=stitch/what-conference-next --strategy=replace",
     "all": "yarn install --frozen-lockfile && yarn lint-fix && yarn test:ci && yarn coverage && yarn build:dev && yarn analyze"
   },
   "dependencies": {

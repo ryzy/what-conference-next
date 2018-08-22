@@ -1,6 +1,6 @@
 {
-    "id": "5b722af82d4a1cb8e566d11c",
-    "name": "api-key",
-    "type": "api-key",
-    "disabled": false
+  "id": "5b722af82d4a1cb8e566d11c",
+  "name": "api-key",
+  "type": "api-key",
+  "disabled": false
 }

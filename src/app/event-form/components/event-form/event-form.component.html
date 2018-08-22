@@ -119,7 +119,6 @@
       <div class="cell shrink">
         <button mat-button type="button" (click)="onCancel()">Cancel</button>
 
-        <button *ngIf="!editingEventFormData" mat-button color="accent">Mock submit</button>
         <button mat-raised-button color="accent"
                 [disabled]="!this.eventForm.valid || submitting || eventForm.pristine"
                 type="submit">
