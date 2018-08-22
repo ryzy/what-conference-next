@@ -1,0 +1,28 @@
+{
+    "id": "5b7cac2c79e0fa413e47ea9f",
+    "name": "oauth2-facebook",
+    "type": "oauth2-facebook",
+    "config": {
+        "clientId": "260582537769459"
+    },
+    "disabled": false,
+    "metadata_fields": [
+        {
+            "required": false,
+            "name": "name"
+        },
+        {
+            "required": false,
+            "name": "picture"
+        },
+        {
+            "required": false,
+            "name": "email"
+        }
+    ],
+    "redirect_uris": [
+        "https://what-conference-next.com/user",
+        "http://localhost:4100/user",
+        "http://localhost:4104/user"
+    ]
+}

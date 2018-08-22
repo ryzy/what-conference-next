@@ -25,7 +25,7 @@
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
     <mat-cell *matCellDef="let row" class="mat-cell--multiline">
       <h2 class="event-name">
-        <a [routerLink]="['ev', row.id]">{{ row.ref.name }}</a>
+        <a [routerLink]="['/', 'ev', row.id]">{{ row.ref.name }}</a>
         <a href="{{ row.ref.website }}" target="_blank" class="show-on-hover"><mat-icon>open_in_new</mat-icon></a>
       </h2>
       <span class="location">{{ row.ref.city }}, {{ row.ref.country }}</span>

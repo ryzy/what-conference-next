@@ -4,23 +4,6 @@
     "collection": "events",
     "roles": [
         {
-            "name": "editor",
-            "apply_when": {
-                "%%true": {
-                    "%function": {
-                        "arguments": [
-                            "%%user.id"
-                        ],
-                        "name": "isEditor"
-                    }
-                }
-            },
-            "write": true,
-            "insert": true,
-            "delete": true,
-            "additional_fields": {}
-        },
-        {
             "name": "owner",
             "apply_when": {
                 "origin.authorId": "%%user.id"
@@ -28,6 +11,23 @@
             "write": true,
             "insert": true,
             "delete": true,
+            "additional_fields": {}
+        },
+        {
+            "name": "editor",
+            "apply_when": {
+                "%%true": {
+                    "%function": {
+                        "arguments": [
+                            "%%user"
+                        ],
+                        "name": "isEditor"
+                    }
+                }
+            },
+            "write": true,
+            "insert": true,
+            "delete": false,
             "additional_fields": {}
         },
         {

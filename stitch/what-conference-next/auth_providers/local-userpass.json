@@ -3,7 +3,7 @@
     "name": "local-userpass",
     "type": "local-userpass",
     "config": {
-        "emailConfirmationSubject": "Confirm your e-mail address",
+        "confirmEmailSubject": "Confirm your e-mail address",
         "emailConfirmationUrl": "https://what-conference-next.com/user/confirm",
         "resetPasswordSubject": "Reset your password on what-conference-next.com",
         "resetPasswordUrl": "https://what-conference-next.com/user/reset"
