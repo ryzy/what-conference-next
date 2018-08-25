@@ -17,3 +17,10 @@
     flex-basis: 100%; // w/o that the text doesn't expand to full cell width and show ellipsis too early
   }
 }
+
+.mat-slide-toggle {
+  margin-right: $app-spacing-unit;
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

@@ -68,7 +68,8 @@ body {
 
   // Nice numerals - see https://alistapart.com/preview/web-typography-numerals
   font-variant-numeric: oldstyle-nums;
-  @include debug-breakpoint();
+
+  //@include debug-breakpoint();
 }
 
 // Typography resets
@@ -87,7 +88,9 @@ td {
 }
 
 b,
-strong {
+strong,
+.text-strong {
+  font-weight: $app-font-weight-semi-bold;
 }
 
 a {
@@ -102,12 +105,6 @@ a {
     // Remove the outline on focused links when they are also active or hovered
     // in all browsers (opinionated).
     outline-width: 0;
-  }
-
-  // We have very lightly styled <A>, actually it doesn't have any styling and the text decoration is off.
-  // Make links inside paragraphs slightly more accessible here.
-  p & {
-    text-decoration: underline dotted currentColor;
   }
 
   img {
@@ -143,6 +140,7 @@ dt {
 small,
 .small {
   font-size: 85%;
+  color: currentColor;
 }
 
 sub,

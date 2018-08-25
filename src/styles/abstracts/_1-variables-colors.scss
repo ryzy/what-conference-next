@@ -1,10 +1,16 @@
 $app-color-text: #333;
+$app-color-text-inverted: #fff;
 $app-color-text-light: #666;
-$app-color-accent: #7fee59;
+$app-color-accent: #c90d60;
 
-$app-color-anchor: blue;
-$app-color-hover: red;
+//$app-color-anchor: #30b6f2;
+//$app-color-anchor: #ba66c6;
+$app-color-anchor: #0d60c9;
+//$app-color-hover: red;
+//$app-color-hover: #f23086;
+$app-color-hover: $app-color-accent;
 
+$app-color-bg-dark: #230211;
 $app-color-bg-gray: #fafbfc;
 
 $app-color-border: #dfe2e5;

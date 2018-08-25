@@ -30,10 +30,9 @@ jobs:
 
       - run:
           name: E2E
-          # TODO: temporarily allow failing E2E tests - there are some random failures with newest Cypress
           command: |
             yarn serve &
-            yarn e2e:ci --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5 || true
+            yarn e2e:ci --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5
 
       - deploy:
           name: Deploy DEV

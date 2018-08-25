@@ -1,5 +1,18 @@
 <form [formGroup]="form" novalidate class="grid-x grid-margin-x">
-  <fieldset class="cell mini-3">
+  <fieldset class="cell medium-6">
+    <legend>About</legend>
+    <app-tags-selector [tagsList]="tagsList" formControlName="tags">
+      <hr class="tags-selector__header-2-start" />
+    </app-tags-selector>
+  </fieldset>
+
+  <fieldset class="cell mini-6 medium-4">
+    <legend>Featuring</legend>
+    <mat-slide-toggle formControlName="workshops">Workshops</mat-slide-toggle>
+    <mat-slide-toggle formControlName="freeWorkshops">Free workshops</mat-slide-toggle>
+  </fieldset>
+
+  <fieldset class="cell mini-6 medium-2">
     <legend>Where</legend>
     <mat-select placeholder="Anywhere" formControlName="where">
       <mat-option>Anywhere</mat-option>
@@ -10,17 +23,5 @@
         <mat-option *ngFor="let country of countriesList" [value]="country.isoCode">{{ country.name }}</mat-option>
       </mat-optgroup>
     </mat-select>
-  </fieldset>
-
-  <fieldset class="cell mini-6">
-    <legend>About...</legend>
-    <app-tags-selector [tagsList]="tagsList" formControlName="tags">
-      <hr class="tags-selector__header-2-start" />
-    </app-tags-selector>
-  </fieldset>
-
-  <fieldset class="cell mini-3">
-    <mat-slide-toggle formControlName="workshops">Workshops</mat-slide-toggle>
-    <mat-slide-toggle formControlName="freeWorkshops">Free workshops</mat-slide-toggle>
   </fieldset>
 </form>

@@ -3,9 +3,24 @@ import { EventFormPage, mockE2eEvent } from '../src/event-form.po';
 import { UserPage } from '../src/user.po';
 
 describe('Event Editing / Deleting', () => {
-  it('App should have working "New Event" link on home page', () => {
+  it('Should have "New Event" page, but not accessible for guests', () => {
+    cy.log('Given I visit "Home" page');
+    AppHomePage.visit();
+
+    cy.log('When I click on a "New Event" link');
+    AppHomePage.link('New Event').click();
+
+    cy.log('Then I should be redirected to login page');
+    EventFormPage.expectToBeOnUserProfilePage(false);
+
+    EventFormPage.snackBar('You need to login');
+  });
+
+  it('should show "New Event" page for logged in users', () => {
+    UserPage.loginWithApiKey();
+
     cy.log('Given I visit "NewEventForm" page');
-    EventFormPage.visit();
+    AppHomePage.visit();
 
     cy.log('When I click on a "New Event" link');
     AppHomePage.link('New Event').click();
@@ -18,6 +33,8 @@ describe('Event Editing / Deleting', () => {
   });
 
   it('Calendar field should allow manual input', () => {
+    UserPage.loginWithApiKey();
+
     cy.log('Given I visit "NewEventForm" page');
     EventFormPage.visit();
 
@@ -38,7 +55,7 @@ describe('Event Editing / Deleting', () => {
 
     cy.log('When I fill the form with some valid data');
     EventFormPage.expectToBeOnEventEditingPage(false);
-    const eventName = EventFormPage.fillTheFormWithRandomData({ city: '' }); // city is auto-set from country
+    const event = EventFormPage.fillTheFormWithRandomData({ city: '' }); // city is auto-set from country
 
     cy.log('Then I should see "Submit Event" button "enabled"');
     EventFormPage.button('Submit Event', false);
@@ -47,9 +64,12 @@ describe('Event Editing / Deleting', () => {
     EventFormPage.button('Submit Event', false).click();
 
     cy.log('Then I should see the saved event page');
-    EventFormPage.expectToBeOnEventPage(eventName);
+    EventFormPage.expectToBeOnEventPage(event.name);
     EventFormPage.snackBar().contains('successfully created');
-    cy.contains('Event: ' + eventName);
+
+    // TODO: more checks if the event got properly created
+    cy.contains(event.description);
+    cy.contains(event.twitterHandle);
   });
 
   it('Should edit an event', () => {
@@ -118,6 +138,8 @@ describe('Event Editing / Deleting', () => {
   });
 
   it('Should show notification when cannot load event for editing', () => {
+    UserPage.loginWithApiKey();
+
     cy.log('Given I visit "NewEventForm" page with invalid non-existing event link');
     EventFormPage.visit(EventFormPage.URL + '/some-non-existing-event');
 

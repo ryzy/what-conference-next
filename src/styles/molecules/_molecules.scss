@@ -3,7 +3,9 @@
 .text-right {
   text-align: right;
 }
-
+.text-center {
+  text-align: center;
+}
 .text-ellipsis {
   overflow: hidden;
   white-space: nowrap;
@@ -16,7 +18,8 @@
   padding: $app-spacing-unit-tiny $app-spacing-unit-medium;
   border: 1px solid $app-color-border;
   border-radius: $app-spacing-unit-medium;
-  font-size: 85%;
+  font-size: map-get($app-font-sizes, h5);
+  color: currentColor;
 
   &:last-child {
     margin-right: 0;

@@ -4,7 +4,12 @@ import { take, takeUntil } from 'rxjs/operators';
 
 import { AppSortInfo } from '../../core/model/entity';
 import { AppRouterState } from '../../core/store/router/router';
-import { defaultSortInfo, getEventsSortInfoFromRouter, getEventsFiltersFromRouter } from '../../core/url-utils';
+import {
+  defaultSortInfo,
+  getEventsSortInfoFromRouter,
+  getEventsFiltersFromRouter,
+  getTagLink,
+} from '../../core/url-utils';
 import { ConferenceEventRef } from '../../event-base/model/conference-event';
 import { EventTag } from '../../event-base/model/event-tag';
 import { EventsFilters } from '../../event-base/model/events-filters';
@@ -31,6 +36,8 @@ export class EventsPageView implements OnInit, OnDestroy {
   public tagsList: EventTag[] = [];
   public sortInfo: AppSortInfo = defaultSortInfo;
 
+  public getTagLink: Function = getTagLink;
+
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public constructor(private service: EventsService, private cdRef: ChangeDetectorRef) {
@@ -38,20 +45,19 @@ export class EventsPageView implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    // Keep the filters and sort info up-to-date, based on router state
+    // Fired once when cmp is instantiated and then when router changes.
+    // Keep the filters and sort info up-to-date, based on router state.
+    // Also, re-fetch events, according to the current filters in the router.
     this.service
       .getRouterState()
       .pipe(takeUntil(this.ngOnDestroy$))
       .subscribe((routerState: AppRouterState) => {
         // console.log('EventsPageView#ngOnInit routerState', routerState);
+        this.service.dispatchFetchEvents();
         this.filters = getEventsFiltersFromRouter(routerState);
         this.sortInfo = getEventsSortInfoFromRouter(routerState) || defaultSortInfo;
         this.cdRef.markForCheck();
       });
-    this.service
-      .getEventTags()
-      .pipe(take(1))
-      .subscribe((t) => (this.tagsList = t));
 
     // Pull events from the Store and push them into listing table's DataSource
     // Any change in filters is done via dispatching action to the Store,
@@ -66,7 +72,7 @@ export class EventsPageView implements OnInit, OnDestroy {
         this.cdRef.markForCheck();
       });
 
-    this.service.dispatchFetchEvents();
+    this.tagsList = this.service.getEventTagsSnapshot();
   }
 
   public ngOnDestroy(): void {

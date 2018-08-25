@@ -1,9 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { ConferenceEventRef } from '../../event-base/model/conference-event';
+import { getTagLink } from '../../core/url-utils';
 
+import { ConferenceEventRef } from '../../event-base/model/conference-event';
 import { EventsService } from '../../event-base/services/events.service';
+import { getUrlForDisplay } from '../../event-base/utils/event-utils';
 
 @Component({
   selector: 'app-event-details-page',
@@ -15,6 +17,8 @@ export class EventDetailsPageComponent implements OnInit, OnDestroy {
   public ev: ConferenceEventRef | undefined;
   public notFound: boolean = false;
   public loading: boolean = true;
+  public getTagLink: Function = getTagLink;
+  public getUrlForDisplay: Function = getUrlForDisplay;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter();
 

@@ -39,7 +39,7 @@ const appRoutes: Routes = [
       // enableTracing: true,
       initialNavigation: 'enabled',
       anchorScrolling: 'enabled',
-      scrollPositionRestoration: 'top',
+      scrollPositionRestoration: 'enabled',
       relativeLinkResolution: 'corrected',
       preloadingStrategy: PreloadAllModules,
     }),

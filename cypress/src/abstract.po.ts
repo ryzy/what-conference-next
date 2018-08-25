@@ -1,4 +1,3 @@
-import { EventFormPage } from './event-form.po';
 import { randomRange } from '../../src/app/core/core-utils';
 
 export const URLs = {
@@ -15,6 +14,15 @@ export const URLs = {
  */
 export class AbstractPage {
   static URL = URLs.Home;
+
+  /**
+   * Page title on User page, when anonymous/guest
+   */
+  static USER_PAGE_TITLE_GUEST = 'Please log in';
+  /**
+   * Page title on User page, when logged in
+   */
+  static USER_PAGE_TITLE_LOGGED_IN = /Hi .+?!/;
 
   public static visit(url = AbstractPage.URL, waitAndCheck = true): void {
     cy.visit(url);
@@ -113,18 +121,22 @@ export class AbstractPage {
   }
 
   public static triggerCalendarField(fieldName) {
-    return this.formField(fieldName).focus();
+    return this.formField(fieldName)
+      .closest('.mat-form-field')
+      .within(() => {
+        cy.get('.mat-datepicker-toggle').click();
+      });
   }
 
-  public static selectDateInCalendarField(fieldName, todoDateToSelect?: string) {
-    return this.triggerCalendarField(fieldName)
-      .get('.mat-calendar-next-button')
-      .click()
-      .click()
-      .click()
+  public static selectDateInCalendarField(fieldName, dateToSelect?: Date) {
+    this.triggerCalendarField(fieldName)
+      // .get('.mat-calendar-next-button')
+      // .click()
       .get('.mat-calendar-body-cell')
-      .eq(randomRange(0, 28))
+      .eq(dateToSelect ? dateToSelect.getDate() - 1 : randomRange(0, 28))
       .click();
+
+    return cy.get('body').focus();
   }
 
   /**
@@ -194,9 +206,13 @@ export class AbstractPage {
   // Helpers to validate/wait for a particular page URL
   //
 
-  public static expectToBeOnUserProfilePage() {
+  public static expectToBeOnUserProfilePage(expectToBeLoggedIn?: boolean) {
     cy.log('And I should be on the User Profile page');
-    cy.url().should('eq', Cypress.config('baseUrl') + this.URL);
+    cy.url().should('eq', Cypress.config('baseUrl') + URLs.User);
+
+    if (undefined !== expectToBeLoggedIn) {
+      cy.contains(expectToBeLoggedIn ? this.USER_PAGE_TITLE_LOGGED_IN : this.USER_PAGE_TITLE_GUEST);
+    }
   }
 
   public static expectToBeOnHomePage(): void {

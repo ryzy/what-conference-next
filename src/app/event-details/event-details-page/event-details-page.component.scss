@@ -1,9 +1,24 @@
+@import 'abstracts';
+
 :host {
   position: relative; // to keep the loader within...
   display: block;
 }
 
-.edit-btn {
-  // TODO: temporary fix for button being hidden under the <PRE> with event details...
-  position: absolute;
+.event-primary-info {
+}
+.event-primary-info__meta {
+  margin-top: $app-spacing-unit * 2;
+}
+.event-description {
+  font-size: map-get($app-font-sizes, h4);
+}
+
+.event-secondary-info {
+  h4 {
+    margin-bottom: $app-spacing-unit-medium;
+  }
+  p {
+    font-size: map-get($app-font-sizes, h5);
+  }
 }

@@ -49,16 +49,20 @@
   }
   .event-duration {
     &--addon {
-      margin-left: $gutter-size;
+      margin-left: $app-spacing-unit;
+      .mat-icon {
+        margin-left: $app-spacing-unit-tiny;
+      }
     }
   }
 }
 .mat-column-price {
   flex-grow: 0.5;
   text-align: right;
-}
-.mat-column-price {
   font-size: map-get($app-font-sizes, h4);
+}
+.mat-column-tags {
+  flex-wrap: wrap;
 }
 .mat-column-actions {
   flex-grow: 0.2;
