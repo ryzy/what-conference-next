@@ -41,15 +41,34 @@ export class StitchService {
    */
   public connectToDb(): void {
     if (this.auth.isLoggedIn) {
-      // console.log('StitchService#loginAndEmitDbReady, isLoggedIn, nothing to do...');
+      // console.log('StitchService#connectToDb: logged in, nothing to do...', this.auth.user);
       this.store.dispatch(new DbReadyAction());
     } else {
-      // console.log('StitchService#loginAndEmitDbReady, logging in...');
-      this.auth.loginWithCredential(new AnonymousCredential()).then((user: StitchUser) => {
-        // console.log('StitchService#loginAndEmitDbReady, logged in', user);
+      // console.log('StitchService#connectToDb, logging in...');
+      this.connectToDbAsAnonymous().then((user: StitchUser) => {
         this.store.dispatch(new DbReadyAction());
+        return user;
       });
     }
+  }
+
+  public connectToDbAsAnonymous(): Promise<StitchUser> {
+    return this.auth.loginWithCredential(new AnonymousCredential());
+    // .then((user: StitchUser) => {
+    //   console.log('StitchService#connectToDbAsAnonymous, connected', user);
+    //   return user;
+    // });
+  }
+
+  /**
+   * De-authenticate current user's session.
+   * Note that because MongoDB Stitch needs to have always valid session,
+   * we need to re-authenticate again, at least with anonymous credentials,
+   * so the app can work (like before user logged in).
+   */
+  public logout(): void {
+    this.auth.logout();
+    this.connectToDbAsAnonymous();
   }
 
   /**

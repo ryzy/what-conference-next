@@ -125,7 +125,7 @@ export class AuthService {
    * Log out the user
    */
   public logout(): void {
-    this.stitch.auth.logout();
+    this.stitch.logout();
   }
 
   public navigateToLoginScreen(url: string = '/user'): void {
