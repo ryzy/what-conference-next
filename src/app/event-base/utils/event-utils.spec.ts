@@ -1,6 +1,14 @@
 import { Entity } from '../../core/model/entity';
 import { countriesData } from '../../data/countries';
-import { findCountries, findCountry, getEventSlug, getNormalisedDate, getRegionList, slug } from './event-utils';
+import {
+  findCountries,
+  findCountry,
+  getEventSlug,
+  getNormalisedDate,
+  getRegionList,
+  getUrlForDisplay,
+  slug,
+} from './event-utils';
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'pl');
@@ -14,7 +22,6 @@ describe('event-utils', () => {
     expect(findCountry('poland')).toBe(poland);
 
     expect(findCountry('GB')).toBe(uk);
-    expect(findCountry('Great')).toBe(uk);
     expect(findCountry('United Kingdom')).toBe(uk);
   });
 
@@ -48,6 +55,13 @@ describe('event-utils', () => {
 
     // from string
     expect(getNormalisedDate(mockDate.toISOString())).toEqual(mockDate);
+  });
+
+  it('#getUrlForDisplay', () => {
+    expect(getUrlForDisplay('www.example.com')).toBe('example.com');
+    expect(getUrlForDisplay('http://www.example.com')).toBe('example.com');
+    expect(getUrlForDisplay('https://example.com/')).toBe('example.com');
+    expect(getUrlForDisplay('https://example.com/page/')).toBe('example.com/page');
   });
 
   it('#slug', () => {

@@ -1,3 +1,8 @@
+@import 'abstracts';
+
+$avatar-size: 2rem;
+$avatar-font-size: 1.6rem;
+
 :host {
   width: 100%;
   height: 100%;
@@ -12,8 +17,9 @@ img {
 }
 
 .mat-icon {
-  font-size: 2rem;
-  width: 2rem;
-  height: 2rem;
+  font-size: 1.6rem;
+  width: 100%;
+  height: 100%;
   line-height: 2rem;
+  color: $app-color-text;
 }

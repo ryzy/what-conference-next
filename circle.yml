@@ -30,10 +30,9 @@ jobs:
 
       - run:
           name: E2E
-          # TODO: temporarily allow failing E2E tests - there are some random failures with newest Cypress
           command: |
             yarn serve &
-            yarn e2e:ci --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5 || true
+            yarn e2e:ci --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5
 
       - deploy:
           name: Deploy DEV
@@ -42,7 +41,7 @@ jobs:
               yarn deploy
 
               # Send deploy message to #frontend-events-dev Slack channel
-              curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"Firebase CI\", \"text\": \"*https://dev-wcn.firebaseapp.com/ deployed with success* :green_heart:\", \"icon_emoji\": \":princess:\"}" https://hooks.slack.com/services/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
+              curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"Firebase CI\", \"text\": \"*https://stage.what-conference-next.com/ deployed with success* :green_heart:\", \"icon_emoji\": \":princess:\"}" https://hooks.slack.com/services/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
             fi
       - deploy:
           name: Deploy PROD

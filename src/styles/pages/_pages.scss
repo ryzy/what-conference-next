@@ -1,17 +1,22 @@
 .app-header {
   border-bottom: 1px solid $app-color-border;
-  background-color: $app-color-bg-gray;
+  background-color: $app-color-bg-dark;
+  color: $app-color-text-inverted;
 
   a {
     color: inherit; // remove default link color
   }
-  &__name {
+  .app-header__logo {
+    @include h3;
     padding-top: $app-spacing-unit;
   }
 }
 
 .app-menu {
   .app-menu-item--user {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
     margin-left: $app-spacing-unit * 2;
   }
 }
@@ -19,4 +24,21 @@
 .app-main-container {
   padding-top: $app-spacing-unit;
   padding-bottom: $gutter-size * 2; // add some extra light at the bottom of the page
+  min-height: calc(100vh - 7.3rem); // set min height, with offset equal to roughly header+footer height
+}
+
+.app-footer {
+  border-top: 1px solid $app-color-border;
+  padding: $app-spacing-unit * 2 0;
+
+  .grid-x {
+    opacity: 0.75; // make whole footer bit lighter for now...
+  }
+
+  .cell {
+    // On small screen the cells collapse. It looks better when it's aligned to center then.
+    @include breakpoint(small down) {
+      text-align: center;
+    }
+  }
 }

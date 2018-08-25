@@ -1,14 +1,19 @@
+import { mockTag, mockTags } from '../../testing/fixtures/event-tags';
+import { mockEvent, mockEventRefs } from '../../testing/fixtures/events';
 import { EventsFilters } from '../event-base/model/events-filters';
+import { AppSortInfo } from './model/entity';
+import { AppRouterParams, AppRouterState } from './store/router/router';
 import {
+  AppSectionUrls,
   defaultSortInfo,
+  getEventLink,
   getEventsFiltersFromRouter,
   getEventsSortInfoFromRouter,
+  getTagLink,
   makeEventsFiltersForRouter,
   makeParamsForRouter,
   makeSortInfoForRouter,
 } from './url-utils';
-import { AppRouterParams, AppRouterState } from './store/router/router';
-import { AppSortInfo } from './model/entity';
 
 describe('url-utils', () => {
   it('#makeParamsForRouter', () => {
@@ -95,5 +100,30 @@ describe('url-utils', () => {
     // should generate nothing when it doesn't make sense... (empty sort field, just direction etc)
     expect(getEventsSortInfoFromRouter({ params: { s: '' } } as AppRouterState)).toEqual(undefined);
     expect(getEventsSortInfoFromRouter({ params: { sd: 'desc' } } as AppRouterState)).toEqual(undefined);
+  });
+
+  it('#getEventLink', () => {
+    expect(getEventLink(mockEvent.id)).toEqual([AppSectionUrls.Event, mockEvent.id]);
+    expect(getEventLink(mockEvent)).toEqual([AppSectionUrls.Event, mockEvent.id]);
+    expect(getEventLink(mockEventRefs[0])).toEqual([AppSectionUrls.Event, mockEventRefs[0].id]);
+  });
+
+  it('#getTagLink', () => {
+    // single tags
+    expect(getTagLink(mockTag)).toEqual([AppSectionUrls.EventsList, { tags: mockTag.id }]);
+    expect(getTagLink(mockTag.id)).toEqual([AppSectionUrls.EventsList, { tags: mockTag.id }]);
+
+    // multiple tags
+    expect(getTagLink([mockTags[0], mockTags[1]])).toEqual([
+      AppSectionUrls.EventsList,
+      { tags: `${mockTags[0].id},${mockTags[1].id}` },
+    ]);
+    expect(getTagLink([mockTags[0].id, mockTags[1].id])).toEqual([
+      AppSectionUrls.EventsList,
+      { tags: `${mockTags[0].id},${mockTags[1].id}` },
+    ]);
+
+    // different base url
+    expect(getTagLink(mockTag, AppSectionUrls.Event)).toEqual([AppSectionUrls.Event, { tags: mockTag.id }]);
   });
 });

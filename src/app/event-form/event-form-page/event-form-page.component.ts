@@ -3,8 +3,7 @@ import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
 import { map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
-import { mockEventFormData } from '../../../testing/fixtures/events';
-import { randomRange } from '../../core/core-utils';
+import { getEventLink } from '../../core/url-utils';
 
 import {
   ConferenceEvent,
@@ -42,6 +41,8 @@ export class EventFormPageComponent implements OnInit, OnDestroy {
    * Loaded event to edit, converted to form data
    */
   public editingEventFormData: ConferenceEventFormData | undefined;
+
+  public getEventLink: Function = getEventLink;
 
   /**
    * Tags list from the Store

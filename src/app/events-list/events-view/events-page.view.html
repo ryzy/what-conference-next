@@ -41,13 +41,17 @@
       <div class="event-date">
         <!--<ng-container *ngIf="row.ref.date && row.ref.date.toISOString; else noDate"> {{ row.ref.date | date:'EE, M MMM yyyy' }}</ng-container>-->
         <!--<ng-template #noDate>{{ row.ref.date || 'TBA' }}</ng-template>-->
-        {{ row.date | date:'EE, M MMM yyyy' }}
+        {{ row.date | date:'EE, d MMM yyyy' }}
       </div>
       <div class="event-duration">
         <!-- event duration (num of days) -->
-        <span class="event-duration--days"><mat-icon>event</mat-icon> {{ row.ref.eventDuration }}</span>
+        <span class="event-duration--days" title="{{row.ref.eventDuration}} day(s)">
+          <mat-icon>event</mat-icon> {{ row.ref.eventDuration }}
+        </span>
         <!-- event add-ons, e.g. workshops (in num of days) -->
-        <span class="event-duration--addon" *ngIf="row.ref.eventDuration > 1"><mat-icon>perm_data_setting</mat-icon> {{ row.ref.eventDuration - 1 }}</span>
+        <span class="event-duration--addon" *ngIf="row.ref.workshops || row.ref.freeWorkshops" title="(Free) Workshops included">
+          + <mat-icon>perm_data_setting</mat-icon>
+        </span>
       </div>
     </mat-cell>
   </ng-container>
@@ -65,7 +69,7 @@
   <ng-container matColumnDef="tags">
     <mat-header-cell *matHeaderCellDef>Tags</mat-header-cell>
     <mat-cell *matCellDef="let row">
-      <span *ngFor="let tag of row.tags" class="badge">{{ tag.name }}</span>
+      <a [routerLink]="getTagLink(tag.id)" *ngFor="let tag of row.tags" class="badge">{{ tag.name }}</a>
     </mat-cell>
   </ng-container>
 

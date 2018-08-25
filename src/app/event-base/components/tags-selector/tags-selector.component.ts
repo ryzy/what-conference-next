@@ -124,7 +124,8 @@ export class TagsSelectorComponent implements OnInit, OnDestroy, ControlValueAcc
   public writeValue(tags: string[]): void {
     // This is a ControlValueAccessor method. We can't emitEvent as that'd cause an infinite loop,
     // and therefore the `statusChanges` observable from ngInit won't emit. So we need to update
-    // the internal `value` snapshot ourself here.
+    // the internal `value` snapshot ourselves here.
+    // console.log('TagsSelectorComponent#writeValue', tags);
     this._updateValue(tags);
     this.form.patchValue(this.valueToFormData(this.value), { emitEvent: false });
     this.cdRef.markForCheck();

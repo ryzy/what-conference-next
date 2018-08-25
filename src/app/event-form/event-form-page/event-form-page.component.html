@@ -1,4 +1,7 @@
-<h2>Event</h2>
+<h2>
+  {{ editingEvent ? 'Editing' : 'New'}} Event
+  <a *ngIf="editingEvent" [routerLink]="getEventLink(editingEvent)">{{editingEvent.ref.name}}</a>
+</h2>
 
 <app-event-form
   (formSubmit)="onSubmit($event)"

@@ -45,14 +45,14 @@ describe('ConferenceEvent model', () => {
   });
 
   describe('#createEventFromFormData, #createFormDataFromEvent', () => {
-    it('#tags for boolean flags', () => {
+    it('#tags', () => {
       let ev: ConferenceEvent | undefined;
-      const formTags = [false, true, false];
+      const formTags = [mockTags[0].id, mockTags[1].id];
 
       // convert to event
       ev = createEventFromFormData({ tags: formTags }, mockLex);
       expect(ev.id).toBeTruthy();
-      expect(ev.tags).toEqual([mockTags[1].id]);
+      expect(ev.tags).toEqual(formTags);
 
       // convert back to form data
       const formData = createFormDataFromEvent(ev, mockLex);
@@ -67,14 +67,14 @@ describe('ConferenceEvent model', () => {
 
       // convert back to form data
       const formData = createFormDataFromEvent(ev, mockLex);
-      expect(formData.tags).toEqual([false, false, true]);
+      expect(formData.tags).toEqual([mockTags[2].id]);
     });
 
     it('#tags with invalid/incomplete inputs', () => {
       let ev: ConferenceEvent | undefined;
 
       // no tags set? it should return empty obj
-      ev = createEventFromFormData({ tags: [false, true, false] }, mockLexEmpty);
+      ev = createEventFromFormData({}, mockLexEmpty);
       expect(ev.tags).toEqual([]);
 
       // invalid input...

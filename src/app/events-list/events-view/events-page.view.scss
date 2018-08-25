@@ -27,6 +27,9 @@
   &:last-child {
     margin-right: 0;
   }
+  @include breakpoint(small down) {
+    margin-right: $app-spacing-unit-small;
+  }
 }
 .mat-header-cell {
   font-weight: $app-font-weight-bold;
@@ -42,6 +45,9 @@
     // header
     margin-bottom: 0;
   }
+  @include breakpoint(small down) {
+    flex-grow: 1.5;
+  }
 }
 .mat-column-date {
   .event-date {
@@ -49,16 +55,23 @@
   }
   .event-duration {
     &--addon {
-      margin-left: $gutter-size;
+      margin-left: $app-spacing-unit;
+      .mat-icon {
+        margin-left: $app-spacing-unit-tiny;
+      }
     }
   }
 }
 .mat-column-price {
   flex-grow: 0.5;
   text-align: right;
-}
-.mat-column-price {
   font-size: map-get($app-font-sizes, h4);
+}
+.mat-column-tags {
+  flex-wrap: wrap;
+  @include breakpoint(small down) {
+    flex-grow: 0.5;
+  }
 }
 .mat-column-actions {
   flex-grow: 0.2;

@@ -1,16 +1,13 @@
+import { randomRange } from '../../src/app/core/core-utils';
 import { builtinSizeBands } from '../../src/app/event-base/data/size-bands';
-import {
-  ConferenceEvent,
-  ConferenceEventFormData,
-  entityToIndex,
-} from '../../src/app/event-base/model/conference-event';
-import { mockTags } from '../../src/testing/fixtures/event-tags';
+import { ConferenceEvent, entityToIndex } from '../../src/app/event-base/model/conference-event';
 import { mockEvent } from '../../src/testing/fixtures/events';
 import { AbstractPage, URLs } from './abstract.po';
 
 export const mockE2eEvent: ConferenceEvent = {
   ...mockEvent,
   name: 'Test Event',
+  date: new Date(),
 };
 
 export class EventFormPage extends AbstractPage {
@@ -20,12 +17,13 @@ export class EventFormPage extends AbstractPage {
     super.visit(url);
   }
 
-  public static fillTheFormWithRandomData(ev: Partial<ConferenceEvent> = mockE2eEvent): string {
-    ev = { ...mockE2eEvent, ...ev }; // some fields might be switched off
+  public static fillTheFormWithRandomData(eventData: Partial<ConferenceEvent> = mockE2eEvent): ConferenceEvent {
+    const ev: ConferenceEvent = { ...mockE2eEvent, ...eventData }; // some fields might be switched off
+    // console.log('EventFormPage#fillTheFormWithRandomData', ev);
 
     if (ev.name) {
       cy.log('And I enter "Event" in the field "name"');
-      this.typeIntoFormField('name', ev.name);
+      this.typeIntoFormField('name', ev.name + ' ' + randomRange());
     }
 
     if (ev.tags) {
@@ -42,7 +40,7 @@ export class EventFormPage extends AbstractPage {
 
     if (ev.date) {
       cy.log('And I select "some date" in the calendar field "date"');
-      this.selectDateInCalendarField('date');
+      this.selectDateInCalendarField('date', ev.date);
     }
 
     if (ev.sizeBand) {
@@ -99,6 +97,6 @@ export class EventFormPage extends AbstractPage {
       this.typeIntoFormField('description', ev.description);
     }
 
-    return ev.name;
+    return ev;
   }
 }

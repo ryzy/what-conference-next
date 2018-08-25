@@ -121,10 +121,11 @@ export interface ConferenceEvent {
 
 /**
  * Event data, as it arrives from the form
+ * @see ConferenceEvent
  */
 export interface ConferenceEventFormData {
   name: string;
-  tags: Array<string | boolean>;
+  tags: string[];
   date: Date;
   eventDuration: number;
   workshops: boolean;
@@ -181,23 +182,8 @@ export function createEventFromFormData(
   // Later on we fine tune / override them, as needed.
   const event: ConferenceEvent = ensureValidConferenceEventObj(formData);
 
-  // re-set, so it doesn't contain any original values
-  // Then build list of tag IDs, which will be referring to full EventTag objects
-  event.tags = [];
-  if (Array.isArray(formData.tags)) {
-    event.tags = formData.tags.reduce((tags: string[], selected: boolean | string | any, idx: number) => {
-      if ('boolean' === typeof selected) {
-        if (selected && lex.tags[idx]) {
-          const selectedTag: EventTag = lex.tags[idx];
-          return [...tags, selectedTag.id];
-        }
-      } else if ('string' === typeof selected && selected) {
-        return [...tags, selected];
-      }
-
-      return tags;
-    }, []);
-  }
+  // Make sure we have only valid, non-empty tags here
+  event.tags = event.tags.filter((t) => !!t);
 
   if (formData.country) {
     const selectedCountry = formData.country as Country;
@@ -234,9 +220,9 @@ export function createEventFromFormData(
 export function createFormDataFromEvent(ev: ConferenceEvent, lex: ConferenceEventLexicon): ConferenceEventFormData {
   ev = ensureValidConferenceEventObj(ev);
 
-  const formData: ConferenceEventFormData = {
+  return <ConferenceEventFormData>{
     name: ev.name,
-    tags: [], // needs to be converted to FormArray format (below)
+    tags: ev.tags,
     date: getNormalisedDate(ev.date),
     eventDuration: ev.eventDuration,
     workshops: ev.workshops,
@@ -251,11 +237,6 @@ export function createFormDataFromEvent(ev: ConferenceEvent, lex: ConferenceEven
     price: ev.price,
     sizeBand: builtinSizeBands.find((b) => b.id === ev.sizeBand),
   };
-
-  // convert tags/tags to array of boolean flags, compatible with FormArray
-  formData.tags = lex.tags.map((tag: EventTag, idx: number) => ev.tags.includes(tag.id));
-
-  return formData;
 }
 
 /**

@@ -29,5 +29,6 @@ export class UserPageComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
+    this.authService.navigateToAfterLoginScreen();
   }
 }

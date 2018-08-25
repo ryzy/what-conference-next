@@ -83,6 +83,15 @@ export function getNormalisedDate(date: Date | string = new Date()): Date {
   return date;
 }
 
+/**
+ * Strip https:// and www. from the beginning of URL
+ * and the ending / too.
+ * So it's nice/ready to display
+ */
+export function getUrlForDisplay(url: string): string {
+  return url.replace(/^(https?:\/\/)?(www\.)?(.+?)\/?$/, '$3');
+}
+
 export function slug(str: string): string {
   return kebabCase(deburr(str || ''));
 }

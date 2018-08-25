@@ -1,4 +1,6 @@
 import { Params } from '@angular/router';
+import { ConferenceEvent, ConferenceEventRef } from '../event-base/model/conference-event';
+import { EventTag } from '../event-base/model/event-tag';
 
 import { EventsFilters } from '../event-base/model/events-filters';
 import { AppSortInfo } from './model/entity';
@@ -7,6 +9,7 @@ import { AppRouterParams, AppRouterState } from './store/router/router';
 export enum AppSectionUrls {
   Home = '/',
   EventsList = '/q',
+  Event = '/ev',
 }
 
 /**
@@ -88,4 +91,40 @@ export function getEventsSortInfoFromRouter(state: AppRouterState): AppSortInfo 
         direction: state.params.sd || defaultSortInfo.direction,
       }
     : undefined;
+}
+
+/**
+ * Helper function to filter for events listing URLs
+ */
+export function filterEventsListingUrls(state: AppRouterState): boolean {
+  return AppSectionUrls.Home === state.url || AppSectionUrls.EventsList === state.url;
+}
+
+/**
+ * Get router link to an event
+ */
+export function getEventLink(
+  ev: string | ConferenceEvent | ConferenceEventRef,
+  baseUrl: AppSectionUrls = AppSectionUrls.Event,
+): any[] {
+  return [baseUrl, 'string' === typeof ev ? ev : ev.id];
+}
+
+/**
+ * Get router link to tag(s)
+ */
+export function getTagLink(
+  tag: string | string[] | EventTag | EventTag[],
+  baseUrl: AppSectionUrls = AppSectionUrls.EventsList,
+): any[] {
+  let tags: string = '';
+  if (Array.isArray(tag)) {
+    tags = (tag as Array<string | EventTag>)
+      .map((t: string | EventTag) => ('string' === typeof t ? t : t.id))
+      .join(',');
+  } else {
+    tags = 'string' === typeof tag ? tag : tag.id;
+  }
+
+  return [baseUrl, { tags }];
 }

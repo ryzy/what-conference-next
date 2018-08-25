@@ -70,13 +70,13 @@ $app-font-sizes: (
 // We modify :root element font size to different value than default (16px in all browsers)
 // to achieve basic responsiveness for text size and anything else for which unit
 // is provided in `rem`).
-$app-font-size-mq-mini: 13px;
+$app-font-size-mq-mini: 12px;
 // Font size (`small` breakpoint)
-$app-font-size-mq-small: 14px;
+$app-font-size-mq-small: 13px;
 // Font size (`medium` breakpoint)
 $app-font-size-mq-medium: 15px;
 // Font size (`xxlarge` breakpoint)
-$app-font-size-mq-xxlarge: 18px;
+$app-font-size-mq-xxlarge: 20px;
 
 // Basic transition function
 $app-transition-fn: 280ms cubic-bezier(0.19, 1, 0.22, 1);

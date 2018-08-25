@@ -97,8 +97,10 @@ describe('AuthService', () => {
 
   it('#logout', () => {
     const authSpy = spyOn(stitch.auth, 'logout');
+    const loginSpy = spyOn(stitch.auth, 'loginWithCredential');
     authService.logout();
     expect(authSpy).toHaveBeenCalled();
+    expect(loginSpy).toHaveBeenCalled();
   });
 
   it('#fetchUserData$ effect', () => {

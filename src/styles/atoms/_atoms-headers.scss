@@ -80,6 +80,16 @@ h2,
   }
 }
 
+h1,
+.h1,
+h2,
+.h2 {
+  small,
+  .small {
+    font-size: 70%;
+  }
+}
+
 h3,
 .h3 {
   @include h3;
