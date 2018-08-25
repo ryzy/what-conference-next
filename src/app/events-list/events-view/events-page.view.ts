@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { take, takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
 
 import { AppSortInfo } from '../../core/model/entity';
 import { AppRouterState } from '../../core/store/router/router';
@@ -9,6 +9,8 @@ import {
   getEventsSortInfoFromRouter,
   getEventsFiltersFromRouter,
   getTagLink,
+  AppSectionUrls,
+  filterEventsListingUrls,
 } from '../../core/url-utils';
 import { ConferenceEventRef } from '../../event-base/model/conference-event';
 import { EventTag } from '../../event-base/model/event-tag';
@@ -50,12 +52,15 @@ export class EventsPageView implements OnInit, OnDestroy {
     // Also, re-fetch events, according to the current filters in the router.
     this.service
       .getRouterState()
-      .pipe(takeUntil(this.ngOnDestroy$))
-      .subscribe((routerState: AppRouterState) => {
-        // console.log('EventsPageView#ngOnInit routerState', routerState);
+      .pipe(
+        takeUntil(this.ngOnDestroy$),
+        filter(filterEventsListingUrls),
+      )
+      .subscribe((state: AppRouterState) => {
+        // console.log('EventsPageView#ngOnInit new routerState', state);
         this.service.dispatchFetchEvents();
-        this.filters = getEventsFiltersFromRouter(routerState);
-        this.sortInfo = getEventsSortInfoFromRouter(routerState) || defaultSortInfo;
+        this.filters = getEventsFiltersFromRouter(state);
+        this.sortInfo = getEventsSortInfoFromRouter(state) || defaultSortInfo;
         this.cdRef.markForCheck();
       });
 

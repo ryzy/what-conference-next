@@ -49,9 +49,11 @@ html {
     font-size: $app-font-size-mq-small;
   }
   @include breakpoint(medium only) {
-    // consider setting it for large as well...
     font-size: $app-font-size-mq-medium;
   }
+
+  // then we have the default 16px for large, xlarge...
+
   @include breakpoint(xxlarge up) {
     font-size: $app-font-size-mq-xxlarge;
   }

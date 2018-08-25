@@ -60,18 +60,20 @@ describe('EventsEffects', () => {
     expect(effects.fetchAndSetEvents$).toBeObservable(expected);
   });
 
-  it('#eventsFiltersToRouter$ should emit FetchEventsAction afterwards', () => {
+  it('#eventsFiltersToRouter$ should emit new route state', () => {
     // emit router navigation action to emulate url change
     const payload: RouterNavigationPayload<AppRouterState> = {
       routerState: defaultAppRouterState,
       event: {} as RoutesRecognized,
     };
 
+    // We mock ROUTER_NAVIGATION action, so we don't care about actual result,
+    // we just want to test if the observable emits.
     actions$.stream = hot('-an', {
       a: new SetEventsFiltersAction({}),
       n: { type: ROUTER_NAVIGATION, payload },
     });
-    const expected = cold('--c', { c: new FetchEventsAction() });
+    const expected = cold('--c', { c: defaultAppRouterState });
     expect(effects.eventsFiltersToRouter$).toBeObservable(expected);
   });
 
@@ -82,11 +84,13 @@ describe('EventsEffects', () => {
       event: {} as RoutesRecognized,
     };
 
+    // We mock ROUTER_NAVIGATION action, so we don't care about actual result,
+    // we just want to test if the observable emits.
     actions$.stream = hot('-an', {
       a: new SetEventsSortingAction({ active: 'foo' }),
       n: { type: ROUTER_NAVIGATION, payload },
     });
-    const expected = cold('--c', { c: new FetchEventsAction() });
+    const expected = cold('--c', { c: defaultAppRouterState });
     expect(effects.eventsSortingToRouter$).toBeObservable(expected);
   });
 });

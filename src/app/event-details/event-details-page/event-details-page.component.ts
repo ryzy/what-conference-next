@@ -12,6 +12,9 @@ import { getUrlForDisplay } from '../../event-base/utils/event-utils';
   templateUrl: './event-details-page.component.html',
   styleUrls: ['./event-details-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'event-page',
+  },
 })
 export class EventDetailsPageComponent implements OnInit, OnDestroy {
   public ev: ConferenceEventRef | undefined;

@@ -1,4 +1,5 @@
 import { URLs } from '../src/abstract.po';
+import { AppHomePage } from '../src/app-home.po';
 import { UserApiKeys, UserPage } from '../src/user.po';
 
 describe('User', () => {
@@ -11,6 +12,14 @@ describe('User', () => {
     UserPage.expectToBeOnUserProfilePage();
     UserPage.visitAndLogOut();
     UserPage.expectNotToBeLoggedIn();
+
+    cy.log('And I should be on the home page');
+    AppHomePage.expectToBeOnHomePage();
+
+    // We do re-login to MongoDB after user logout (since Mongo Stitch needs some auth session)
+    // Make sure everything works as expected and we have some events on the home page
+    cy.log('And I should see some events there');
+    AppHomePage.expectToHaveEventsList();
   });
 
   it('should login with form and show error', () => {

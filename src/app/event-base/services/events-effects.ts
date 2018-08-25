@@ -55,20 +55,32 @@ export class EventsEffects {
     map((events: ConferenceEventRef[]) => new SetEventsAction(events)),
   );
 
-  @Effect()
-  public eventsFiltersToRouter$: Observable<FetchEventsAction> = this.actions$.pipe(
+  /**
+   * Put events filters in the route url
+   *
+   * Note: for now we don't dispatch anything from here,
+   * once the params are in URL, we get new router state on events page
+   * and we fetch the events imperatively from there.
+   */
+  @Effect({ dispatch: false })
+  public eventsFiltersToRouter$: Observable<AppRouterState> = this.actions$.pipe(
     ofType(EventsListActionType.SET_EVENTS_FILTERS),
     // tslint:disable-next-line:rxjs-no-unsafe-switchmap <-- WTF, tslint?
     switchMap((action: SetEventsFiltersAction) => this.routerEffects.navigateWithEventsFilters(action.filters)),
-    map(() => new FetchEventsAction()),
   );
 
-  @Effect()
-  public eventsSortingToRouter$: Observable<FetchEventsAction> = this.actions$.pipe(
+  /**
+   * Put events sorting info in the route url
+   *
+   * Note: for now we don't dispatch anything from here,
+   * once the params are in URL, we get new router state on events page
+   * and we fetch the events imperatively from there.
+   */
+  @Effect({ dispatch: false })
+  public eventsSortingToRouter$: Observable<AppRouterState> = this.actions$.pipe(
     ofType(EventsListActionType.SET_EVENTS_SORTING),
     // tslint:disable-next-line:rxjs-no-unsafe-switchmap <-- WTF, tslint?
     switchMap((action: SetEventsSortingAction) => this.routerEffects.navigateWithSortInfo(action.sort)),
-    map(() => new FetchEventsAction()),
   );
 
   /**

@@ -19,7 +19,7 @@
     <p class="event-description">{{ ev.ref.description }}</p>
 
     <div class="grid-x event-primary-info__meta">
-      <div class="cell small-4">
+      <div class="cell mini-4">
         <h4>Price</h4>
         <p *ngIf="ev.ref.price === 0; else priced" class="text-strong">Free</p>
         <ng-template #priced>
@@ -28,21 +28,20 @@
         </ng-template>
       </div>
 
-      <div class="cell small-4">
+      <div class="cell mini-4">
         <h4>Website</h4>
         <a href="{{ ev.ref.website }}">{{ getUrlForDisplay(ev.ref.website) }}</a>
       </div>
 
-      <div class="cell small-4">
+      <div class="cell mini-4">
         <h4>Social media</h4>
         <a href="https://twitter.com/{{ ev.ref.twitterHandle }}">@{{ ev.ref.twitterHandle }}</a>
       </div>
     </div>
   </div>
 
-  <div class="cell medium-2 event-secondary-info">
-
-    <div class="event-secondary-info__section">
+  <div class="cell medium-2 event-secondary-info grid-x align-self-top">
+    <div class="cell mini-4 medium-12">
       <h4>Location</h4>
       <p>
         {{ ev.ref.address }}
@@ -50,12 +49,12 @@
       </p>
     </div>
 
-    <div class="event-secondary-info__section" *ngIf="ev.sizeBand">
+    <div class="cell mini-4 medium-12" *ngIf="ev.sizeBand">
       <h4>Event size</h4>
       <p><strong>{{ ev.sizeBand.name }}:</strong> {{ ev.sizeBand.description }}</p>
     </div>
 
-    <div class="event-secondary-info__section">
+    <div class="cell mini-4 medium-12">
       <h4>Workshops</h4>
       <p *ngIf="(ev.ref.workshops || ev.ref.freeWorkshops); else noWorkshops">
         <strong>Yes</strong>

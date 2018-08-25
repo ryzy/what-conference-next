@@ -24,14 +24,21 @@
 .app-main-container {
   padding-top: $app-spacing-unit;
   padding-bottom: $gutter-size * 2; // add some extra light at the bottom of the page
-  min-height: calc(100vh - 5.3rem); // set min height, with offset equal to roughly header+footer height
+  min-height: calc(100vh - 7.3rem); // set min height, with offset equal to roughly header+footer height
 }
 
 .app-footer {
   border-top: 1px solid $app-color-border;
-  padding: $app-spacing-unit-medium 0;
+  padding: $app-spacing-unit * 2 0;
 
   .grid-x {
     opacity: 0.75; // make whole footer bit lighter for now...
+  }
+
+  .cell {
+    // On small screen the cells collapse. It looks better when it's aligned to center then.
+    @include breakpoint(small down) {
+      text-align: center;
+    }
   }
 }

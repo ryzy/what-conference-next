@@ -24,7 +24,7 @@ export class AbstractPage {
    */
   static USER_PAGE_TITLE_LOGGED_IN = /Hi .+?!/;
 
-  public static visit(url = AbstractPage.URL, waitAndCheck = true): void {
+  public static visit(url = URLs.Home, waitAndCheck = true): void {
     cy.visit(url);
     if (waitAndCheck) {
       cy.url().should('eq', Cypress.config('baseUrl') + url);
@@ -130,10 +130,10 @@ export class AbstractPage {
 
   public static selectDateInCalendarField(fieldName, dateToSelect?: Date) {
     this.triggerCalendarField(fieldName)
-      // .get('.mat-calendar-next-button')
-      // .click()
+      .get('.mat-calendar-next-button')
+      .click()
       .get('.mat-calendar-body-cell')
-      .eq(dateToSelect ? dateToSelect.getDate() - 1 : randomRange(0, 28))
+      .eq(dateToSelect ? dateToSelect.getDate() : randomRange(0, 28))
       .click();
 
     return cy.get('body').focus();
@@ -219,9 +219,18 @@ export class AbstractPage {
     cy.url().should('eq', Cypress.config('baseUrl') + '/');
   }
 
-  public static expectToBeOnEventPage(expectedContent: string): void {
+  public static expectToBeOnEventPage(expectedContent?: string): void {
     cy.url().should('match', /\/ev\/.+-.+/);
-    cy.contains(expectedContent);
+
+    // Check some fixed content on event single page
+    cy.get('.event-page').within(() => {
+      cy.contains('Price');
+      cy.contains('Workshops');
+
+      if (undefined !== expectedContent) {
+        cy.contains(expectedContent);
+      }
+    });
   }
 
   public static expectToBeOnEventEditingPage(eventIdPresent = true): void {

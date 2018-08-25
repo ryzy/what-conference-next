@@ -1,10 +1,10 @@
 <header class="app-header">
   <div class="grid-container">
     <div class="grid-x align-middle align-justify">
-      <div class="cell medium-6">
+      <div class="cell small-6">
         <h1 class="app-header__logo cell"><a routerLink="/">What Conference Next</a></h1>
       </div>
-      <div class="cell medium-6 text-right app-menu">
+      <div class="cell small-6 text-right app-menu">
         <a class="app-menu-item" routerLink="/edit">New Event</a>
         <a class="app-menu-item app-menu-item--user" mat-raised-button mat-icon-button routerLink="/user">
           <app-user-avatar [user]="user$ | async"></app-user-avatar>
@@ -20,11 +20,11 @@
 
 <footer class="app-footer">
   <div class="grid-container">
-    <div class="grid-x align-middle align-stretch small">
-      <div class="cell medium-6">
-        &copy; What Conference Next - find the next technical event for you.
+    <div class="grid-x small">
+      <div class="cell medium-8">
+        &copy; What Conference Next - easily find the next technical event for you
       </div>
-      <div class="cell medium-6 text-right">
+      <div class="cell medium-4 text-right">
         Made with <span class="color-accent">❤</span> by <a href="https://twitter.com/ryzmen">@ryzmen</a>
         &nbsp; | &nbsp;
         <a href="mailto:hi@what-conference-next.com">Contact</a>

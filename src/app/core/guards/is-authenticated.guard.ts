@@ -70,6 +70,7 @@ export class IsAuthenticatedGuard implements CanActivate, CanActivateChild, CanL
   }
 
   private checkLoginWithRedirect(redirectUrl?: string): Observable<boolean> {
+    // console.log('IsAuthenticatedGuard', { redirectUrl });
     return this.coreService.whenAuthAndDbReady().pipe(
       // Wait for auth system to complete whatever it might be
       filter((completed) => !!completed),
@@ -79,6 +80,7 @@ export class IsAuthenticatedGuard implements CanActivate, CanActivateChild, CanL
       switchMap(() => this.authService.getUser().pipe(take(1))),
       map((user) => !!user),
       tap((isLoggedIn: boolean) => {
+        // console.log('IsAuthenticatedGuard: is logged in', isLoggedIn);
         if (!isLoggedIn) {
           this.snackBar.open('You need to login first.', 'OK', matSnackBarConfig);
           this.authService.navigateToLoginScreen(redirectUrl);

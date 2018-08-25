@@ -94,6 +94,13 @@ export function getEventsSortInfoFromRouter(state: AppRouterState): AppSortInfo 
 }
 
 /**
+ * Helper function to filter for events listing URLs
+ */
+export function filterEventsListingUrls(state: AppRouterState): boolean {
+  return AppSectionUrls.Home === state.url || AppSectionUrls.EventsList === state.url;
+}
+
+/**
  * Get router link to an event
  */
 export function getEventLink(

@@ -26,9 +26,14 @@ export interface AppRouterParams extends Params {
  */
 export interface AppRouterState {
   /**
-   * Full URL
+   * Clean URL, w/o any params, query params or fragment
    */
   url: string;
+
+  /**
+   * Full URL, with whatever is present there (custom params, query params, fragment etc)
+   */
+  urlFull: string;
 
   /**
    * Any `data` added to Route config
@@ -53,6 +58,7 @@ export interface AppRouterState {
 
 export const defaultAppRouterState: AppRouterState = {
   url: '/',
+  urlFull: '/',
   data: {},
   fragment: '',
   params: {},

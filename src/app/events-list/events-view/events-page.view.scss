@@ -27,6 +27,9 @@
   &:last-child {
     margin-right: 0;
   }
+  @include breakpoint(small down) {
+    margin-right: $app-spacing-unit-small;
+  }
 }
 .mat-header-cell {
   font-weight: $app-font-weight-bold;
@@ -41,6 +44,9 @@
   .event-name {
     // header
     margin-bottom: 0;
+  }
+  @include breakpoint(small down) {
+    flex-grow: 1.5;
   }
 }
 .mat-column-date {
@@ -63,6 +69,9 @@
 }
 .mat-column-tags {
   flex-wrap: wrap;
+  @include breakpoint(small down) {
+    flex-grow: 0.5;
+  }
 }
 .mat-column-actions {
   flex-grow: 0.2;

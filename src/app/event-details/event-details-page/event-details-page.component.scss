@@ -15,6 +15,12 @@
 }
 
 .event-secondary-info {
+  @include breakpoint(small down) {
+    // This column will collapse under .event-primary-info
+    // (which is normally to the left) and therefore needs bit spacing before.
+    margin-top: $app-spacing-unit;
+  }
+
   h4 {
     margin-bottom: $app-spacing-unit-medium;
   }
