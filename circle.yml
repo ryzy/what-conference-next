@@ -1,63 +1,178 @@
 version: 2
 
+.job-defaults: &job-defaults
+  docker:
+    - image: circleci/node:10.9-stretch-browsers
+
+.store-cache-npm-deps: &store-cache-npm-deps
+  save_cache:
+    key: npm-deps-{{ checksum "yarn.lock" }}
+    paths: [ node_modules, ~/.cache/Cypress/ ]
+
+.restore-cache-npm-deps: &restore-cache-npm-deps
+  restore_cache:
+    key: npm-deps-{{ checksum "yarn.lock" }}
+
+.attach-workspace: &attach-workspace
+  attach_workspace:
+    at: .
+
+.run-install: &run-install
+  run:
+    name: Installing
+    command: yarn install --frozen-lockfile
+
 jobs:
   build:
-    docker:
-      - image: circleci/node:10-stretch-browsers
-
+    <<: *job-defaults
     steps:
-      - run: env && yarn versions && npm version # just to check env and versions...
       - checkout
-      - restore_cache:
-          keys:
-            - npm-dep-{{ checksum "yarn.lock" }}
-
-      - run: yarn install --frozen-lockfile
-      - save_cache:
-          key: npm-dep-{{ checksum "yarn.lock" }}
-          paths: [ node_modules, ~/.cache/Cypress/ ]
-
+      - *restore-cache-npm-deps
+      - *run-install
+      - *store-cache-npm-deps
       - run:
           name: Build
           command: |
-            export APP_ENV_NAME=dev
-            [ "${CI_COMMIT_REF_NAME}" = prod ] && export APP_ENV_NAME=prod
+            source scripts/ci-get-set-env.sh
             yarn build:$APP_ENV_NAME --progress=false
+            yarn analyze
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist/app/*
+            - dist/size-report/*
+      - store_artifacts: { path: dist/app, destination: dist/app }
+      - store_artifacts: { path: dist/size-report, destination: dist/size-report }
 
+  unit-tests:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *run-install
       - run: yarn test:ci --progress=false
+      - persist_to_workspace:
+          root: .
+          paths: [ dist/test-results/* ]
+      - store_test_results:
+          path: dist/test-results/
+
+  linting:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *run-install
       - run: yarn lint
+
+  audit-checks:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *attach-workspace
+      - *run-install
       - run: yarn coverage
 
+  e2e-tests:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *attach-workspace
+      - *run-install
+      - run: |
+          yarn serve &
+          yarn e2e:ci --config baseUrl=http://localhost:4104
+      - store_artifacts: { path: cypress/videos, destination: cypress/videos  }
+      - store_artifacts: { path: cypress/screenshots, destination: cypress/screenshots }
+
+  e2e-smoke-dev:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *attach-workspace
+      - *run-install
+      - run: |
+          yarn e2e:ci --config baseUrl=https://stage.what-conference-next.com/
+      - store_artifacts: { path: cypress/videos, destination: cypress/videos  }
+      - store_artifacts: { path: cypress/screenshots, destination: cypress/screenshots }
+
+  e2e-smoke-prod:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *attach-workspace
+      - *run-install
+      # TODO: some E2E tests cannot run on production, due to different user credentials - needs some tuning
+      - run: |
+          yarn e2e:ci --config baseUrl=https://what-conference-next.com/ || true
+      - store_artifacts: { path: cypress/videos, destination: cypress/videos  }
+      - store_artifacts: { path: cypress/screenshots, destination: cypress/screenshots }
+
+  deploy:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *attach-workspace
+      - *run-install
       - run:
-          name: E2E
+          name: Deploy STAGE
           command: |
-            yarn serve &
-            yarn e2e:ci --config baseUrl=http://localhost:4104,watchForFileChanges=false,numTestsKeptInMemory=5
+            yarn deploy
+            # Send deploy message to #frontend-events-dev Slack channel
+            curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"CI Deployments\", \"text\": \"*STAGE https://stage.what-conference-next.com/ deployed with success* :green_heart:\", \"icon_emoji\": \":rocket:\"}" https://hooks.slack.com/services/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
 
-      - deploy:
-          name: Deploy DEV
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ] || [[ "${CIRCLE_BRANCH}" =~ ^deploy ]]; then
-              yarn deploy
-
-              # Send deploy message to #frontend-events-dev Slack channel
-              curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"Firebase CI\", \"text\": \"*https://stage.what-conference-next.com/ deployed with success* :green_heart:\", \"icon_emoji\": \":princess:\"}" https://hooks.slack.com/services/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
-            fi
-      - deploy:
+  deploy-prod:
+    <<: *job-defaults
+    steps:
+      - checkout
+      - *restore-cache-npm-deps
+      - *attach-workspace
+      - *run-install
+      - run:
           name: Deploy PROD
           command: |
-            if [ "${CIRCLE_BRANCH}" == "prod" ]; then
-              yarn deploy:prod
+            yarn deploy:prod
+            # Send deploy message to #frontend-events-dev Slack channel
+            curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"CI Deployments\", \"text\": \"*LIVE https://what-conference-next.com deployed with success* :green_heart:\", \"icon_emoji\": \":bomb:\"}" https://hooks.slack.com/services/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
 
-              # Send deploy message to #frontend-events-dev Slack channel
-              curl -X POST --data-urlencode "payload={\"channel\": \"#frontend-events-dev\", \"username\": \"Firebase CI\", \"text\": \"*LIVE https://what-conference-next.com deployed with success* :green_heart:\", \"icon_emoji\": \":princess:\"}" https://hooks.slack.com/services/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
-            fi
 
-      - store_test_results:
-          path: dist/coverage/
+#
+# Workflow setup
+#
+workflows:
+  version: 2
+  build test deploy:
+    jobs:
+      - build
+      - unit-tests:
+          requires: [ build ]
+      - linting:
+          requires: [ build ]
+      - audit-checks:
+          requires: [ unit-tests, linting ]
+      - e2e-tests:
+          requires: [ build ]
+          filters:
+            branches:
+              ignore: prod # TODO: we need to fine-tune Cypress so it can run on production DB
 
-      - store_artifacts: { path: cypress/videos }
-      - store_artifacts: { path: cypress/screenshots }
-      - store_artifacts: { path: dist/app }
-      - store_artifacts: { path: dist/coverage }
-      - store_artifacts: { path: dist/size-report }
+      - deploy:
+          requires: [ audit-checks, e2e-tests ]
+          filters:
+            branches:
+              only: master
+      - e2e-smoke-dev:
+          requires: [ deploy ]
+
+      - deploy-prod:
+          requires: [ audit-checks ]
+          filters:
+            branches:
+              only: prod
+      - e2e-smoke-prod:
+          requires: [ deploy-prod ]

@@ -7,7 +7,7 @@ export const defaultEnvironmentConfig: AppEnvironment = {
   production: false,
 
   /**
-   * MongoDB Stich settings
+   * MongoDB Stitch settings
    */
   mongo: {
     stitchAppId: 'dev-what-conference-next-kzfdc',
