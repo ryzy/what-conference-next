@@ -5,7 +5,7 @@ export interface AppEnvironment {
   production: boolean;
 
   /**
-   * MongoDB Stich settings
+   * MongoDB Stitch settings
    */
   mongo: {
     stitchAppId: string;

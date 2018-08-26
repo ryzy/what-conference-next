@@ -1,5 +1,5 @@
 {
-  "tempDirectory": "./dist/coverage",
+  "tempDirectory": "./dist/test-results/karma",
   "check-coverage": true,
   "statements": 90,
   "lines": 90,
