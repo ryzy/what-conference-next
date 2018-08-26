@@ -106,9 +106,8 @@ jobs:
       - *restore-cache-npm-deps
       - *attach-workspace
       - *run-install
-      # TODO: some E2E tests cannot run on production, due to different user credentials - needs some tuning
       - run: |
-          yarn e2e:ci --config baseUrl=https://what-conference-next.com/ || true
+          yarn e2e:ci --config baseUrl=https://what-conference-next.com/
       - store_artifacts: { path: cypress/videos, destination: cypress/videos  }
       - store_artifacts: { path: cypress/screenshots, destination: cypress/screenshots }
 
@@ -157,9 +156,11 @@ workflows:
           requires: [ unit-tests, linting ]
       - e2e-tests:
           requires: [ build ]
+          # TODO: we need to fine-tune Cypress so it can run on production DB
+          # Since it's the same job as on dev/stage, we cannot apply here wcn-prod context
           filters:
             branches:
-              ignore: prod # TODO: we need to fine-tune Cypress so it can run on production DB
+              ignore: prod
 
       - deploy:
           requires: [ audit-checks, e2e-tests ]
@@ -176,3 +177,4 @@ workflows:
               only: prod
       - e2e-smoke-prod:
           requires: [ deploy-prod ]
+          context: wcn-prod
