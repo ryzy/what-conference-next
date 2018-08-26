@@ -4,9 +4,10 @@
     "name": "dev-what-conference-next",
     "security": {
         "allowed_request_origins": [
-            "https://next.what-conference-next.com",
+            "https://stage.what-conference-next.com",
             "http://localhost:4100",
-            "http://localhost:4104"
+            "http://localhost:4104",
+            "http://192.168.1.100:4100"
         ]
     }
 }

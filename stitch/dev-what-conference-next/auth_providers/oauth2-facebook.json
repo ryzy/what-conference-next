@@ -21,7 +21,7 @@
         }
     ],
     "redirect_uris": [
-        "https://next.what-conference-next.com/user",
+        "https://stage.what-conference-next.com/user",
         "http://localhost:4100/user",
         "http://localhost:4104/user"
     ]

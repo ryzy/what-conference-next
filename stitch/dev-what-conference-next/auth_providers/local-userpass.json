@@ -4,9 +4,9 @@
     "type": "local-userpass",
     "config": {
         "confirmEmailSubject": "Confirm your e-mail address",
-        "emailConfirmationUrl": "https://next.what-conference-next.com/user/confirm",
+        "emailConfirmationUrl": "https://stage.what-conference-next.com/user/confirm",
         "resetPasswordSubject": "Reset your password on what-conference-next.com",
-        "resetPasswordUrl": "https://next.what-conference-next.com/user/reset"
+        "resetPasswordUrl": "https://stage.what-conference-next.com/user/reset"
     },
     "disabled": false
 }
