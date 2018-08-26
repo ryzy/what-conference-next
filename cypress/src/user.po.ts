@@ -2,7 +2,7 @@ import { AbstractPage, URLs } from './abstract.po';
 
 export enum UserApiKeys {
   TEST_ADMIN_USER_API_KEY = 'TEST_ADMIN_USER_API_KEY', // todo, not used
-  TEST_EDITOR_USER_API_KEY = 'TEST_EDITOR_USER_API_KEY',
+  TEST_EDITOR_USER_API_KEY = 'TEST_EDITOR_USER_API_KEY', // todo, not used
   TEST_SOME_USER_API_KEY = 'TEST_SOME_USER_API_KEY',
 }
 

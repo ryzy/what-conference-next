@@ -34,7 +34,7 @@ describe('User', () => {
   });
 
   it('should login with valid API key', () => {
-    UserPage.visit(URLs.UserAuth + '/' + Cypress.env(UserApiKeys.TEST_EDITOR_USER_API_KEY));
+    UserPage.visit(URLs.UserAuth + '/' + Cypress.env(UserApiKeys.TEST_SOME_USER_API_KEY));
     cy.contains('Logged in as');
   });
 
