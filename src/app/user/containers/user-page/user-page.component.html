@@ -1,7 +1,5 @@
-
-
-<div *ngIf="user$ | async as user; else showLogin">
-  <h3>Hi {{ user.displayName }}!</h3>
+<ng-container *ngIf="user$ | async as user; else showLogin">
+  <h2>Hi {{ user.displayName }}!</h2>
   <button mat-raised-button (click)="logout()" class="button-logout">Logout</button>
 
   <hr />
@@ -10,7 +8,7 @@
     It's empty here for now. In the future we'll have here your favourite events
     and events you own and/or has access to edit.
   </p>
-</div>
+</ng-container>
 
 <ng-template #showLogin>
   <h2>Please log in</h2>
@@ -21,12 +19,13 @@
   <button class="button-login--facebook" mat-raised-button (click)="loginFacebook()">
     <mat-icon>people</mat-icon> Login with Facebook
   </button>
-  or use <a routerLink="login">login form</a>.
+  <p>or use our <a routerLink="login">login form</a>.</p>
 
   <hr />
 
   <h6>
-    <strong>Why log in?</strong> You'll need to log in if you want to edit or add any events.
-    Also accessing features like starred events will require being authenticated.
+    <strong>Why log in?</strong><br />
+    You'll need to log in if you want to contribute content to the site (i.e. add or edit events).
+    Features like starring events, voting or submitting reviews also will require being authenticated.
   </h6>
 </ng-template>

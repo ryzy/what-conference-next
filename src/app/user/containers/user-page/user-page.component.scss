@@ -1,5 +1,6 @@
 @import 'abstracts';
 
 button {
-  margin-right: $app-spacing-unit;
+  display: block;
+  margin-bottom: $app-spacing-unit;
 }

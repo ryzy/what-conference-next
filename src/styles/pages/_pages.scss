@@ -18,18 +18,27 @@
     height: 2rem;
     line-height: 2rem;
     margin-left: $app-spacing-unit * 2;
+    @include breakpoint(small down) {
+      margin-left: $app-spacing-unit;
+    }
   }
 }
 
 .app-main-container {
   padding-top: $app-spacing-unit;
   padding-bottom: $gutter-size * 2; // add some extra light at the bottom of the page
-  min-height: calc(100vh - 7.3rem); // set min height, with offset equal to roughly header+footer height
+
+  // set min height, with offset equal to roughly header+footer height
+  min-height: calc(100vh - 7.3rem);
 }
 
 .app-footer {
-  border-top: 1px solid $app-color-border;
-  padding: $app-spacing-unit * 2 0;
+  padding: 2 * $app-spacing-unit 0;
+  @include breakpoint(small down) {
+    padding: $app-spacing-unit 0;
+  }
+
+  border-top: 1px solid $app-color-border-strong;
 
   .grid-x {
     opacity: 0.75; // make whole footer bit lighter for now...

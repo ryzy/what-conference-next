@@ -71,7 +71,9 @@ body {
   // Nice numerals - see https://alistapart.com/preview/web-typography-numerals
   font-variant-numeric: oldstyle-nums;
 
-  //@include debug-breakpoint();
+  @if $debug-breakpoint-size {
+    @include debug-breakpoint();
+  }
 }
 
 // Typography resets
