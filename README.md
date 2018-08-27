@@ -1,11 +1,29 @@
 # What Conference Next
 [![CircleCI](https://circleci.com/gh/ryzy/what-conference-next.svg?style=svg)](https://circleci.com/gh/ryzy/what-conference-next)
 
-## Keeping Stitch dev and prod apps in sync
+Curated list of technical conferences and events. 
+Speakers support with call-for-paper dates (CFP). 
+Find the next best conference for you to attend here.
 
-Stitch Apps are exported to `stitch/*/` directories, for dev and prod
-environments separately. Why separately? Seems like IDs (for stitch
-entities) between apps must be unique, so when overriding/importing
+**Technology stack**: Angular, MongoDB Stitch (for server-less backend),
+Firebase Hosting.
+
+## Development
+
+* `yarn install`
+* `yarn start`
+* http://localhost:4100/
+
+Then
+* `yarn test`
+* `yarn e2e`
+
+### Keeping MongoDB Stitch dev and prod apps in sync
+
+[MongoDB Stitch](https://docs.mongodb.com/stitch/) Apps are exported 
+to `stitch/*/` directories, for dev and prod environments separately. 
+Why separately? Seems like IDs (for stitch entities) 
+between apps must be unique, so when overriding/importing
 the settings, we must have old values. We could just re-import data
 from another environments (with strategy=replace), but that replaces
 all entities, incl. auth-providers. Replacing auth-provider entity
@@ -40,3 +58,5 @@ Here's quick recipe for migrating settings from DEV to PROD env:
 
 If you need to go the other way around, you have respective
 yarn commands for that too (e.g. `yarn stitch:export:prod`).
+
+---

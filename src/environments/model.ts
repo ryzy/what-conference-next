@@ -11,4 +11,9 @@ export interface AppEnvironment {
     stitchAppId: string;
     database: string;
   };
+
+  /**
+   * Google Analytics tracking ID
+   */
+  gaTrackingId?: string;
 }

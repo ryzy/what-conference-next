@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import { Observable } from 'rxjs';
-import { User } from './core/model/user';
 
 import { AuthService } from './core/services/auth.service';
-import { AppRootState } from './core/store/index';
-import { GoAction } from './core/store/router/router-actions';
+import { User } from './core/model/user';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +13,10 @@ import { GoAction } from './core/store/router/router-actions';
 export class AppComponent {
   public user$: Observable<User | undefined>;
 
-  public constructor(authService: AuthService, private store: Store<AppRootState>) {
+  public constructor(authService: AuthService, ga: Angulartics2GoogleAnalytics) {
     this.user$ = authService.getUser();
-  }
 
-  public goToNewEvent(): void {
-    this.store.dispatch(new GoAction(['new']));
+    // Needs to be injected/used, so it actually start sending page views...
+    ga.setUserProperties({});
   }
 }
