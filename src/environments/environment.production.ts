@@ -12,4 +12,6 @@ export const environment: AppEnvironment = {
     stitchAppId: 'what-conference-next-eqvxa',
     database: 'wcn-db',
   },
+
+  gaTrackingId: 'UA-124633889-1',
 };
