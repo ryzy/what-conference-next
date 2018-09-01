@@ -43,8 +43,10 @@ describe('Event Editing / Deleting', () => {
 
     cy.log('I should see date "DEC 2099" in the calendar popover and "31" selected day');
     EventFormPage.triggerCalendarField('date');
-    cy.contains('DEC 2099');
-    cy.focused().contains('31');
+    EventFormPage.calendarPopup().within(() => {
+      cy.contains('DEC 2099');
+      cy.get('.mat-calendar-body-selected').contains('31');
+    });
   });
 
   it('Should create and save a new event', () => {
@@ -88,7 +90,6 @@ describe('Event Editing / Deleting', () => {
     cy.log('Then I should see form with event data present');
     EventFormPage.waitForLoaderToDisappear('form');
 
-    // EventFormPage.formField('name').should('contain.value', editingEventName);
     EventFormPage.formField('name', editingEventName);
     EventFormPage.formField('description', mockE2eEvent.description);
 

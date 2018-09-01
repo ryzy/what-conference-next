@@ -59,8 +59,4 @@ describe('EventsPageView', () => {
     component.onSortChange({ active: 'foo' });
     expect(dispatchSpy).toHaveBeenCalled();
   });
-
-  it('#tableTrackByFn', () => {
-    expect(component.tableTrackByFn(new ConferenceEventRef(mockEvent, mockLexEmpty))).toEqual(mockEvent.id);
-  });
 });

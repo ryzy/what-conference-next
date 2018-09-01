@@ -16,6 +16,7 @@ import { ConferenceEventRef } from '../../event-base/model/conference-event';
 import { EventTag } from '../../event-base/model/event-tag';
 import { EventsFilters } from '../../event-base/model/events-filters';
 import { EventsService } from '../../event-base/services/events.service';
+import { trackByFn } from '../../event-base/utils/event-utils';
 
 @Component({
   selector: 'app-events-view',
@@ -39,6 +40,7 @@ export class EventsPageView implements OnInit, OnDestroy {
   public sortInfo: AppSortInfo = defaultSortInfo;
 
   public getTagLink: Function = getTagLink;
+  public trackByFn: Function = trackByFn;
 
   private ngOnDestroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -94,9 +96,5 @@ export class EventsPageView implements OnInit, OnDestroy {
 
   public onFiltersChange(filters: EventsFilters): void {
     this.service.dispatchNewEventsFilters(filters);
-  }
-
-  public tableTrackByFn(ev: ConferenceEventRef): string {
-    return ev && ev.id;
   }
 }

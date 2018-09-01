@@ -43,8 +43,8 @@
 
     <div class="grid-x grid-margin-x">
       <mat-form-field class="cell mini-3">
-        <mat-select formControlName="sizeBand" placeholder="Event size">
-          <mat-option *ngFor="let sizeBand of sizeBands" [value]="sizeBand.id">
+        <mat-select formControlName="sizeBand" placeholder="Event size" [compareWith]="compareWithFn">
+          <mat-option *ngFor="let sizeBand of sizeBands" [value]="sizeBand">
             {{ sizeBand.name }}
             <span class="description">// {{ sizeBand.description }}</span>
           </mat-option>

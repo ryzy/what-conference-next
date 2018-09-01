@@ -14,7 +14,7 @@
   [matSortDirection]="sortInfo.direction"
   (matSortChange)="onSortChange($event)"
   [dataSource]="eventsDataSource"
-  [trackBy]="tableTrackByFn"
+  [trackBy]="trackByFn"
 >
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

@@ -1,3 +1,4 @@
+import { mockEvent } from '../../../testing/fixtures/events';
 import { Entity } from '../../core/model/entity';
 import { countriesData } from '../../data/countries';
 import {
@@ -8,11 +9,17 @@ import {
   getRegionList,
   getUrlForDisplay,
   slug,
+  trackByFn,
 } from './event-utils';
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'pl');
   const uk = countriesData.find((c) => c.isoCode === 'gb');
+
+  it('#trackByFn', () => {
+    expect(trackByFn(123, mockEvent)).toEqual(mockEvent.id);
+    expect(trackByFn(123, undefined as any)).toEqual(undefined);
+  });
 
   it('#findCountry', () => {
     expect(findCountry()).toBe(undefined);
