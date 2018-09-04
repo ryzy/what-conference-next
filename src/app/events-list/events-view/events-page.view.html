@@ -45,11 +45,11 @@
       </div>
       <div class="event-duration">
         <!-- event duration (num of days) -->
-        <span class="event-duration--days" title="{{row.ref.eventDuration}} day(s)">
+        <span class="event-duration--days" title="{{row.ref.eventDuration}} day(s) event">
           <mat-icon>event</mat-icon> {{ row.ref.eventDuration }}
         </span>
         <!-- event add-ons, e.g. workshops (in num of days) -->
-        <span class="event-duration--addon" *ngIf="row.ref.workshops || row.ref.freeWorkshops" title="(Free) Workshops included">
+        <span class="event-duration--addon" *ngIf="row.ref.workshops || row.ref.freeWorkshops" title="Workshops are available on this event">
           + <mat-icon>perm_data_setting</mat-icon>
         </span>
       </div>
