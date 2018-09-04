@@ -84,7 +84,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
       name: new FormControl('', [Validators.minLength(3), Validators.maxLength(255)]),
       tags: new FormControl([], [Validators.minLength(1)]),
       date: new FormControl(),
-      eventDuration: new FormControl(1),
+      eventDuration: new FormControl(),
       workshops: new FormControl(false),
       freeWorkshops: new FormControl(false),
       country: new FormControl(),
