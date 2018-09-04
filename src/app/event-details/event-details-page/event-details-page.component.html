@@ -35,7 +35,8 @@
 
       <div class="cell mini-4">
         <h4>Social media</h4>
-        <a href="https://twitter.com/{{ ev.ref.twitterHandle }}">@{{ ev.ref.twitterHandle }}</a>
+        <a *ngIf="ev.ref.twitterHandle" href="https://twitter.com/{{ ev.ref.twitterHandle }}">@{{ ev.ref.twitterHandle }}</a>
+        <span *ngIf="!ev.ref.twitterHandle">n/a</span>
       </div>
     </div>
   </div>
