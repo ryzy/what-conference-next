@@ -23,7 +23,7 @@
         <h4>Price</h4>
         <p *ngIf="ev.ref.price === 0; else priced" class="text-strong">Free</p>
         <ng-template #priced>
-          <p *ngIf="!ev.ref.price" class="text-strong">To be announced</p>
+          <p *ngIf="!ev.ref.price" class="text-strong">{{ isPastEvent ? 'n/a' : 'To be announced' }}</p>
           <p *ngIf="ev.ref.price"><small>from</small> <strong> {{ ev.ref.price | currency:'USD':'symbol':'1.0-0' }}</strong></p>
         </ng-template>
       </div>

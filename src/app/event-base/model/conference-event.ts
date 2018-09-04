@@ -39,7 +39,7 @@ export interface ConferenceEvent {
   tags: string[];
 
   /**
-   * Event date as Date() obj or string (e.g. Q4'2018)
+   * Event date as Date() obj
    */
   date: Date;
   /**

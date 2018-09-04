@@ -125,3 +125,11 @@ export function entitiesById<T extends Entity>(entities: T[] = []): { [entityId:
     return obj;
   }, {});
 }
+
+/**
+ * Check if given date is past date
+ */
+export function isPastDate(date: Date): boolean {
+  const now = new Date();
+  return now.valueOf() >= date.valueOf();
+}

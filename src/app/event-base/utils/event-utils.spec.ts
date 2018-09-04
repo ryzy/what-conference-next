@@ -8,6 +8,7 @@ import {
   getNormalisedDate,
   getRegionList,
   getUrlForDisplay,
+  isPastDate,
   slug,
   trackByFn,
 } from './event-utils';
@@ -80,5 +81,11 @@ describe('event-utils', () => {
     expect(getEventSlug('Some Event Title')).toContain('some-event-title-');
     expect(getEventSlug('')).toContain('-');
     expect(getEventSlug('').length).toBeGreaterThan(5); // we should have at least an -random-suffix here...
+  });
+
+  it('#isPastDate', () => {
+    expect(isPastDate(new Date())).toBe(true);
+    expect(isPastDate(new Date('2099'))).toBe(false);
+    expect(isPastDate(new Date('2010'))).toBe(true);
   });
 });

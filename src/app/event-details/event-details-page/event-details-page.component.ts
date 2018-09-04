@@ -5,7 +5,7 @@ import { getTagLink } from '../../core/url-utils';
 
 import { ConferenceEventRef } from '../../event-base/model/conference-event';
 import { EventsService } from '../../event-base/services/events.service';
-import { getUrlForDisplay } from '../../event-base/utils/event-utils';
+import { getUrlForDisplay, isPastDate } from '../../event-base/utils/event-utils';
 
 @Component({
   selector: 'app-event-details-page',
@@ -20,6 +20,7 @@ export class EventDetailsPageComponent implements OnInit, OnDestroy {
   public ev: ConferenceEventRef | undefined;
   public notFound: boolean = false;
   public loading: boolean = true;
+  public isPastEvent: boolean = false;
   public getTagLink: Function = getTagLink;
   public getUrlForDisplay: Function = getUrlForDisplay;
 
@@ -41,6 +42,7 @@ export class EventDetailsPageComponent implements OnInit, OnDestroy {
           // console.log('EventDetailsPageComponent loaded ev', ev);
           this.loading = false;
           this.ev = ev;
+          this.isPastEvent = isPastDate(ev.ref.date);
           this.cdRef.markForCheck();
         },
         (err) => {
