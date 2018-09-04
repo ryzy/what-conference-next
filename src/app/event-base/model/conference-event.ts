@@ -226,7 +226,7 @@ export function createFormDataFromEvent(ev: ConferenceEvent, lex: ConferenceEven
     date: getNormalisedDate(ev.date),
     eventDuration: ev.eventDuration,
     workshops: ev.workshops,
-    freeWorkshops: ev.workshops,
+    freeWorkshops: ev.freeWorkshops,
     country: findCountry(ev.countryCode) as Country,
     city: ev.city,
     address: ev.address,

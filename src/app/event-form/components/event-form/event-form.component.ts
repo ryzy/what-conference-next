@@ -113,6 +113,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.editingEventFormData && this.eventForm) {
+      // console.log('EventFormComponent#ngOnChanges', changes.editingEventFormData.currentValue);
       this.eventForm.patchValue(changes.editingEventFormData.currentValue);
     }
   }
