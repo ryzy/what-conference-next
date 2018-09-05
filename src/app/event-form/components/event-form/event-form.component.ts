@@ -22,7 +22,7 @@ import { Country } from '../../../core/model/country';
 import { EventTag } from '../../../event-base/model/event-tag';
 import { EventsService } from '../../../event-base/services/events.service';
 import { createEventFromFormData } from '../../../event-base/model/conference-event';
-import { findCountries } from '../../../event-base/utils/event-utils';
+import { findCountries, compareWithFn } from '../../../event-base/utils/event-utils';
 
 @Component({
   selector: 'app-event-form',
@@ -63,6 +63,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
   public tags!: EventTag[];
 
   public sizeBands: EventSizeBand[] = builtinSizeBands;
+  public compareWithFn: Function = compareWithFn;
 
   public countries$!: Observable<Country[]>;
 
@@ -83,7 +84,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
       name: new FormControl('', [Validators.minLength(3), Validators.maxLength(255)]),
       tags: new FormControl([], [Validators.minLength(1)]),
       date: new FormControl(),
-      eventDuration: new FormControl(1),
+      eventDuration: new FormControl(),
       workshops: new FormControl(false),
       freeWorkshops: new FormControl(false),
       country: new FormControl(),
@@ -112,6 +113,7 @@ export class EventFormComponent implements OnInit, OnDestroy, OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.editingEventFormData && this.eventForm) {
+      // console.log('EventFormComponent#ngOnChanges', changes.editingEventFormData.currentValue);
       this.eventForm.patchValue(changes.editingEventFormData.currentValue);
     }
   }

@@ -20,8 +20,13 @@ export function getEventsQueryFromRouterState(state: AppRouterState): { [k in ke
   const filters = getEventsFiltersFromRouter(state);
 
   if (filters.where) {
-    const [region, subRegion] = filters.where.split(',');
-    q.region = startCase(region);
+    const [location, subRegion] = filters.where.split(',');
+    if (2 === location.length) {
+      q.countryCode = location;
+    } else {
+      q.region = startCase(location);
+    }
+
     if (subRegion) {
       q.subRegion = startCase(subRegion);
     }

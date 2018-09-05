@@ -1,9 +1,22 @@
+import { TrackByFunction } from '@angular/core';
 import { deburr, kebabCase } from 'lodash-es';
 
 import { uuid } from '../../core/core-utils';
 import { Entity } from '../../core/model/entity';
 import { countriesData } from '../../data/countries';
 import { Country } from '../../core/model/country';
+
+/**
+ * Global TrackByFunction
+ */
+export const trackByFn: TrackByFunction<Entity> = (index: number, item: Entity): string | undefined => {
+  return item && item.id;
+};
+
+export function compareWithFn(o1: Entity, o2: Entity): boolean {
+  // console.log('compareWithFn', { o1, o2 });
+  return !!o1 && !!o2 && !!o1.id && o1.id === o2.id;
+}
 
 /**
  * Find country by its ISO code or name
@@ -111,4 +124,12 @@ export function entitiesById<T extends Entity>(entities: T[] = []): { [entityId:
     obj[entity.id] = entity;
     return obj;
   }, {});
+}
+
+/**
+ * Check if given date is past date
+ */
+export function isPastDate(date: Date): boolean {
+  const now = new Date();
+  return now.valueOf() >= date.valueOf();
 }

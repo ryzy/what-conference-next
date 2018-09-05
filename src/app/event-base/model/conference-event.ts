@@ -39,7 +39,7 @@ export interface ConferenceEvent {
   tags: string[];
 
   /**
-   * Event date as Date() obj or string (e.g. Q4'2018)
+   * Event date as Date() obj
    */
   date: Date;
   /**
@@ -226,7 +226,7 @@ export function createFormDataFromEvent(ev: ConferenceEvent, lex: ConferenceEven
     date: getNormalisedDate(ev.date),
     eventDuration: ev.eventDuration,
     workshops: ev.workshops,
-    freeWorkshops: ev.workshops,
+    freeWorkshops: ev.freeWorkshops,
     country: findCountry(ev.countryCode) as Country,
     city: ev.city,
     address: ev.address,

@@ -42,6 +42,9 @@ export class EventFormPage extends AbstractPage {
       cy.log('And I select "some date" in the calendar field "date"');
       this.selectDateInCalendarField('date', ev.date);
     }
+    if (ev.eventDuration) {
+      this.typeIntoFormField('eventDuration', ev.eventDuration);
+    }
 
     if (ev.sizeBand) {
       const idx = entityToIndex(ev.sizeBand, builtinSizeBands);

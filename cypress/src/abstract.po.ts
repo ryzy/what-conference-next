@@ -90,6 +90,13 @@ export class AbstractPage {
     return snackBarEl;
   }
 
+  /**
+   * Gets open DatePicker popup
+   */
+  public static calendarPopup() {
+    return cy.get('.mat-datepicker-popup');
+  }
+
   public static typeIntoFormField(fieldName: string, stringToType: string | number, deFocusAfter: boolean = false) {
     this.formField(fieldName)
       .focus()

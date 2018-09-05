@@ -1,3 +1,4 @@
+import { mockEvent } from '../../../testing/fixtures/events';
 import { Entity } from '../../core/model/entity';
 import { countriesData } from '../../data/countries';
 import {
@@ -7,12 +8,19 @@ import {
   getNormalisedDate,
   getRegionList,
   getUrlForDisplay,
+  isPastDate,
   slug,
+  trackByFn,
 } from './event-utils';
 
 describe('event-utils', () => {
   const poland = countriesData.find((c) => c.isoCode === 'pl');
   const uk = countriesData.find((c) => c.isoCode === 'gb');
+
+  it('#trackByFn', () => {
+    expect(trackByFn(123, mockEvent)).toEqual(mockEvent.id);
+    expect(trackByFn(123, undefined as any)).toEqual(undefined);
+  });
 
   it('#findCountry', () => {
     expect(findCountry()).toBe(undefined);
@@ -73,5 +81,11 @@ describe('event-utils', () => {
     expect(getEventSlug('Some Event Title')).toContain('some-event-title-');
     expect(getEventSlug('')).toContain('-');
     expect(getEventSlug('').length).toBeGreaterThan(5); // we should have at least an -random-suffix here...
+  });
+
+  it('#isPastDate', () => {
+    expect(isPastDate(new Date())).toBe(true);
+    expect(isPastDate(new Date('2099'))).toBe(false);
+    expect(isPastDate(new Date('2010'))).toBe(true);
   });
 });

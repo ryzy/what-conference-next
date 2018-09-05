@@ -37,14 +37,15 @@
         <mat-datepicker #eventDatePicker></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="cell mini-3">
-        <input matInput formControlName="eventDuration" min="1" max="30" placeholder="Event duration (num of days)" type="number" required>
+        <mat-label>Event duration (days)</mat-label>
+        <input matInput formControlName="eventDuration" min="1" max="30" placeholder="Num of days" type="number" required>
       </mat-form-field>
     </div>
 
     <div class="grid-x grid-margin-x">
       <mat-form-field class="cell mini-3">
-        <mat-select formControlName="sizeBand" placeholder="Event size">
-          <mat-option *ngFor="let sizeBand of sizeBands" [value]="sizeBand.id">
+        <mat-select formControlName="sizeBand" placeholder="Event size" [compareWith]="compareWithFn">
+          <mat-option *ngFor="let sizeBand of sizeBands" [value]="sizeBand">
             {{ sizeBand.name }}
             <span class="description">// {{ sizeBand.description }}</span>
           </mat-option>
@@ -100,10 +101,14 @@
       </mat-form-field>
     </div>
     <div class="grid-x grid-margin-x">
-      <mat-form-field class="cell mini-6">
+      <mat-form-field class="cell large-9">
         <mat-label>Event short description</mat-label>
-        <textarea matInput formControlName="description"
-                  placeholder="Provide a short info about the event - just a few sentences."></textarea>
+        <textarea
+          matInput
+          formControlName="description"
+          cdkTextareaAutosize [cdkAutosizeMinRows]="5"
+          placeholder="Provide a short info about the event - just a few sentences."
+        ></textarea>
       </mat-form-field>
     </div>
   </fieldset>

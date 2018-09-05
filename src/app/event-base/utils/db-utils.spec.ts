@@ -15,10 +15,17 @@ describe('db-utils', () => {
     expect(q.date).toBeTruthy();
     expect(q.region).toBe('Americas');
     expect(Object.keys(q)).not.toContain('subRegion');
+    expect(Object.keys(q)).not.toContain('countryCode');
 
     q = getEventsQueryFromRouterState({ ...defaultAppRouterState, params: { where: 'americas,something' } });
     expect(q.region).toBe('Americas');
     expect(q.subRegion).toBe('Something');
+    expect(Object.keys(q)).not.toContain('countryCode');
+
+    q = getEventsQueryFromRouterState({ ...defaultAppRouterState, params: { where: 'pl' } });
+    expect(q.countryCode).toBe('pl');
+    expect(Object.keys(q)).not.toContain('region');
+    expect(Object.keys(q)).not.toContain('subRegion');
   });
 
   it('#getEventsQueryFromRouterState workshops', () => {
