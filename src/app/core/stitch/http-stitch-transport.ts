@@ -2,7 +2,15 @@ import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders } from '@angul
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Transport, Response } from 'mongodb-stitch-core-sdk';
+import {
+  Transport,
+  Response,
+  BasicRequest,
+  EventStream,
+  ContentTypes,
+  Headers,
+  handleRequestError,
+} from 'mongodb-stitch-core-sdk';
 
 export interface StitchHeaders {
   [key: string]: string;
@@ -34,7 +42,7 @@ export function plainHeaders(headers: HttpHeaders): StitchHeaders {
 export class HttpStitchTransport implements Transport {
   public constructor(private http: HttpClient) {}
 
-  public roundTrip(request: StitchRequest): Promise<Response> {
+  public roundTrip(request: BasicRequest): Promise<Response> {
     return this.http
       .request(request.method, request.url, {
         headers: request.headers,
@@ -54,5 +62,14 @@ export class HttpStitchTransport implements Transport {
         // tap((response) => console.log('HttpStitchTransport Stitch response', { request, response })),
       )
       .toPromise();
+  }
+
+  public stream(
+    request: BasicRequest,
+    open: boolean = true,
+    retryRequest?: () => Promise<EventStream>,
+  ): Promise<EventStream> {
+    // TODO: implement...
+    return Promise.resolve({} as EventStream);
   }
 }

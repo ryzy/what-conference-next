@@ -1,6 +1,5 @@
-import * as fromRouter from '@ngrx/router-store';
-import { RouterReducerState } from '@ngrx/router-store/src/router_store_module';
 import { Action, ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
+import * as fromRouter from '@ngrx/router-store';
 
 import { appReducer, AppState } from './app/app-reducer';
 import { AppRouterState } from './router/router';
@@ -11,12 +10,12 @@ import { AppRouterState } from './router/router';
  */
 export interface AppRootState {
   app: AppState;
-  router: RouterReducerState<AppRouterState>;
+  router: fromRouter.RouterReducerState<AppRouterState>;
 }
 
 export const reducers: ActionReducerMap<AppRootState> = {
   app: appReducer as ActionReducer<AppState>,
-  router: fromRouter.routerReducer as ActionReducer<RouterReducerState<AppRouterState>>,
+  router: fromRouter.routerReducer as ActionReducer<fromRouter.RouterReducerState<AppRouterState>>,
 };
 
 /**

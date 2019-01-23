@@ -17,6 +17,7 @@ export class AppComponent {
     this.user$ = authService.getUser();
 
     // Needs to be injected/used, so it actually start sending page views...
+    ga.startTracking();
     ga.setUserProperties({});
   }
 }

@@ -7,7 +7,6 @@ import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { Angulartics2Module, Angulartics2Settings } from 'angulartics2';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { environment } from '../../environments/environment';
 import { isUnitTestContext, throwIfAlreadyLoaded } from './core-utils';
@@ -32,7 +31,7 @@ import { AuthService } from './services/auth.service';
       ? []
       : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
 
-    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], <Angulartics2Settings>{
+    Angulartics2Module.forRoot(<Angulartics2Settings>{
       pageTracking: { clearHash: true, clearQueryParams: true },
       ga: { transport: 'beacon' },
       developerMode: !environment.gaTrackingId, // developerMode disables tracking

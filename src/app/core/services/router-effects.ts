@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Location } from '@angular/common';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { RouterNavigationPayload } from '@ngrx/router-store/src/router_store_module';
 import { Action, Store } from '@ngrx/store';
 import { ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { Observable } from 'rxjs';
@@ -90,6 +89,11 @@ export class RouterEffects {
   }
 
   private afterRouterNavigationCompletes(): Observable<AppRouterState> {
-    return this.actions$.pipe(ofType(ROUTER_NAVIGATION), take(1), pluck('payload'), pluck('routerState'));
+    return this.actions$.pipe(
+      ofType(ROUTER_NAVIGATION),
+      take(1),
+      pluck('payload'),
+      pluck('routerState'),
+    );
   }
 }
