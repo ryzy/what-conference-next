@@ -28,7 +28,7 @@ describe('DatabaseService', () => {
   });
 
   afterEach(() => {
-    // console.log('httpMock after', httpMock);
+    // console.log('httpMock after', (httpMock as any).open);
     httpMock.verify();
   });
 

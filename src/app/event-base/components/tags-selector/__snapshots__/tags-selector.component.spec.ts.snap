@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagsSelectorComponent should set initial filters 1`] = `
+<app-tags-selector
+  cdRef={[Function ViewRef_]}
+  form={[Function FormGroup]}
+  ngOnDestroy$={[Function EventEmitter]}
+  onChangeFn={[Function Function]}
+  onTouchedFn={[Function Function]}
+  redundantTagsInValue="false"
+  renderPrimaryTags={[Function Array]}
+  renderSecondaryTags={[Function Array]}
+  secondaryTagsAsChips={[Function Boolean]}
+  tags={[Function Array]}
+  tagsById={[Function Object]}
+  tagsChanged={[Function EventEmitter]}
+  value={[Function Array]}
+>
+  <form
+    class="grid-x margin-collapse align-justify ng-untouched ng-pristine ng-valid"
+    ng-reflect-form="[object Object]"
+    novalidate=""
+  >
+    <div
+      class="cell primary-tags"
+    >
+      <mat-chip-list
+        aria-disabled="false"
+        aria-invalid="false"
+        aria-multiselectable="true"
+        aria-orientation="horizontal"
+        aria-required="false"
+        class="mat-chip-list"
+        id="mat-chip-list-2"
+        ng-reflect-multiple="true"
+        role="listbox"
+        tabindex="0"
+      >
+        <div
+          class="mat-chip-list-wrapper"
+        >
+          
+          <mat-chip
+            aria-disabled="false"
+            aria-selected="false"
+            class="mat-chip mat-standard-chip mat-accent"
+            color="accent"
+            ng-reflect-color="accent"
+            ng-reflect-selected="false"
+            role="option"
+            tabindex="-1"
+          >
+            Backend
+          </mat-chip>
+          <mat-chip
+            aria-disabled="false"
+            aria-selected="false"
+            class="mat-chip mat-standard-chip mat-accent"
+            color="accent"
+            ng-reflect-color="accent"
+            ng-reflect-selected="false"
+            role="option"
+            tabindex="-1"
+          >
+            Cloud
+          </mat-chip>
+          <mat-chip
+            aria-disabled="false"
+            aria-selected="true"
+            class="mat-chip mat-standard-chip mat-accent mat-chip-selected"
+            color="accent"
+            ng-reflect-color="accent"
+            ng-reflect-selected="true"
+            role="option"
+            tabindex="-1"
+          >
+            Frontend
+          </mat-chip>
+        </div>
+      </mat-chip-list>
+    </div>
+    
+    <div
+      class="cell secondary-tags"
+    >
+      
+      <mat-chip-list
+        aria-disabled="false"
+        aria-invalid="false"
+        aria-multiselectable="true"
+        aria-orientation="horizontal"
+        aria-required="false"
+        class="mat-chip-list"
+        id="mat-chip-list-3"
+        ng-reflect-multiple="true"
+        role="listbox"
+        tabindex="0"
+      >
+        <div
+          class="mat-chip-list-wrapper"
+        >
+          
+          <mat-chip
+            aria-disabled="false"
+            aria-selected="true"
+            class="mat-chip mat-primary mat-standard-chip mat-chip-selected"
+            color="primary"
+            ng-reflect-color="primary"
+            ng-reflect-selected="true"
+            role="option"
+            tabindex="-1"
+          >
+            Angular
+          </mat-chip>
+          <mat-chip
+            aria-disabled="false"
+            aria-selected="false"
+            class="mat-chip mat-primary mat-standard-chip"
+            color="primary"
+            ng-reflect-color="primary"
+            ng-reflect-selected="false"
+            role="option"
+            tabindex="-1"
+          >
+            React
+          </mat-chip>
+        </div>
+      </mat-chip-list>
+      
+    </div>
+  </form>
+</app-tags-selector>
+`;

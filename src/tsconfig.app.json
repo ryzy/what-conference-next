@@ -2,10 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "target": "es5",
-    "module": "es2015",
     "strict": true,
-    "types": []
+    "types": ["node"]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
@@ -14,5 +12,5 @@
     "diagnostics": true,
     "disableTypeScriptVersionCheck": true
   },
-  "exclude": ["test.ts", "**/*.spec.ts", "testing/"]
+  "exclude": ["**/*.spec.ts", "testing/"]
 }

@@ -8,9 +8,11 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "es2015",
     "target": "es5",
     "skipLibCheck": true,
     "typeRoots": ["node_modules/@types"],
+    "types": ["node", "jest", "cypress"],
     "lib": ["es2017", "dom"]
   }
 }

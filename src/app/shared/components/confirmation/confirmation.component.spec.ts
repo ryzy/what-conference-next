@@ -22,12 +22,12 @@ describe('ConfirmationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ConfirmationComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
-    expect((fixture.nativeElement as HTMLElement).innerText).toContain('Some confirmation message');
+    expect(fixture).toMatchSnapshot();
   });
 
   it('should confirm', () => {

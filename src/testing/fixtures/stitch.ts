@@ -20,6 +20,12 @@ export const mockStitchDeleteResponse: RemoteDeleteResult = {
   deletedCount: 1,
 };
 
+export const mockLocationResponse = {
+  deployment_model: 'GLOBAL',
+  location: 'US-VA',
+  hostname: 'https://stitch.mongodb.com',
+};
+
 export const mockStitchLoginResponse = {
   access_token:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzI4ODU5ODIsImlhdCI6MTUzMjg4NDE4MiwiaXNzIjoiNWI1ZGY0ZDY0NjIyNGNlMWU2M2JmZmFkIiwic3RpdGNoX2RhdGEiOm51bGwsInN0aXRjaF9kZXZJZCI6IjViNWRmNGQ2NDYyMjRjZTFlNjNiZmZhYyIsInN0aXRjaF9kb21haW5JZCI6IjViNTdhMGFhZDUyZTkwMWMwZGU5OWZhZiIsInN1YiI6IjViNWNjMTEzMDU4NDI5Yjc4MjBhZjc4ZSIsInR5cCI6ImFjY2VzcyJ9.I4_PqjoREcjF0Kq57qC8jHEd4_DwDHSB66pAee4KHQk',

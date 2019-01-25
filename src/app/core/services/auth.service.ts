@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Effect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { deburr, kebabCase } from 'lodash-es';
+import deburr from 'lodash-es/deburr.js';
+import kebabCase from 'lodash-es/kebabCase.js';
 import {
   StitchAuth,
   UserPasswordCredential,

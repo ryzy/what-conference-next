@@ -1,5 +1,6 @@
 import { TrackByFunction } from '@angular/core';
-import { deburr, kebabCase } from 'lodash-es';
+import deburr from 'lodash-es/deburr.js';
+import kebabCase from 'lodash-es/kebabCase.js';
 
 import { uuid } from '../../core/core-utils';
 import { Entity } from '../../core/model/entity';

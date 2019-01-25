@@ -22,6 +22,6 @@ describe('LoaderComponent', () => {
     component.message = 'Loader Test';
     fixture.detectChanges();
     expect(component).toBeTruthy();
-    expect((fixture.nativeElement as HTMLElement).innerText).toContain('Loader Test');
+    expect(fixture).toMatchSnapshot();
   });
 });

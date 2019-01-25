@@ -5,6 +5,7 @@
   "projects": {
     "wcn-app": {
       "root": "",
+      "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
       "architect": {
@@ -85,34 +86,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "sourceMap": true,
-            "codeCoverageExclude": [
-              "src/testing/**"
-            ],
-            "styles": [
-              {
-                "input": "styles/app.scss"
-              }
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles"
-              ]
-            },
-            "scripts": [],
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              }
-            ]
+            "debug": false,
+            "logHeapUsage": true
           }
         },
         "lint": {

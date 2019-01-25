@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should create the app 1`] = `
+<app-root
+  user$={[Function Store]}
+>
+  <header
+    class="app-header"
+  >
+    <div
+      class="grid-container"
+    >
+      <div
+        class="grid-x align-middle align-justify"
+      >
+        <div
+          class="cell mini-8"
+        >
+          <h1
+            class="app-header__logo cell"
+          >
+            <a
+              href="/"
+              ng-reflect-router-link="/"
+              routerlink="/"
+            >
+              What Conference Next
+            </a>
+          </h1>
+        </div>
+        <div
+          class="cell mini-4 text-right app-menu"
+        >
+          <a
+            class="app-menu-item"
+            href="/edit"
+            ng-reflect-router-link="/edit"
+            routerlink="/edit"
+          >
+            New Event
+          </a>
+          <a
+            aria-disabled="false"
+            class="app-menu-item app-menu-item--user mat-icon-button mat-raised-button _mat-animation-noopable"
+            href="/user"
+            mat-icon-button=""
+            mat-raised-button=""
+            ng-reflect-router-link="/user"
+            routerlink="/user"
+            tabindex="0"
+          >
+            <span
+              class="mat-button-wrapper"
+            >
+              <app-user-avatar
+                class="app-user-avatar"
+              >
+                
+                <mat-icon
+                  aria-hidden="true"
+                  class="mat-icon material-icons mat-icon-no-color"
+                  role="img"
+                >
+                  perm_identity
+                </mat-icon>
+                
+              </app-user-avatar>
+            </span>
+            <div
+              class="mat-button-ripple mat-ripple mat-button-ripple-round"
+              matripple=""
+              ng-reflect-centered="true"
+              ng-reflect-disabled="false"
+              ng-reflect-trigger="https://github.com/user"
+            />
+            <div
+              class="mat-button-focus-overlay"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </header><div
+    class="grid-container app-main-container"
+  >
+    <router-outlet />
+  </div><footer
+    class="app-footer"
+  >
+    <div
+      class="grid-container"
+    >
+      <div
+        class="grid-x small"
+      >
+        <div
+          class="cell medium-7"
+        >
+           © What Conference Next - easily find the next technical event for you 
+        </div>
+        <div
+          class="cell medium-5 text-right"
+        >
+           Made with 
+          <span
+            class="color-accent"
+          >
+            ❤
+          </span>
+           by 
+          <a
+            href="https://twitter.com/ryzmen"
+            target="_blank"
+          >
+            @ryzmen
+          </a>
+             |   
+          <a
+            href="mailto:hi@what-conference-next.com"
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</app-root>
+`;
