@@ -1,4 +1,5 @@
-import { MatDialogConfig, MatSnackBarConfig } from '@angular/material';
+import { MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
 
 /**
  * Default options for SnackBar

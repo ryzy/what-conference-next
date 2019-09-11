@@ -1,7 +1,7 @@
 import { A11yModule } from '@angular/cdk/a11y';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
 
 import { SharedModule } from '../shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
