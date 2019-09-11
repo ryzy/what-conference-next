@@ -14,7 +14,7 @@
       <option name="HEX_COLOR_LONG_FORMAT" value="true" />
       <option name="KEEP_SINGLE_LINE_BLOCKS" value="true" />
     </CssCodeStyleSettings>
-    <JSCodeStyleSettings>
+    <JSCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="REFORMAT_C_STYLE_COMMENTS" value="true" />
       <option name="USE_DOUBLE_QUOTES" value="false" />
@@ -24,7 +24,7 @@
       <option name="USE_CHAINED_CALLS_GROUP_INDENTS" value="true" />
       <option name="IMPORT_SORT_MODULE_NAME" value="true" />
     </JSCodeStyleSettings>
-    <TypeScriptCodeStyleSettings>
+    <TypeScriptCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="REFORMAT_C_STYLE_COMMENTS" value="true" />
       <option name="USE_PUBLIC_MODIFIER" value="true" />
