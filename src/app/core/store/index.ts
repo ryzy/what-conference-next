@@ -1,5 +1,5 @@
 import * as fromRouter from '@ngrx/router-store';
-import { RouterReducerState } from '@ngrx/router-store/src/router_store_module';
+import { RouterReducerState } from '@ngrx/router-store';
 import { Action, ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 
 import { appReducer, AppState } from './app/app-reducer';

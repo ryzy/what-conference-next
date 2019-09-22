@@ -32,7 +32,7 @@ import { AuthService } from './services/auth.service';
       ? []
       : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
 
-    Angulartics2Module.forRoot([Angulartics2GoogleAnalytics], <Angulartics2Settings>{
+    Angulartics2Module.forRoot(<Angulartics2Settings>{
       pageTracking: { clearHash: true, clearQueryParams: true },
       ga: { transport: 'beacon' },
       developerMode: !environment.gaTrackingId, // developerMode disables tracking

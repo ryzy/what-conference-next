@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders } from '@angul
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Transport, Response } from 'mongodb-stitch-core-sdk';
+import { Transport, Response, BasicRequest, EventStream } from 'mongodb-stitch-core-sdk';
 
 export interface StitchHeaders {
   [key: string]: string;
@@ -54,5 +54,9 @@ export class HttpStitchTransport implements Transport {
         // tap((response) => console.log('HttpStitchTransport Stitch response', { request, response })),
       )
       .toPromise();
+  }
+
+  public stream(request: BasicRequest, open: boolean, retryRequest?: () => Promise<EventStream>): Promise<EventStream> {
+    return Promise.resolve({} as EventStream);
   }
 }

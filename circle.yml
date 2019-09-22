@@ -2,7 +2,7 @@ version: 2
 
 .job-defaults: &job-defaults
   docker:
-    - image: circleci/node:10.9-stretch-browsers
+    - image: circleci/node:12.10-stretch-browsers
 
 .store-cache-npm-deps: &store-cache-npm-deps
   save_cache:
