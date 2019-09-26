@@ -9,22 +9,22 @@ import { NotFoundPageComponent } from './shared/containers/not-found-page/not-fo
 const appRoutes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./events-list/events-list.module').then(m => m.EventsListModule),
+    loadChildren: () => import('./events-list/events-list.module').then((m) => m.EventsListModule),
     canActivate: [IsInitDataFetchedGuard],
   },
   {
     path: 'ev',
-    loadChildren: () => import('./event-details/event-details.module').then(m => m.EventDetailsModule),
+    loadChildren: () => import('./event-details/event-details.module').then((m) => m.EventDetailsModule),
     canActivate: [IsInitDataFetchedGuard],
   },
   {
     path: 'edit',
-    loadChildren: () => import('./event-form/event-form.module').then(m => m.EventFormModule),
+    loadChildren: () => import('./event-form/event-form.module').then((m) => m.EventFormModule),
     canActivate: [IsInitDataFetchedGuard, IsAuthenticatedGuard],
   },
   {
     path: 'user',
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
     canActivate: [IsInitDataFetchedGuard],
   },
   {

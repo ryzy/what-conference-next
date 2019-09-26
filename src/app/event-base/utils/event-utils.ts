@@ -1,5 +1,6 @@
 import { TrackByFunction } from '@angular/core';
-import { deburr, kebabCase } from 'lodash-es';
+import { deburr } from 'lodash-es';
+import { kebabCase } from 'lodash-es';
 
 import { uuid } from '../../core/core-utils';
 import { Entity } from '../../core/model/entity';
@@ -65,10 +66,12 @@ export function getRegionList(): Entity[] {
   const subRegions: { [k: string]: string } = {};
 
   const sep = ',';
-  countriesData.filter((c) => !!c.region && !!c.subregion).forEach((c: Country) => {
-    regions[c.region] = c.region;
-    subRegions[c.region + sep + c.subregion] = c.region + ' / ' + c.subregion;
-  });
+  countriesData
+    .filter((c) => !!c.region && !!c.subregion)
+    .forEach((c: Country) => {
+      regions[c.region] = c.region;
+      subRegions[c.region + sep + c.subregion] = c.region + ' / ' + c.subregion;
+    });
 
   // Sine we want to have entities with IDs which we can later decode back (from URL)
   // we need to generate URL-friendly entity IDs for our region and sub-regions.

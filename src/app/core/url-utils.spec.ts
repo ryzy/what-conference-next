@@ -56,36 +56,28 @@ describe('url-utils', () => {
 
   it('#makeSortInfoForRouter', () => {
     const emptyParams = { s: undefined, sd: undefined };
-    expect(makeSortInfoForRouter()).toEqual(emptyParams, 'Should make nothing when no router state provided');
-    expect(makeSortInfoForRouter({} as AppSortInfo)).toEqual(
-      emptyParams,
-      'Should make nothing when empty router state provided',
-    );
+    // Should make nothing when no router state provided
+    expect(makeSortInfoForRouter()).toEqual(emptyParams);
+    // Should make nothing when empty router state provided
+    expect(makeSortInfoForRouter({} as AppSortInfo)).toEqual(emptyParams);
+    // Should not generate state for default sort
     expect(makeSortInfoForRouter({ active: defaultSortInfo.active, direction: defaultSortInfo.direction })).toEqual(
       emptyParams,
-      'Should not generate state for default sort',
     );
-    expect(makeSortInfoForRouter({ active: defaultSortInfo.active, direction: 'desc' })).toEqual(
-      { s: defaultSortInfo.active, sd: 'desc' },
-      'Should not generate state for default sort, but different direction',
-    );
+    // Should not generate state for default sort, but different direction
+    expect(makeSortInfoForRouter({ active: defaultSortInfo.active, direction: 'desc' })).toEqual({
+      s: defaultSortInfo.active,
+      sd: 'desc',
+    });
 
-    expect(makeSortInfoForRouter({ active: 'fieldName', direction: 'desc' })).toEqual(
-      { s: 'fieldName', sd: 'desc' },
-      'Should generate field name and direction',
-    );
-    expect(makeSortInfoForRouter({ active: 'fieldName', direction: 'asc' })).toEqual(
-      { s: 'fieldName', sd: undefined },
-      'Should generate only field name if direction is default',
-    );
-    expect(makeSortInfoForRouter({ active: 'fieldName', direction: '' })).toEqual(
-      emptyParams,
-      'Should make nothing when direction is set to empty string, which means to remove the sort',
-    );
-    expect(makeSortInfoForRouter({ active: '', direction: 'desc' })).toEqual(
-      emptyParams,
-      'Should make nothing when sort field is empty',
-    );
+    // Should generate field name and direction
+    expect(makeSortInfoForRouter({ active: 'fieldName', direction: 'desc' })).toEqual({ s: 'fieldName', sd: 'desc' });
+    // Should generate only field name if direction is default
+    expect(makeSortInfoForRouter({ active: 'fieldName', direction: 'asc' })).toEqual({ s: 'fieldName', sd: undefined });
+    // Should make nothing when direction is set to empty string, which means to remove the sort
+    expect(makeSortInfoForRouter({ active: 'fieldName', direction: '' })).toEqual(emptyParams);
+    // Should make nothing when sort field is empty
+    expect(makeSortInfoForRouter({ active: '', direction: 'desc' })).toEqual(emptyParams);
   });
 
   it('#getEventsSortInfoFromRouter', () => {

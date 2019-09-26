@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmationComponent should create 1`] = `
+<app-confirmation
+  dialogRef={[Function Object]}
+  message={[Function String]}
+>
+  <h3>
+    Are you absolutely sure?
+  </h3><p>
+    Some confirmation message
+  </p><p>
+    This change is irreversible. Are you sure you want to proceed?
+  </p><p>
+    <button
+      class="mat-raised-button mat-button-base"
+      mat-raised-button=""
+    >
+      <span
+        class="mat-button-wrapper"
+      >
+        Cancel
+      </span>
+      <div
+        class="mat-button-ripple mat-ripple"
+        matripple=""
+        ng-reflect-centered="false"
+        ng-reflect-disabled="false"
+        ng-reflect-trigger="[object HTMLButtonElement]"
+      />
+      <div
+        class="mat-button-focus-overlay"
+      />
+    </button>
+    <button
+      class="mat-raised-button mat-button-base mat-accent"
+      color="accent"
+      mat-raised-button=""
+      ng-reflect-color="accent"
+    >
+      <span
+        class="mat-button-wrapper"
+      >
+        Sure, do it!
+      </span>
+      <div
+        class="mat-button-ripple mat-ripple"
+        matripple=""
+        ng-reflect-centered="false"
+        ng-reflect-disabled="false"
+        ng-reflect-trigger="[object HTMLButtonElement]"
+      />
+      <div
+        class="mat-button-focus-overlay"
+      />
+    </button>
+  </p>
+</app-confirmation>
+`;

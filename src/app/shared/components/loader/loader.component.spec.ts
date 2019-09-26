@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoaderComponent } from './loader.component';
 
 describe('LoaderComponent', () => {
+  /** .... */
   let component: LoaderComponent;
   let fixture: ComponentFixture<LoaderComponent>;
 
@@ -22,6 +23,6 @@ describe('LoaderComponent', () => {
     component.message = 'Loader Test';
     fixture.detectChanges();
     expect(component).toBeTruthy();
-    expect((fixture.nativeElement as HTMLElement).innerText).toContain('Loader Test');
+    expect(fixture).toMatchSnapshot();
   });
 });

@@ -38,19 +38,16 @@ describe('AuthService', () => {
     httpMock.verify();
   });
 
-  it(
-    'should dispatch user to the store',
-    fakeAsync(() => {
-      let dispatchedAction: SetUserAction | undefined;
-      spyOn(store, 'dispatch').and.callFake((v) => (dispatchedAction = v));
+  it('should dispatch user to the store', fakeAsync(() => {
+    let dispatchedAction: SetUserAction | undefined;
+    spyOn(store, 'dispatch').and.callFake((v) => (dispatchedAction = v));
 
-      stitch.mockLogin();
+    stitch.mockLogin();
 
-      expect(dispatchedAction).toBeTruthy();
-      expect(dispatchedAction.user).toBeTruthy();
-      expect(dispatchedAction.user.email).toBe(mockStitchProfileResponse.data.email);
-    }),
-  );
+    expect(dispatchedAction).toBeTruthy();
+    expect(dispatchedAction.user).toBeTruthy();
+    expect(dispatchedAction.user.email).toBe(mockStitchProfileResponse.data.email);
+  }));
 
   it('#getUser', () => {
     let user: User | undefined;
@@ -117,19 +114,16 @@ describe('AuthService', () => {
     expect(res.userData).toBeDefined();
   });
 
-  it(
-    '#fetchUserData',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#fetchUserData', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let res: UserData | undefined;
-      authService.fetchUserData().subscribe((v) => (res = v));
-      stitch.mockCollectionFindResponse('user', [mockUserData]);
+    let res: UserData | undefined;
+    authService.fetchUserData().subscribe((v) => (res = v));
+    stitch.mockCollectionFindResponse('user', [mockUserData]);
 
-      expect(res.roles).toBeDefined();
-      expect(res.roles.editor).toBe(true);
-    }),
-  );
+    expect(res.roles).toBeDefined();
+    expect(res.roles.editor).toBe(true);
+  }));
 
   it('#navigateToLoginScreen, #navigateToAfterLoginScreen', () => {
     authService.navigateToLoginScreen();

@@ -50,12 +50,12 @@ jobs:
       - checkout
       - *restore-cache-npm-deps
       - *run-install
-      - run: yarn test:ci --progress=false
+      - run: yarn test:ci
       - persist_to_workspace:
           root: .
-          paths: [ dist/test-results/* ]
+          paths: [ dist/coverage-jest/* ]
       - store_test_results:
-          path: dist/test-results/
+          path: dist/coverage-jest/
 
   linting:
     <<: *job-defaults
@@ -64,15 +64,6 @@ jobs:
       - *restore-cache-npm-deps
       - *run-install
       - run: yarn lint
-
-  audit-checks:
-    <<: *job-defaults
-    steps:
-      - checkout
-      - *restore-cache-npm-deps
-      - *attach-workspace
-      - *run-install
-      - run: yarn coverage
 
   e2e-tests:
     <<: *job-defaults
@@ -152,8 +143,6 @@ workflows:
           requires: [ build ]
       - linting:
           requires: [ build ]
-      - audit-checks:
-          requires: [ unit-tests, linting ]
       - e2e-tests:
           requires: [ build ]
           # TODO: we need to fine-tune Cypress so it can run on production DB
@@ -163,7 +152,7 @@ workflows:
               ignore: prod
 
       - deploy:
-          requires: [ audit-checks, e2e-tests ]
+          requires: [ unit-tests, e2e-tests ]
           filters:
             branches:
               only: master
@@ -171,7 +160,7 @@ workflows:
           requires: [ deploy ]
 
       - deploy-prod:
-          requires: [ audit-checks ]
+          requires: [ unit-tests ]
           filters:
             branches:
               only: prod

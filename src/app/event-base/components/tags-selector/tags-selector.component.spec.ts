@@ -59,8 +59,7 @@ describe('TagsSelectorComponent', () => {
     // get selected primary chip and check if that's our 'frontend' tag
     const primaryChip = getPrimaryTagsEls().find((v) => v.classes['mat-chip-selected']);
     expect(primaryChip).toBeTruthy();
-    expect((primaryChip.nativeElement as HTMLElement).innerText.toLowerCase()).toContain('frontend');
-
+    expect(fixture).toMatchSnapshot();
     // we should have some secondary tag rendered
     expect(getSecondaryTagsEls().length).toBeTruthy();
   });

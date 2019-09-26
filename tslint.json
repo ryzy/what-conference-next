@@ -1,5 +1,5 @@
 {
-  "rulesDirectory": ["node_modules/codelyzer"],
+  "rulesDirectory": ["codelyzer"],
   "extends": ["rxjs-tslint-rules"],
   "rules": {
     "arrow-return-shorthand": true,
@@ -43,7 +43,6 @@
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "one-line": [true, "check-open-brace", "check-catch", "check-whitespace"],
@@ -102,7 +101,6 @@
       "check-separator",
       "check-type"
     ],
-    "angular-whitespace": [true],
     "no-output-on-prefix": true,
     "no-inputs-metadata-property": true,
     "no-outputs-metadata-property": true,

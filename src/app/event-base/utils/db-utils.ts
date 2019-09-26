@@ -1,4 +1,4 @@
-import { startCase } from 'lodash-es';
+import startCase from 'lodash-es/startCase.js';
 
 import { AppRouterState } from '../../core/store/router/router';
 import { defaultSortInfo, getEventsFiltersFromRouter, getEventsSortInfoFromRouter } from '../../core/url-utils';

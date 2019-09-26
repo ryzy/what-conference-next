@@ -32,6 +32,7 @@ describe('LoginFormPageComponent', () => {
   it('should create', () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
+    expect(fixture).toMatchSnapshot();
   });
 
   it('should login', async () => {
@@ -69,7 +70,7 @@ describe('LoginFormPageComponent', () => {
     expect(signInSpy).toHaveBeenCalled();
     expect(navigateSpy).not.toHaveBeenCalled();
 
-    expect((fixture.nativeElement as HTMLElement).innerText).toContain('some/login/error');
+    expect(fixture).toMatchSnapshot();
   });
 
   it('should do nothing when user/pass not specified', async () => {

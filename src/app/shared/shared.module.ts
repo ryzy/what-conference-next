@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -32,6 +32,9 @@ export const APP_COMPONENTS = [NotFoundPageComponent, LoaderComponent, UserAvata
 @NgModule({
   imports: [...IMPORT_EXPORT_MODULES, ...MAT_SHARED_MODULES],
   exports: [...IMPORT_EXPORT_MODULES, ...MAT_SHARED_MODULES, ...APP_COMPONENTS],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: '' },
+  ],
   declarations: [...APP_COMPONENTS],
   entryComponents: [ConfirmationComponent],
 })

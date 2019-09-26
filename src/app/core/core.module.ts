@@ -28,9 +28,7 @@ import { AuthService } from './services/auth.service';
     EffectsModule.forRoot([AuthService, RouterEffects]),
     StoreRouterConnectingModule,
     /* istanbul ignore next */
-    environment.production || isUnitTestContext()
-      ? []
-      : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
+    environment.production ? [] : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
 
     Angulartics2Module.forRoot(<Angulartics2Settings>{
       pageTracking: { clearHash: true, clearQueryParams: true },

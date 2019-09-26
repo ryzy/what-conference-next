@@ -7,6 +7,7 @@ import { UserPasswordCredential, StitchUser, RemoteDeleteResult } from 'mongodb-
 import { StitchService } from '../app/core/stitch/stitch.service';
 import { HttpStitchTransport } from '../app/core/stitch/http-stitch-transport';
 import {
+  mockLocationResponse,
   mockStitchDeleteResponse,
   mockStitchInsertOneResponse,
   mockStitchLoginResponse,
@@ -31,11 +32,15 @@ export class MockStitchService extends StitchService {
   ): Promise<StitchUser> {
     const login = this.auth.loginWithCredential(new UserPasswordCredential('email', 'pass'));
 
-    const r1 = this.httpMock.expectOne((req) => req.url.includes('auth/providers'));
+    const r0 = this.httpMock.expectOne((req) => req.url.includes('/location'));
+    r0.flush(mockLocationResponse);
+    tick();
+
+    const r1 = this.httpMock.expectOne((req) => req.url.includes('/login'));
     r1.flush(loginRes);
     tick();
 
-    const r2 = this.httpMock.expectOne((req) => req.url.includes('auth/profile'));
+    const r2 = this.httpMock.expectOne((req) => req.url.includes('/profile'));
     r2.flush(profileRes);
     tick();
 
@@ -43,26 +48,29 @@ export class MockStitchService extends StitchService {
   }
 
   public mockInsertOneResponse(): void {
+    tick();
     const r = this.httpMock.expectOne((req) => req.url.includes('/call'));
     r.flush(mockStitchInsertOneResponse);
     tick();
   }
 
   public mockUpdateResponse(): void {
+    tick();
     const r = this.httpMock.expectOne((req) => req.url.includes('/call'));
     r.flush(mockStitchUpdateResponse);
     tick();
   }
 
   public mockDeleteResponse(response: RemoteDeleteResult = mockStitchDeleteResponse): void {
+    tick();
     const r = this.httpMock.expectOne((req) => req.url.includes('/call'));
     r.flush(response);
     tick();
   }
 
   public mockCollectionFindResponse(collection: string, data: any[]): void {
+    tick();
     const r = this.httpMock.expectOne((req) => req.url.includes('/call') && req.body.includes(collection));
-
     r.flush(
       data.map((item, idx) => {
         return {

@@ -89,6 +89,11 @@ export class RouterEffects {
   }
 
   private afterRouterNavigationCompletes(): Observable<AppRouterState> {
-    return this.actions$.pipe(ofType(ROUTER_NAVIGATION), take(1), pluck('payload'), pluck('routerState'));
+    return this.actions$.pipe(
+      ofType(ROUTER_NAVIGATION),
+      take(1),
+      pluck('payload'),
+      pluck('routerState'),
+    );
   }
 }

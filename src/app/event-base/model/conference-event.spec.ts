@@ -165,7 +165,7 @@ describe('ConferenceEvent model', () => {
       let ev: ConferenceEvent | undefined;
 
       ev = createEventFromFormData({}, mockLexEmpty);
-      expect(ev.origin).toBeDefined('ConferenceEvent.origin should be initialised');
+      expect(ev.origin).toBeDefined();
       expect(ev.origin.authorId).toBe('');
     });
 
@@ -192,16 +192,17 @@ describe('ConferenceEvent model', () => {
     it('#tags should be build', () => {
       const ref = new ConferenceEventRef(mockEvent, mockLex);
 
-      expect(ref.tags.length).toBeGreaterThan(1, 'Expect at least two tags, just so we really test this functionality');
-      expect(ref.tags.length).toBe(
-        Object.keys(mockEvent.tags).length,
-        'Built EventTag list should equal number of provided tags',
-      );
+      // Expect at least two tags, just so we really test this functionality
+      expect(ref.tags.length).toBeGreaterThan(1);
+      // Built EventTag list should equal number of provided tags
+      expect(ref.tags.length).toBe(Object.keys(mockEvent.tags).length);
 
       const k = 1; // take the 2nd one from the stock
       const testedTagId = mockEvent.tags[k];
-      expect(ref.tags[k].id).toBe(testedTagId, 'Assembled tags should have valid tag IDs');
-      expect(ref.tags[k].name).not.toBe(testedTagId, 'Tags should be assembled from provided dictionary of tags');
+      // Assembled tags should have valid tag IDs
+      expect(ref.tags[k].id).toBe(testedTagId);
+      // Tags should be assembled from provided dictionary of tags
+      expect(ref.tags[k].name).not.toBe(testedTagId);
     });
 
     it('#tags: non longer existing tags should be skipped', () => {

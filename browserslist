@@ -1,17 +1,12 @@
-### Supported Browsers
+# This file is used by the build system to adjust CSS and JS output to support the specified browsers below.
+# For additional information regarding the format and rule options, please see:
+# https://github.com/browserslist/browserslist#queries
 
-# This list is used by angular-cli to generate optimised code (CSS)
-# only for browser specified on the list below.
-#
-# @see https://github.com/angular/angular-cli/wiki/stories-autoprefixer
-# @see https://github.com/ai/browserslist
-#
-# How to test this list?
-# run `yarn browserlist`
+# You can see what browsers were selected by your queries by running:
+#   npx browserslist
 
-> 2%
+> 0.5%
 last 2 versions
-
-# completely exclude IE and IE Mobile
-not ie <= 11
-not ie_mob <= 11
+Firefox ESR
+not dead
+not IE 9-11 # For IE 9-11 support, remove 'not'.

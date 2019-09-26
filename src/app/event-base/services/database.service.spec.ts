@@ -28,114 +28,93 @@ describe('DatabaseService', () => {
   });
 
   afterEach(() => {
-    // console.log('httpMock after', httpMock);
+    // console.log('httpMock after', (httpMock as any).open);
     httpMock.verify();
   });
 
-  it(
-    '#getEventTags',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#getEventTags', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let res: EventTag[] | undefined;
-      db.getEventTags().subscribe((v) => (res = v));
+    let res: EventTag[] | undefined;
+    db.getEventTags().subscribe((v) => (res = v));
 
-      stitch.mockCollectionFindResponse('tags', mockTags);
+    stitch.mockCollectionFindResponse('tags', mockTags);
 
-      expect(res.length).toEqual(mockTags.length);
-      expect(res[0].id).toEqual(mockTags[0].id);
-    }),
-  );
+    expect(res.length).toEqual(mockTags.length);
+    expect(res[0].id).toEqual(mockTags[0].id);
+  }));
 
-  it(
-    '#getEvent',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#getEvent', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let ev: ConferenceEventRef | undefined;
-      db.getEvent(uuid()).subscribe((v) => (ev = v));
+    let ev: ConferenceEventRef | undefined;
+    db.getEvent(uuid()).subscribe((v) => (ev = v));
 
-      stitch.mockCollectionFindResponse('events', mockEvents.slice(0, 1));
+    stitch.mockCollectionFindResponse('events', mockEvents.slice(0, 1));
 
-      expect((ev as any) instanceof ConferenceEventRef).toBe(true);
-      expect(ev.ref.name).toBe(mockEvents[0].name);
-      expect(ev.ref.tags).toEqual(mockEvents[0].tags);
-    }),
-  );
+    expect((ev as any) instanceof ConferenceEventRef).toBe(true);
+    expect(ev.ref.name).toBe(mockEvents[0].name);
+    expect(ev.ref.tags).toEqual(mockEvents[0].tags);
+  }));
 
-  it(
-    '#getEvent should emit error for non-existing event',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#getEvent should emit error for non-existing event', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let ev: ConferenceEventRef | undefined;
-      let err: any;
-      db.getEvent(uuid()).subscribe((v) => (ev = v), (e) => (err = e));
+    let ev: ConferenceEventRef | undefined;
+    let err: any;
+    db.getEvent(uuid()).subscribe((v) => (ev = v), (e) => (err = e));
 
-      stitch.mockCollectionFindResponse('events', []);
+    stitch.mockCollectionFindResponse('events', []);
 
-      expect(ev).toBeFalsy();
-      expect(err).toBeTruthy();
-      expect(err && (err as Error).message).toContain('not found');
-    }),
-  );
+    expect(ev).toBeFalsy();
+    expect(err).toBeTruthy();
+    expect(err && (err as Error).message).toContain('not found');
+  }));
 
-  it(
-    '#getEvents',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#getEvents', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let ev: ConferenceEventRef[] | undefined;
-      db.getEvents().subscribe((v) => (ev = v));
+    let ev: ConferenceEventRef[] | undefined;
+    db.getEvents().subscribe((v) => (ev = v));
 
-      stitch.mockCollectionFindResponse('events', mockEvents);
+    stitch.mockCollectionFindResponse('events', mockEvents);
 
-      expect(ev).toBeTruthy();
-      expect(ev.length).toBe(mockEvents.length);
-    }),
-  );
+    expect(ev).toBeTruthy();
+    expect(ev.length).toBe(mockEvents.length);
+  }));
 
-  it(
-    '#newEvent',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#newEvent', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let res: RemoteInsertOneResult | undefined;
-      db.newEvent(mockEvent).subscribe((v) => (res = v));
+    let res: RemoteInsertOneResult | undefined;
+    db.newEvent(mockEvent).subscribe((v) => (res = v));
 
-      stitch.mockInsertOneResponse(); // insert the event into db
+    stitch.mockInsertOneResponse(); // insert the event into db
 
-      expect(res.insertedId).toBeTruthy();
-    }),
-  );
+    expect(res.insertedId).toBeTruthy();
+  }));
 
-  it(
-    '#updateEvent',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#updateEvent', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let res: RemoteUpdateResult | undefined;
-      db.updateEvent(mockEvent).subscribe((v) => (res = v));
+    let res: RemoteUpdateResult | undefined;
+    db.updateEvent(mockEvent).subscribe((v) => (res = v));
 
-      stitch.mockUpdateResponse();
+    stitch.mockUpdateResponse();
 
-      expect(res.matchedCount).toEqual(1);
-    }),
-  );
+    expect(res.matchedCount).toEqual(1);
+  }));
 
-  it(
-    '#deleteEvent',
-    fakeAsync(() => {
-      stitch.mockLogin();
+  it('#deleteEvent', fakeAsync(() => {
+    stitch.mockLogin();
 
-      let res: boolean | undefined;
-      db.deleteEvent(mockEvent).subscribe((v) => (res = v));
-      stitch.mockDeleteResponse();
-      expect(res).toBe(true);
+    let res: boolean | undefined;
+    db.deleteEvent(mockEvent).subscribe((v) => (res = v));
+    stitch.mockDeleteResponse();
+    expect(res).toBe(true);
 
-      db.deleteEvent(mockEvent).subscribe((v) => (res = v));
-      stitch.mockDeleteResponse({ deletedCount: 0 });
-      expect(res).toBe(false);
-    }),
-  );
+    db.deleteEvent(mockEvent).subscribe((v) => (res = v));
+    stitch.mockDeleteResponse({ deletedCount: 0 });
+    expect(res).toBe(false);
+  }));
 });

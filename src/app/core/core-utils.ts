@@ -22,7 +22,9 @@ export function throwIfAlreadyLoaded(parentModule: any, moduleName: string): voi
  * Returns true if code is executed in test (i.e. Karma) context.
  */
 export function isUnitTestContext(): boolean {
-  return !!(window as any).__karma__;
+  const isKarma: boolean = !!(window as any).__karma__;
+  const isJest: boolean = 'undefined' !== typeof process && !!process.env.JEST_WORKER_ID;
+  return isKarma || isJest;
 }
 
 // tslint:disable:no-bitwise

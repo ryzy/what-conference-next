@@ -18,7 +18,13 @@ describe('AppComponent', () => {
       imports: [SharedModule, AppTestingAuthAndDbModule, EffectsModule.forRoot([RouterEffects])],
       providers: [
         // Provide mocked GA service... no need to test it further for now.
-        { provide: Angulartics2GoogleAnalytics, useValue: { setUserProperties: () => undefined } },
+        {
+          provide: Angulartics2GoogleAnalytics,
+          useValue: {
+            startTracking: () => undefined,
+            setUserProperties: () => undefined,
+          },
+        },
       ],
       declarations: [AppComponent],
     }).compileComponents();
@@ -28,10 +34,11 @@ describe('AppComponent', () => {
     router = TestBed.get(Router);
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.debugElement.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create the app', async(() => {
+    fixture.detectChanges();
     expect(app).toBeTruthy();
+    expect(fixture).toMatchSnapshot();
   }));
 });
