@@ -5,6 +5,7 @@
   "projects": {
     "wcn-app": {
       "root": "",
+      "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
       "architect": {
@@ -76,12 +77,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "wcn-app:build",
-            "port": 4100,
-            "host": "0.0.0.0"
+            "port": 4100
           },
           "configurations": {
-            "debug": {
-              "browserTarget": "wcn-app:build:debug"
+            "production": {
+              "browserTarget": "wcn-app:build:production"
             }
           }
         },
@@ -97,9 +97,7 @@
               "src/testing/**"
             ],
             "styles": [
-              {
-                "input": "styles/app.scss"
-              }
+              "src/styles/app.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

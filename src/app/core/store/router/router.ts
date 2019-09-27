@@ -1,6 +1,7 @@
 import { Params } from '@angular/router';
-import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 import { RouterReducerState } from '@ngrx/router-store';
+
+export const ROUTER_STORE_NAME = 'router';
 
 /**
  * Possible URL params used in the app
@@ -65,7 +66,9 @@ export const defaultAppRouterState: AppRouterState = {
   queryParams: {},
 };
 
-export const getAppRouterState: MemoizedSelector<object, AppRouterState> = createSelector(
-  createFeatureSelector<RouterReducerState<AppRouterState>>('router'),
-  (state: RouterReducerState<AppRouterState>) => (state && state.state) || defaultAppRouterState,
-);
+export function getAppRouterState(state: any): AppRouterState {
+  return state
+    && state[ROUTER_STORE_NAME]
+    && (state[ROUTER_STORE_NAME] as RouterReducerState<AppRouterState>).state
+    || defaultAppRouterState;
+}

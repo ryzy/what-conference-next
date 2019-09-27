@@ -26,7 +26,7 @@ export const reducers: ActionReducerMap<AppRootState> = {
 /* istanbul ignore next */
 export function logger(reducer: ActionReducer<AppRootState>): ActionReducer<AppRootState> {
   return function(state: AppRootState, action: Action): AppRootState {
-    console.log('%cACTION ' + action.type, 'color: blue; font-weight: bold', { action, stateBefore: state });
+    console.log('%cACTION ' + action.type, 'color: bisque; font-weight: bold', { action, stateBefore: state });
     return reducer(state, action);
   } as ActionReducer<AppRootState>;
 }

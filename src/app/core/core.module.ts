@@ -26,11 +26,14 @@ import { AuthService } from './services/auth.service';
     // @ngrx store
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AuthService, RouterEffects]),
-    StoreRouterConnectingModule,
-    /* istanbul ignore next */
-    environment.production || isUnitTestContext()
-      ? []
-      : StoreDevtoolsModule.instrument({ name: 'what-conference-next.com' }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: AppRouterStateSerializer,
+    }),
+    StoreDevtoolsModule.instrument({
+      name: 'what-conference-next.com',
+      maxAge: 99,
+      logOnly: environment.production,
+    }),
 
     Angulartics2Module.forRoot(<Angulartics2Settings>{
       pageTracking: { clearHash: true, clearQueryParams: true },
@@ -41,7 +44,7 @@ import { AuthService } from './services/auth.service';
     // SW
     // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }],
+  // providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }],
 })
 export class CoreModule {
   public constructor(
