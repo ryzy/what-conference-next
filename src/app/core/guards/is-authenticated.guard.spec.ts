@@ -82,7 +82,7 @@ describe('IsAuthenticatedGuard', () => {
     beforeEach(() => {
       activatedRoute = new ActivatedRouteStub();
       spyOn(coreService, 'whenAuthAndDbReady').and.returnValue(of(true));
-      spyOn(authService, 'getUser').and.returnValue(of(false));
+      spyOn(authService, 'getUser').and.returnValue(of(undefined));
       spyOn(authService, 'navigateToLoginScreen');
     });
     it('#canActivate', () => {

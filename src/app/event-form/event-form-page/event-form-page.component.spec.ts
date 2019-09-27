@@ -8,6 +8,7 @@ import { AppTestingAuthAndDbModule } from '../../../testing/app-testing-auth-db.
 import { mockEventFormData } from '../../../testing/fixtures/events';
 import { mockEvent, mockEvents } from '../../../testing/fixtures/events';
 import { mockLex, mockLexEmpty } from '../../../testing/fixtures/event-tags';
+import { AppRouterState } from '../../core/store/router/router';
 import { ConferenceEventFormData, ConferenceEventRef } from '../../event-base/model/conference-event';
 import { EventsService } from '../../event-base/services/events.service';
 import { EventFormModule } from '../event-form.module';
@@ -53,7 +54,7 @@ describe('EventFormPageComponent', () => {
   });
 
   it('should submit', () => {
-    spyOn(service, 'addOrUpdateEvent').and.returnValue(of(new ConferenceEventRef(mockEvents[0], mockLexEmpty)));
+    spyOn(service, 'addOrUpdateEvent').and.returnValue(of(true));
     fixture.detectChanges();
 
     component.onSubmit(mockEventFormData);
@@ -112,7 +113,7 @@ describe('EventFormPageComponent', () => {
   });
 
   it('editing: should load an event for editing', () => {
-    spyOn(service, 'getRouterState').and.returnValue(of({ params: { eventId: 'some-event-id' } }));
+    spyOn(service, 'getRouterState').and.returnValue(of({ params: { eventId: 'some-event-id' } } as AppRouterState));
     fixture.detectChanges();
 
     // since we testing with mocked DB, we expect the event to be loaded here...
@@ -121,7 +122,7 @@ describe('EventFormPageComponent', () => {
   });
 
   it('editing: should show error for not-found events', () => {
-    spyOn(service, 'getRouterState').and.returnValue(of({ params: { eventId: 'some-event-id' } }));
+    spyOn(service, 'getRouterState').and.returnValue(of({ params: { eventId: 'some-event-id' } } as AppRouterState));
     spyOn(service, 'getEvent').and.callFake(throwError);
     fixture.detectChanges();
 

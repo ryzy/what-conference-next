@@ -67,8 +67,8 @@ export const defaultAppRouterState: AppRouterState = {
 };
 
 export function getAppRouterState(state: any): AppRouterState {
-  return state
-    && state[ROUTER_STORE_NAME]
-    && (state[ROUTER_STORE_NAME] as RouterReducerState<AppRouterState>).state
-    || defaultAppRouterState;
+  return (
+    (state && state[ROUTER_STORE_NAME] && (state[ROUTER_STORE_NAME] as RouterReducerState<AppRouterState>).state) ||
+    defaultAppRouterState
+  );
 }

@@ -7,12 +7,11 @@ import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { Angulartics2Module, Angulartics2Settings } from 'angulartics2';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 
 import { environment } from '../../environments/environment';
-import { isUnitTestContext, throwIfAlreadyLoaded } from './core-utils';
+import { throwIfAlreadyLoaded } from './core-utils';
 import { StitchService } from './stitch/stitch.service';
-import { reducers, metaReducers } from './store/index';
+import { reducers, rootStoreConfig } from './store/index';
 import { RouterEffects } from './services/router-effects';
 import { AppRouterStateSerializer } from './store/router/router-state-serializer';
 import { AuthService } from './services/auth.service';
@@ -24,7 +23,7 @@ import { AuthService } from './services/auth.service';
     BrowserAnimationsModule,
 
     // @ngrx store
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, rootStoreConfig),
     EffectsModule.forRoot([AuthService, RouterEffects]),
     StoreRouterConnectingModule.forRoot({
       serializer: AppRouterStateSerializer,
@@ -40,11 +39,7 @@ import { AuthService } from './services/auth.service';
       ga: { transport: 'beacon' },
       developerMode: !environment.gaTrackingId, // developerMode disables tracking
     }),
-
-    // SW
-    // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
   ],
-  // providers: [{ provide: RouterStateSerializer, useClass: AppRouterStateSerializer }],
 })
 export class CoreModule {
   public constructor(

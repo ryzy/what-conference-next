@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
+import { rootStoreConfig } from '../../core/store/index';
 
 import {
   EventsFeatureStoreName,
@@ -53,7 +54,7 @@ describe('TagsState', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [
-          StoreModule.forRoot({}),
+          StoreModule.forRoot({} as any, rootStoreConfig),
           StoreModule.forFeature(EventsFeatureStoreName, eventsReducers, { initialState: eventsInitialState }),
         ],
       });

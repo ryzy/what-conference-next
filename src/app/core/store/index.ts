@@ -1,6 +1,6 @@
 import * as fromRouter from '@ngrx/router-store';
 import { RouterReducerState } from '@ngrx/router-store';
-import { Action, ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { Action, ActionReducer, ActionReducerMap, MetaReducer, RootStoreConfig } from '@ngrx/store';
 
 import { appReducer, AppState } from './app/app-reducer';
 import { AppRouterState } from './router/router';
@@ -19,6 +19,17 @@ export const reducers: ActionReducerMap<AppRootState> = {
   router: fromRouter.routerReducer as ActionReducer<RouterReducerState<AppRouterState>>,
 };
 
+export const rootStoreConfig: RootStoreConfig<AppRootState> = {
+  metaReducers: [
+    // logger,
+  ],
+  runtimeChecks: {
+    // Cannot set these to true due to un-serializable ObjectID's from MongoDB...
+    // strictActionImmutability: false,
+    // strictStateImmutability: false,
+  },
+};
+
 /**
  * Log all Store actions to console.
  * To use, uncomment it in `metaReducers` below
@@ -30,8 +41,3 @@ export function logger(reducer: ActionReducer<AppRootState>): ActionReducer<AppR
     return reducer(state, action);
   } as ActionReducer<AppRootState>;
 }
-
-/* istanbul ignore next */
-export const metaReducers: MetaReducer<AppRootState>[] = [
-  // logger
-];

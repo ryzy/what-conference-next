@@ -12,7 +12,7 @@ import {
   UserApiKey,
   UserApiKeyAuthProviderClient,
 } from 'mongodb-stitch-browser-sdk';
-import { Observable, defer, of, from, EMPTY } from "rxjs";
+import { Observable, defer, of, from, EMPTY } from 'rxjs';
 import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
 import { uuid } from '../core-utils';
 
@@ -34,7 +34,7 @@ export class AuthService {
   @Effect()
   public fetchUserData$: Observable<SetUserDataAction> = this.getUser().pipe(
     switchMap((u) => (u ? this.fetchUserData() : of(undefined))),
-    map((ud: UserData|undefined) => new SetUserDataAction(ud)),
+    map((ud: UserData | undefined) => new SetUserDataAction(ud)),
   );
 
   public constructor(

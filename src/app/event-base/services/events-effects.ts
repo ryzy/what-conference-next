@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Observable, defer, of } from 'rxjs';
-import { catchError, filter, map, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError, map, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
 
 import { CoreService } from '../../core/services/core.service';
 import { RouterEffects } from '../../core/services/router-effects';
@@ -13,7 +13,6 @@ import { matSnackBarConfig } from '../../shared/configs';
 import { ConferenceEventRef } from '../model/conference-event';
 import {
   EventsListActionType,
-  FetchEventsAction,
   SetEventsAction,
   SetEventsFiltersAction,
   SetEventsSortingAction,
