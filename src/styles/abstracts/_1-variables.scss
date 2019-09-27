@@ -20,6 +20,7 @@ $breakpoints: (
   /* EXTRA LARGE screen (laptops, regular screens): 1200 and above ( will catch 1280 and around) */ xlarge: 1201px,
   /* XXL screens (Hi DPI screens, TVs, projectors etc): 1680 and above */ xxlarge: 1681px
 );
+$-zf-zero-breakpoint: mini;
 
 // All of the names in this list will be output as classes in your CSS,
 // like .small-12, .medium-6, and so on. Each value in this list

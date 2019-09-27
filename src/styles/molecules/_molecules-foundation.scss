@@ -28,4 +28,5 @@
  * Flex utils, e.g. .align-center, .align-right, .align-bottom
  * http://foundation.zurb.com/sites/docs/flexbox-utilities.html
  */
+@include foundation-float-classes;
 @include foundation-flex-classes;

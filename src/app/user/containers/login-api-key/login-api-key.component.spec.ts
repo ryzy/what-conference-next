@@ -41,7 +41,7 @@ describe('LoginApiKeyComponent', () => {
 
   it('should login', () => {
     activatedRoute.testParams = { apiKey: 'some-api-key' };
-    spyOn(authService, 'loginWithUserApiKey').and.returnValue(of(mockUser));
+    spyOn(authService, 'loginWithUserApiKey').and.returnValue(of(mockUser as any));
     fixture.detectChanges();
     expect(component.message).toBeTruthy();
     expect(component.message).not.toMatch(/error/i);

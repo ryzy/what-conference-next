@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy, EventEmitter } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { filter, take, takeUntil } from 'rxjs/operators';
 
 import { AppSortInfo } from '../../core/model/entity';

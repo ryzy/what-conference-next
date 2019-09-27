@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad, CanActivateChild } from '@angular/router';
-import { Route } from '@angular/router/src/config';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  CanLoad,
+  CanActivateChild,
+  Route,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take, tap } from 'rxjs/operators';
 

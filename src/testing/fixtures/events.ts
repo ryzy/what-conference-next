@@ -33,9 +33,7 @@ export const mockEvents: ConferenceEvent[] = [
     address: '123, Some Street in ' + mockCountry1.capital,
     geoPoint: { type: 'Point', coordinates: mockCountry1.latlng },
     website: `https://www.example.${mockCountry1.isoCode.toLowerCase()}/`,
-    description: `The biggest Angular Conference in ${
-      mockCountry1.subregion
-    }. Learn about the present and future of Angular and its ecosystem, TypeScript, tools and much more.`,
+    description: `The biggest Angular Conference in ${mockCountry1.subregion}. Learn about the present and future of Angular and its ecosystem, TypeScript, tools and much more.`,
     twitterHandle: mockCountry1.name + 'Conf',
     hashTags: [],
     price: 100,
@@ -61,9 +59,7 @@ export const mockEvents: ConferenceEvent[] = [
     address: '123, Some Street in ' + mockCountry2.capital,
     geoPoint: { type: 'Point', coordinates: mockCountry2.latlng },
     website: `https://www.example.${mockCountry2.isoCode.toLowerCase()}/`,
-    description: `The biggest Angular Conference in ${
-      mockCountry2.subregion
-    }. Learn about the present and future of Angular and its ecosystem, TypeScript, tools and much more.`,
+    description: `The biggest Angular Conference in ${mockCountry2.subregion}. Learn about the present and future of Angular and its ecosystem, TypeScript, tools and much more.`,
     twitterHandle: mockCountry2.name + 'Conf',
     hashTags: ['hash1', 'hash2', 'hash3'],
     price: 500,

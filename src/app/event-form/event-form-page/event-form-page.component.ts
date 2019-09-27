@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EMPTY } from 'rxjs';
 import { map, switchMap, take, takeUntil, tap } from 'rxjs/operators';

@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { NotFoundPageComponent } from './containers/not-found-page/not-found-page.component';
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';

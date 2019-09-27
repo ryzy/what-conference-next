@@ -3,12 +3,12 @@ import { Location } from '@angular/common';
 import { Router, RoutesRecognized } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Actions } from '@ngrx/effects';
-import { RouterNavigationAction, RouterNavigationPayload, ROUTER_NAVIGATION } from '@ngrx/router-store';
+import { RouterNavigationPayload, ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { Store, StoreModule } from '@ngrx/store';
 import { of } from 'rxjs';
 import { cold, hot } from 'jasmine-marbles';
 
-import { AppRootState, metaReducers, reducers } from '../store/index';
+import { AppRootState, reducers, rootStoreConfig } from '../store/index';
 import { AppRouterState, defaultAppRouterState } from '../store/router/router';
 import { RouterEffects } from './router-effects';
 import { BackAction, ForwardAction, GoAction } from '../store/router/router-actions';
@@ -23,7 +23,7 @@ describe('RouterEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, StoreModule.forRoot(reducers)],
+      imports: [RouterTestingModule, StoreModule.forRoot(reducers, rootStoreConfig)],
       providers: [TestActionsProvider, RouterEffects],
     });
 

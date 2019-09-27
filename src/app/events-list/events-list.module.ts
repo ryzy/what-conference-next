@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  MatChipsModule,
-  MatSelectModule,
-  MatSlideToggleModule,
-  MatSortModule,
-  MatTableModule,
-} from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 import { EventBaseModule } from '../event-base/event-base.module';
 import { SharedModule } from '../shared/shared.module';

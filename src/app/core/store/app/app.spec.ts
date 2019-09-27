@@ -5,7 +5,7 @@ import { mockTags } from '../../../../testing/fixtures/event-tags';
 import { mockUser, mockUserData } from '../../../../testing/fixtures/user';
 import { EventsFeatureStoreName, eventsReducers } from '../../../event-base/store/index';
 import { User, UserData } from '../../model/user';
-import { AppRootState, reducers } from '../index';
+import { AppRootState, reducers, rootStoreConfig } from '../index';
 import { appInitialState, appReducer, AppState, defaultUserData } from './app-reducer';
 import * as appActions from './app-actions';
 import * as appSelectors from './app-selectors';
@@ -46,7 +46,10 @@ describe('AppState', () => {
   describe('selectors:', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [StoreModule.forRoot(reducers), StoreModule.forFeature(EventsFeatureStoreName, eventsReducers)],
+        imports: [
+          StoreModule.forRoot(reducers, rootStoreConfig),
+          StoreModule.forFeature(EventsFeatureStoreName, eventsReducers),
+        ],
       });
 
       store = TestBed.get(Store);

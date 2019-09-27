@@ -12,7 +12,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatInput } from '@angular/material';
+import { MatInput } from '@angular/material/input';
 import { Observable, combineLatest } from 'rxjs';
 import { filter, map, startWith, takeUntil, tap } from 'rxjs/operators';
 

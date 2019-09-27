@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MAT_DATE_LOCALE, MatChipsModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 

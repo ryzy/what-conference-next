@@ -2,8 +2,6 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "target": "es2015",
-    "module": "es2015",
     "strict": true,
     "types": []
   },
