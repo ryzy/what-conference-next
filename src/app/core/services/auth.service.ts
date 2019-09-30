@@ -147,6 +147,11 @@ export class AuthService {
           .find()
           .first(),
       ),
+    ).pipe(
+      catchError((err: Error) => {
+        console.log('AuthService#fetchUserData() error', err);
+        return of(undefined);
+      }),
     );
   }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
 
 import { CoreService } from '../../core/services/core.service';
@@ -34,7 +34,7 @@ export class EventsEffects {
   @Effect()
   public fetchAndSetTags$: Observable<SetTagsAction> = this.actions$.pipe(
     ofType(TagsActionType.FETCH_TAGS),
-    switchMap(() => this.db.getEventTags()),
+    switchMap(() => this.db.getEventTags().pipe(catchError(() => of([])))),
     map((tags: EventTag[]) => new SetTagsAction(tags)),
   );
 
