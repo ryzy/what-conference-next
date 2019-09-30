@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "strict": true,
@@ -12,5 +12,7 @@
     "diagnostics": true,
     "disableTypeScriptVersionCheck": true
   },
-  "exclude": ["test.ts", "**/*.spec.ts", "testing/"]
+  "exclude": [
+    "src/test.ts", "**/*.spec.ts", "cypress", "testing/"
+  ]
 }
