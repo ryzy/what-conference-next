@@ -57,7 +57,7 @@ jobs:
           root: .
           paths: [ coverage/* ]
       - store_test_results:
-          path: coverage/
+          path: coverage/apps/wcn/clover.xml
 
   linting:
     <<: *job-defaults

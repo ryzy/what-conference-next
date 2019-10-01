@@ -15,6 +15,8 @@
     "e2e:ci": "ng e2e --headless",
     "serve": "node tools/server.js",
     "analyze": "webpack-bundle-analyzer ./dist/apps/wcn/stats-es2015.json ./dist/apps/wcn/ --mode=static --report=dist/apps/wcn-size-report/index.html --no-open",
+    "deploy": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project dev",
+    "deploy:prod": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" --project prod",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",

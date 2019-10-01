@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/app",
+    "public": "dist/apps/wcn",
     "rewrites": [
       {
         "source": "**",
