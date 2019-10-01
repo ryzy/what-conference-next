@@ -1,0 +1,35 @@
+<h2>Please log in</h2>
+
+<form [formGroup]="loginForm" (ngSubmit)="login()" novalidate cdkTrapFocus class="grid-x align-center">
+  <fieldset class="cell small-10 medium-8 large-6">
+    <legend>Log in to your account</legend>
+    <div class="grid-x grid-margin-x">
+      <mat-form-field class="cell grow">
+        <mat-label>E-mail:</mat-label>
+        <input matInput name="username" formControlName="username" placeholder="email@domain.com" />
+      </mat-form-field>
+      <mat-form-field class="cell grow">
+        <mat-label>Password:</mat-label>
+        <input
+          matInput
+          name="password"
+          formControlName="password"
+          type="password"
+          placeholder="Type password here..."
+        />
+      </mat-form-field>
+    </div>
+    <div class="cell grow">
+      <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid">Log In</button>
+
+      <code *ngIf="loginForm.errors && loginForm.errors['loginError']">{{ loginForm.errors['loginError'] }}</code>
+    </div>
+
+    <hr />
+
+    <h6>
+      Note that at this moment there is <strong>no sign-up functionality</strong> (yet). Use one of external providers
+      listed on <a routerLink="/user">user page</a>. Get in touch if you still want to use username/password login.
+    </h6>
+  </fieldset>
+</form>

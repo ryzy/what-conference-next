@@ -1,0 +1,18 @@
+{
+  "npmScope": "wcn",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "wcn-e2e": {
+      "tags": []
+    },
+    "wcn": {
+      "tags": []
+    }
+  }
+}
