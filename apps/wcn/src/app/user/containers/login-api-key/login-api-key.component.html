@@ -1,0 +1,16 @@
+<h3>Logging in with API Key...</h3>
+
+<pre
+  >{{ apiKey }}
+{{ apiKeys | json }}
+{{ !apiKey && !apiKeys ? 'NO API KEY' : '' }} {{ message }}
+</pre>
+
+<p *ngIf="currentUser">
+  <button mat-raised-button (click)="getUserApiKeys()" color="primary">
+    Fetch all keys for <b>{{ currentUser.email }}</b>
+  </button>
+  <button mat-raised-button (click)="createUserApiKey()" color="accent">
+    Create a new API KEY for <b>{{ currentUser.email }}</b>
+  </button>
+</p>

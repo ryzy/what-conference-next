@@ -1,0 +1,80 @@
+<h2>Upcoming conferences</h2>
+
+<app-events-filter
+  [filters]="filters"
+  [tagsList]="tagsList"
+  (filtersChanged)="onFiltersChange($event)"
+></app-events-filter>
+
+<mat-table
+  #table
+  matSort
+  [matSortDisableClear]="true"
+  [matSortActive]="sortInfo.active"
+  [matSortDirection]="sortInfo.direction"
+  (matSortChange)="onSortChange($event)"
+  [dataSource]="eventsDataSource"
+  [trackBy]="trackByFn"
+>
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+  <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="mat-cell--multiline">
+      <h2 class="event-name">
+        <a [routerLink]="['/', 'ev', row.id]">{{ row.ref.name }}</a>
+        <a href="{{ row.ref.website }}" target="_blank" class="show-on-hover"><mat-icon>open_in_new</mat-icon></a>
+      </h2>
+      <span class="location">{{ row.ref.city }}, {{ row.ref.country }}</span>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>When</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="mat-cell--multiline">
+      <div class="event-date">
+        <!--<ng-container *ngIf="row.ref.date && row.ref.date.toISOString; else noDate"> {{ row.ref.date | date:'EE, M MMM yyyy' }}</ng-container>-->
+        <!--<ng-template #noDate>{{ row.ref.date || 'TBA' }}</ng-template>-->
+        {{ row.date | date:'EE, d MMM yyyy' }}
+      </div>
+      <div class="event-duration">
+        <!-- event duration (num of days) -->
+        <span class="event-duration--days" title="{{row.ref.eventDuration}} day(s) event">
+          <mat-icon>event</mat-icon> {{ row.ref.eventDuration }}
+        </span>
+        <!-- event add-ons, e.g. workshops (in num of days) -->
+        <span
+          class="event-duration--addon"
+          *ngIf="row.ref.workshops || row.ref.freeWorkshops"
+          title="Workshops are available on this event"
+        >
+          + <mat-icon>perm_data_setting</mat-icon>
+        </span>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Price (from)</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      {{ row.ref.price | currency:row.ref.priceCurrency:'symbol-narrow':'1.0' }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="tags">
+    <mat-header-cell *matHeaderCellDef>Tags</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <a [routerLink]="getTagLink(tag.id)" *ngFor="let tag of row.tags" class="badge">{{ tag.name }}</a>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-icon class="show-on-hover">stars</mat-icon>
+    </mat-cell>
+  </ng-container>
+</mat-table>

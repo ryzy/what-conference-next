@@ -1,0 +1,7 @@
+<ng-container *ngIf="user && user?.photoUrl; else noUser">
+  <img [src]="user?.photoUrl" />
+</ng-container>
+
+<ng-template #noUser>
+  <mat-icon>perm_identity</mat-icon>
+</ng-template>

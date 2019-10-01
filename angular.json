@@ -1,40 +1,39 @@
 {
-  "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
   "projects": {
-    "wcn-app": {
-      "root": "",
-      "sourceRoot": "src",
+    "wcn": {
       "projectType": "application",
-      "prefix": "app",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/wcn",
+      "sourceRoot": "apps/wcn/src",
+      "prefix": "wcn",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/app",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "preserveSymlinks": true,
+            "outputPath": "dist/apps/wcn",
+            "index": "apps/wcn/src/index.html",
+            "main": "apps/wcn/src/main.ts",
+            "polyfills": "apps/wcn/src/polyfills.ts",
+            "tsConfig": "apps/wcn/tsconfig.app.json",
+            "aot": false,
             "extractLicenses": false,
             "extractCss": true,
-            "sourceMap": true,
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets",
+                "input": "apps/wcn/src/assets",
                 "output": "/assets"
-              }
+              },
+              "apps/wcn/src/assets"
             ],
-            "styles": [
-              "src/styles/app.scss"
-            ],
+            "styles": ["apps/wcn/src/styles/app.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles"
-              ]
+              "includePaths": ["apps/wcn/src/styles"]
             },
             "scripts": []
           },
@@ -42,31 +41,43 @@
             "development": {
               "fileReplacements": [
                 {
-                  "src": "src/environments/environment.ts",
-                  "replaceWith": "src/environments/environment.development.ts"
+                  "replace": "apps/wcn/src/environments/environment.ts",
+                  "with": "apps/wcn/src/environments/environment.development.ts"
                 }
               ],
               "statsJson": true,
-              "extractLicenses": true,
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
+              "sourceMap": false,
+              "namedChunks": false,
               "aot": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             },
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.production.ts"
+                  "replace": "apps/wcn/src/environments/environment.ts",
+                  "with": "apps/wcn/src/environments/environment.production.ts"
                 }
               ],
               "statsJson": true,
-              "extractLicenses": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "namedChunks": false,
               "aot": true,
               "vendorChunk": false,
               "buildOptimizer": true
@@ -76,72 +87,90 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "wcn-app:build",
+            "browserTarget": "wcn:build",
             "port": 4100
           },
           "configurations": {
             "production": {
-              "browserTarget": "wcn-app:build:production"
+              "browserTarget": "wcn:build:production"
             }
           }
         },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "sourceMap": true,
-            "codeCoverageExclude": [
-              "src/testing/**"
-            ],
-            "styles": [
-              "src/styles/app.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles"
-              ]
-            },
-            "scripts": [],
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              }
-            ]
+            "browserTarget": "wcn:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "cypress/tsconfig.json"
+            "tsConfig": ["apps/wcn/tsconfig.app.json", "apps/wcn/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "!apps/wcn/**"]
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/wcn/src/test.ts",
+            "tsConfig": "apps/wcn/tsconfig.spec.json",
+            "karmaConfig": "apps/wcn/karma.conf.js",
+            "polyfills": "apps/wcn/src/polyfills.ts",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/wcn/src/assets",
+                "output": "/assets"
+              },
+              "apps/wcn/src/assets"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "styles": ["apps/wcn/src/styles/app.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["apps/wcn/src/styles"]
+            },
+            "scripts": [],
+            "codeCoverageExclude": ["apps/wcn/src/testing/**"]
+          }
+        }
+      }
+    },
+    "wcn-e2e": {
+      "root": "apps/wcn-e2e",
+      "sourceRoot": "apps/wcn-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/wcn-e2e/cypress.json",
+            "tsConfig": "apps/wcn-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "wcn:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/wcn-e2e/tsconfig.json"
           }
         }
       }
     }
   },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
   "schematics": {
-    "@schematics/angular:service": {
-      "flat": true
+    "@nrwl/angular:application": {
+      "unitTestRunner": "karma",
+      "e2eTestRunner": "cypress"
     },
-    "@schematics/angular:component": {
-      "changeDetection": "OnPush",
-      "styleext": "scss"
+    "@nrwl/angular:library": {
+      "unitTestRunner": "karma"
     }
   },
-  "cli": {
-    "warnings": {
-      "typescriptMismatch": false
-    }
-  }
+  "defaultProject": "wcn"
 }

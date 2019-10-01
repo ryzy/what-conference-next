@@ -22,6 +22,10 @@ version: 2
     name: Installing
     command: yarn install --frozen-lockfile
 
+.cypress-artifacts: &cypress-artifacts
+  store_artifacts: { path: dist/cypress, destination: dist/cypress  }
+
+
 jobs:
   build:
     <<: *job-defaults
@@ -33,16 +37,14 @@ jobs:
       - run:
           name: Build
           command: |
-            source scripts/ci-get-set-env.sh
+            source tools/ci-get-set-env.sh
             yarn build:$APP_ENV_NAME --progress=false
             yarn analyze
       - persist_to_workspace:
           root: .
           paths:
-            - dist/app/*
-            - dist/size-report/*
-      - store_artifacts: { path: dist/app, destination: dist/app }
-      - store_artifacts: { path: dist/size-report, destination: dist/size-report }
+            - dist/apps/*
+      - store_artifacts: { path: dist/apps, destination: dist/apps }
 
   unit-tests:
     <<: *job-defaults
@@ -53,9 +55,9 @@ jobs:
       - run: yarn test:ci --progress=false
       - persist_to_workspace:
           root: .
-          paths: [ dist/test-results/* ]
+          paths: [ coverage/* ]
       - store_test_results:
-          path: dist/test-results/
+          path: coverage/
 
   linting:
     <<: *job-defaults
@@ -64,15 +66,6 @@ jobs:
       - *restore-cache-npm-deps
       - *run-install
       - run: yarn lint
-
-  audit-checks:
-    <<: *job-defaults
-    steps:
-      - checkout
-      - *restore-cache-npm-deps
-      - *attach-workspace
-      - *run-install
-      - run: yarn coverage
 
   e2e-tests:
     <<: *job-defaults
@@ -83,9 +76,8 @@ jobs:
       - *run-install
       - run: |
           yarn serve &
-          yarn e2e:ci --config baseUrl=http://localhost:4104
-      - store_artifacts: { path: cypress/videos, destination: cypress/videos  }
-      - store_artifacts: { path: cypress/screenshots, destination: cypress/screenshots }
+          yarn e2e:ci --base-url=http://localhost:4104
+      - *cypress-artifacts
 
   e2e-smoke-dev:
     <<: *job-defaults
@@ -95,9 +87,8 @@ jobs:
       - *attach-workspace
       - *run-install
       - run: |
-          yarn e2e:ci --config baseUrl=https://stage.what-conference-next.com/
-      - store_artifacts: { path: cypress/videos, destination: cypress/videos  }
-      - store_artifacts: { path: cypress/screenshots, destination: cypress/screenshots }
+          yarn e2e:ci --base-url=https://stage.what-conference-next.com
+      - *cypress-artifacts
 
   e2e-smoke-prod:
     <<: *job-defaults
@@ -107,9 +98,8 @@ jobs:
       - *attach-workspace
       - *run-install
       - run: |
-          yarn e2e:ci --config baseUrl=https://what-conference-next.com/
-      - store_artifacts: { path: cypress/videos, destination: cypress/videos  }
-      - store_artifacts: { path: cypress/screenshots, destination: cypress/screenshots }
+          yarn e2e:ci --base-url=https://what-conference-next.com
+      - *cypress-artifacts
 
   deploy:
     <<: *job-defaults
@@ -152,8 +142,6 @@ workflows:
           requires: [ build ]
       - linting:
           requires: [ build ]
-      - audit-checks:
-          requires: [ unit-tests, linting ]
       - e2e-tests:
           requires: [ build ]
           # TODO: we need to fine-tune Cypress so it can run on production DB
@@ -163,7 +151,7 @@ workflows:
               ignore: prod
 
       - deploy:
-          requires: [ audit-checks, e2e-tests ]
+          requires: [ unit-tests, e2e-tests ]
           filters:
             branches:
               only: master
@@ -171,7 +159,7 @@ workflows:
           requires: [ deploy ]
 
       - deploy-prod:
-          requires: [ audit-checks ]
+          requires: [ unit-tests ]
           filters:
             branches:
               only: prod
