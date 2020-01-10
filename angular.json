@@ -111,7 +111,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/wcn/tsconfig.app.json", "apps/wcn/tsconfig.spec.json"],
+            "tsConfig": ["apps/wcn/tsconfig.app.json", "apps/wcn/tsconfig.spec.jsonssss"],
             "exclude": ["**/node_modules/**", "!apps/wcn/**"]
           }
         },
