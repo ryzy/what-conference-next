@@ -95,7 +95,7 @@
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "1.4.2",
     "mongodb-stitch-cli": "1.7.0",
-    "node-sass": "4.12.0",
+    "node-sass": "7.0.0",
     "prettier": "1.18.2",
     "rxjs-tslint-rules": "4.25.0",
     "ts-loader": "6.2.0",
